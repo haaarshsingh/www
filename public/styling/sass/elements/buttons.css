@@ -1,0 +1,24 @@
+.bluegrad {
+  background: linear-gradient(134deg, #6A98F0 0%, #4961DC 99%);
+  color: #F8F8F8;
+}
+
+.shadow {
+  -webkit-box-shadow: 5px 5px 10px black;
+          box-shadow: 5px 5px 10px black;
+}
+
+.circle {
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 24px;
+  width: 50px;
+  -webkit-transition: 0.1s linear;
+  transition: 0.1s linear;
+}
+
+.circle:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+/*# sourceMappingURL=buttons.css.map */

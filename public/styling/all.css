@@ -1,0 +1,10 @@
+@import url("./sass/elements/code.css");
+@import url("./sass/elements/text.css");
+@import url("./sass/elements/buttons.css");
+@import url("./sass/elements/scrollbar.css");
+
+@import url("./sass/sections/intro.css");
+@import url("./sass/sections/about.css");
+@import url("./sass/sections/projects.css");
+
+@import url("./sass/other/main.css");
