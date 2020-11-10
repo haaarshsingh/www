@@ -62,9 +62,11 @@
 }
 
 .about-quote {
+   width: 300px;
    display: flex;
    align-self: center;
    justify-self: center;
+   flex-direction: column;
    box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
    padding: 20px;
    font-size: 14px !important;
@@ -85,4 +87,8 @@
    align-items: center;
    justify-content: center;
    padding: 20px;
+}
+
+.quote-name {
+   padding-top: 30px;
 }
