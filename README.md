@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://harsh.thedev.id/">
-    <img alt="Logo" src="./images/memoji.jpg" width="100"/>
+    <img alt="Gatsby" src="./images/memoji.jpg" width="300"/>
     <h2 align="center">Harsh Singh</h2>
   </a>
 </p> 
