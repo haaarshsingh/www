@@ -32,7 +32,61 @@
    transition: 0.1s linear all;
 }
 
+.ui-card {
+   background: #ebebeb;
+   padding: 10px 5;
+}
+
+.ui-card-parent {
+   padding: 20px;
+   width: 30%;
+}
+
 .mini-card:hover {
    cursor: pointer;
    transform: translateY(-5px);
+}
+
+.ui-card {
+   box-shadow: 0px 5px 10px rgba(0,0,0,0.05);
+   height: 300px;
+   border-radius: 12px;
+   padding: 20px 10px;
+   background: #ebebeb;
+   color: #6D83F2;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   width: 400px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   transition: 0.1s linear all;
+   overflow: hidden;
+}
+
+.design-card {
+   width: 500px;
+   border-radius: 12px;
+}
+
+.ui-card:hover {
+   cursor: pointer;
+   transform: translateY(-5px);
+}
+
+.costoomz, .flight {
+   width: 700px !important;
+}
+
+.awesomesource {
+   width: 800px !important;
+}
+
+.portfolio {
+   width: 550px !important;
+}
+
+.codemyst {
+   width: 500px !important;
 }
