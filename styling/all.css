@@ -1,0 +1,9 @@
+@import url("./other/main.css");
+
+@import url("./elements/socials.css");
+@import url("./elements/nav.css");
+
+@import url("./sections/intro.css");
+@import url("./sections/about.css");
+@import url("./sections/projects.css");
+@import url("./sections/end-pad.css");
