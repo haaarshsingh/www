@@ -1,0 +1,38 @@
+.smaller-projects {
+   padding-top: 100px;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+}
+
+.smaller-projects-grid {
+   display: flex;
+}
+
+.mini-card-parent {
+   padding: 40px;
+   width: 30%;
+}
+
+.mini-card-description {
+   padding-top: 10px;
+}
+
+.mini-card {
+   height: 85%;
+   border-radius: 12px;
+   padding: 15px;
+   background: #ebebeb;
+   color: #6D83F2;
+   text-align: center;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   transition: 0.1s linear all;
+}
+
+.mini-card:hover {
+   cursor: pointer;
+   transform: translateY(-5px);
+}
