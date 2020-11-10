@@ -37,7 +37,8 @@
 }
 
 .contact-border {
-   width: 18.5%;
+   display: flex;
+   width: 330px;
    color: white;
    padding: 10px;
    border-radius: 12px;
@@ -47,5 +48,20 @@
 
 .contact-border:hover {
    cursor: pointer;
-   transform: scale(1.05, 1.05);
+   transform: translateY(-5px);
+}
+
+.contact-border i {
+   padding: 10px;
+   border-radius: 50px;
+   background: linear-gradient(134deg, #6A98F0 0%, #4961DC 99%);;
+   transition: 0.1s linear all;
+}
+
+.contact-border i:hover {
+   transform: scale(1.1, 1.1);
+}
+
+.i-pad {
+   padding-left: 10px;
 }
