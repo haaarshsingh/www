@@ -58,7 +58,7 @@
    text-align: center;
    justify-content: center;
    align-items: center;
-   width: 400px;
+   width: 380px;
    display: flex;
    align-items: center;
    flex-direction: column;
@@ -95,3 +95,51 @@
 .codemyst {
    width: 500px !important;
 }
+
+@media only screen and (max-width: 1300px) {
+   .ui-card {
+      width: 320px;
+   }
+}
+
+@media only screen and (max-width: 1200px) {
+   .ui-card {
+      width: 260px;
+   }
+}
+
+@media only screen and (max-width: 1000px) {
+   .smaller-projects-grid {
+      display: flex;
+      flex-direction: column;
+   }
+   
+   .ui-card {
+      width: 580px;
+   }
+
+   .grid-cen {
+      display: flex;
+      align-items: center;
+   }
+
+   .mini-card-parent {
+      width: 50%;
+   }
+}
+
+@media only screen and (max-width: 700px) {
+   .ui-card {
+      width: 450px;
+   }
+
+   .grid-cen {
+      display: flex;
+      align-items: center;
+   }
+
+   .mini-card-parent {
+      width: 70%;
+   }
+}
+
