@@ -4,6 +4,7 @@
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     outline: none;
+   scroll-behavior: smooth;
 }
 
 *:focus {
