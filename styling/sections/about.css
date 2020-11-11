@@ -92,3 +92,17 @@
 .quote-name {
    padding-top: 30px;
 }
+
+@media only screen and (max-width: 1200px) {
+   .about-quotes {
+      display: flex;
+      flex-direction: column;
+   }
+}
+
+@media only screen and (max-width: 750px) {
+   .about-quotes {
+      display: flex;
+      flex-direction: column;
+   }
+}

@@ -75,5 +75,8 @@
     .intro {
         padding-top: 30px;
         width: 80%;
+    } 
+    .intro-img {
+        display: none;
     }
 }
