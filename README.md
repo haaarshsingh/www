@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://harsh.thedev.id/">
-    <img alt="Gatsby" src="./images/memoji.jpg" width="300"/>
+    <img alt="Gatsby" src="./images/memoji.jpg" width="300" border-radius: 12px;/>
     <h2 align="center">Harsh Singh</h2>
   </a>
 </p> 
@@ -15,3 +15,11 @@ _If you are using this as a template to build your own website, I would request 
 Clone this repository `git clone https://github.com/anuraghazra/anuraghazra.github.io.git`
 
 Open up the `index.html` file in your browser.
+
+# Inspirations 
+
+ - [Anurag Hazra]
+ - [Harshit Pant]
+ 
+ [Anurag Hazra]: https://anuraghazra.github.io/
+ [Harshit Pant]: https://harshitpant.com/
