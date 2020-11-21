@@ -21,7 +21,7 @@
 }
 
 .card {
-   width: auto;
+   width: 700px;
    max-width: 800px;
    color: #6D83F2;
    text-align: center;
@@ -45,12 +45,70 @@
 
 .card-description {
    display: flex;
-   padding-top: 30px;
+   padding-top: 10px;
 }
 
 .project-buttons {
    display: flex;
    flex-direction: row !important;
+}
+
+.tags {
+   display: flex;
+}
+
+.tech {
+   margin: 0 5px;
+   border-radius: 7px;
+   padding: 5px;
+   color: white;
+   transition: 0.1s linear all;
+}
+
+.tech:hover {
+   transform: scale(1.05, 1.05);
+}
+
+.mongo {
+   background: #4DA84B;
+}
+
+.node {
+   background: #54B45D;
+}
+
+.passport {
+   background: #2EB9F1;
+}
+
+.express {
+   background: #252525;
+}
+
+.socket {
+   background: #686868;
+}
+
+.discord {
+   background: #6781C1;
+}
+
+.skills-list {
+   padding: 20px 0;
+   display: flex;
+   flex-direction: column;
+}
+
+.check {
+   margin: 5px 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #4DA84B;
+}
+
+.skill {
+   padding-left: 5px;
 }
 
 @media only screen and (max-width: 1000px) {
