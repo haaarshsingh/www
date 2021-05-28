@@ -26,44 +26,46 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
 
   return (
     <S.BlogContainer>
-      <ScrollAnimation
-        animateIn="animate__bounceInRight"
-        animateOut="animate__bounceOutLeft"
-        delay={200}
-      >
-        <S.Searchbar
-          type="text"
-          ref={InputRef}
-          onKeyUp={Search}
-          placeholder="Search Blogs..."
-        />
-      </ScrollAnimation>
-      <S.BlogsBox>
-        {blogsData.map((blog, index) => (
-          <ScrollAnimation
-            animateIn="animate__flipInX"
-            animateOut="animate__bounceOutLeft"
-            delay={200}
-          >
-            <S.BlogCard key={index} className="blog-card">
-              <S.BlogCardTitle href={`/blog/${blog.id}`} id="title">
-                {blog.title}
-              </S.BlogCardTitle>
-              <S.BlogCardDesc>{blog.description}</S.BlogCardDesc>
-              <S.BlogInfoBottom>
-                <S.BlogInfoContainer>
-                  <Icons.Clock />
-                  {blog.readingTime} min
-                </S.BlogInfoContainer>
-                <S.BlogInfoContainer>
-                  <Icons.Calendar />
-                  {blog.formattedDate}
-                </S.BlogInfoContainer>
-              </S.BlogInfoBottom>
-            </S.BlogCard>
-          </ScrollAnimation>
-        ))}
-      </S.BlogsBox>
+      <S.BlogContainerBox>
+        <ScrollAnimation
+          animateIn="animate__bounceInRight"
+          animateOut="animate__bounceOutLeft"
+          delay={200}
+        >
+          <S.Searchbar
+            type="text"
+            ref={InputRef}
+            onKeyUp={Search}
+            placeholder="Search Blogs..."
+          />
+        </ScrollAnimation>
+        <S.BlogsBox>
+          {blogsData.map((blog, index) => (
+            <ScrollAnimation
+              animateIn="animate__flipInX"
+              animateOut="animate__bounceOutLeft"
+              delay={200}
+            >
+              <S.BlogCard key={index} className="blog-card">
+                <S.BlogCardTitle href={`/blog/${blog.id}`} id="title">
+                  {blog.title}
+                </S.BlogCardTitle>
+                <S.BlogCardDesc>{blog.description}</S.BlogCardDesc>
+                <S.BlogInfoBottom>
+                  <S.BlogInfoContainer>
+                    <Icons.Clock />
+                    {blog.readingTime} min
+                  </S.BlogInfoContainer>
+                  <S.BlogInfoContainer>
+                    <Icons.Calendar />
+                    {blog.formattedDate}
+                  </S.BlogInfoContainer>
+                </S.BlogInfoBottom>
+              </S.BlogCard>
+            </ScrollAnimation>
+          ))}
+        </S.BlogsBox>
+      </S.BlogContainerBox>
     </S.BlogContainer>
   )
 }

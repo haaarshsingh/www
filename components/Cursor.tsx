@@ -14,7 +14,7 @@ const CursorDot = styled('div', {
   height: 8,
   backgroundColor: '#ffffff',
   zIndex: 99999,
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 1024px)': {
     display: 'none',
   },
 })
@@ -33,7 +33,7 @@ const CursorDotOutline = styled('div', {
   backgroundColor: 'transparent',
   border: '2px solid #fff',
   zIndex: 99999,
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 1024px)': {
     display: 'none',
   },
 })

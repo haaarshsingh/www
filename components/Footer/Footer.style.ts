@@ -6,10 +6,10 @@ export const FooterBox = styled('div', {
   justifyContent: 'space-between',
   marginTop: 400,
   zIndex: 999,
-  '@media only screen and (min-width: 600px)': {
+  '@media only screen and (min-width: 1024px)': {
     margin: 100,
   },
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 1024px)': {
     flexDirection: 'column',
     justifyContent: 'center',
   },
@@ -18,7 +18,7 @@ export const FooterBox = styled('div', {
 export const FooterInfoContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 1024px)': {
     margin: '10px 0',
   },
 })
@@ -33,7 +33,7 @@ export const MainText = styled('p', {
   svg: {
     margin: '0 10px',
   },
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 1024px)': {
     fontSize: '$2',
   },
 })

@@ -70,82 +70,84 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
         <S.TopScrollbarBG ref={ScrollbarBG} />
       </S.TopScrollbar>
       <S.BlogPostContainer>
-        <S.BlogBox className="blog-box">
-          <ScrollAnimation
-            animateIn="animate__flipInX"
-            animateOut="animate__bounceOutLeft"
-            delay={200}
-          >
-            <S.BlogTitle>{BlogContent.title}</S.BlogTitle>
-          </ScrollAnimation>
-          <S.BlogInfo>
-            <S.BlogLeftContainer>
-              <ScrollAnimation
-                animateIn="animate__flipInX"
-                animateOut="animate__bounceOutLeft"
-                delay={200}
-              >
-                <S.BlogInfoContainer>
-                  <Icons.Clock />
-                  {BlogContent.readingTime} min
-                </S.BlogInfoContainer>
-              </ScrollAnimation>
-              <ScrollAnimation
-                animateIn="animate__flipInX"
-                animateOut="animate__bounceOutLeft"
-                delay={200}
-              >
-                <S.BlogInfoContainer>
-                  <Icons.Calendar />
-                  {BlogContent.formattedDate}
-                </S.BlogInfoContainer>
-              </ScrollAnimation>
-            </S.BlogLeftContainer>
+        <S.BlogPost>
+          <S.BlogBox className="blog-box">
             <ScrollAnimation
               animateIn="animate__flipInX"
               animateOut="animate__bounceOutLeft"
               delay={200}
             >
-              <S.BlogInfoContainer href={githubEditLink}>
-                <Icons.Edit />
-                Edit On GitHub
-              </S.BlogInfoContainer>
+              <S.BlogTitle>{BlogContent.title}</S.BlogTitle>
             </ScrollAnimation>
-          </S.BlogInfo>
-          <S.BlogHTML>
-            <ReactMarkdown
-              source={BlogContent.contentHtml}
-              escapeHtml={false}
-              renderers={{
-                code: Codeblock,
-              }}
-            />
-          </S.BlogHTML>
-          <S.ShareHeader>Share ❤️</S.ShareHeader>
-          <S.ShareButtonsDiv>
-            <S.ShareButton
-              href={`http://twitter.com/share?text="${BlogContent.title}" - &url=https://harshhhdev.github.io/blog/${BlogContent.id}/`}
-              target="_blank"
-            >
-              <Icons.Twitter />
-            </S.ShareButton>
-            <S.ShareButton
-              href={`https://facebook.com/sharer/sharer.php?u=https://harshhhdev.github.io/blog/${BlogContent.id}/`}
-              target="_blank"
-            >
-              <Icons.Facebook />
-            </S.ShareButton>
-            <S.ShareButton
-              onClick={() => {
-                copyToClipboard(window.location.href.toString())
-                TooltipRef.current!.classList.add('animate')
-              }}
-            >
-              <S.Tooltip ref={TooltipRef}>Copied</S.Tooltip>
-              <Icons.Paperclip />
-            </S.ShareButton>
-          </S.ShareButtonsDiv>
-        </S.BlogBox>
+            <S.BlogInfo>
+              <S.BlogLeftContainer>
+                <ScrollAnimation
+                  animateIn="animate__flipInX"
+                  animateOut="animate__bounceOutLeft"
+                  delay={200}
+                >
+                  <S.BlogInfoContainer>
+                    <Icons.Clock />
+                    {BlogContent.readingTime} min
+                  </S.BlogInfoContainer>
+                </ScrollAnimation>
+                <ScrollAnimation
+                  animateIn="animate__flipInX"
+                  animateOut="animate__bounceOutLeft"
+                  delay={200}
+                >
+                  <S.BlogInfoContainer>
+                    <Icons.Calendar />
+                    {BlogContent.formattedDate}
+                  </S.BlogInfoContainer>
+                </ScrollAnimation>
+              </S.BlogLeftContainer>
+              <ScrollAnimation
+                animateIn="animate__flipInX"
+                animateOut="animate__bounceOutLeft"
+                delay={200}
+              >
+                <S.BlogInfoContainer href={githubEditLink}>
+                  <Icons.Edit />
+                  Edit On GitHub
+                </S.BlogInfoContainer>
+              </ScrollAnimation>
+            </S.BlogInfo>
+            <S.BlogHTML>
+              <ReactMarkdown
+                source={BlogContent.contentHtml}
+                escapeHtml={false}
+                renderers={{
+                  code: Codeblock,
+                }}
+              />
+            </S.BlogHTML>
+            <S.ShareHeader>Share ❤️</S.ShareHeader>
+            <S.ShareButtonsDiv>
+              <S.ShareButton
+                href={`http://twitter.com/share?text="${BlogContent.title}" - &url=https://harshhhdev.github.io/blog/${BlogContent.id}/`}
+                target="_blank"
+              >
+                <Icons.Twitter />
+              </S.ShareButton>
+              <S.ShareButton
+                href={`https://facebook.com/sharer/sharer.php?u=https://harshhhdev.github.io/blog/${BlogContent.id}/`}
+                target="_blank"
+              >
+                <Icons.Facebook />
+              </S.ShareButton>
+              <S.ShareButton
+                onClick={() => {
+                  copyToClipboard(window.location.href.toString())
+                  TooltipRef.current!.classList.add('animate')
+                }}
+              >
+                <S.Tooltip ref={TooltipRef}>Copied</S.Tooltip>
+                <Icons.Paperclip />
+              </S.ShareButton>
+            </S.ShareButtonsDiv>
+          </S.BlogBox>
+        </S.BlogPost>
       </S.BlogPostContainer>
     </>
   )

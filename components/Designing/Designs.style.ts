@@ -26,6 +26,11 @@ export const DesignContainer = styled('div', {
   display: 'flex',
   width: '100vw',
   justifyContent: 'center',
+  '@media only screen and (max-width: 1024px)': {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
 })
 
 export const FirstDesignContainer = styled('a', {
@@ -46,12 +51,29 @@ export const SecondDesignContainer = styled('a', {
   '&:hover': {
     transform: 'scale(0.99, 0.99)',
   },
+  '@media only screen and (max-width: 1024px)': {
+    margin: '50px 0',
+  },
 })
 
 export const DribbbleContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   marginTop: 100,
+})
+
+export const DribbbleImageParent = styled('a', {
+  width: 350,
+  height: 300,
+  overflow: 'hidden',
+  borderRadius: 12,
+  transition: '0.1s linear',
+  '&:hover': {
+    transform: 'translateY(7px)',
+  },
+  '@media only screen and (max-width: 320px)': {
+    width: 300,
+  },
 })
 
 export const DesignsGrid = styled('div', {
@@ -68,18 +90,8 @@ export const DesignsGrid = styled('div', {
   },
 })
 
-export const DribbbleBox = styled('div', {
-  width: 350,
-  height: 300,
+export const DribbbleBox = styled('img', {
   transition: '0.1s linear',
-  backgroundAttachment: 'fixed',
-  backgroundPosition: '600px',
-  backgroundSize: 'contain',
-  zIndex: 10,
-  '&:hover': {
-    transform: 'translateY(-5px)',
-  },
-  '@media only screen and (max-width: 320px)': {
-    width: 300,
-  },
+  overflow: 'hidden',
+  transform: 'translate(-300px, -120px)',
 })

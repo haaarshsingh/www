@@ -1,15 +1,23 @@
 import { styled } from '../../styles/theme.config'
 
 export const BlogContainer = styled('div', {
-  marginTop: 100,
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
   minHeight: '100vh',
 })
 
+export const BlogContainerBox = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column',
+  minHeight: '100vh',
+  marginTop: 100,
+})
+
 export const Searchbar = styled('input', {
   background: '$primary ',
+  marginTop: 100,
   padding: 30,
   outline: 'none',
   border: 'none',

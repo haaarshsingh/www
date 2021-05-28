@@ -104,7 +104,7 @@ export const HandsBox = styled('div', {
   width: '105vw',
   marginTop: 500,
   zIndex: -1,
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 1024px)': {
     display: 'none',
   },
 })

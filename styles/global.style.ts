@@ -42,6 +42,9 @@ const globalStyle = global({
   '.invalid': {
     color: '#F16D6D !important',
   },
+  '.disabled': {
+    display: 'none !important',
+  },
 })
 
 export default globalStyle

@@ -34,6 +34,12 @@ export const BlogPostContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+})
+
+export const BlogPost = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   marginTop: 100,
 })
 
@@ -108,9 +114,6 @@ export const BlogHTML = styled('div', {
   },
   code: {
     padding: 3,
-    '@media only screen and (max-width: 600px)': {
-      fontSize: '$1',
-    },
   },
   p: {
     fontSize: '$2',

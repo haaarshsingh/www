@@ -17,9 +17,9 @@ const Blog: React.FC<{ allBlogsData: blog[] }> = ({ allBlogsData }) => {
 
   return (
     <>
+      <Navbar location="blog" />
       <Head title="Blog" />
       <Cursor />
-      <Navbar location="blog" />
       <BlogCards blogsData={allBlogsData} />
       <Footer />
     </>

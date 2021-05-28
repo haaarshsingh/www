@@ -28,6 +28,7 @@ const Home: React.FC = () => {
       <DesignsComponent />
       <ContactComponent />
       <Footer />
+      <Cursor />
     </>
   )
 }

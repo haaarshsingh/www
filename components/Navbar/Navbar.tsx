@@ -1,6 +1,7 @@
 import React from 'react'
 
 import * as S from './Navbar.style'
+import * as Icons from 'react-feather'
 
 interface NavLinks {
   link: string
@@ -8,6 +9,12 @@ interface NavLinks {
 }
 
 const Navbar: React.FC<{ location: string }> = ({ location }) => {
+  const [nav, setNav] = React.useState<boolean>(false)
+
+  const ToggleNav = () => {
+    setNav((prevState) => !prevState)
+  }
+
   const NavLinks: NavLinks[] = [
     {
       link: '/#home',
@@ -36,18 +43,35 @@ const Navbar: React.FC<{ location: string }> = ({ location }) => {
   ]
 
   return (
-    <S.Nav>
-      <S.NavContainer>
-        <S.TerminalText>~/harshsingh/{location}</S.TerminalText>
-        <S.NavLinks>
+    <>
+      <S.NavMenuContainer className={nav ? '' : 'disabled'}>
+        <S.NavMenu>
           {NavLinks.map((link, index) => (
-            <S.NavLink key={index} href={link.link}>
+            <S.NavMenuLinks key={index} href={link.link} onClick={ToggleNav}>
               {link.title}
-            </S.NavLink>
+            </S.NavMenuLinks>
           ))}
-        </S.NavLinks>
-      </S.NavContainer>
-    </S.Nav>
+          <S.Toggle onClick={ToggleNav}>
+            <Icons.XCircle />
+          </S.Toggle>
+        </S.NavMenu>
+      </S.NavMenuContainer>
+      <S.Nav>
+        <S.NavContainer>
+          <S.TerminalText>~/harshsingh/{location}</S.TerminalText>
+          <S.NavLinks>
+            {NavLinks.map((link, index) => (
+              <S.NavLink key={index} href={link.link}>
+                {link.title}
+              </S.NavLink>
+            ))}
+          </S.NavLinks>
+          <S.Toggle onClick={ToggleNav}>
+            <Icons.Menu />
+          </S.Toggle>
+        </S.NavContainer>
+      </S.Nav>
+    </>
   )
 }
 

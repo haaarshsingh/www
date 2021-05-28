@@ -15,12 +15,12 @@ const AboutComponent: React.FC = () => {
   const MobileDesigns: Design[] = [
     {
       img: '/WashingMachine',
-      link: 'https://www.figma.com/file/HiBZs36LqXtGdWflYbotug/Washing-Machine',
+      link: 'HiBZs36LqXtGdWflYbotug/Washing-Machine',
       bottom: false,
     },
     {
       img: '/Pizza',
-      link: 'https://www.figma.com/file/qobdswcA1FNPCB5rBfjya3/PizzaOrdering',
+      link: 'qobdswcA1FNPCB5rBfjya3/PizzaOrdering',
       bottom: true,
     },
   ]
@@ -28,12 +28,12 @@ const AboutComponent: React.FC = () => {
   const MobileDesignsRow2: Design[] = [
     {
       img: '/Book',
-      link: 'https://www.figma.com/file/AWXI76vFYo6TXt1Mguy1Zc/BookDesign',
+      link: 'AWXI76vFYo6TXt1Mguy1Zc/BookDesign',
       bottom: false,
     },
     {
       img: '/FurnitureStore',
-      link: 'https://www.figma.com/file/EZFFxvbRN8yYOykumAID9s/FurnitureStore',
+      link: 'EZFFxvbRN8yYOykumAID9s/FurnitureStore',
       bottom: true,
     },
   ]
@@ -83,16 +83,23 @@ const AboutComponent: React.FC = () => {
         <S.DesignContainer>
           {MobileDesigns.map((design, index) =>
             !design.bottom ? (
-              <S.FirstDesignContainer href={design.link} target="_blank">
+              <S.FirstDesignContainer
+                href={`https://www.figma.com/file/${design.link}`}
+                target="_blank"
+              >
                 <Img
                   src={`${design.img}Design.png`}
                   alt="UI Design"
                   width={550}
                   height={640}
+                  layout="responsive"
                 />
               </S.FirstDesignContainer>
             ) : (
-              <S.SecondDesignContainer href={design.link} target="_blank">
+              <S.SecondDesignContainer
+                href={`https://www.figma.com/file/${design.link}`}
+                target="_blank"
+              >
                 <Img
                   src={`${design.img}Design.png`}
                   alt="UI Design"
@@ -106,7 +113,10 @@ const AboutComponent: React.FC = () => {
         <S.DesignContainer>
           {MobileDesignsRow2.map((design, index) =>
             !design.bottom ? (
-              <S.FirstDesignContainer href={design.link} target="_blank">
+              <S.FirstDesignContainer
+                href={`https://www.figma.com/file/${design.link}`}
+                target="_blank"
+              >
                 <Img
                   src={`${design.img}Design.png`}
                   alt="UI Design"
@@ -115,7 +125,10 @@ const AboutComponent: React.FC = () => {
                 />
               </S.FirstDesignContainer>
             ) : (
-              <S.SecondDesignContainer href={design.link} target="_blank">
+              <S.SecondDesignContainer
+                href={`https://www.figma.com/file/${design.link}`}
+                target="_blank"
+              >
                 <Img
                   src={`${design.img}Design.png`}
                   alt="UI Design"
@@ -129,17 +142,18 @@ const AboutComponent: React.FC = () => {
         <S.DribbbleContainer>
           <S.DesignsGrid>
             {DribbleDesigns.map((design, index) => (
-              <ScrollAnimation
-                animateIn="animate__flipInX"
-                animateOut="animate__bounceOutLeft"
+              <S.DribbbleImageParent
+                key={index}
+                href={`https://dribbble.com/shots/${design.link}`}
+                target="_blank"
               >
                 <S.DribbbleBox
-                  style={{
-                    backgroundImage: `url(https://cdn.dribbble.com/users/6216672/screenshots/${design.img}.png)`,
-                  }}
-                  key={index}
+                  src={`https://cdn.dribbble.com/users/6216672/screenshots/${design.img}.png`}
+                  alt="UI Design"
+                  width={800}
+                  height={600}
                 />
-              </ScrollAnimation>
+              </S.DribbbleImageParent>
             ))}
           </S.DesignsGrid>
         </S.DribbbleContainer>
