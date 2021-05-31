@@ -44,22 +44,11 @@ export const ProjectBox = styled('div', {
 
 export const ProjectGraphic = styled('div', {
   backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain',
-  backgroundPosition: '80%',
-  backgroundAttachment: 'fixed',
-  width: 500,
-  height: 700,
   marginLeft: 150,
   '@media only screen and (max-width: 1024px)': {
-    width: 400,
-    height: 500,
+    marginLeft: 50,
   },
   '@media only screen and (max-width: 768px)': {
-    marginLeft: 50,
-    width: 250,
-    height: 500,
-  },
-  '@media only screen and (max-width: 600px)': {
     display: 'none',
   },
 })

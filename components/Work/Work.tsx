@@ -3,6 +3,7 @@ import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as S from './Work.style'
 import * as Icon from 'react-feather'
+import Img from 'next/image'
 
 interface Projects {
   title: string
@@ -17,8 +18,7 @@ const AboutComponent: React.FC = () => {
   const Projects: Projects[] = [
     {
       title: 'NoteShack',
-      image:
-        'https://media.discordapp.net/attachments/769765299599048744/840756218371899412/NoteShack.png',
+      image: '840756218371899412/NoteShack.png',
       description: 'An open-source full-stack project boilerplate',
       skills: 'GraphQL React PostgreSQL TypeScript',
       github: 'NoteShack',
@@ -26,8 +26,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'Debutur',
-      image:
-        'https://media.discordapp.net/attachments/769765299599048744/840761024016678952/Debutur.png',
+      image: '840761024016678952/Debutur.png',
       description: 'Easily create, and personalise your portfolio',
       skills: 'TypeScript Node Express MongoDB',
       github: 'debutur',
@@ -35,8 +34,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'SnipBin',
-      image:
-        'https://media.discordapp.net/attachments/769765299599048744/840745075998457856/unknown.png',
+      image: '848766146316337172/SnipBin.png',
       description: 'Lightweight website to paste code snippets',
       skills: 'Node Express MongoDB',
       github: 'snip-bin',
@@ -44,8 +42,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'FastBot',
-      image:
-        'https://media.discordapp.net/attachments/769765299599048744/840756216559829033/FastBot.png',
+      image: '840756216559829033/FastBot.png',
       description: 'Utility bot to manage your discord server',
       skills: 'Discord.js MongoDB Node',
       github: 'fast-bot',
@@ -53,8 +50,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'SketchMessage',
-      image:
-        'https://media.discordapp.net/attachments/769765299599048744/840756217185435648/SketchMessage.png',
+      image: '848766051033546752/SketchMessage.png',
       description: 'Create and communicate through drawings',
       skills: 'Socket Node Express',
       github: 'sketch-message',
@@ -117,11 +113,14 @@ const AboutComponent: React.FC = () => {
               </ScrollAnimation>
             </S.ButtonsContainer>
           </S.InfoContainer>
-          <S.ProjectGraphic
-            style={{
-              backgroundImage: `url("${project.image}")`,
-            }}
-          />
+          <S.ProjectGraphic>
+            <Img
+              src={`/${project.title}.png`}
+              alt="Project Graphic"
+              width={500}
+              height={700}
+            />
+          </S.ProjectGraphic>
         </S.ProjectBox>
       ))}
     </S.WorkContainer>
