@@ -25,6 +25,9 @@ export const ProjectsGrid = styled('div', {
     alignItems: 'center',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 0fr))',
   },
+  '@media only screen and (max-width: 768px)': {
+    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 0fr))',
+  },
 })
 
 export const ProjectsHeader = styled('h1', {
@@ -54,7 +57,7 @@ export const ProjectBox = styled('div', {
     background: '$main2',
     transform: 'translateY(-5px)',
   },
-  '@media only screen and (max-width: 400px)': {
+  '@media only screen and (max-width: 768px)': {
     width: 300,
   },
   '@media only screen and (max-width: 320px)': {

@@ -111,6 +111,9 @@ export const DribbbleImageParent = styled('a', {
     width: 340,
     height: 290,
   },
+  '@media only screen and (max-width: 768px)': {
+    width: 300,
+  },
 })
 
 export const DesignsGrid = styled('div', {
@@ -120,10 +123,15 @@ export const DesignsGrid = styled('div', {
   gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 0fr))',
   overflow: 'hidden',
   placeItems: 'center',
+  marginLeft: 100,
+  '@media only screen and (max-width: 768px)': {
+    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 0fr))',
+  },
   '@media only screen and (max-width: 414px)': {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginLeft: 0,
   },
 })
 

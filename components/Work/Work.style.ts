@@ -54,6 +54,11 @@ export const ProjectGraphic = styled('div', {
     width: 400,
     height: 500,
   },
+  '@media only screen and (max-width: 768px)': {
+    marginLeft: 50,
+    width: 250,
+    height: 500,
+  },
   '@media only screen and (max-width: 600px)': {
     display: 'none',
   },

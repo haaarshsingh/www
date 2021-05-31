@@ -64,7 +64,10 @@ export const SVGContainer = styled('div', {
   zIndex: '-100',
   margin: '100px 0 0 500px',
   height: '200vh',
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 768px)': {
+    margin: '100px 0 0 250px',
+  },
+  '@media only screen and (max-width: 767px)': {
     display: 'none',
   },
 })
