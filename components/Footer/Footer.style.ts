@@ -3,6 +3,7 @@ import { styled } from './../../styles/theme.config'
 export const FooterBox = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
+  alignItems: 'center',
   zIndex: 999,
   '@media only screen and (min-width: 1024px)': {
     margin: 100,

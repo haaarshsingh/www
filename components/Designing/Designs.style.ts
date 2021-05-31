@@ -138,5 +138,5 @@ export const DesignsGrid = styled('div', {
 export const DribbbleBox = styled('img', {
   transition: '0.1s linear',
   overflow: 'hidden',
-  transform: 'translate(-300px, -120px)',
+  transform: 'translate(-200px, -120px)',
 })

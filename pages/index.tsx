@@ -14,12 +14,13 @@ import Footer from './../components/Footer/Footer'
 
 import globalStyle from './../styles/global.style'
 import 'animate.css/animate.min.css'
+import { ContentWrapper } from './../styles/theme.config'
 
 const Home: React.FC = () => {
   globalStyle()
 
   return (
-    <>
+    <ContentWrapper>
       <Navbar location="portfolio" />
       <Head title="Home" />
       <Cursor />
@@ -31,7 +32,7 @@ const Home: React.FC = () => {
       <DesignsComponent />
       <ContactComponent />
       <Footer />
-    </>
+    </ContentWrapper>
   )
 }
 

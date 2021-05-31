@@ -16,6 +16,7 @@ export const InfoContainer = styled('div', {
   margin: '0 100px',
   width: 600,
   marginRight: 500,
+  maxWidth: '100vw',
   '@media only screen and (max-width: 1024px)': {
     margin: '0 30px',
     justifyContent: 'center',

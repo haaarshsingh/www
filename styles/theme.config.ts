@@ -26,3 +26,8 @@ export const { css, styled, global, getCssString, keyframes } = createCss({
     },
   },
 })
+
+export const ContentWrapper = styled('div', {
+  position: 'relative',
+  overflow: 'hidden',
+})
