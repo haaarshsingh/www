@@ -34,7 +34,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'SnipBin',
-      image: '848766146316337172/SnipBin.png',
+      image: '840745075998457856/unknown.png',
       description: 'Lightweight website to paste code snippets',
       skills: 'Node Express MongoDB',
       github: 'snip-bin',

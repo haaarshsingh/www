@@ -58,6 +58,9 @@ export const NavLink = styled('a', {
   textDecoration: 'none',
   margin: '0 10px',
   fontFamily: '$main',
+  '&:hover': {
+    color: '$white',
+  },
 })
 
 export const Toggle = styled('button', {

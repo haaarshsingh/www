@@ -10,12 +10,6 @@
   },
   "dependencies": {
     "@stitches/react": "^0.1.9",
-    "@types/node": "^14.14.41",
-    "@types/prismjs": "^1.16.5",
-    "@types/react": "^17.0.3",
-    "@types/react-animate-on-scroll": "^2.1.2",
-    "@types/react-helmet": "^6.1.1",
-    "@types/react-syntax-highlighter": "^13.5.0",
     "animate.css": "^4.1.1",
     "copy-lite": "^0.1.2",
     "gray-matter": "^4.0.3",
@@ -32,5 +26,13 @@
     "react-syntax-highlighter": "^15.4.3",
     "reading-time": "^1.3.0",
     "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.41",
+    "@types/prismjs": "^1.16.5",
+    "@types/react": "^17.0.3",
+    "@types/react-animate-on-scroll": "^2.1.2",
+    "@types/react-helmet": "^6.1.1",
+    "@types/react-syntax-highlighter": "^13.5.0"
   }
 }

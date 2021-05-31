@@ -6,6 +6,7 @@ export const ContactContainer = styled('div', {
   justifyContent: 'center',
   width: '100vw',
   marginTop: 100,
+  marginBottom: 400,
   '@media only screen and (max-width: 1024px)': {
     alignItems: 'center',
   },

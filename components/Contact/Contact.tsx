@@ -5,6 +5,7 @@ import * as S from './Contact.style'
 import useForm from './../../hooks/useForm'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import ScrollAnimation from 'react-animate-on-scroll'
+import Footer from './../Footer/Footer'
 
 const Contact: React.FC = () => {
   const { formData, errors, handleInput, isFormValid } = useForm()
