@@ -3,11 +3,16 @@ import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as S from './Work.style'
 import * as Icon from 'react-feather'
-import Img from 'next/image'
+
+import NoteShack from './../../public/NoteShack.png'
+import Debutur from './../../public/Debutur.png'
+import SnipBin from './../../public/SnipBin.png'
+import FastBot from './../../public/FastBot.png'
+import SketchMessage from './../../public/SketchMessage.png'
 
 interface Projects {
   title: string
-  image: string
+  image: any
   description: string
   skills: string
   github: string
@@ -18,7 +23,7 @@ const AboutComponent: React.FC = () => {
   const Projects: Projects[] = [
     {
       title: 'NoteShack',
-      image: '840756218371899412/NoteShack.png',
+      image: NoteShack,
       description: 'An open-source full-stack project boilerplate',
       skills: 'GraphQL React PostgreSQL TypeScript',
       github: 'NoteShack',
@@ -26,7 +31,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'Debutur',
-      image: '840761024016678952/Debutur.png',
+      image: Debutur,
       description: 'Easily create, and personalise your portfolio',
       skills: 'TypeScript Node Express MongoDB',
       github: 'debutur',
@@ -34,7 +39,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'SnipBin',
-      image: '840745075998457856/unknown.png',
+      image: SnipBin,
       description: 'Lightweight website to paste code snippets',
       skills: 'Node Express MongoDB',
       github: 'snip-bin',
@@ -42,7 +47,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'FastBot',
-      image: '840756216559829033/FastBot.png',
+      image: FastBot,
       description: 'Utility bot to manage your discord server',
       skills: 'Discord.js MongoDB Node',
       github: 'fast-bot',
@@ -50,7 +55,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'SketchMessage',
-      image: '848766051033546752/SketchMessage.png',
+      image: SketchMessage,
       description: 'Create and communicate through drawings',
       skills: 'Socket Node Express',
       github: 'sketch-message',
@@ -114,8 +119,8 @@ const AboutComponent: React.FC = () => {
             </S.ButtonsContainer>
           </S.InfoContainer>
           <S.ProjectGraphic>
-            <Img
-              src={`/${project.title}.png`}
+            <img
+              src={project.image}
               alt="Project Graphic"
               width={500}
               height={700}

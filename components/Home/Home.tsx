@@ -1,10 +1,12 @@
 import React from 'react'
-import Img from 'next/image'
+
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as Icon from 'react-feather'
 import * as S from './Home.style'
+
+import img from './../../public/paint.png'
 
 const HomeComponent: React.FC = () => {
   return (
@@ -67,7 +69,7 @@ const HomeComponent: React.FC = () => {
       <ParallaxProvider>
         <S.PaintBucketContainer>
           <Parallax x={[-50, 30]}>
-            <Img src="/paint.png" alt="Paint Bucket" width={500} height={500} />
+            <img src={img} alt="Paint Bucket" width={500} height={500} />
           </Parallax>
         </S.PaintBucketContainer>
       </ParallaxProvider>

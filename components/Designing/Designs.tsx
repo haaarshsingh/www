@@ -1,38 +1,29 @@
 import React from 'react'
-import Img from 'next/image'
 
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as S from './Designs.style'
 
+import WashingMachine from './../../public/WashingMachineDesign.png'
+import Pizza from './../../public/PizzaDesign.png'
+import Book from './../../public/BookDesign.png'
+import FurnitureStore from './../../public/FurnitureStoreDesign.png'
+
 interface Design {
-  img: string
+  img: any
   link: string
   bottom: boolean
 }
 
 const AboutComponent: React.FC = () => {
-  const MobileDesigns: Design[] = [
-    {
-      img: '/WashingMachine',
-      link: 'HiBZs36LqXtGdWflYbotug/Washing-Machine',
-      bottom: false,
-    },
-    {
-      img: '/Pizza',
-      link: 'qobdswcA1FNPCB5rBfjya3/PizzaOrdering',
-      bottom: true,
-    },
-  ]
-
   const MobileDesignsRow2: Design[] = [
     {
-      img: '/Book',
+      img: Book,
       link: 'AWXI76vFYo6TXt1Mguy1Zc/BookDesign',
       bottom: false,
     },
     {
-      img: '/FurnitureStore',
+      img: FurnitureStore,
       link: 'EZFFxvbRN8yYOykumAID9s/FurnitureStore',
       bottom: true,
     },
@@ -81,63 +72,42 @@ const AboutComponent: React.FC = () => {
       </ScrollAnimation>
       <S.DesignsContainer>
         <S.DesignContainer>
-          {MobileDesigns.map((design, index) =>
-            !design.bottom ? (
-              <S.FirstDesignContainer
-                href={`https://www.figma.com/file/${design.link}`}
-                target="_blank"
-              >
-                <Img
-                  src={`${design.img}Design.png`}
-                  alt="UI Design"
-                  width={550}
-                  height={640}
-                  layout="responsive"
-                />
-              </S.FirstDesignContainer>
-            ) : (
-              <S.SecondDesignContainer
-                href={`https://www.figma.com/file/${design.link}`}
-                target="_blank"
-              >
-                <Img
-                  src={`${design.img}Design.png`}
-                  alt="UI Design"
-                  width={550}
-                  height={640}
-                />
-              </S.SecondDesignContainer>
-            )
-          )}
+          <S.FirstDesignContainer
+            href="https://www.figma.com/file/HiBZs36LqXtGdWflYbotug/Washing-Machine"
+            target="_blank"
+          >
+            <img
+              src={WashingMachine}
+              alt="UI Design"
+              width={550}
+              height={640}
+            />
+          </S.FirstDesignContainer>
+          <S.SecondDesignContainer
+            href="https://www.figma.com/file/qobdswcA1FNPCB5rBfjya3/PizzaOrdering"
+            target="_blank"
+          >
+            <img src={Pizza} alt="UI Design" width={550} height={640} />
+          </S.SecondDesignContainer>
         </S.DesignContainer>
         <S.DesignContainer>
-          {MobileDesignsRow2.map((design, index) =>
-            !design.bottom ? (
-              <S.FirstDesignContainer
-                href={`https://www.figma.com/file/${design.link}`}
-                target="_blank"
-              >
-                <Img
-                  src={`${design.img}Design.png`}
-                  alt="UI Design"
-                  width={550}
-                  height={640}
-                />
-              </S.FirstDesignContainer>
-            ) : (
-              <S.SecondDesignContainer
-                href={`https://www.figma.com/file/${design.link}`}
-                target="_blank"
-              >
-                <Img
-                  src={`${design.img}Design.png`}
-                  alt="UI Design"
-                  width={550}
-                  height={640}
-                />
-              </S.SecondDesignContainer>
-            )
-          )}
+          <S.FirstDesignContainer
+            href="https://www.figma.com/file/AWXI76vFYo6TXt1Mguy1Zc/BookDesign"
+            target="_blank"
+          >
+            <img src={Book} alt="UI Design" width={550} height={640} />
+          </S.FirstDesignContainer>
+          <S.SecondDesignContainer
+            href="https://www.figma.com/file/EZFFxvbRN8yYOykumAID9s/FurnitureStore"
+            target="_blank"
+          >
+            <img
+              src={FurnitureStore}
+              alt="UI Design"
+              width={550}
+              height={640}
+            />
+          </S.SecondDesignContainer>
         </S.DesignContainer>
         <ScrollAnimation
           animateIn="animate__bounceInRight"

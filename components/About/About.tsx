@@ -1,10 +1,14 @@
 import React from 'react'
-import Img from 'next/image'
+
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as S from './About.style'
 import * as Icon from 'react-feather'
+
+import computer from './../../public/computer.png'
+import idCard from './../../public/idCard.png'
+import video from './../../public/videoPlayer.png'
 
 const AboutComponent: React.FC = () => {
   const skills = [
@@ -69,21 +73,16 @@ const AboutComponent: React.FC = () => {
         </S.SkillsContainer>
       </S.InfoContainer>
       <S.ImgBox style={{ width: 500, marginLeft: 700 }}>
-        <Img src="/computer.png" alt="Computer" width={580} height={450} />
+        <img src={computer} alt="Computer" width={580} height={450} />
         <ParallaxProvider>
           <S.ImgBox style={{ marginLeft: 300 }}>
             <Parallax x={[-30, 30]}>
-              <Img
-                src="/videoPlayer.png"
-                alt="Video Player"
-                width={200}
-                height={200}
-              />
+              <img src={video} alt="Video Player" width={200} height={200} />
             </Parallax>
           </S.ImgBox>
           <S.ImgBox style={{ marginTop: 200 }}>
             <Parallax y={[-100, 100]}>
-              <Img src="/idCard.png" alt="ID Card" width={150} height={90} />
+              <img src={idCard} alt="ID Card" width={150} height={90} />
             </Parallax>
           </S.ImgBox>
         </ParallaxProvider>

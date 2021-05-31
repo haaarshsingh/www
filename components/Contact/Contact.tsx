@@ -1,11 +1,13 @@
 import React from 'react'
-import Img from 'next/image'
+import useForm from './../../hooks/useForm'
 
 import * as S from './Contact.style'
-import useForm from './../../hooks/useForm'
+
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import ScrollAnimation from 'react-animate-on-scroll'
-import Footer from './../Footer/Footer'
+
+import LeftHand from './../../public/hand-2.png'
+import RightHand from './../../public/hand-3.png'
 
 const Contact: React.FC = () => {
   const { formData, errors, handleInput, isFormValid } = useForm()
@@ -16,10 +18,10 @@ const Contact: React.FC = () => {
       <S.HandsBox className="hands">
         <ParallaxProvider>
           <Parallax y={[-50, 0]}>
-            <Img src="/hand-2.png" alt="hand" width={433} height={727} />
+            <img src={LeftHand} alt="hand" width={433} height={727} />
           </Parallax>
           <Parallax x={[-10, 10]}>
-            <Img src="/hand-3.png" alt="hand" width={434} height={1014} />
+            <img src={RightHand} alt="hand" width={434} height={1014} />
           </Parallax>
         </ParallaxProvider>
       </S.HandsBox>
