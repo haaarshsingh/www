@@ -21,13 +21,13 @@ export const DesignsHeader = styled('h1', {
       true: {
         margin: '50px 100px',
         '@media only screen and (max-width: 414px)': {
-          margin: '50px 0'
+          margin: '50px 0',
         },
-      }
-    }
+      },
+    },
   },
   '@media only screen and (max-width: 414px)': {
-    margin: '150px 0'
+    margin: '150px 0',
   },
 })
 
@@ -56,7 +56,11 @@ export const FirstDesignContainer = styled('a', {
   '&:hover': {
     transform: 'scale(0.99, 0.99)',
   },
-  '@media only screen and (max-width: 400px)': {
+  '@media only screen and (max-width: 414px)': {
+    width: 340,
+    height: 390,
+  },
+  '@media only screen and (max-width: 320px)': {
     width: 280,
     height: 320,
   },
@@ -74,7 +78,11 @@ export const SecondDesignContainer = styled('a', {
   '@media only screen and (max-width: 1024px)': {
     margin: '50px 0',
   },
-  '@media only screen and (max-width: 400px)': {
+  '@media only screen and (max-width: 414px)': {
+    width: 340,
+    height: 390,
+  },
+  '@media only screen and (max-width: 320px)': {
     width: 280,
     height: 320,
   },
@@ -90,14 +98,18 @@ export const DribbbleImageParent = styled('a', {
   width: 350,
   height: 300,
   overflow: 'hidden',
-  borderRadius: 12,
+  borderRadius: 7,
   transition: '0.1s linear',
   '&:hover': {
     transform: 'translateY(7px)',
   },
-  '@media only screen and (max-width: 400px)': {
+  '@media only screen and (max-width: 320px)': {
     width: 250,
     height: 215,
+  },
+  '@media only screen and (max-width: 414px)': {
+    width: 340,
+    height: 290,
   },
 })
 
@@ -108,7 +120,7 @@ export const DesignsGrid = styled('div', {
   gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 0fr))',
   overflow: 'hidden',
   placeItems: 'center',
-  '@media only screen and (max-width: 400px)': {
+  '@media only screen and (max-width: 414px)': {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

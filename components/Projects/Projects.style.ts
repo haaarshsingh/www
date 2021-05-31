@@ -8,6 +8,9 @@ export const ProjectsContainer = styled('div', {
   '@media only screen and (max-width: 600px)': {
     margin: '100px 10px',
   },
+  '@media only screen and (max-width: 414px)': {
+    alignItems: 'center',
+  },
 })
 
 export const ProjectsGrid = styled('div', {
@@ -16,7 +19,7 @@ export const ProjectsGrid = styled('div', {
   gap: '2rem',
   gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 0fr))',
   overflow: 'hidden',
-  '@media only screen and (max-width: 400px)': {
+  '@media only screen and (max-width: 414px)': {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -32,6 +35,7 @@ export const ProjectsHeader = styled('h1', {
   WebkitTextFillColor: 'transparent',
   fontSize: '$5',
   margin: '150px 0',
+  textAlign: 'center',
 })
 
 export const ProjectBox = styled('div', {
