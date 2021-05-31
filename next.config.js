@@ -4,6 +4,5 @@ module.exports = {
   },
   images: {
     domains: ['cdn.dribbble.com'],
-    loader: 'imgix',
   },
 }
