@@ -26,6 +26,7 @@ export const ContainerText = styled('p', {
   color: '$main',
   fontSize: '$4',
   fontFamily: '$primary',
+  maxWidth: '90vw',
   variants: {
     mono: {
       true: {
