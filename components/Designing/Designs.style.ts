@@ -3,6 +3,9 @@ import { styled } from '../../styles/theme.config'
 export const DesignsContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  '@media only screen and (max-width: 414px)': {
+    alignItems: 'center',
+  },
 })
 
 export const DesignsHeader = styled('h1', {
@@ -13,6 +16,19 @@ export const DesignsHeader = styled('h1', {
   WebkitTextFillColor: 'transparent',
   fontSize: '$5',
   margin: '150px 100px',
+  variants: {
+    dribbble: {
+      true: {
+        margin: '50px 100px',
+        '@media only screen and (max-width: 414px)': {
+          margin: '50px 0'
+        },
+      }
+    }
+  },
+  '@media only screen and (max-width: 414px)': {
+    margin: '150px 0'
+  },
 })
 
 export const DesignsBox = styled('div', {
@@ -40,6 +56,10 @@ export const FirstDesignContainer = styled('a', {
   '&:hover': {
     transform: 'scale(0.99, 0.99)',
   },
+  '@media only screen and (max-width: 400px)': {
+    width: 280,
+    height: 320,
+  },
 })
 
 export const SecondDesignContainer = styled('a', {
@@ -53,6 +73,10 @@ export const SecondDesignContainer = styled('a', {
   },
   '@media only screen and (max-width: 1024px)': {
     margin: '50px 0',
+  },
+  '@media only screen and (max-width: 400px)': {
+    width: 280,
+    height: 320,
   },
 })
 
@@ -71,8 +95,9 @@ export const DribbbleImageParent = styled('a', {
   '&:hover': {
     transform: 'translateY(7px)',
   },
-  '@media only screen and (max-width: 320px)': {
-    width: 300,
+  '@media only screen and (max-width: 400px)': {
+    width: 250,
+    height: 215,
   },
 })
 

@@ -139,6 +139,12 @@ const AboutComponent: React.FC = () => {
             )
           )}
         </S.DesignContainer>
+        <ScrollAnimation
+          animateIn="animate__bounceInRight"
+          animateOut="animate__bounceOutLeft"
+        >
+          <S.DesignsHeader dribbble>Dribbble Shots</S.DesignsHeader>
+        </ScrollAnimation>
         <S.DribbbleContainer>
           <S.DesignsGrid>
             {DribbleDesigns.map((design, index) => (

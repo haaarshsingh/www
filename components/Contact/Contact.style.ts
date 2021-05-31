@@ -6,6 +6,9 @@ export const ContactContainer = styled('div', {
   justifyContent: 'center',
   width: '100vw',
   marginTop: 100,
+  '@media only screen and (max-width: 1024px)': {
+    alignItems: 'center',
+  },
 })
 
 export const ContactHeader = styled('h1', {
@@ -17,6 +20,9 @@ export const ContactHeader = styled('h1', {
   fontSize: '$5',
   margin: '75px 0',
   marginLeft: 150,
+  '@media only screen and (max-width: 1024px)': {
+    marginLeft: 0,
+  },
 })
 
 export const ContactMain = styled('p', {
@@ -32,6 +38,7 @@ export const ContactDescription = styled('p', {
   width: 300,
   margin: '20px 0',
   marginBottom: 50,
+  textAlign: 'center',
 })
 
 export const EmailForm = styled('form', {

@@ -12,6 +12,7 @@ export const Container = styled('div', {
   },
   '@media only screen and (max-width: 600px)': {
     marginLeft: 30,
+    height: '120vh',
   },
 })
 

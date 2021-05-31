@@ -21,7 +21,7 @@ export const NavContainer = styled('div', {
   width: '70%',
   '@media only screen and (max-width: 600px)': {
     width: '85%',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around !important',
   },
   '@media only screen and (max-width: 1024px)': {
     width: '100vw',
@@ -35,7 +35,10 @@ export const TerminalText = styled('p', {
   color: '$main',
   '@media only screen and (max-width: 600px)': {
     fontSize: '$2',
-    display: 'flex',
+    display: 'flex !important',
+  },
+  '@media only screen and (max-width: 320px)': {
+    fontSize: '$1',
   },
   '@media only screen and (max-width: 1024px)': {
     display: 'none',

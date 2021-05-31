@@ -20,6 +20,7 @@ export const ProjectsGrid = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 0fr))',
   },
 })
 
@@ -51,6 +52,9 @@ export const ProjectBox = styled('div', {
   },
   '@media only screen and (max-width: 400px)': {
     width: 300,
+  },
+  '@media only screen and (max-width: 320px)': {
+    width: 280,
   },
 })
 
