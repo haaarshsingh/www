@@ -4,6 +4,7 @@ import Img from 'next/image'
 import * as S from './Contact.style'
 import useForm from './../../hooks/useForm'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
+import ScrollAnimation from 'react-animate-on-scroll'
 
 const Contact: React.FC = () => {
   const { formData, errors, handleInput, isFormValid } = useForm()
@@ -26,11 +27,21 @@ const Contact: React.FC = () => {
         action="https://formspree.io/f/mdoyezjy"
         method="POST"
       >
-        <S.ContactMain>👋 Hello, what's up?</S.ContactMain>
-        <S.ContactDescription>
-          Whether you have a question, want to say hi, or anything else that it
-          may be, my inbox is always open!
-        </S.ContactDescription>
+        <ScrollAnimation
+          animateIn="animate__flipInX"
+          animateOut="animate__bounceOutLeft"
+        >
+          <S.ContactMain>👋 Hello, what's up?</S.ContactMain>
+        </ScrollAnimation>
+        <ScrollAnimation
+          animateIn="animate__flipInX"
+          animateOut="animate__bounceOutLeft"
+        >
+          <S.ContactDescription>
+            Whether you have a question, want to say hi, or anything else that
+            it may be, my inbox is always open!
+          </S.ContactDescription>
+        </ScrollAnimation>
         <S.InputBar
           className={errors._replyto && 'invalid'}
           placeholder="your@email.com"
@@ -61,14 +72,19 @@ const Contact: React.FC = () => {
           required
           autoComplete="off"
         />
-        <S.Submit
-          as="button"
-          type="submit"
-          value="send"
-          disabled={!isFormValid}
+        <ScrollAnimation
+          animateIn="animate__flipInX"
+          animateOut="animate__bounceOutLeft"
         >
-          Send Email
-        </S.Submit>
+          <S.Submit
+            as="button"
+            type="submit"
+            value="send"
+            disabled={!isFormValid}
+          >
+            Send Email
+          </S.Submit>
+        </ScrollAnimation>
       </S.EmailForm>
     </S.ContactContainer>
   )

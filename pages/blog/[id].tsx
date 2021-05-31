@@ -1,8 +1,9 @@
 import React from 'react'
 import { getAllBlogIds, getBlogData } from './../../lib/blogs'
 
-import Cursor from './../../components/Cursor'
 import Head from './../../components/Head'
+import Cursor from './../../components/Cursor'
+import SmoothScroll from './../../components/SmoothScroll'
 import Navbar from './../../components/Navbar/Navbar'
 import BlogPost from './../../components/BlogPost/BlogPost'
 import Footer from './../../components/Footer/Footer'
@@ -29,6 +30,7 @@ const Blog: React.FC<{ blogData: Blog }> = ({ blogData }) => {
       <Navbar location="blog" />
       <Head title={blogData.title} />
       <Cursor />
+      <SmoothScroll />
       <BlogPost BlogContent={blogData} />
       <Footer />
     </>

@@ -5,6 +5,7 @@ import { Blog as blog } from './blog/[id]'
 
 import Head from './../components/Head'
 import Cursor from './../components/Cursor'
+import SmoothScroll from './../components/SmoothScroll'
 import Navbar from './../components/Navbar/Navbar'
 import BlogCards from './../components/Blogs/Blogs'
 import Footer from './../components/Footer/Footer'
@@ -20,6 +21,7 @@ const Blog: React.FC<{ allBlogsData: blog[] }> = ({ allBlogsData }) => {
       <Navbar location="blog" />
       <Head title="Blog" />
       <Cursor />
+      <SmoothScroll />
       <BlogCards blogsData={allBlogsData} />
       <Footer />
     </>

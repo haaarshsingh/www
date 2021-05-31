@@ -55,7 +55,7 @@ export const BlogCardTitle = styled('a', {
   WebkitTextFillColor: 'transparent',
   fontSize: '$4',
   fontFamily: '$main',
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 768px)': {
     width: '90vw',
   },
 })
@@ -65,7 +65,7 @@ export const BlogCardDesc = styled('p', {
   color: '$main',
   margin: '30px 0',
   fontSize: '$2',
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 768px)': {
     width: '80vw',
   },
 })
@@ -74,7 +74,7 @@ export const BlogInfoBottom = styled('div', {
   display: 'flex',
   fontFamily: '$primary',
   color: '$white',
-  '@media only screen and (max-width: 600px)': {
+  '@media only screen and (max-width: 768px)': {
     width: '80vw',
   },
 })

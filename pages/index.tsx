@@ -2,6 +2,7 @@ import React from 'react'
 
 import Head from './../components/Head'
 import Cursor from './../components/Cursor'
+import SmoothScroll from './../components/SmoothScroll'
 import Navbar from './../components/Navbar/Navbar'
 import HomeComponent from './../components/Home/Home'
 import AboutComponent from './../components/About/About'
@@ -21,6 +22,8 @@ const Home: React.FC = () => {
     <>
       <Navbar location="portfolio" />
       <Head title="Home" />
+      <Cursor />
+      <SmoothScroll />
       <HomeComponent />
       <AboutComponent />
       <WorkComponent />
@@ -28,7 +31,6 @@ const Home: React.FC = () => {
       <DesignsComponent />
       <ContactComponent />
       <Footer />
-      <Cursor />
     </>
   )
 }
