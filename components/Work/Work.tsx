@@ -65,24 +65,24 @@ const AboutComponent: React.FC = () => {
 
   return (
     <S.WorkContainer id="projects">
-      <ScrollAnimation animateIn="animate__bounceInRight">
+      <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
         <S.WorkHeader>My Work</S.WorkHeader>
       </ScrollAnimation>
       {Projects.map((project, index) => (
         <S.ProjectBox key={index}>
           <S.InfoContainer>
-            <ScrollAnimation animateIn="animate__flipInX">
+            <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
               <S.ProjectTitle>{project.title}</S.ProjectTitle>
             </ScrollAnimation>
-            <ScrollAnimation animateIn="animate__flipInX">
+            <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
               <S.ProjectDescription>{project.description}</S.ProjectDescription>
             </ScrollAnimation>
 
-            <ScrollAnimation animateIn="animate__flipInX">
+            <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
               <S.ProjectTech>{project.skills}</S.ProjectTech>
             </ScrollAnimation>
             <S.ButtonsContainer>
-              <ScrollAnimation animateIn="animate__flipInX">
+              <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
                 <S.ViewProjectButton
                   href={`https://${project.link}`}
                   target="_blank"
@@ -90,7 +90,7 @@ const AboutComponent: React.FC = () => {
                   View Project
                 </S.ViewProjectButton>
               </ScrollAnimation>
-              <ScrollAnimation animateIn="animate__flipInX">
+              <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
                 <S.GitHubButton
                   href={`https://github.com/harshhhdev/${project.github}`}
                   target="_blank"

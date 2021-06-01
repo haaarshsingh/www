@@ -16,7 +16,7 @@ const globalStyle = global({
     overflowX: 'hidden',
   },
   '::selection': {
-    background: '#4560F030',
+    background: '#4560F060',
   },
   img: {
     userSelect: 'none',

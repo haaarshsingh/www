@@ -107,7 +107,7 @@ export const BlogHTML = styled('div', {
   pre: {
     padding: 30,
     borderRadius: 12,
-    width: 'fit-content',
+    width: '100%',
     '@media only screen and (max-width: 600px)': {
       maxWidth: '90vw',
     },

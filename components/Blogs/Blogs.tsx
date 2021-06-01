@@ -29,7 +29,7 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
       <S.BlogContainerBox>
         <ScrollAnimation
           animateIn="animate__bounceInRight"
-          animateOut="animate__bounceOutLeft"
+          animateOnce={true}
           delay={200}
         >
           <S.Searchbar
@@ -43,7 +43,7 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
           {blogsData.map((blog, index) => (
             <ScrollAnimation
               animateIn="animate__flipInX"
-              animateOut="animate__bounceOutLeft"
+              animateOnce={true}
               delay={200}
             >
               <S.BlogCard key={index} className="blog-card">

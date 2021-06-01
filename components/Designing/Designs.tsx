@@ -51,7 +51,7 @@ const AboutComponent: React.FC = () => {
 
   return (
     <S.DesignsContainer id="designs">
-      <ScrollAnimation animateIn="animate__bounceInRight">
+      <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
         <S.DesignsHeader>Designing</S.DesignsHeader>
       </ScrollAnimation>
       <S.DesignsContainer>
@@ -93,7 +93,7 @@ const AboutComponent: React.FC = () => {
             />
           </S.SecondDesignContainer>
         </S.DesignContainer>
-        <ScrollAnimation animateIn="animate__bounceInRight">
+        <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
           <S.DesignsHeader dribbble>Dribbble Shots</S.DesignsHeader>
         </ScrollAnimation>
         <S.DribbbleContainer>

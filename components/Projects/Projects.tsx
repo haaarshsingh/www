@@ -71,12 +71,12 @@ const AboutComponent: React.FC = () => {
 
   return (
     <S.ProjectsContainer>
-      <ScrollAnimation animateIn="animate__bounceInRight">
+      <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
         <S.ProjectsHeader>Other Things I've Built...</S.ProjectsHeader>
       </ScrollAnimation>
       <S.ProjectsGrid>
         {Projects.map((project, index) => (
-          <ScrollAnimation animateIn="animate__fadeIn">
+          <ScrollAnimation animateIn="animate__fadeIn" animateOnce={true}>
             <S.ProjectBox key={index}>
               <S.ProjectTopContainer>
                 <S.ProjectHeader>
