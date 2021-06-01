@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Helmet from 'react-helmet'
+import Head from 'next/head'
 
-const Head: React.FC<{ title: string }> = ({ title }) => {
+const Header: React.FC<{ title: string }> = ({ title }) => {
   const description = "👋 I'm Harsh, a 14yo web developer and designer."
   const link = 'https://harshhhdev.github.io/'
   return (
-    <Helmet>
+    <Head>
       <title>Harsh Singh - {title}</title>
       <meta property="og:title" content={title} />
       <meta property="twitter:title" content={title} />
@@ -27,8 +27,8 @@ const Head: React.FC<{ title: string }> = ({ title }) => {
         href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&family=Inter:wght@600&family=JetBrains+Mono:wght@400&display=swap"
         rel="stylesheet"
       />
-    </Helmet>
+    </Head>
   )
 }
 
-export default Head
+export default Header

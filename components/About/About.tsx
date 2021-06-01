@@ -25,45 +25,29 @@ const AboutComponent: React.FC = () => {
   return (
     <S.AboutContainer id="about">
       <S.InfoContainer>
-        <ScrollAnimation
-          animateIn="animate__bounceInRight"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__bounceInRight">
           <S.AboutHeader>About Me</S.AboutHeader>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__flipInX">
           <S.AboutDescription>
             Hi! I'm Harsh, a passionate self-taught programmer and designer from
             New York
           </S.AboutDescription>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__flipInX">
           <S.AboutDescription>
             I first started coding at 11, and overtime learnt many useful
             technologies and frameworks to make and design cool web apps
           </S.AboutDescription>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__flipInX">
           <S.AboutDescription>
             Here are a few technologies I've been working with recently:
           </S.AboutDescription>
         </ScrollAnimation>
         <S.SkillsContainer>
           {skills.map((skill, index) => (
-            <ScrollAnimation
-              animateIn="animate__flipInX"
-              animateOut="animate__bounceOutLeft"
-              key={index}
-            >
+            <ScrollAnimation animateIn="animate__flipInX" key={index}>
               <S.SkillBox>
                 <Icon.ArrowRight style={{ marginRight: 5 }} />
                 {skill}

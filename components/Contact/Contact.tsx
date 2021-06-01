@@ -30,16 +30,10 @@ const Contact: React.FC = () => {
         action="https://formspree.io/f/mdoyezjy"
         method="POST"
       >
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__flipInX">
           <S.ContactMain>👋 Hello, what's up?</S.ContactMain>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__flipInX">
           <S.ContactDescription>
             Whether you have a question, want to say hi, or anything else that
             it may be, my inbox is always open!
@@ -75,10 +69,7 @@ const Contact: React.FC = () => {
           required
           autoComplete="off"
         />
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__flipInX">
           <S.Submit
             as="button"
             type="submit"

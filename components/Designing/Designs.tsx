@@ -16,19 +16,6 @@ interface Design {
 }
 
 const AboutComponent: React.FC = () => {
-  const MobileDesignsRow2: Design[] = [
-    {
-      img: Book,
-      link: 'AWXI76vFYo6TXt1Mguy1Zc/BookDesign',
-      bottom: false,
-    },
-    {
-      img: FurnitureStore,
-      link: 'EZFFxvbRN8yYOykumAID9s/FurnitureStore',
-      bottom: true,
-    },
-  ]
-
   const DribbleDesigns: Design[] = [
     {
       img: '15298518/media/3c0361304205796ad9fcb4175a418135',
@@ -64,10 +51,7 @@ const AboutComponent: React.FC = () => {
 
   return (
     <S.DesignsContainer id="designs">
-      <ScrollAnimation
-        animateIn="animate__bounceInRight"
-        animateOut="animate__bounceOutLeft"
-      >
+      <ScrollAnimation animateIn="animate__bounceInRight">
         <S.DesignsHeader>Designing</S.DesignsHeader>
       </ScrollAnimation>
       <S.DesignsContainer>
@@ -109,10 +93,7 @@ const AboutComponent: React.FC = () => {
             />
           </S.SecondDesignContainer>
         </S.DesignContainer>
-        <ScrollAnimation
-          animateIn="animate__bounceInRight"
-          animateOut="animate__bounceOutLeft"
-        >
+        <ScrollAnimation animateIn="animate__bounceInRight">
           <S.DesignsHeader dribbble>Dribbble Shots</S.DesignsHeader>
         </ScrollAnimation>
         <S.DribbbleContainer>

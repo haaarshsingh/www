@@ -72,41 +72,25 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
       <S.BlogPostContainer>
         <S.BlogPost>
           <S.BlogBox className="blog-box">
-            <ScrollAnimation
-              animateIn="animate__flipInX"
-              animateOut="animate__bounceOutLeft"
-              delay={200}
-            >
+            <ScrollAnimation animateIn="animate__flipInX" delay={200}>
               <S.BlogTitle>{BlogContent.title}</S.BlogTitle>
             </ScrollAnimation>
             <S.BlogInfo>
               <S.BlogLeftContainer>
-                <ScrollAnimation
-                  animateIn="animate__flipInX"
-                  animateOut="animate__bounceOutLeft"
-                  delay={200}
-                >
+                <ScrollAnimation animateIn="animate__flipInX" delay={200}>
                   <S.BlogInfoContainer>
                     <Icons.Clock />
                     {BlogContent.readingTime} min
                   </S.BlogInfoContainer>
                 </ScrollAnimation>
-                <ScrollAnimation
-                  animateIn="animate__flipInX"
-                  animateOut="animate__bounceOutLeft"
-                  delay={200}
-                >
+                <ScrollAnimation animateIn="animate__flipInX" delay={200}>
                   <S.BlogInfoContainer>
                     <Icons.Calendar />
                     {BlogContent.formattedDate}
                   </S.BlogInfoContainer>
                 </ScrollAnimation>
               </S.BlogLeftContainer>
-              <ScrollAnimation
-                animateIn="animate__flipInX"
-                animateOut="animate__bounceOutLeft"
-                delay={200}
-              >
+              <ScrollAnimation animateIn="animate__flipInX" delay={200}>
                 <S.BlogInfoContainer href={githubEditLink}>
                   <Icons.Edit />
                   Edit On GitHub

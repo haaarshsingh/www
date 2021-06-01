@@ -65,39 +65,24 @@ const AboutComponent: React.FC = () => {
 
   return (
     <S.WorkContainer id="projects">
-      <ScrollAnimation
-        animateIn="animate__bounceInRight"
-        animateOut="animate__bounceOutLeft"
-      >
+      <ScrollAnimation animateIn="animate__bounceInRight">
         <S.WorkHeader>My Work</S.WorkHeader>
       </ScrollAnimation>
       {Projects.map((project, index) => (
         <S.ProjectBox key={index}>
           <S.InfoContainer>
-            <ScrollAnimation
-              animateIn="animate__flipInX"
-              animateOut="animate__bounceOutLeft"
-            >
+            <ScrollAnimation animateIn="animate__flipInX">
               <S.ProjectTitle>{project.title}</S.ProjectTitle>
             </ScrollAnimation>
-            <ScrollAnimation
-              animateIn="animate__flipInX"
-              animateOut="animate__bounceOutLeft"
-            >
+            <ScrollAnimation animateIn="animate__flipInX">
               <S.ProjectDescription>{project.description}</S.ProjectDescription>
             </ScrollAnimation>
 
-            <ScrollAnimation
-              animateIn="animate__flipInX"
-              animateOut="animate__bounceOutLeft"
-            >
+            <ScrollAnimation animateIn="animate__flipInX">
               <S.ProjectTech>{project.skills}</S.ProjectTech>
             </ScrollAnimation>
             <S.ButtonsContainer>
-              <ScrollAnimation
-                animateIn="animate__flipInX"
-                animateOut="animate__bounceOutLeft"
-              >
+              <ScrollAnimation animateIn="animate__flipInX">
                 <S.ViewProjectButton
                   href={`https://${project.link}`}
                   target="_blank"
@@ -105,10 +90,7 @@ const AboutComponent: React.FC = () => {
                   View Project
                 </S.ViewProjectButton>
               </ScrollAnimation>
-              <ScrollAnimation
-                animateIn="animate__flipInX"
-                animateOut="animate__bounceOutLeft"
-              >
+              <ScrollAnimation animateIn="animate__flipInX">
                 <S.GitHubButton
                   href={`https://github.com/harshhhdev/${project.github}`}
                   target="_blank"

@@ -12,34 +12,18 @@ const HomeComponent: React.FC = () => {
   return (
     <S.Container id="home">
       <S.HelloContainer>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-          delay={200}
-        >
+        <ScrollAnimation animateIn="animate__flipInX" delay={200}>
           <S.ContainerText mono>Hi, I'm</S.ContainerText>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__bounceInRight"
-          animateOut="animate__bounceOutLeft"
-          delay={200}
-        >
+        <ScrollAnimation animateIn="animate__bounceInRight" delay={200}>
           <S.Name>Harsh Singh</S.Name>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-          delay={200}
-        >
+        <ScrollAnimation animateIn="animate__flipInX" delay={200}>
           <S.ContainerText>
             I am a 14yo web designer and developer
           </S.ContainerText>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-          delay={200}
-        >
+        <ScrollAnimation animateIn="animate__flipInX" delay={200}>
           <S.SocialsContainer>
             <S.SocialLink href="https://github.com/harshhhdev/" target="_blank">
               <Icon.GitHub />
@@ -58,11 +42,7 @@ const HomeComponent: React.FC = () => {
             </S.SocialLink>
           </S.SocialsContainer>
         </ScrollAnimation>
-        <ScrollAnimation
-          animateIn="animate__flipInX"
-          animateOut="animate__bounceOutLeft"
-          delay={200}
-        >
+        <ScrollAnimation animateIn="animate__flipInX" delay={200}>
           <S.ContactButton>Let's Talk!</S.ContactButton>
         </ScrollAnimation>
       </S.HelloContainer>
