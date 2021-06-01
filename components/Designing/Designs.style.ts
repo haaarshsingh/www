@@ -88,6 +88,19 @@ export const SecondDesignContainer = styled('a', {
   },
 })
 
+export const DesignGraphic = styled('img', {
+  width: 550,
+  height: 630,
+  '@media only screen and (max-width: 414px)': {
+    width: 340,
+    height: 390,
+  },
+  '@media only screen and (max-width: 320px)': {
+    width: 280,
+    height: 320,
+  },
+})
+
 export const DribbbleContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',

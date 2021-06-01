@@ -57,6 +57,9 @@ export const PaintBucketContainer = styled('div', {
   marginRight: 400,
   marginBottom: 100,
   zIndex: '-100',
+  '@media only screen and (max-width: 767px)': {
+    display: 'none',
+  },
 })
 
 export const SVGContainer = styled('div', {
@@ -66,9 +69,6 @@ export const SVGContainer = styled('div', {
   zIndex: '-100',
   margin: '100px 0 0 500px',
   height: '200vh',
-  '@media only screen and (max-width: 768px)': {
-    margin: '100px 0 0 250px',
-  },
   '@media only screen and (max-width: 767px)': {
     display: 'none',
   },

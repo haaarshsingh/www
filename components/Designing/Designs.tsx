@@ -60,7 +60,7 @@ const AboutComponent: React.FC = () => {
             href="https://www.figma.com/file/HiBZs36LqXtGdWflYbotug/Washing-Machine"
             target="_blank"
           >
-            <img
+            <S.DesignGraphic
               src={WashingMachine}
               alt="UI Design"
               width={550}
@@ -71,7 +71,12 @@ const AboutComponent: React.FC = () => {
             href="https://www.figma.com/file/qobdswcA1FNPCB5rBfjya3/PizzaOrdering"
             target="_blank"
           >
-            <img src={Pizza} alt="UI Design" width={550} height={640} />
+            <S.DesignGraphic
+              src={Pizza}
+              alt="UI Design"
+              width={550}
+              height={640}
+            />
           </S.SecondDesignContainer>
         </S.DesignContainer>
         <S.DesignContainer>
@@ -79,13 +84,18 @@ const AboutComponent: React.FC = () => {
             href="https://www.figma.com/file/AWXI76vFYo6TXt1Mguy1Zc/BookDesign"
             target="_blank"
           >
-            <img src={Book} alt="UI Design" width={550} height={640} />
+            <S.DesignGraphic
+              src={Book}
+              alt="UI Design"
+              width={550}
+              height={640}
+            />
           </S.FirstDesignContainer>
           <S.SecondDesignContainer
             href="https://www.figma.com/file/EZFFxvbRN8yYOykumAID9s/FurnitureStore"
             target="_blank"
           >
-            <img
+            <S.DesignGraphic
               src={FurnitureStore}
               alt="UI Design"
               width={550}
