@@ -45,16 +45,16 @@ export const ProjectBox = styled('div', {
   display: 'flex',
   userSelect: 'none',
   flexDirection: 'column',
-  background: '$main',
+  background: '#232222',
   width: 350,
   height: 300,
   padding: 30,
-  color: '$dark',
+  color: '$main2',
   fontFamily: '$mono',
   justifyContent: 'space-between',
   transition: '0.1s linear',
+  borderRadius: 5,
   '&:hover': {
-    background: '$main2',
     transform: 'translateY(-5px)',
   },
   '@media only screen and (max-width: 768px)': {
@@ -77,7 +77,7 @@ export const ProjectLinks = styled('div', {
 
 export const ProjectLink = styled('a', {
   marginLeft: 20,
-  color: '$dark',
+  color: '$white',
   transition: '0.1s linear',
   '&:hover': {
     transform: 'scale(1.1, 1.1)',
@@ -90,14 +90,14 @@ export const ProjectTopContainer = styled('div', {
 })
 
 export const ProjectTitle = styled('h3', {
-  color: '$dark',
   fontFamily: '$primary',
   fontSize: '$4',
   margin: '10px 0',
+  color: '$white',
 })
 
 export const ProjectDescription = styled('p', {
-  color: '$dark',
+  color: '$main2',
   fontFamily: '$primary',
   fontSize: '$2',
 })

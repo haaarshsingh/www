@@ -86,7 +86,7 @@ const AboutComponent: React.FC = () => {
                     height="48"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#1B212E"
+                    stroke="#F4F4F5"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

@@ -63,7 +63,9 @@ const HomeComponent: React.FC = () => {
           animateOnce={true}
           delay={200}
         >
-          <S.ContactButton>Let's Talk!</S.ContactButton>
+          <S.ContactButtonBox href="#contact">
+            <S.ContactButton>Let's Talk!</S.ContactButton>
+          </S.ContactButtonBox>
         </ScrollAnimation>
       </S.HelloContainer>
       <ParallaxProvider>

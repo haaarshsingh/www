@@ -27,7 +27,7 @@ const AboutComponent: React.FC = () => {
       description: 'An open-source full-stack project boilerplate',
       skills: 'GraphQL React PostgreSQL TypeScript',
       github: 'NoteShack',
-      link: 'github.com/harshhhdev/NoteShack',
+      link: 'www.figma.com/file/8UOFAwJvAZCXda3s3zXdO0/NoteShack?node-id=16%3A71',
     },
     {
       title: 'Debutur',

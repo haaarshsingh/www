@@ -6,7 +6,7 @@ export const { css, styled, global, getCssString, keyframes } = createCss({
       main: '#6B7C95',
       main2: '#8696AD',
       primary: '#37393E',
-      dark: '#000',
+      dark: '#191919',
       white: '#F4F4F5',
       gradient:
         'linear-gradient(93.05deg, #EF9797 3.98%, rgba(206, 126, 199, 0.801616) 35.29%, #A364D6 68.78%, #A1D0F9 97.44%)',

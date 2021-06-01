@@ -92,29 +92,30 @@ export const ButtonsContainer = styled('div', {
 export const ViewProjectButton = styled('a', {
   width: 'fit-content',
   padding: 20,
-  fontSize: '$2',
+  fontSize: '$3',
+  marginTop: 60,
   cursor: 'pointer',
   zIndex: '100',
-  border: 'none',
-  backgroundColor: '$main',
-  color: '$dark',
+  background: 'none',
+  border: '2px solid white',
+  color: 'white',
   fontFamily: '$primary',
   outline: 'none',
   transition: '0.1s linear',
+  borderRadius: 5,
   textDecoration: 'none',
-  '&:hover': {
-    background: '$main2',
+  '&:hover, &:focus': {
+    background: '#ffffff30',
   },
 })
 
 export const GitHubButton = styled('a', {
   display: 'flex',
   textDecoration: 'none',
-  color: '$main',
+  color: '$white',
   marginLeft: 30,
   transition: '0.1s linear',
   '&:hover': {
     transform: 'scale(1.1, 1.1)',
-    color: '$white',
   },
 })

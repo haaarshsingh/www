@@ -58,7 +58,7 @@ export const InputBar = styled('input', {
   fontFamily: '$primary',
   width: 500,
   margin: '20px 0',
-  borderRadius: 7,
+  borderRadius: 5,
   transition: '0.1s linear',
   zIndex: 10,
   maxWidth: '90vw',
@@ -78,7 +78,7 @@ export const Message = styled('textarea', {
   width: 500,
   margin: '20px 0',
   resize: 'none',
-  borderRadius: 7,
+  borderRadius: 5,
   zIndex: 10,
   transition: '0.1s linear',
   maxWidth: '90vw',
@@ -88,19 +88,22 @@ export const Message = styled('textarea', {
 })
 
 export const Submit = styled('button', {
-  background: '$main',
-  color: '$dark',
-  fontFamily: '$primary',
-  fontSize: '$3',
-  padding: 20,
   width: 'fit-content',
+  padding: 20,
+  fontSize: '$3',
+  marginTop: 60,
+  cursor: 'pointer',
+  background: 'none',
+  border: '2px solid white',
+  color: 'white',
+  fontFamily: '$primary',
   outline: 'none',
-  border: 'none',
-  marginTop: 40,
   transition: '0.1s linear',
+  borderRadius: 5,
+  textDecoration: 'none',
   zIndex: 10,
-  '&:hover': {
-    background: '$main2',
+  '&:hover, &:focus': {
+    background: '#ffffff30',
   },
 })
 

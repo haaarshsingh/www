@@ -44,16 +44,13 @@ const Navbar: React.FC<{ location: string }> = ({ location }) => {
 
   return (
     <>
-      <S.NavMenuContainer className={nav ? '' : 'disabled'}>
+      <S.NavMenuContainer className={nav ? '' : 'disabled'} onClick={ToggleNav}>
         <S.NavMenu>
           {NavLinks.map((link, index) => (
             <S.NavMenuLinks key={index} href={link.link} onClick={ToggleNav}>
               {link.title}
             </S.NavMenuLinks>
           ))}
-          <S.Toggle onClick={ToggleNav}>
-            <Icons.XCircle />
-          </S.Toggle>
         </S.NavMenu>
       </S.NavMenuContainer>
       <S.Nav>

@@ -27,6 +27,10 @@ export const ContainerText = styled('p', {
   fontSize: '$4',
   fontFamily: '$primary',
   maxWidth: '90vw',
+  background: '$gradient',
+  width: 'fit-content',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
   variants: {
     mono: {
       true: {
@@ -38,10 +42,8 @@ export const ContainerText = styled('p', {
 
 export const Name = styled('h1', {
   display: 'flex',
-  background: '$gradient',
   width: 'fit-content',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
+  color: '$white',
   fontSize: 60,
   margin: '30px 0',
   '@media only screen and (max-width: 600px)': {
@@ -88,20 +90,33 @@ export const SocialLink = styled('a', {
   },
 })
 
+export const ContactButtonBox = styled('a', {
+  outline: 'none',
+  '&:focus': {
+    button: {
+      background: '#ffffff30',
+    },
+  },
+})
+
 export const ContactButton = styled('button', {
   width: 'fit-content',
   padding: 20,
+  marginTop: 60,
   fontSize: '$3',
-  marginTop: 50,
   cursor: 'pointer',
   zIndex: '100',
-  border: 'none',
-  backgroundColor: '$main',
-  color: '$dark',
+  background: 'none',
+  border: '2px solid white',
+  color: 'white',
   fontFamily: '$primary',
   outline: 'none',
   transition: '0.1s linear',
+  borderRadius: 5,
   '&:hover': {
-    background: '$main2',
+    background: '#ffffff30',
+  },
+  '&:focus': {
+    background: '#ffffff30',
   },
 })
