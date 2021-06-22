@@ -39,6 +39,7 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
               animateIn="animate__flipInX"
               animateOnce={true}
               delay={200}
+              key={index}
             >
               <S.BlogCard key={index} className="blog-card">
                 <S.BlogCardTitle href={`/blog/${blog.id}`} id="title">

@@ -5,7 +5,7 @@ const globalStyle = global({
     margin: 0,
     padding: 0,
     boxSizing: 'border-box',
-    cursor: 'none !important',
+    // cursor: 'none !important',
     scrollBehavior: 'smooth',
   },
   html: {

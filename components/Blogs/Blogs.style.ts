@@ -35,16 +35,17 @@ export const Searchbar = styled('input', {
 })
 
 export const BlogsBox = styled('div', {
-  width: '80%',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
+  width: '100vw',
 })
 
 export const BlogCard = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  width: '50%',
   margin: '50px 0',
+  width: '50vw',
 })
 
 export const BlogCardTitle = styled('a', {
