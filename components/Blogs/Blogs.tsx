@@ -27,18 +27,12 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
   return (
     <S.BlogContainer>
       <S.BlogContainerBox>
-        <ScrollAnimation
-          animateIn="animate__bounceInRight"
-          animateOnce={true}
-          delay={200}
-        >
-          <S.Searchbar
-            type="text"
-            ref={InputRef}
-            onKeyUp={Search}
-            placeholder="Search Blogs..."
-          />
-        </ScrollAnimation>
+        <S.Searchbar
+          type="text"
+          ref={InputRef}
+          onKeyUp={Search}
+          placeholder="Search Blogs..."
+        />
         <S.BlogsBox>
           {blogsData.map((blog, index) => (
             <ScrollAnimation
