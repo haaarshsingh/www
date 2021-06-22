@@ -29,7 +29,7 @@ So, we'll need to install a few packages using pacman.
 
 Go to your terminal, and run:
 
-````zsh
+````ini
 sudo pacman -S i3 alacritty lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings picom feh lxappearance rofi neofetch arandr autotiling flameshot```
 ````
 
@@ -37,7 +37,7 @@ It's a big install, so it might take some time.
 
 Now, we'll need to enable some stuff.
 
-```zsh
+```ini
 sudo systemctl enable lightdm
 ```
 
@@ -55,7 +55,7 @@ Now, press the modifier + Enter to open a new alacritty terminal instance.
 
 Here, clone my dotfiles to your .config folder
 
-```zsh
+```ini
 cd .config/
 
 git clone https://github.com/harshhhdev/dotfiles.git/
@@ -69,7 +69,7 @@ Now, you'll see that there's an error already when you open your terminal. This 
 
 To install it, simply run
 
-```zsh
+```ini
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 ```
 
@@ -83,7 +83,7 @@ Yay is a frontend for pacman. Basically, allows us to build code from AUR repos.
 
 To install,
 
-```zsh
+```ini
 cd /opt
 
 # Add sudo for system operation
@@ -110,7 +110,7 @@ Now, inside of here, jump to line 212 where we setup our wallpaper
 
 Inside of here, feel free to add the path to the background. If you cloned my dotfiles, you can simply use
 
-```zsh
+```ini
 exec_always feh --bg-fill ~/.config/Background.jpg
 ```
 
@@ -122,7 +122,7 @@ Next, we'll need to setup our code/text editor: NeoVim.
 
 If you prefer VSC, go ahead and install it with
 
-```zsh
+```ini
 sudo pacman -S code
 
 # Remove NeoVim (optional)
@@ -135,7 +135,7 @@ We will need to use NeoVim v5 for our setup. As I talk, NeoVim v5 is not stable,
 
 Using yay, we can type in
 
-```zsh
+```ini
 yay -S neovim-nightly-bin
 ```
 
@@ -145,14 +145,14 @@ We'll be using packer to install our packages.
 
 Make sure to clone the package repository somewhere to your packpath, e.g.:
 
-```zsh
+```ini
 git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
 Now, open up NeoVim using the nvim command.
 
-You'll see a bunch of errors. Don't worry -- that's expected. Type in `:PackerInstall` and your packages should install just fine.
+You'll see a bunch of errors. Don't worry -- that's expected. Type in :PackerInstall and your packages should install just fine.
 
 Now, NeoVim should be working and ready to go!
 
@@ -172,7 +172,7 @@ After you're done, click on Layout > Save As and save it to your .screenlayout d
 
 Now, open the .screenlayout/config.sh file
 
-```zsh
+```ini
 nvim .screenlayout/config.sh
 
 # If using Visual Studio Code
@@ -183,7 +183,7 @@ Copy the contents (don't copy the comment up top)
 
 Now, go back to your config file. Go to line 217 where we setup xrandr.
 
-Add in the what you copied from the config.sh file, and add an `exec_always` infront letting i3 know to execute this on startup.
+Add in the what you copied from the config.sh file, and add an exec_always infront letting i3 know to execute this on startup.
 
 # Polybar
 
@@ -193,13 +193,13 @@ Now, this might take a bit of time.
 
 Let's install polybar using yay
 
-```zsh
+```ini
 yay -S polybar-git
 ```
 
 Now, let's open our file using NeoVim.
 
-```zsh
+```ini
 nvim ~/.config/polybar/forest/modules.ini
 
 # Visual Studio Code
@@ -216,7 +216,7 @@ Then, you'll need to get a city code of your city, or a city near you.
 Go back to the polybar config file, and fill in the info.
 
 ```ini
-# Imagine using imperial units :p
+; Imagine using imperial units :p
 exec = ~/.config/polybar/forest/scripts/weather.py --api=YOUR-API-KEY --city=CITY-CODE --units=metric
 
 label = Your City Name %output%
@@ -224,7 +224,7 @@ label = Your City Name %output%
 
 Next, you'll need to setup the battery.
 
-As stated in the comment, run `ls -1 /sys/class/power_supply/` to get input for the fields.
+As stated in the comment, run ls -1 /sys/class/power_supply/ to get input for the fields.
 
 ```ini
 ; Use the following command to list batteries and adapters:
@@ -261,11 +261,11 @@ Now, we'll need to use our little emoji picker.
 
 Go and clone the [rofiemoji](https://github.com/nkoehring/rofiemoji) repo
 
-```zsh
+```ini
 git clone https://github.com/nkoehring/rofiemoji.git
 ```
 
-Go into [line 168](https://github.com/harshhhdev/dotfiles/blob/master/i3/config#L168) in your i3 config file, and add in the location of your `rofiemoji.sh` file.
+Go into [line 168](https://github.com/harshhhdev/dotfiles/blob/master/i3/config#L168) in your i3 config file, and add in the location of your rofiemoji.sh file.
 
 If you'd like to setup Apple Emojis in your Linux, feel free to check out my [previous post](https://harshhhdev.github.io/blog/apple-emojis-linux).
 
