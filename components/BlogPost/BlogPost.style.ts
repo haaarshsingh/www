@@ -121,7 +121,7 @@ export const BlogHTML = styled('div', {
   },
   img: {
     borderRadius: 10,
-    maxWidth: '90vw',
+    maxWidth: '70vw',
   },
   a: {
     color: '#5CC2E5',
