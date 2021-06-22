@@ -1,9 +1,8 @@
 ---
 title: 'Using Apple Emojis in Linux'
 date: '2021-05-13'
-formattedDate: '13 May, 2020'
+formattedDate: '13 May, 2021'
 description: 'Hello everyone! In this quick tutorial, we will just be taking at how to replace the default Google Emojis with Apple emojis.'
-language: 'bash'
 ---
 
 # Emojis on Linux
