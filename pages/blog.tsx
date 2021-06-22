@@ -19,7 +19,10 @@ const Blog: React.FC<{ allBlogsData: blog[] }> = ({ allBlogsData }) => {
   return (
     <>
       <Navbar location="blog" />
-      <Head title="Blog" />
+      <Head
+        title="Blog"
+        description="👋 Hello. Welcome to my blog - Here, I'll write tutorials, and share my expriences on a wide variety of technologies."
+      />
       <Cursor />
       <SmoothScroll />
       <BlogCards blogsData={allBlogsData} />

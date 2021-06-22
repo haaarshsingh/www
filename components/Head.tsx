@@ -2,8 +2,10 @@ import React from 'react'
 
 import Head from 'next/head'
 
-const Header: React.FC<{ title: string }> = ({ title }) => {
-  const description = "👋 I'm Harsh, a 14yo web developer and designer."
+const Header: React.FC<{ title: string; description: string }> = ({
+  title,
+  description,
+}) => {
   const link = 'https://harshhhdev.github.io/'
   return (
     <Head>

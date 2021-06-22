@@ -17,7 +17,10 @@ const Home: React.FC = () => {
   return (
     <ContentWrapper>
       <Navbar location="404" />
-      <Head title="404" />
+      <Head
+        title="404"
+        description="Whoops! You hit a route that doesn't exist 😶"
+      />
       <Cursor />
       <SmoothScroll />
       <ErrorPage />

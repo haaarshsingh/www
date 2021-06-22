@@ -28,7 +28,7 @@ const Blog: React.FC<{ blogData: Blog }> = ({ blogData }) => {
   return (
     <>
       <Navbar location="blog" />
-      <Head title={blogData.title} />
+      <Head title={blogData.title} description={blogData.description} />
       <Cursor />
       <SmoothScroll />
       <BlogPost BlogContent={blogData} />
