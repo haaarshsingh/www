@@ -21,7 +21,7 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
 
   React.useEffect(() => {
     setGitHubEditLink(
-      `https://github.com/harshhhdev/harshhhdev.github.io/blob${window.location.pathname}`
+      `https://github.com/harshhhdev/harshhhdev.github.io/blob/master/blog/${window.location.pathname}.md`
     )
 
     TooltipRef.current!.addEventListener('animationend', () => {
