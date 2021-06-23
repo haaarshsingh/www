@@ -29,7 +29,7 @@ So, we'll need to install a few packages using pacman.
 
 Go to your terminal, and run:
 
-````ini
+````bash
 sudo pacman -S i3 alacritty lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings picom feh lxappearance rofi neofetch arandr autotiling flameshot```
 ````
 
@@ -37,7 +37,7 @@ It's a big install, so it might take some time.
 
 Now, we'll need to enable some stuff.
 
-```ini
+```bash
 sudo systemctl enable lightdm
 ```
 
@@ -55,7 +55,7 @@ Now, press the modifier + Enter to open a new alacritty terminal instance.
 
 Here, clone my dotfiles to your .config folder
 
-```ini
+```bash
 cd .config/
 
 git clone https://github.com/harshhhdev/dotfiles.git/
@@ -69,7 +69,7 @@ Now, you'll see that there's an error already when you open your terminal. This 
 
 To install it, simply run
 
-```ini
+```bash
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 ```
 
@@ -83,7 +83,7 @@ Yay is a frontend for pacman. Basically, allows us to build code from AUR repos.
 
 To install,
 
-```ini
+```bash
 cd /opt
 
 # Add sudo for system operation
@@ -110,7 +110,7 @@ Now, inside of here, jump to line 212 where we setup our wallpaper
 
 Inside of here, feel free to add the path to the background. If you cloned my dotfiles, you can simply use
 
-```ini
+```bash
 exec_always feh --bg-fill ~/.config/Background.jpg
 ```
 
@@ -122,7 +122,7 @@ Next, we'll need to setup our code/text editor: NeoVim.
 
 If you prefer VSC, go ahead and install it with
 
-```ini
+```bash
 sudo pacman -S code
 
 # Remove NeoVim (optional)
@@ -135,7 +135,7 @@ We will need to use NeoVim v5 for our setup. As I talk, NeoVim v5 is not stable,
 
 Using yay, we can type in
 
-```ini
+```bash
 yay -S neovim-nightly-bin
 ```
 
@@ -145,7 +145,7 @@ We'll be using packer to install our packages.
 
 Make sure to clone the package repository somewhere to your packpath, e.g.:
 
-```ini
+```bash
 git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
@@ -172,7 +172,7 @@ After you're done, click on Layout > Save As and save it to your .screenlayout d
 
 Now, open the .screenlayout/config.sh file
 
-```ini
+```bash
 nvim .screenlayout/config.sh
 
 # If using Visual Studio Code
@@ -193,21 +193,21 @@ Now, this might take a bit of time.
 
 Let's install polybar using yay
 
-```ini
+```bash
 yay -S polybar-git
 ```
 
 Now, let's open our file using NeoVim.
 
-```ini
-nvim ~/.config/polybar/forest/modules.ini
+```bash
+nvim ~/.config/polybar/forest/modules.bash
 
 # Visual Studio Code
 code ~/.config/polybar/forest/
 # Open the modules file using the GUI
 ```
 
-Here, go down to [module/weather](https://github.com/harshhhdev/dotfiles/blob/master/polybar/forest/modules.ini#L1093).
+Here, go down to [module/weather](https://github.com/harshhhdev/dotfiles/blob/master/polybar/forest/modules.bash#L1093).
 
 You'll need to go to [openeathermap](https://openweathermap.org/) and register yourself, and get an API key.
 
@@ -235,7 +235,7 @@ adapter = ACAD
 
 Next, we'll need to setup our network
 
-Find the [module/wireless-network](https://github.com/harshhhdev/dotfiles/blob/92ec0c19a9e4613d9ed485ce7a9b19d605decca1/polybar/forest/modules.ini#L756)
+Find the [module/wireless-network](https://github.com/harshhhdev/dotfiles/blob/92ec0c19a9e4613d9ed485ce7a9b19d605decca1/polybar/forest/modules.bash#L756)
 
 I'm using wireless, so I'll have to go and get find which interface I'm using.
 
@@ -261,7 +261,7 @@ Now, we'll need to use our little emoji picker.
 
 Go and clone the [rofiemoji](https://github.com/nkoehring/rofiemoji) repo
 
-```ini
+```bash
 git clone https://github.com/nkoehring/rofiemoji.git
 ```
 

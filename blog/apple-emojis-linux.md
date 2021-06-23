@@ -53,7 +53,7 @@ Now, we need to copy over our fonts from our directory we installed them from to
 
 ```bash
 # usr/share/fonts/truetype/noto
-$ sudo cp ~/path-to/AppleColorEmoji.ttf NotoColorEmoji.ttf
+$ sudo cp ~/path-to/AppleColorEmoji.ttf .
 ```
 
 Now, let's logout of our system.
