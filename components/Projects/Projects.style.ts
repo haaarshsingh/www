@@ -31,9 +31,10 @@ export const ProjectsGrid = styled('div', {
 })
 
 export const ProjectsHeader = styled('h1', {
-  display: 'flex',
+  display: 'inline-block',
   background: '$gradient',
   width: 'fit-content',
+  backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   fontSize: '$5',

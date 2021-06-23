@@ -107,7 +107,7 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
                 delay={200}
                 animateOnce={true}
               >
-                <S.BlogInfoContainer href={githubEditLink}>
+                <S.BlogInfoContainer href={githubEditLink} target="_blank">
                   <Icons.Edit />
                   Edit On GitHub
                 </S.BlogInfoContainer>

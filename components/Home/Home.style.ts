@@ -29,6 +29,8 @@ export const ContainerText = styled('p', {
   maxWidth: '90vw',
   background: '$gradient',
   width: 'fit-content',
+  display: 'inline-block',
+  backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   variants: {

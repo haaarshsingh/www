@@ -12,9 +12,10 @@ export const WorkContainer = styled('div', {
 })
 
 export const WorkHeader = styled('h1', {
-  display: 'flex',
+  display: 'inline-block',
   background: '$gradient',
   width: 'fit-content',
+  backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   fontSize: '$5',

@@ -54,10 +54,11 @@ export const BlogBox = styled('div', {
 })
 
 export const BlogTitle = styled('h1', {
-  display: 'flex',
+  display: 'inline-block',
   background: '$gradient',
   width: 'fit-content',
   WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   fontSize: '$6',
 })
@@ -105,23 +106,20 @@ export const BlogHTML = styled('div', {
     margin: '30px 0',
   },
   pre: {
-    padding: 30,
     borderRadius: 12,
     width: '100%',
     '@media only screen and (max-width: 600px)': {
       maxWidth: '90vw',
     },
   },
-  code: {
-    padding: 3,
-  },
+  code: {},
   p: {
     fontSize: '$2',
     margin: '5px 0',
   },
   img: {
     borderRadius: 10,
-    maxWidth: '70vw',
+    maxWidth: '60vw',
   },
   a: {
     color: '#5CC2E5',
