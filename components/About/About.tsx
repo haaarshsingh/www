@@ -18,7 +18,7 @@ const AboutComponent: React.FC = () => {
     'PostgreSQL',
     'MongoDB',
     'Prisma',
-    'Express',
+    'Fastify',
     'GraphQL',
   ]
 

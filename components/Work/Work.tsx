@@ -41,7 +41,7 @@ const AboutComponent: React.FC = () => {
       title: 'SnipBin',
       image: SnipBin,
       description: 'Lightweight website to paste code snippets',
-      skills: 'Node Express MongoDB',
+      skills: 'TypeScript Next Prisma GraphQL',
       github: 'snip-bin',
       link: 'snipbin.herokuapp.com',
     },
