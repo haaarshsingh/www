@@ -4,11 +4,11 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import * as S from './Work.style'
 import * as Icon from 'react-feather'
 
-import NoteShack from './../../public/NoteShack.png'
-import Debutur from './../../public/Debutur.png'
-import SnipBin from './../../public/SnipBin.png'
-import Oponion from './../../public/Oponion.png'
-import SketchMessage from './../../public/SketchMessage.png'
+import NoteShack from '@pub/NoteShack.png'
+import Debutur from '@pub/public/Debutur.png'
+import SnipBin from '@pub/SnipBin.png'
+import Oponion from '@pub/Oponion.png'
+import SketchMessage from '@pub/SketchMessage.png'
 
 interface Projects {
   title: string

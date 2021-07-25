@@ -4,7 +4,7 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import * as S from './Blogs.style'
 import * as Icons from 'react-feather'
 
-import { Blog as blogs } from './../../pages/blog/[id]'
+import { Blog as blogs } from '../../pages/blog/[id]'
 
 const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
   const InputRef = React.useRef<HTMLInputElement>(null)
@@ -28,21 +28,21 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
     <S.BlogContainer>
       <S.BlogContainerBox>
         <S.Searchbar
-          type="text"
+          type='text'
           ref={InputRef}
           onKeyUp={Search}
-          placeholder="Search Blogs..."
+          placeholder='Search Blogs...'
         />
         <S.BlogsBox>
           {blogsData.map((blog, index) => (
             <ScrollAnimation
-              animateIn="animate__flipInX"
+              animateIn='animate__flipInX'
               animateOnce={true}
               delay={200}
               key={index}
             >
-              <S.BlogCard key={index} className="blog-card">
-                <S.BlogCardTitle href={`/blog/${blog.id}`} id="title">
+              <S.BlogCard key={index} className='blog-card'>
+                <S.BlogCardTitle href={`/blog/${blog.id}`} id='title'>
                   {blog.title}
                 </S.BlogCardTitle>
                 <S.BlogCardDesc>{blog.description}</S.BlogCardDesc>

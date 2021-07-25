@@ -1,4 +1,4 @@
-import { styled, keyframes } from '../../styles/theme.config'
+import { styled, keyframes } from '@css/theme.config'
 
 const TooltipAnimation = keyframes({
   '0%': {

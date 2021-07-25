@@ -6,7 +6,7 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import * as Icon from 'react-feather'
 import * as S from './Home.style'
 
-import img from './../../public/paint.png'
+import img from '@pub/paint.png'
 
 const HomeComponent: React.FC = () => {
   return (

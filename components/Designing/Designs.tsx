@@ -4,10 +4,10 @@ import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as S from './Designs.style'
 
-import WashingMachine from './../../public/WashingMachineDesign.png'
-import Pizza from './../../public/PizzaDesign.png'
-import Book from './../../public/BookDesign.png'
-import FurnitureStore from './../../public/FurnitureStoreDesign.png'
+import WashingMachine from '@pub/WashingMachineDesign.png'
+import Pizza from '@pub/PizzaDesign.png'
+import Book from '@pub/BookDesign.png'
+import FurnitureStore from '@pub/FurnitureStoreDesign.png'
 
 interface Design {
   img: any
@@ -50,30 +50,30 @@ const AboutComponent: React.FC = () => {
   ]
 
   return (
-    <S.DesignsContainer id="designs">
-      <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
+    <S.DesignsContainer id='designs'>
+      <ScrollAnimation animateIn='animate__bounceInRight' animateOnce={true}>
         <S.DesignsHeader>Designing</S.DesignsHeader>
       </ScrollAnimation>
       <S.DesignsContainer>
         <S.DesignContainer>
           <S.FirstDesignContainer
-            href="https://www.figma.com/file/HiBZs36LqXtGdWflYbotug/Washing-Machine"
-            target="_blank"
+            href='https://www.figma.com/file/HiBZs36LqXtGdWflYbotug/Washing-Machine'
+            target='_blank'
           >
             <S.DesignGraphic
               src={WashingMachine}
-              alt="UI Design"
+              alt='UI Design'
               width={550}
               height={640}
             />
           </S.FirstDesignContainer>
           <S.SecondDesignContainer
-            href="https://www.figma.com/file/qobdswcA1FNPCB5rBfjya3/PizzaOrdering"
-            target="_blank"
+            href='https://www.figma.com/file/qobdswcA1FNPCB5rBfjya3/PizzaOrdering'
+            target='_blank'
           >
             <S.DesignGraphic
               src={Pizza}
-              alt="UI Design"
+              alt='UI Design'
               width={550}
               height={640}
             />
@@ -81,29 +81,29 @@ const AboutComponent: React.FC = () => {
         </S.DesignContainer>
         <S.DesignContainer>
           <S.FirstDesignContainer
-            href="https://www.figma.com/file/AWXI76vFYo6TXt1Mguy1Zc/BookDesign"
-            target="_blank"
+            href='https://www.figma.com/file/AWXI76vFYo6TXt1Mguy1Zc/BookDesign'
+            target='_blank'
           >
             <S.DesignGraphic
               src={Book}
-              alt="UI Design"
+              alt='UI Design'
               width={550}
               height={640}
             />
           </S.FirstDesignContainer>
           <S.SecondDesignContainer
-            href="https://www.figma.com/file/EZFFxvbRN8yYOykumAID9s/FurnitureStore"
-            target="_blank"
+            href='https://www.figma.com/file/EZFFxvbRN8yYOykumAID9s/FurnitureStore'
+            target='_blank'
           >
             <S.DesignGraphic
               src={FurnitureStore}
-              alt="UI Design"
+              alt='UI Design'
               width={550}
               height={640}
             />
           </S.SecondDesignContainer>
         </S.DesignContainer>
-        <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
+        <ScrollAnimation animateIn='animate__bounceInRight' animateOnce={true}>
           <S.DesignsHeader dribbble>Dribbble Shots</S.DesignsHeader>
         </ScrollAnimation>
         <S.DribbbleContainer>
@@ -112,11 +112,11 @@ const AboutComponent: React.FC = () => {
               <S.DribbbleImageParent
                 key={index}
                 href={`https://dribbble.com/shots/${design.link}`}
-                target="_blank"
+                target='_blank'
               >
                 <S.DribbbleBox
                   src={`https://cdn.dribbble.com/users/6216672/screenshots/${design.img}.png`}
-                  alt="UI Design"
+                  alt='UI Design'
                   width={800}
                   height={600}
                 />

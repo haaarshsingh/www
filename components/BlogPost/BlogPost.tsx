@@ -71,9 +71,9 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
       </S.TopScrollbar>
       <S.BlogPostContainer>
         <S.BlogPost>
-          <S.BlogBox className="blog-box">
+          <S.BlogBox className='blog-box'>
             <ScrollAnimation
-              animateIn="animate__flipInX"
+              animateIn='animate__flipInX'
               delay={200}
               animateOnce={true}
             >
@@ -82,7 +82,7 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
             <S.BlogInfo>
               <S.BlogLeftContainer>
                 <ScrollAnimation
-                  animateIn="animate__flipInX"
+                  animateIn='animate__flipInX'
                   delay={200}
                   animateOnce={true}
                 >
@@ -92,7 +92,7 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
                   </S.BlogInfoContainer>
                 </ScrollAnimation>
                 <ScrollAnimation
-                  animateIn="animate__flipInX"
+                  animateIn='animate__flipInX'
                   delay={200}
                   animateOnce={true}
                 >
@@ -103,11 +103,11 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
                 </ScrollAnimation>
               </S.BlogLeftContainer>
               <ScrollAnimation
-                animateIn="animate__flipInX"
+                animateIn='animate__flipInX'
                 delay={200}
                 animateOnce={true}
               >
-                <S.BlogInfoContainer href={githubEditLink} target="_blank">
+                <S.BlogInfoContainer href={githubEditLink} target='_blank'>
                   <Icons.Edit />
                   Edit On GitHub
                 </S.BlogInfoContainer>
@@ -126,13 +126,13 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
             <S.ShareButtonsDiv>
               <S.ShareButton
                 href={`http://twitter.com/share?text="${BlogContent.title}" - &url=https://harshhhdev.github.io/blog/${BlogContent.id}/`}
-                target="_blank"
+                target='_blank'
               >
                 <Icons.Twitter />
               </S.ShareButton>
               <S.ShareButton
                 href={`https://facebook.com/sharer/sharer.php?u=https://harshhhdev.github.io/blog/${BlogContent.id}/`}
-                target="_blank"
+                target='_blank'
               >
                 <Icons.Facebook />
               </S.ShareButton>

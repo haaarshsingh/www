@@ -1,14 +1,14 @@
 import React from 'react'
-import { getAllBlogIds, getBlogData } from './../../lib/blogs'
+import { getAllBlogIds, getBlogData } from '../../lib/blogs'
 
-import Head from './../../components/Head'
-import Cursor from './../../components/Cursor'
-import SmoothScroll from './../../components/SmoothScroll'
-import Navbar from './../../components/Navbar/Navbar'
-import BlogPost from './../../components/BlogPost/BlogPost'
-import Footer from './../../components/Footer/Footer'
+import Head from '@components/Head'
+import Cursor from '@components/Cursor'
+import SmoothScroll from '@components/SmoothScroll'
+import Navbar from '@components/Navbar/Navbar'
+import BlogPost from '@components/BlogPost/BlogPost'
+import Footer from '@components/Footer/Footer'
 
-import globalStyle from './../../styles/global.style'
+import globalStyle from '@css/global.style'
 import 'animate.css/animate.min.css'
 
 export interface Blog {
@@ -27,7 +27,7 @@ const Blog: React.FC<{ blogData: Blog }> = ({ blogData }) => {
 
   return (
     <>
-      <Navbar location="blog" />
+      <Navbar location='blog' />
       <Head title={blogData.title} description={blogData.description} />
       <Cursor />
       <SmoothScroll />

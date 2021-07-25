@@ -1,4 +1,4 @@
-import { styled } from '../../styles/theme.config'
+import { styled } from '@css/theme.config'
 
 export const Container = styled('div', {
   display: 'flex',

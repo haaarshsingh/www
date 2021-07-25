@@ -6,9 +6,9 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import * as S from './About.style'
 import * as Icon from 'react-feather'
 
-import computer from './../../public/computer.png'
-import idCard from './../../public/idCard.png'
-import video from './../../public/videoPlayer.png'
+import computer from '@pub/computer.png'
+import idCard from '@pub/idCard.png'
+import video from '@pub/videoPlayer.png'
 
 const AboutComponent: React.FC = () => {
   const skills = [
@@ -23,24 +23,24 @@ const AboutComponent: React.FC = () => {
   ]
 
   return (
-    <S.AboutContainer id="about">
+    <S.AboutContainer id='about'>
       <S.InfoContainer>
-        <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
+        <ScrollAnimation animateIn='animate__bounceInRight' animateOnce={true}>
           <S.AboutHeader>About Me</S.AboutHeader>
         </ScrollAnimation>
-        <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+        <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
           <S.AboutDescription>
             Hi! I'm Harsh, a passionate self-taught programmer and designer from
             New York
           </S.AboutDescription>
         </ScrollAnimation>
-        <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+        <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
           <S.AboutDescription>
             I first started coding at 11, and overtime learnt many useful
             technologies and frameworks to make and design cool web apps
           </S.AboutDescription>
         </ScrollAnimation>
-        <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+        <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
           <S.AboutDescription>
             Here are a few technologies I've been working with recently:
           </S.AboutDescription>
@@ -48,7 +48,7 @@ const AboutComponent: React.FC = () => {
         <S.SkillsContainer>
           {skills.map((skill, index) => (
             <ScrollAnimation
-              animateIn="animate__flipInX"
+              animateIn='animate__flipInX'
               animateOnce={true}
               key={index}
             >
@@ -61,16 +61,16 @@ const AboutComponent: React.FC = () => {
         </S.SkillsContainer>
       </S.InfoContainer>
       <S.ImgBox style={{ width: 500, marginLeft: 700 }}>
-        <img src={computer} alt="Computer" width={580} height={450} />
+        <img src={computer} alt='Computer' width={580} height={450} />
         <ParallaxProvider>
           <S.ImgBox style={{ marginLeft: 300 }}>
             <Parallax x={[-30, 30]}>
-              <img src={video} alt="Video Player" width={200} height={200} />
+              <img src={video} alt='Video Player' width={200} height={200} />
             </Parallax>
           </S.ImgBox>
           <S.ImgBox style={{ marginTop: 200 }}>
             <Parallax y={[-100, 100]}>
-              <img src={idCard} alt="ID Card" width={150} height={90} />
+              <img src={idCard} alt='ID Card' width={150} height={90} />
             </Parallax>
           </S.ImgBox>
         </ParallaxProvider>
