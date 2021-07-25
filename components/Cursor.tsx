@@ -33,7 +33,7 @@ const CursorDotOutline = styled('div', {
   backgroundColor: 'transparent',
   border: '2px solid #fff',
   zIndex: 99999,
-  '@media only screen and (max-width: 1024px)': {
+  '@media (pointer: none)': {
     display: 'none',
   },
 })
@@ -160,8 +160,8 @@ const Cursor: React.FC = () => {
   })
   return (
     <>
-      <CursorDotOutline className="cursor-dot-outline" />
-      <CursorDot className="cursor-dot" />
+      <CursorDotOutline className='cursor-dot-outline' />
+      <CursorDot className='cursor-dot' />
     </>
   )
 }

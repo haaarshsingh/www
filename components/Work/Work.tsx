@@ -7,7 +7,7 @@ import * as Icon from 'react-feather'
 import NoteShack from './../../public/NoteShack.png'
 import Debutur from './../../public/Debutur.png'
 import SnipBin from './../../public/SnipBin.png'
-import FastBot from './../../public/FastBot.png'
+import Oponion from './../../public/Oponion.png'
 import SketchMessage from './../../public/SketchMessage.png'
 
 interface Projects {
@@ -47,7 +47,7 @@ const AboutComponent: React.FC = () => {
     },
     {
       title: 'Oponion',
-      image: FastBot,
+      image: Oponion,
       description: 'Utility bot to manage your discord server',
       skills: 'React Firebase TypeScript ECharts',
       github: 'oponion',
