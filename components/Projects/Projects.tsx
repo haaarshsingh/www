@@ -23,6 +23,14 @@ const AboutComponent: React.FC = () => {
       github: 'harshhhdev/geethoob',
     },
     {
+      title: 'Kraftuur',
+      description:
+        'A colour system for designing beautiful and accesible interfaces',
+      tags: 'React TypeScript Node',
+      link: 'harshhhdev.github.io/kraftuur',
+      github: 'harshhhdev/kraftuur',
+    },
+    {
       title: 'pastemyst.js',
       description: 'Complete REST API wrapper for pastemyst v2',
       tags: 'Axios TypeScript node',
@@ -54,55 +62,55 @@ const AboutComponent: React.FC = () => {
       github: 'harshhhdev/sniplink.js',
     },
     {
-      title: 'YourShot Homepage',
+      title: 'YourShot',
       description: 'The homepage for the upcoming top-down shooter, YourShot',
       tags: 'Vue Nuxt.js',
       link: 'playyourshot.com',
       github: 'harshhhdev/playyourshot.com',
     },
     {
-      title: 'SubBot',
-      description: 'The official server management bot for DevSubmarine',
-      tags: 'Node Discord.js MongoDB',
-      link: 'github.com/DevSubmarine/SubBot',
-      github: 'DevSubmarine/SubBot',
+      title: 'Calvera',
+      description: 'A minimal portfolio + blog template for Abell.js',
+      tags: 'Abell',
+      link: 'harshhhdev.github.io/calvera',
+      github: 'harshhhdev/calvera',
     },
   ]
 
   return (
     <S.ProjectsContainer>
-      <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
+      <ScrollAnimation animateIn='animate__bounceInRight' animateOnce={true}>
         <S.ProjectsHeader>Other Things I've Built...</S.ProjectsHeader>
       </ScrollAnimation>
       <S.ProjectsGrid>
         {Projects.map((project, index) => (
-          <ScrollAnimation animateIn="animate__fadeIn" animateOnce={true}>
+          <ScrollAnimation animateIn='animate__fadeIn' animateOnce={true}>
             <S.ProjectBox key={index}>
               <S.ProjectTopContainer>
                 <S.ProjectHeader>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="48"
-                    height="48"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#F4F4F5"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='48'
+                    height='48'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='#F4F4F5'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   >
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    <path d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z'></path>
                   </svg>
                   <S.ProjectLinks>
                     <S.ProjectLink
                       href={`https://${project.link}`}
-                      target="_blank"
+                      target='_blank'
                     >
                       <Icon.Paperclip />
                     </S.ProjectLink>
                     <S.ProjectLink
                       href={`https://github.com/${project.github}`}
-                      target="_blank"
+                      target='_blank'
                     >
                       <Icon.GitHub />
                     </S.ProjectLink>

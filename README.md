@@ -5,7 +5,7 @@
     <h2 align="center">Harsh Singh</h2>
   </a>
 </p> 
-<p align="center">14yo web developer and designer</p>
+<p align="center">15yo web developer and designer</p>
 
 ![Twitter Follow](https://img.shields.io/twitter/follow/harshhhdev?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/harshhhdev?style=social)
@@ -15,7 +15,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/harshhhdev/harshhhdev.github.io)
 ![GitHub language count](https://img.shields.io/github/languages/count/harshhhdev/harshhhdev.github.io)
 
-# 💻 Building locally 
+# 💻 Building locally
 
 ```shell
 # Clone the repo
@@ -30,7 +30,7 @@ yarn
 yarn dev
 ```
 
-# 🚀 Building for production 
+# 🚀 Building for production
 
 ```shell
 # Clone the repo
@@ -47,18 +47,18 @@ yarn build
 
 # 🎨 Colour palette
 
-| Color          | Hex                                                                |
-| -------------- | ------------------------------------------------------------------ |
-| London Grey    | ![#6B7C95](https://via.placeholder.com/10/6B7C95?text=+) `#6B7C95` |
-| Light Grey     | ![#8696AD](https://via.placeholder.com/10/8696AD?text=+) `#8696AD` |
-| Mild dark      | ![#37393E](https://via.placeholder.com/10/37393E?text=+) `#37393E` |
-| Jet Black      | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
-| Light          | ![#F4F4F5](https://via.placeholder.com/10/F4F4F5?text=+) `#F4F4F5` |
+| Color       | Hex                                                                |
+| ----------- | ------------------------------------------------------------------ |
+| London Grey | ![#6B7C95](https://via.placeholder.com/10/6B7C95?text=+) `#6B7C95` |
+| Light Grey  | ![#8696AD](https://via.placeholder.com/10/8696AD?text=+) `#8696AD` |
+| Mild dark   | ![#37393E](https://via.placeholder.com/10/37393E?text=+) `#37393E` |
+| Jet Black   | ![#000000](https://via.placeholder.com/10/000000?text=+) `#000000` |
+| Light       | ![#F4F4F5](https://via.placeholder.com/10/F4F4F5?text=+) `#F4F4F5` |
 
-# 🔨 Tools Used 
+# 🔨 Tools Used
 
- - [Next.js](https://nextjs.org/)
- - [stitches](https://stitches.dev/)
- - [Feather Icons](https://feathericons.com/)
- - [animate.css](https://animate.style/)
- - [Prism.js](https://prismjs.com/)
+- [Next.js](https://nextjs.org/)
+- [stitches](https://stitches.dev/)
+- [Feather Icons](https://feathericons.com/)
+- [animate.css](https://animate.style/)
+- [Prism.js](https://prismjs.com/)

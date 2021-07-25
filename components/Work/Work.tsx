@@ -46,12 +46,12 @@ const AboutComponent: React.FC = () => {
       link: 'snipbin.herokuapp.com',
     },
     {
-      title: 'FastBot',
+      title: 'Oponion',
       image: FastBot,
       description: 'Utility bot to manage your discord server',
-      skills: 'Discord.js MongoDB Node',
-      github: 'fast-bot',
-      link: 'github.com/harshhhdev/fastbot',
+      skills: 'React Firebase TypeScript ECharts',
+      github: 'oponion',
+      link: 'oponion.vercel.app',
     },
     {
       title: 'SketchMessage',
@@ -64,36 +64,36 @@ const AboutComponent: React.FC = () => {
   ]
 
   return (
-    <S.WorkContainer id="projects">
-      <ScrollAnimation animateIn="animate__bounceInRight" animateOnce={true}>
+    <S.WorkContainer id='projects'>
+      <ScrollAnimation animateIn='animate__bounceInRight' animateOnce={true}>
         <S.WorkHeader>My Work</S.WorkHeader>
       </ScrollAnimation>
       {Projects.map((project, index) => (
         <S.ProjectBox key={index}>
           <S.InfoContainer>
-            <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+            <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
               <S.ProjectTitle>{project.title}</S.ProjectTitle>
             </ScrollAnimation>
-            <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+            <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
               <S.ProjectDescription>{project.description}</S.ProjectDescription>
             </ScrollAnimation>
 
-            <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+            <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
               <S.ProjectTech>{project.skills}</S.ProjectTech>
             </ScrollAnimation>
             <S.ButtonsContainer>
-              <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+              <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
                 <S.ViewProjectButton
                   href={`https://${project.link}`}
-                  target="_blank"
+                  target='_blank'
                 >
                   View Project
                 </S.ViewProjectButton>
               </ScrollAnimation>
-              <ScrollAnimation animateIn="animate__flipInX" animateOnce={true}>
+              <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
                 <S.GitHubButton
                   href={`https://github.com/harshhhdev/${project.github}`}
-                  target="_blank"
+                  target='_blank'
                 >
                   <Icon.GitHub />
                 </S.GitHubButton>
@@ -103,7 +103,7 @@ const AboutComponent: React.FC = () => {
           <S.ProjectGraphic>
             <img
               src={project.image}
-              alt="Project Graphic"
+              alt='Project Graphic'
               width={500}
               height={700}
             />

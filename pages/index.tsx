@@ -21,10 +21,10 @@ const Home: React.FC = () => {
 
   return (
     <ContentWrapper>
-      <Navbar location="portfolio" />
+      <Navbar location='portfolio' />
       <Head
-        title="Home"
-        description="👋 I'm Harsh, a 14yo web developer and designer."
+        title='Home'
+        description="👋 I'm Harsh, a 15yo web developer and designer."
       />
       <Cursor />
       <SmoothScroll />
