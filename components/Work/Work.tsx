@@ -5,7 +5,7 @@ import * as S from './Work.style'
 import * as Icon from 'react-feather'
 
 import NoteShack from '@pub/NoteShack.png'
-import Debutur from '@pub/public/Debutur.png'
+import Debutur from '@pub/Debutur.png'
 import SnipBin from '@pub/SnipBin.png'
 import Oponion from '@pub/Oponion.png'
 import SketchMessage from '@pub/SketchMessage.png'
