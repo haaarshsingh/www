@@ -20,8 +20,7 @@ export const { css, styled, global, getCssString, keyframes } = createCss({
       6: '48px',
     },
     fonts: {
-      main: 'Inter, sans-serif',
-      primary: 'Barlow, sans-serif',
+      main: 'GTWalsheimPro, sans-serif',
       mono: 'JetBrains Mono, monospace',
     },
   },

@@ -11,6 +11,16 @@ export default class Document extends NextDocument {
             id='stitches'
             dangerouslySetInnerHTML={{ __html: getCssString() }}
           />
+          <link
+            rel='preload'
+            href='/GTWalsheimPro-Regular.ttf'
+            as='font'
+            crossOrigin=''
+          />
+          <link
+            href='https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap'
+            rel='stylesheet'
+          />
         </Head>
         <body>
           <Main />

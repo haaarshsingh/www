@@ -25,7 +25,7 @@ const globalStyle = global({
     width: 10,
   },
   h1: {
-    fontFamily: '$main',
+    fontFamily: 'GTWalsheimPro',
   },
   'body::-webkit-scrollbar-track': {
     background: '$primary',
@@ -47,6 +47,13 @@ const globalStyle = global({
   },
   '.disabled': {
     display: 'none !important',
+  },
+  '@font-face': {
+    fontFamily: 'GTWalsheimPro',
+    src: 'url(GTWalsheimPro-Regular.ttf)',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontDisplay: 'swap',
   },
 })
 
