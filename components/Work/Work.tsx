@@ -10,7 +10,7 @@ import SnipBin from '@pub/SnipBin.png'
 import Oponion from '@pub/Oponion.png'
 import SketchMessage from '@pub/SketchMessage.png'
 
-interface Projects {
+type Projects = {
   title: string
   image: any
   description: string

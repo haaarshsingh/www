@@ -11,7 +11,7 @@ import Footer from '@components/Footer/Footer'
 import globalStyle from '@css/global.style'
 import 'animate.css/animate.min.css'
 
-export interface Blog {
+export type Blog = {
   id: string
   title: string
   date: string

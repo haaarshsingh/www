@@ -3,7 +3,7 @@ import React from 'react'
 import * as S from './Navbar.style'
 import * as Icons from 'react-feather'
 
-interface NavLinks {
+type NavLinks = {
   link: string
   title: string
 }

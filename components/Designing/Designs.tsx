@@ -9,7 +9,7 @@ import Pizza from '@pub/PizzaDesign.png'
 import Book from '@pub/BookDesign.png'
 import FurnitureStore from '@pub/FurnitureStoreDesign.png'
 
-interface Design {
+type Design = {
   img: any
   link: string
   bottom: boolean

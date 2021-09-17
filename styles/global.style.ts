@@ -39,6 +39,9 @@ const globalStyle = global({
   'code, pre': {
     fontFamily: '$mono',
   },
+  ul: {
+    marginLeft: 20,
+  },
   '.invalid': {
     color: '#F16D6D !important',
   },
