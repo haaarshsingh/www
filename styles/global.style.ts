@@ -48,7 +48,7 @@ const globalStyle = global({
   },
   '@font-face': {
     fontFamily: 'GTWalsheimPro',
-    src: 'url(GTWalsheimPro-Regular.ttf)',
+    src: 'url(/GTWalsheimPro-Regular.ttf)',
     fontStyle: 'normal',
     fontWeight: 400,
     fontDisplay: 'swap',
