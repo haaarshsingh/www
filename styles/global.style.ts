@@ -14,6 +14,7 @@ const globalStyle = global({
   body: {
     background: '$dark',
     overflowX: 'hidden',
+    fontFamily: 'GTWalsheimPro',
   },
   '::selection': {
     background: '#4560F060',
@@ -23,9 +24,6 @@ const globalStyle = global({
   },
   'body::-webkit-scrollbar': {
     width: 10,
-  },
-  h1: {
-    fontFamily: 'GTWalsheimPro',
   },
   'body::-webkit-scrollbar-track': {
     background: '$primary',
