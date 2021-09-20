@@ -12,6 +12,8 @@ import DesignsComponent from '@components/Designing/Designs'
 import ContactComponent from '@components/Contact/Contact'
 import Footer from '@components/Footer/Footer'
 
+import Crisp from '@components/CrispWidget'
+
 import globalStyle from '@css/global.style'
 import 'animate.css/animate.min.css'
 import { ContentWrapper } from '@css/theme.config'
@@ -26,6 +28,7 @@ const Home: React.FC = () => {
         title='Home'
         description="👋 I'm Harsh, a 15yo web developer and designer."
       />
+      <Crisp />
       <Cursor />
       <SmoothScroll />
       <HomeComponent />
