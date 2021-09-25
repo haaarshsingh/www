@@ -48,7 +48,7 @@ const AboutComponent: React.FC = () => {
     {
       title: 'Oponion',
       image: Oponion,
-      description: 'Utility bot to manage your discord server',
+      description: 'Creating, voting, & sharing polls made simple',
       skills: 'React Firebase TypeScript ECharts',
       github: 'oponion',
       link: 'oponion.vercel.app',

@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
         <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
           <S.ContactDescription>
             Whether you have a question, want to say hi, or anything else that
-            it may be, my inbox is always open!
+            it might be, my inbox is always open!
           </S.ContactDescription>
         </ScrollAnimation>
         <S.InputBar

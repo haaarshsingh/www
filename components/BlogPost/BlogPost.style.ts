@@ -105,6 +105,9 @@ export const BlogHTML = styled('div', {
   'h1, pre': {
     margin: '30px 0',
   },
+  h2: {
+    marginTop: 30,
+  },
   pre: {
     borderRadius: 12,
     width: '100%',
@@ -115,7 +118,7 @@ export const BlogHTML = styled('div', {
   code: {},
   p: {
     fontSize: '$2',
-    margin: '5px 0',
+    margin: '10px 0',
   },
   img: {
     borderRadius: 10,

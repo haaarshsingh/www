@@ -1,7 +1,7 @@
 import React from 'react'
 import ScrollAnimation from 'react-animate-on-scroll'
 
-import { Blog as BlogContent } from './../../pages/blog/[id]'
+import { Blog as BlogContent } from '@pages/blog/[id]'
 import * as S from './BlogPost.style'
 
 import * as Icons from 'react-feather'

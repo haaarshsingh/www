@@ -93,6 +93,7 @@ export const ButtonsContainer = styled('div', {
 export const ViewProjectButton = styled('a', {
   width: 'fit-content',
   padding: 20,
+  userSelect: 'none',
   fontSize: '$3',
   marginTop: 60,
   cursor: 'pointer',
