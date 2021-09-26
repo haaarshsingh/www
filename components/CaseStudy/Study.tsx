@@ -66,7 +66,9 @@ const Study: React.FC<{ Content: Content }> = ({ Content }) => {
           delay={200}
           animateOnce={true}
         >
-          <LaunchProject href={Content.link}>Launch Project</LaunchProject>
+          <LaunchProject href={Content.link} target='_blank' rel='norefferer'>
+            Launch Project
+          </LaunchProject>
         </ScrollAnimation>
       </S.StudyInfo>
       <S.Graphic />
