@@ -4,7 +4,7 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import * as S from './Projects.style'
 import * as Icon from 'react-feather'
 
-type Project = {
+export type Project = {
   title: string
   description: string
   tags: string

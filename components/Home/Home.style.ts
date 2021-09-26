@@ -7,7 +7,14 @@ export const Container = styled('div', {
   alignItems: 'center',
   height: '100vh',
   width: '105vw',
-  '@media only screen and (max-width: 1024px)': {
+  maxHeight: 1280,
+  '@media only screen and (min-width: 3000px)': {
+    height: '120vh',
+  },
+  '@media only screen and (max-width: 1800px)': {
+    height: '110vh',
+  },
+  '@media only screen and (max-width: 1280px)': {
     height: '90vh',
   },
   '@media only screen and (max-width: 600px)': {
