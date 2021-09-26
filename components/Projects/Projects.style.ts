@@ -51,7 +51,6 @@ export const ProjectBox = styled('div', {
   height: 300,
   padding: 30,
   color: '$main2',
-  fontFamily: '$mono',
   justifyContent: 'space-between',
   transition: '0.1s linear',
   borderRadius: 5,
@@ -101,4 +100,8 @@ export const ProjectDescription = styled('p', {
   color: '$main2',
   fontFamily: '$primary',
   fontSize: '$2',
+})
+
+export const Tags = styled('p', {
+  fontFamily: '$mono',
 })

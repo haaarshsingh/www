@@ -121,7 +121,7 @@ const AboutComponent: React.FC = () => {
                   {project.description}
                 </S.ProjectDescription>
               </S.ProjectTopContainer>
-              {project.tags}
+              <S.Tags>{project.tags}</S.Tags>
             </S.ProjectBox>
           </ScrollAnimation>
         ))}
