@@ -2,6 +2,7 @@
 title: 'SnipBin'
 description: 'Lightweight website to paste code snippets'
 link: 'https://snipbin.herokuapp.com'
+graphic: 'https://media.discordapp.net/attachments/785862408606187528/891567853382275102/SnipBin.png'
 ---
 
 # The Idea

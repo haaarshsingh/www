@@ -71,7 +71,7 @@ const Study: React.FC<{ Content: Content }> = ({ Content }) => {
           </LaunchProject>
         </ScrollAnimation>
       </S.StudyInfo>
-      <S.Graphic />
+      <S.Graphic style={{ backgroundImage: `url('${Content.graphic}')` }} />
       <BPS.BlogPostContainer>
         <S.CaseStudy>
           <BPS.BlogBox className='blog-box'>

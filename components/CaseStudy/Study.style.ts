@@ -38,5 +38,4 @@ export const Graphic = styled('div', {
   backgroundAttachment: 'fixed',
   backgroundPosition: 'center',
   marginTop: 100,
-  backgroundImage: "url('https://cdn.cuberto.com/cb/img/ferrumpipe/main.jpg')",
 })

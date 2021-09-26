@@ -2,6 +2,7 @@
 title: 'Oponion'
 description: 'Creating, voting, & sharing polls made simple'
 link: 'https://oponion.vercel.app/'
+graphic: 'https://media.discordapp.net/attachments/785862408606187528/891567829340549160/Oponion.png'
 ---
 
 # The Idea

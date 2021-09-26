@@ -16,6 +16,7 @@ export type Study = {
   title: string
   description: string
   link: string
+  graphic: string
   contentHtml: string
 }
 

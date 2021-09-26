@@ -2,6 +2,7 @@
 title: 'Debutur'
 description: 'Easily create, and personalise your portfolio'
 link: 'https://debutur.herokuapp.com'
+graphic: 'https://media.discordapp.net/attachments/785862408606187528/891567820175994910/Debutur.png'
 ---
 
 # The Idea

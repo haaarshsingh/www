@@ -84,7 +84,7 @@ const AboutComponent: React.FC = () => {
             <S.ButtonsContainer>
               <ScrollAnimation animateIn='animate__flipInX' animateOnce={true}>
                 <S.ViewProjectButton
-                  href={`https://${project.link}`}
+                  href={`/studies/${project.title.toLowerCase()}`}
                   target='_blank'
                 >
                   View Project

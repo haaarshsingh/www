@@ -2,6 +2,7 @@
 title: 'NoteShack'
 description: 'An open-source full-stack project boilerplate'
 link: 'https://www.figma.com/file/8UOFAwJvAZCXda3s3zXdO0/NoteShack'
+graphic: 'https://media.discordapp.net/attachments/785862408606187528/891567862882373682/NoteShack.png'
 ---
 
 # The Idea
