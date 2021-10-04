@@ -27,8 +27,8 @@ Because this project is supposed to be an open-source alternative to [Bedrock](h
 
 To give a quick rundown, the core technologies used in NoteShack are [Next.js](https://nextjs.org) & [GraphQL](https://graphql.org) - similar to [Bedrock](https://bedrock.mxstbr.com/).
 
-The optional tech stack consists of [TypeScript](https://typescriptlang.org), [Prisma](https://prisma.io), [GraphQL CodeGen](https://graphql-code-generator.com/), [Prisma's Nexus](https://nexusjs.org/), [URQL](https://formidable.com/open-source/urql/), [Passport](http://passportjs.org/), 
+The optional tech stack consists of [TypeScript](https://typescriptlang.org), [Prisma](https://prisma.io), [GraphQL CodeGen](https://graphql-code-generator.com/), [Prisma's Nexus](https://nexusjs.org/), [URQL](https://formidable.com/open-source/urql/), [Passport](http://passportjs.org/), [Stripe](https://stripe.com/), along with [Prettier](https://prettier.io/) & [ESLint](https://eslint.org/) to improve code quality. 
 
-Although, to make sure the user doesn't have to spend any money setting up this project, I replaced [Postmark](https://postmarkapp.com/), which is a paid application (although free for students), with a free alternative called [SendGrid](https://sendgrid.com/), [Stripe](https://stripe.com/), along with [Prettier](https://prettier.io/) & [ESLint](https://eslint.org/) to improve code quality. 
+Although, to make sure the user doesn't have to spend any money setting up this project, I replaced [Postmark](https://postmarkapp.com/), which is a paid application (although free for students), with a free alternative called [SendGrid](https://sendgrid.com/)
 
 I also decided to integrate some basic styling into this project, as mentioned above. To do that, I used the new & trendy tool called [Stitches](https://stitches.dev) (same people who made [Radix UI](https://radix-ui.com)). 
