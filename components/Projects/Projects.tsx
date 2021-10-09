@@ -23,6 +23,14 @@ const AboutComponent: React.FC = () => {
       github: 'harshhhdev/geethoob',
     },
     {
+      title: 'Issure',
+      description:
+        'Fetch random issues from your GitHub repositories to work on',
+      tags: 'React Octokit TypeScript',
+      link: 'issure.vercel.app',
+      github: 'harshhhdev/issure',
+    },
+    {
       title: 'Kraftuur',
       description:
         'A colour system for designing beautiful and accesible interfaces',
