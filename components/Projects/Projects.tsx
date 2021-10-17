@@ -23,12 +23,27 @@ const AboutComponent: React.FC = () => {
       github: 'harshhhdev/geethoob',
     },
     {
+      title: 'Glassmorphicssm',
+      description:
+        'Generate glassy CSS code for all your glassmorphism needs',
+      tags: 'React TypeScript',
+      link: 'harshhhdev.github.io/glassmorphicssm',
+      github: 'harshhhdev/glassmorphicssm',
+    },
+    {
       title: 'Issure',
       description:
         'Fetch random issues from your GitHub repositories to work on',
       tags: 'React Octokit TypeScript',
       link: 'issure.vercel.app',
       github: 'harshhhdev/issure',
+    },
+    {
+      title: 'Calvera',
+      description: 'A minimal portfolio + blog template for Abell.js',
+      tags: 'Abell',
+      link: 'harshhhdev.github.io/calvera',
+      github: 'harshhhdev/calvera',
     },
     {
       title: 'Kraftuur',
@@ -45,43 +60,12 @@ const AboutComponent: React.FC = () => {
       link: 'www.npmjs.com/package/pastemyst',
       github: 'harshhhdev/pastemyst',
     },
-
-    {
-      title: 'glassmorphicssm',
-      description:
-        'Generate Glass-UI CSS code for all your glassmorphism needs',
-      tags: 'React TypeScript',
-      link: 'github.com/harshhhdev/glassmorphicssm',
-      github: 'harshhhdev/glassmorphicssm',
-    },
-
     {
       title: 'App Idea Generator',
       description: 'Generate silly, or cool app ideas for inspiration',
       tags: 'Svelte',
       link: 'harshhhdev.github.io/app-idea-generator',
       github: 'harshhhdev/app-idea-generator',
-    },
-    {
-      title: 'sniplink.js',
-      description: 'Complete REST API wrapper for SnipLink Beta',
-      tags: 'Node TypeScript Axios',
-      link: 'www.npmjs.com/package/sniplink.js',
-      github: 'harshhhdev/sniplink.js',
-    },
-    {
-      title: 'YourShot',
-      description: 'The homepage for the upcoming top-down shooter, YourShot',
-      tags: 'Vue Nuxt.js',
-      link: 'playyourshot.com',
-      github: 'harshhhdev/playyourshot.com',
-    },
-    {
-      title: 'Calvera',
-      description: 'A minimal portfolio + blog template for Abell.js',
-      tags: 'Abell',
-      link: 'harshhhdev.github.io/calvera',
-      github: 'harshhhdev/calvera',
     },
   ]
 
