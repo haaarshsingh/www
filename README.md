@@ -50,7 +50,10 @@ yarn build
 # 🔨 Tools Used
 
 - [Next.js](https://nextjs.org/)
-- [stitches](https://stitches.dev/)
+- [TypeScript](https://typescriptlang.org)
+- [Stitches](https://stitches.dev/)
 - [Feather Icons](https://feathericons.com/)
 - [animate.css](https://animate.style/)
 - [Prism.js](https://prismjs.com/)
+- [Prettier](https://prettier.io)
+- [ESLint](https://eslint.io)
