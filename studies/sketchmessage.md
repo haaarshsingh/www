@@ -1,7 +1,7 @@
 ---
 title: 'SketchMessage'
 description: 'Create and communicate through drawings'
-link: 'https://sketch-message.herokuapp.com/'
+link: 'https://sketchmessage.herokuapp.com/'
 graphic: 'https://media.discordapp.net/attachments/785862408606187528/891567844330967061/SketchMessage.png'
 ---
 
