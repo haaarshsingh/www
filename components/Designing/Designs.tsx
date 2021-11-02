@@ -7,6 +7,8 @@ import * as WS from '@components/Work/Work.style'
 
 import Nike from '@pub/Nike.png'
 import Swiggy from '@pub/Swiggy.png'
+import Robinhood from '@pub/Robinhood.png'
+
 
 type Designs = {
   [K in 'title' | 'image' | 'skills' | 'description']: string
@@ -15,10 +17,16 @@ type Designs = {
 const DesignsComponent: React.FC = () => {
   const Designs: Designs[] = [
     {
+      title: 'Robinhood',
+      image: Robinhood,
+      description: 'Giving a personality to the Robinhood app',
+      skills: 'Figma Blender Photoshop',
+    },
+    {
       title: 'Swiggy',
       image: Swiggy,
       description: 'A modern, dark redesign of the Swiggy app',
-      skills: 'Figma Blender Photoshop',
+      skills: 'Figma Blender',
     },
     {
       title: 'Nike',
