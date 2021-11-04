@@ -9,7 +9,6 @@ import Nike from '@pub/Nike.png'
 import Swiggy from '@pub/Swiggy.png'
 import Robinhood from '@pub/Robinhood.png'
 
-
 type Designs = {
   [K in 'title' | 'image' | 'skills' | 'description']: string
 }
@@ -19,7 +18,7 @@ const DesignsComponent: React.FC = () => {
     {
       title: 'Robinhood',
       image: Robinhood,
-      description: 'Giving a personality to the Robinhood app',
+      description: 'Giving a new look & personality to the Robinhood app',
       skills: 'Figma Blender Photoshop',
     },
     {
