@@ -16,6 +16,9 @@ const Ring = styled('div', {
   transition: '0.2s ease-out',
   zIndex: 999,
   pointerEvents: 'none',
+  '@iPad': {
+    display: 'none',
+  },
 })
 
 const Dot = styled('div', {
@@ -29,6 +32,9 @@ const Dot = styled('div', {
   transform: 'translate(-50%, -50%)',
   zIndex: 999,
   pointerEvents: 'none',
+  '@iPad': {
+    display: 'none',
+  },
 })
 
 const Cursor: React.FC = () => {
