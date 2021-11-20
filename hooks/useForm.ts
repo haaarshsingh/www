@@ -8,9 +8,15 @@ type FormData = {
   message?: string | undefined
 }
 
+type Errors = {
+  _replyto?: string | undefined
+  name?: string | undefined
+  message?: string | undefined
+}
+
 const useForm = () => {
-  const [formData, setFormData] = React.useState<FormData>()
-  const [errors, setErrors]: any = React.useState()
+  const [formData, setFormData] = React.useState<FormData>({})
+  const [errors, setErrors] = React.useState<Errors>({})
 
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/

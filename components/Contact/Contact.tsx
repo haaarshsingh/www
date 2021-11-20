@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
           </S.ContactDescription>
         </ScrollAnimation>
         <S.InputBar
-          className={errors._replyto && 'invalid'}
+          className={errors!._replyto && 'invalid'}
           placeholder='your@email.com'
           type='email'
           onChange={() => handleInput}
@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
         <S.InputBar
           placeholder='Your Name'
           type='text'
-          className={errors.name && 'invalid'}
+          className={errors!.name && 'invalid'}
           onChange={() => handleInput}
           value={formData!.name}
           name='name'
@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
         />
         <S.Message
           placeholder='What would you like to tell me?'
-          className={errors.message && 'invalid'}
+          className={errors!.message && 'invalid'}
           onChange={() => handleMessageInput}
           value={formData!.message}
           name='message'
