@@ -5,7 +5,7 @@ export const AboutContainer = styled('div', {
   margin: '100px 100px',
   justifyContent: 'center',
   alignItems: 'center',
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     margin: '100px 0',
   },
 })
@@ -17,7 +17,7 @@ export const InfoContainer = styled('div', {
   width: 600,
   marginRight: 500,
   maxWidth: '100vw',
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     margin: '0 30px',
     justifyContent: 'center',
     alignItems: 'center',
@@ -40,7 +40,7 @@ export const AboutDescription = styled('p', {
   color: '$white',
   fontSize: '$3',
   marginBottom: 30,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     width: '100%',
     fontSize: '$2',
   },
@@ -51,7 +51,7 @@ export const SkillsContainer = styled('div', {
   gap: '1.5rem',
   width: 400,
   gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 0fr))',
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     width: '100%',
     gap: '1rem',
     gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 0fr))',
@@ -65,7 +65,7 @@ export const SkillBox = styled('div', {
   fontSize: '$3',
   color: '$white',
   width: 140,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     fontSize: '$2',
   },
 })
@@ -74,7 +74,7 @@ export const ImgBox = styled('div', {
   display: 'flex',
   position: 'absolute',
   width: 300,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     display: 'none',
   },
 })

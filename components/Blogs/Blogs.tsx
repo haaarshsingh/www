@@ -1,7 +1,7 @@
 import React from 'react'
-import ScrollAnimation from 'react-animate-on-scroll'
 
 import * as S from './Blogs.style'
+import BlogCard from './BlogCard'
 import * as Icons from 'react-feather'
 
 import { Blog as blogs } from '../../pages/blog/[id]'
@@ -9,51 +9,60 @@ import { Blog as blogs } from '../../pages/blog/[id]'
 const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
   const InputRef = React.useRef<HTMLInputElement>(null)
 
-  const Search = () => {
-    const BlogCards: any = document.querySelectorAll('div.blog-card')
-    for (let i = 0; i < BlogCards.length; i++) {
-      const Header = BlogCards[i].querySelector('a#title')
-
-      if (
-        Header.innerHTML
-          .toUpperCase()
-          .indexOf(InputRef.current!.value.toUpperCase()) > -1
-      ) {
-        BlogCards[i].style.display = 'flex'
-      } else BlogCards[i].style.display = 'none'
-    }
-  }
-
   return (
     <S.BlogContainer>
-      <S.BlogContainerBox>
-        <S.Searchbar
-          type='text'
-          ref={InputRef}
-          onKeyUp={Search}
-          placeholder='Search Blogs...'
-        />
-        <S.BlogsBox>
-          {blogsData.map((blog, index) => (
-            <S.BlogCard key={index} className='blog-card'>
-              <S.BlogCardTitle href={`/blog/${blog.id}`} id='title'>
-                {blog.title}
-              </S.BlogCardTitle>
-              <S.BlogCardDesc>{blog.description}</S.BlogCardDesc>
-              <S.BlogInfoBottom>
-                <S.BlogInfoContainer>
-                  <Icons.Clock />
-                  {blog.readingTime} min
-                </S.BlogInfoContainer>
-                <S.BlogInfoContainer>
-                  <Icons.Calendar />
-                  {blog.formattedDate}
-                </S.BlogInfoContainer>
-              </S.BlogInfoBottom>
-            </S.BlogCard>
-          ))}
-        </S.BlogsBox>
-      </S.BlogContainerBox>
+      <S.BlogBox>
+        <S.BlogHeader>Harsh's Blog</S.BlogHeader>
+        <S.BlogDescription>
+          Welcome to my tech blog! It consists mainly of tutorials & my
+          experiences trying out new technologies
+        </S.BlogDescription>
+        <S.SocialsContainer>
+          <S.SocialLink href='https://github.com/harshhhdev/' target='_blank'>
+            <Icons.GitHub />
+          </S.SocialLink>
+          <S.SocialLink href='https://twitter.com/harshhhdev/' target='_blank'>
+            <Icons.Twitter />
+          </S.SocialLink>
+          <S.SocialLink href='https://dribbble.com/harshhhdev' target='_blank'>
+            <Icons.Dribbble />
+          </S.SocialLink>
+          <S.SocialLink href='https://dev.to/harshhhdev' target='blank'>
+            <Icons.BookOpen />
+          </S.SocialLink>
+          <S.SocialLink
+            href='https://www.linkedin.com/in/harsh-singh-5ba6b31b8/'
+            target='blank'
+          >
+            <Icons.Linkedin />
+          </S.SocialLink>
+          <S.SocialLink
+            href='https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ'
+            target='blank'
+          >
+            <Icons.Youtube />
+          </S.SocialLink>
+          <S.SocialLink
+            href='https://instagram.com/harshh.singh_'
+            target='blank'
+          >
+            <Icons.Instagram />
+          </S.SocialLink>
+          <S.SocialLink href='https://t.me/harshhhdev' target='blank'>
+            <Icons.Send />
+          </S.SocialLink>
+        </S.SocialsContainer>
+        {blogsData.map((blog, index) => (
+          <BlogCard
+            index={index}
+            id={blog.id}
+            title={blog.title}
+            description={blog.description}
+            readingTime={blog.readingTime}
+            formattedDate={blog.formattedDate}
+          />
+        ))}
+      </S.BlogBox>
     </S.BlogContainer>
   )
 }

@@ -19,11 +19,11 @@ export const NavContainer = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '70%',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     width: '85%',
     justifyContent: 'space-around !important',
   },
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     width: '100vw',
     justifyContent: 'center',
   },
@@ -33,21 +33,21 @@ export const TerminalText = styled('p', {
   fontFamily: '$mono',
   fontSize: '$3',
   color: '$main',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     fontSize: '$2',
     display: 'flex !important',
   },
-  '@media only screen and (max-width: 320px)': {
+  '@iPhoneSE': {
     fontSize: '$1',
   },
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     display: 'none',
   },
 })
 
 export const NavLinks = styled('div', {
   display: 'flex',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     display: 'none',
   },
 })

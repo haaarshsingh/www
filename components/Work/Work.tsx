@@ -12,7 +12,7 @@ import SketchMessage from '@pub/SketchMessage.png'
 
 type Projects = {
   title: string
-  image: any
+  image: string
   description: string
   skills: string
   github: string

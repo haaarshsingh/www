@@ -7,31 +7,41 @@ export const BlogContainer = styled('div', {
   minHeight: '100vh',
 })
 
-export const BlogContainerBox = styled('div', {
+export const BlogHeader = styled('h1', {
+  fontSize: 60,
+  color: '$white',
+  margin: '40px 0 20px 0',
+})
+
+export const BlogDescription = styled('p', {
+  fontSize: 20,
+  color: '$white',
+  maxWidth: '70vw',
+  textAlign: 'center',
+})
+
+export const SocialsContainer = styled('div', {
+  display: 'flex',
+  marginTop: 30,
+})
+
+export const SocialLink = styled('a', {
+  display: 'flex',
+  color: '$main',
+  marginRight: 20,
+  transition: '0.1s linear',
+  '&:hover': {
+    color: '$white',
+    transform: 'scale(1.15, 1.15)',
+  },
+})
+
+export const BlogBox = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
   minHeight: '100vh',
   marginTop: 100,
-})
-
-export const Searchbar = styled('input', {
-  background: '$primary ',
-  marginTop: 100,
-  padding: 30,
-  outline: 'none',
-  border: 'none',
-  color: '$white',
-  fontSize: '$3',
-  fontFamily: '$primary',
-  width: 500,
-  maxWidth: '90vw',
-  margin: 50,
-  borderRadius: 7,
-  transition: '0.1s linear',
-  '&:focus': {
-    transform: 'scale(0.99, 0.99)',
-  },
 })
 
 export const BlogsBox = styled('div', {
@@ -46,6 +56,9 @@ export const BlogCard = styled('div', {
   flexDirection: 'column',
   margin: '50px 0',
   width: '50vw',
+  '@iPhone': {
+    width: '90vw',
+  },
 })
 
 export const BlogCardTitle = styled('a', {
@@ -57,7 +70,7 @@ export const BlogCardTitle = styled('a', {
   WebkitTextFillColor: 'transparent',
   fontSize: '$4',
   fontFamily: '$main',
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     width: '90vw',
   },
 })
@@ -67,7 +80,7 @@ export const BlogCardDesc = styled('p', {
   color: '$main',
   margin: '30px 0',
   fontSize: '$2',
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     width: '80vw',
   },
 })
@@ -76,7 +89,7 @@ export const BlogInfoBottom = styled('div', {
   display: 'flex',
   fontFamily: '$primary',
   color: '$white',
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     width: '80vw',
   },
 })
@@ -86,6 +99,9 @@ export const BlogInfoContainer = styled('div', {
   alignItems: 'center',
   marginRight: 30,
   svg: {
+    marginRight: 10,
+  },
+  '@iPhone': {
     marginRight: 10,
   },
 })

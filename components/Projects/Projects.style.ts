@@ -5,10 +5,10 @@ export const ProjectsContainer = styled('div', {
   margin: '100px 100px',
   justifyContent: 'center',
   flexDirection: 'column',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     margin: '100px 10px',
   },
-  '@media only screen and (max-width: 414px)': {
+  '@iPhonePlus': {
     alignItems: 'center',
   },
 })
@@ -19,13 +19,13 @@ export const ProjectsGrid = styled('div', {
   gap: '2rem',
   gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 0fr))',
   overflow: 'hidden',
-  '@media only screen and (max-width: 414px)': {
+  '@iPhonePlus': {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 0fr))',
   },
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 0fr))',
   },
 })
@@ -57,10 +57,10 @@ export const ProjectBox = styled('div', {
   '&:hover': {
     transform: 'translateY(-5px)',
   },
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     width: 300,
   },
-  '@media only screen and (max-width: 320px)': {
+  '@iPhoneSE': {
     width: 280,
   },
 })

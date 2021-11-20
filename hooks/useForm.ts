@@ -1,10 +1,10 @@
 /* https://github.com/anuraghazra/anuraghazra.github.io/blob/develop/src/hooks/useForm.js */
 
-import { useState } from 'react'
+import React from 'react'
 
 const useForm = () => {
-  const [formData, setFormData]: any = useState({})
-  const [errors, setErrors]: any = useState({})
+  const [formData, setFormData] = React.useState({})
+  const [errors, setErrors] = React.useState({})
 
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
@@ -37,10 +37,9 @@ const useForm = () => {
     }
   }
 
-  const handleInput = (e: any) => {
+  const handleInput = (e: Event) => {
     e.preventDefault()
-    const { value, name } = e.target
-    // validate
+    const { value, name } = e.target as HTMLInputElement
     validateInput(name, value)
     setFormData({ ...formData, [name]: value })
   }

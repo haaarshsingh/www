@@ -48,7 +48,7 @@ export const BlogBox = styled('div', {
   width: '70%',
   flexDirection: 'column',
   margin: '50px 0',
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     width: '90%',
   },
 })
@@ -86,7 +86,7 @@ export const BlogInfoContainer = styled('a', {
   svg: {
     marginRight: 10,
   },
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     fontSize: '$1',
     marginRight: 5,
     svg: {
@@ -111,7 +111,7 @@ export const BlogHTML = styled('div', {
   pre: {
     borderRadius: 12,
     width: '100%',
-    '@media only screen and (max-width: 600px)': {
+    '@Flip': {
       maxWidth: '90vw',
     },
   },

@@ -7,7 +7,7 @@ export const ContactContainer = styled('div', {
   width: '100vw',
   marginTop: 100,
   marginBottom: 400,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     alignItems: 'center',
   },
 })
@@ -22,7 +22,7 @@ export const ContactHeader = styled('h1', {
   fontSize: '$5',
   margin: '75px 0',
   marginLeft: 150,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     marginLeft: 0,
   },
 })
@@ -116,7 +116,7 @@ export const HandsBox = styled('div', {
   width: '105vw',
   marginTop: 500,
   zIndex: -1,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     display: 'none',
   },
 })

@@ -29,7 +29,7 @@ export const Description = styled('h1', {
   fontSize: '$6',
   textAlign: 'center',
   marginBottom: 70,
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     width: '90vw',
     fontSize: '$4',
   },

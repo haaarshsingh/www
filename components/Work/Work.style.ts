@@ -5,7 +5,7 @@ export const WorkContainer = styled('div', {
   flexDirection: 'column',
   justifyContent: 'center',
   marginTop: 300,
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     marginTop: 200,
     alignItems: 'center',
   },
@@ -20,7 +20,7 @@ export const WorkHeader = styled('h1', {
   WebkitTextFillColor: 'transparent',
   fontSize: '$5',
   margin: '0 0 100px 200px',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     marginLeft: 15,
   },
 })
@@ -38,7 +38,7 @@ export const ProjectBox = styled('div', {
   alignItems: 'center',
   width: '100vw',
   margin: '100px 0',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     marginLeft: 50,
   },
 })
@@ -46,10 +46,10 @@ export const ProjectBox = styled('div', {
 export const ProjectGraphic = styled('div', {
   backgroundRepeat: 'no-repeat',
   marginLeft: 150,
-  '@media only screen and (max-width: 1024px)': {
+  '@iPadPro': {
     marginLeft: 50,
   },
-  '@media only screen and (max-width: 768px)': {
+  '@iPad': {
     display: 'none',
   },
 })

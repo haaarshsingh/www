@@ -24,6 +24,14 @@ export const { css, styled, global, getCssString, keyframes } = createCss({
       mono: 'JetBrains Mono, monospace',
     },
   },
+  media: {
+    iPadPro: '(max-width: 1024px)',
+    iPad: '(max-width: 768px)',
+    Flip: '(max-width: 600px)',
+    iPhonePlus: '(max-width: 414px)',
+    iPhone: '(max-width: 375px)',
+    iPhoneSE: '(max-width: 320px)',
+  },
 })
 
 export const ContentWrapper = styled('div', {

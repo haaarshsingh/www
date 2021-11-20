@@ -17,7 +17,7 @@ export const Container = styled('div', {
   '@media only screen and (max-width: 1280px)': {
     height: '90vh',
   },
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     marginLeft: 30,
     height: '120vh',
   },
@@ -55,7 +55,7 @@ export const Name = styled('h1', {
   color: '$white',
   fontSize: 60,
   margin: '30px 0',
-  '@media only screen and (max-width: 600px)': {
+  '@Flip': {
     fontSize: 40,
   },
 })
