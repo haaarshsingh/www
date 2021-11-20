@@ -16,16 +16,17 @@ export const getSortedBlogsData = () => {
 
     const matterResult = matter(fileContents)
     const readingTime = Math.floor(time(matterResult.content).minutes) + 1
+    const date = Date.now()
 
     return {
       id,
       readingTime,
+      date,
       ...matterResult.data,
     }
   })
 
   return allBlogsData.sort((a, b) => {
-    // @ts-ignore
     if (a.date < b.date) {
       return 1
     } else {
@@ -50,9 +51,7 @@ export const getBlogData = async (id: string) => {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   const matterResult = matter(fileContents)
-
   const contentHtml = matterResult.content
-
   const readingTime = Math.floor(time(contentHtml).minutes) + 1
 
   return {
