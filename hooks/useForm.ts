@@ -2,9 +2,15 @@
 
 import React from 'react'
 
+type FormData = {
+  name?: string | undefined
+  email?: string | undefined
+  message?: string | undefined
+}
+
 const useForm = () => {
-  const [formData, setFormData] = React.useState({})
-  const [errors, setErrors] = React.useState({})
+  const [formData, setFormData] = React.useState<FormData>()
+  const [errors, setErrors]: any = React.useState()
 
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
@@ -44,12 +50,25 @@ const useForm = () => {
     setFormData({ ...formData, [name]: value })
   }
 
+  const handleMessageInput = (e: Event) => {
+    e.preventDefault()
+    const { value, name } = e.target as HTMLTextAreaElement
+    validateInput(name, value)
+    setFormData({ ...formData, [name]: value })
+  }
+
   const isFormValid = () => {
     let errorArray = Object.values(errors)
     return errorArray.length === 3 && errorArray.filter(Boolean).length === 0
   }
 
-  return { formData, errors, handleInput, isFormValid: isFormValid() }
+  return {
+    formData,
+    errors,
+    handleInput,
+    handleMessageInput,
+    isFormValid: isFormValid(),
+  }
 }
 
 export default useForm

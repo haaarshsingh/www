@@ -10,7 +10,8 @@ import LeftHand from '@pub/hand-2.png'
 import RightHand from '@pub/hand-3.png'
 
 const Contact: React.FC = () => {
-  const { formData, errors, handleInput, isFormValid } = useForm()
+  const { formData, errors, handleInput, handleMessageInput, isFormValid } =
+    useForm()
 
   return (
     <S.ContactContainer id='contact'>
@@ -43,8 +44,8 @@ const Contact: React.FC = () => {
           className={errors._replyto && 'invalid'}
           placeholder='your@email.com'
           type='email'
-          onChange={handleInput}
-          value={formData.email}
+          onChange={() => handleInput}
+          value={formData!.email}
           id='email'
           name='_replyto'
           required
@@ -54,8 +55,8 @@ const Contact: React.FC = () => {
           placeholder='Your Name'
           type='text'
           className={errors.name && 'invalid'}
-          onChange={handleInput}
-          value={formData.name}
+          onChange={() => handleInput}
+          value={formData!.name}
           name='name'
           required
           autoComplete='off'
@@ -63,8 +64,8 @@ const Contact: React.FC = () => {
         <S.Message
           placeholder='What would you like to tell me?'
           className={errors.message && 'invalid'}
-          onChange={handleInput}
-          value={formData.message}
+          onChange={() => handleMessageInput}
+          value={formData!.message}
           name='message'
           required
           autoComplete='off'
