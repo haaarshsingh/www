@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllBlogIds, getBlogData } from '../../lib/blogs'
+import { getAllBlogIds, getBlogData } from '@lib/blogs'
 
 import Head from '@components/Head'
 import Cursor from '@components/Cursor'

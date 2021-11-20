@@ -17,6 +17,7 @@ import Crisp from '@components/CrispWidget'
 import globalStyle from '@css/global.style'
 import 'animate.css/animate.min.css'
 import { ContentWrapper } from '@css/theme.config'
+import { MouseContext } from '@lib/Mouse/MouseContext'
 
 const Home: React.FC = () => {
   globalStyle()

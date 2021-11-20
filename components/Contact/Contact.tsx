@@ -1,5 +1,5 @@
 import React from 'react'
-import useForm from '../../hooks/useForm'
+import useForm from '@hooks/useForm'
 
 import * as S from './Contact.style'
 

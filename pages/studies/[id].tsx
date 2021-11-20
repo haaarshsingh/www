@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllStudyIds, getStudiesData } from '../../lib/studies'
+import { getAllStudyIds, getStudiesData } from '@lib/studies'
 
 import Head from '@components/Head'
 import Cursor from '@components/Cursor'

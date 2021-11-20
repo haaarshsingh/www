@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getSortedBlogsData } from './../lib/blogs'
+import { getSortedBlogsData } from '@lib/blogs'
 import { Blog as blog } from './blog/[id]'
 
 import Head from '@components/Head'

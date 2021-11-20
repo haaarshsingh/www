@@ -53,6 +53,10 @@ const globalStyle = global({
     fontWeight: 400,
     fontDisplay: 'swap',
   },
+  '.ring.hovered': {
+    width: 80,
+    height: 80,
+  },
 })
 
 export default globalStyle
