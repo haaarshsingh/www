@@ -1,4 +1,5 @@
 import React from 'react'
+import useWindowDimensions from '@hooks/useWindowDimensions'
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import { Blog as BlogContent } from '@pages/blog/[id]'
@@ -16,6 +17,7 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
   const [githubEditLink, setGitHubEditLink] = React.useState(' ')
   const ScrollbarBG = React.useRef<HTMLDivElement>(null)
   const Bar = React.useRef<HTMLDivElement>(null)
+  const { height, width } = useWindowDimensions()
 
   const TooltipRef = React.useRef<HTMLParagraphElement>(null)
 
@@ -28,13 +30,7 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
       TooltipRef.current!.classList.remove('animate')
     })
 
-    // @ts-ignore
-    ScrollbarBG.current!.style.minWidth = `${document.width}px`
-
-    document.getElementsByTagName('body')[0]!.onresize = () => {
-      // @ts-ignore
-      ScrollbarBG.current!.style.minWidth = `${document.width}px`
-    }
+    ScrollbarBG.current!.style.minWidth = `${width}px`
 
     window.onscroll = () => {
       let dh = Math.max(
@@ -44,13 +40,13 @@ const BlogPost: React.FC<{ BlogContent: BlogContent }> = ({ BlogContent }) => {
           document.documentElement.scrollHeight,
           document.documentElement.offsetHeight
         ),
-        wh = window.innerHeight,
+        wh = height,
         pos =
           pageYOffset ||
           (document.documentElement.clientHeight
             ? document.documentElement.scrollTop
             : document.body.scrollTop),
-        bw = (pos / (dh - wh)) * 100
+        bw = (pos / (dh - wh!)) * 100
 
       Bar.current!.style.width = `${bw}%`
     }

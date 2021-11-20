@@ -1,4 +1,5 @@
 import React from 'react'
+import useWindowDimensions from '@hooks/useWindowDimensions'
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import ReactMarkdown from 'react-markdown'
@@ -11,15 +12,10 @@ import { Study as Content } from '@pages/studies/[id]'
 const Study: React.FC<{ Content: Content }> = ({ Content }) => {
   const ScrollbarBG = React.useRef<HTMLDivElement>(null)
   const Bar = React.useRef<HTMLDivElement>(null)
+  const { height, width } = useWindowDimensions()
 
   React.useEffect(() => {
-    // @ts-ignore
-    ScrollbarBG.current!.style.minWidth = `${document.width}px`
-
-    document.getElementsByTagName('body')[0]!.onresize = () => {
-      // @ts-ignore
-      ScrollbarBG.current!.style.minWidth = `${document.width}px`
-    }
+    ScrollbarBG.current!.style.minWidth = `${width}px`
 
     window.onscroll = () => {
       let dh = Math.max(
@@ -29,13 +25,13 @@ const Study: React.FC<{ Content: Content }> = ({ Content }) => {
           document.documentElement.scrollHeight,
           document.documentElement.offsetHeight
         ),
-        wh = window.innerHeight,
+        wh = height,
         pos =
           pageYOffset ||
           (document.documentElement.clientHeight
             ? document.documentElement.scrollTop
             : document.body.scrollTop),
-        bw = (pos / (dh - wh)) * 100
+        bw = (pos / (dh - wh!)) * 100
 
       Bar.current!.style.width = `${bw}%`
     }
