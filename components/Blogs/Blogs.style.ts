@@ -11,6 +11,7 @@ export const BlogHeader = styled('h1', {
   fontSize: 60,
   color: '$white',
   margin: '40px 0 20px 0',
+  textAlign: 'center',
 })
 
 export const BlogDescription = styled('p', {
@@ -28,11 +29,14 @@ export const SocialsContainer = styled('div', {
 export const SocialLink = styled('a', {
   display: 'flex',
   color: '$main',
-  marginRight: 20,
+  margin: '0 10px',
   transition: '0.1s linear',
   '&:hover': {
     color: '$white',
     transform: 'scale(1.15, 1.15)',
+  },
+  '@iPhoneSE': {
+    margin: '0 7px',
   },
 })
 
@@ -91,6 +95,9 @@ export const BlogInfoBottom = styled('div', {
   color: '$white',
   '@iPad': {
     width: '80vw',
+  },
+  '@iPhoneSE': {
+    fontSize: '$1',
   },
 })
 

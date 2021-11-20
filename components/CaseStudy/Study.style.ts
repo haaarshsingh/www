@@ -40,6 +40,5 @@ export const Graphic = styled('div', {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
   backgroundAttachment: 'fixed',
-  backgroundPosition: 'center',
   marginTop: 100,
 })
