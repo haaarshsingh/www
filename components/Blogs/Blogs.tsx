@@ -35,29 +35,22 @@ const Blog: React.FC<{ blogsData: blogs[] }> = ({ blogsData }) => {
         />
         <S.BlogsBox>
           {blogsData.map((blog, index) => (
-            <ScrollAnimation
-              animateIn='animate__flipInX'
-              animateOnce={true}
-              delay={200}
-              key={index}
-            >
-              <S.BlogCard key={index} className='blog-card'>
-                <S.BlogCardTitle href={`/blog/${blog.id}`} id='title'>
-                  {blog.title}
-                </S.BlogCardTitle>
-                <S.BlogCardDesc>{blog.description}</S.BlogCardDesc>
-                <S.BlogInfoBottom>
-                  <S.BlogInfoContainer>
-                    <Icons.Clock />
-                    {blog.readingTime} min
-                  </S.BlogInfoContainer>
-                  <S.BlogInfoContainer>
-                    <Icons.Calendar />
-                    {blog.formattedDate}
-                  </S.BlogInfoContainer>
-                </S.BlogInfoBottom>
-              </S.BlogCard>
-            </ScrollAnimation>
+            <S.BlogCard key={index} className='blog-card'>
+              <S.BlogCardTitle href={`/blog/${blog.id}`} id='title'>
+                {blog.title}
+              </S.BlogCardTitle>
+              <S.BlogCardDesc>{blog.description}</S.BlogCardDesc>
+              <S.BlogInfoBottom>
+                <S.BlogInfoContainer>
+                  <Icons.Clock />
+                  {blog.readingTime} min
+                </S.BlogInfoContainer>
+                <S.BlogInfoContainer>
+                  <Icons.Calendar />
+                  {blog.formattedDate}
+                </S.BlogInfoContainer>
+              </S.BlogInfoBottom>
+            </S.BlogCard>
           ))}
         </S.BlogsBox>
       </S.BlogContainerBox>
