@@ -6,36 +6,36 @@
   </a>
 </p> 
 <p align="center">15yo web developer and designer</p>
+<p align="center">
+  <a href="https://www.figma.com">Design Board (WIP)</a>
+    ·
+  <a href="https://issure.vercel.app/">Demo</a>
+ </p>
 
-# 💻 Building locally
+# 🚀 Quickstart
 
-```shell
-# Clone the repo
+Run the website locally
+
+```
 git clone https://github.com/harshhhdev/harshhhdev.github.io.git
+```
 
+## Setting up the project
+
+```bash
 cd harshhhdev.github.io
 
 # Install deps
 yarn
+```
 
-# Start Next.js development server
+## Starting server
+
+```bash
 yarn dev
 ```
 
-# 🚀 Building for production
-
-```shell
-# Clone the repo
-git clone https://github.com/harshhhdev/harshhhdev.github.io.git
-
-cd harshhhdev.github.io
-
-# Install deps
-yarn
-
-# Build HTML files
-yarn build
-```
+Server should now be running on [localhost](https://localhost:3000)
 
 # 🎨 Colour palette
 
@@ -57,3 +57,13 @@ yarn build
 - [Prism.js](https://prismjs.com/)
 - [Prettier](https://prettier.io)
 - [ESLint](https://eslint.io)
+
+# 🤞 Contributing
+
+After setting up the project, and making changes:
+
+```git
+git add .
+git commit -m "commit message"
+git push YOUR_REPO_URL YOUR_BRANCH
+```
