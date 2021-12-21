@@ -1,8 +1,8 @@
 ---
 title: 'Ricing Arch Linux'
-date: '2021-12-20'
-formattedDate: '20 December, 2020'
-description: 'This is a guide for ricing your Arch Linux desktops. We\'ll be going over different applications & how you can customise them to make the Linux setup of your dreams!'
+date: '2021-12-21'
+formattedDate: '20 December, 2021'
+description: 'This is a guide for ricing your Arch Linux desktops. We will be going over different applications & how you can customise them to make the Linux setup of your dreams!'
 ---
 
 # What is a rice?
@@ -21,7 +21,7 @@ For more suggestions, tips, etc -- I suggest taking a look at [r/unixporn](https
 
 Now, let's get started with the different categories of applications & utilities you need to rice your system.
 
-### Window Managers
+## Window Managers
 
 Window manager is perhaps the most basic stepping stone of creating a rice. A window manager is esentially system software that controls the placement & appearance of windos within a windowing system in a graphical user interface.
 
@@ -39,7 +39,7 @@ There's an infinite list of tiling window managers people use, & some daring fol
 
 In my rice, I personally use [i3wm-gaps-rounded](https://aur.archlinux.org/packages/i3-gaps-rounded-git/), which is basically a fork of i3wm with more features, including gaps & rounded corners.
 
-### Desktop Environment
+## Desktop Environment
 
 A desktop environment is the bundle of components that provide you common graphical user interface elements such as icons, toolbars, wallpapers, and desktop widgets. A desktop environment is essential to your Linux system, unless you prefer to interact with it from the terminal utility using commands only.
 
@@ -54,7 +54,7 @@ Some of the most popular desktop environments are:
 
 In my rice, I use [Gnome](https://www.gnome.org/), as it's really popular & has easy to follow guides/documentation all over the web.
 
-### Terminals
+## Terminals
 
 A terminal, or terminal emulator, is a computer program that emulates a video terminal within some other display architecture. Unlike Windows or macOS, they're a crucial part of the Linux experience. Some of the best ones are:
 
@@ -68,7 +68,7 @@ A terminal, or terminal emulator, is a computer program that emulates a video te
 
 In my rice, I've gone with [Alacritty](https://github.com/alacritty/alacritty), as it's a fast GPU-accelerated & puts a special emphasis on performance & simplicity. It's written in Rust & uses OpenGL.
 
-### Shells
+## Shells
 
 When we talk about terminals, it's essential that we also bring up shells. The shell is the software that interprets and executes the various commands that we type in the terminal. Terminals esentially act as a wrapper around shells.
 
@@ -82,7 +82,7 @@ Some loved shells are:
 
 I've used a wide variety of different shells, however, my personal favourites are [NuShell](https://www.nushell.sh/) & [Fish](https://fishshell.com/). [Fish](https://fishshell.com/) is preconfigured out of the box, & is insanely easy to setup. [NuShell](https://www.nushell.sh/) on the other hand also offers something similar. For this rice, I with with [NuShell](https://www.nushell.sh/) as I really like the colourful command outputs it has built-in by defualt.
 
-### Status Bars
+## Status Bars
 
 Status bars are a crucial utility to our systems. I can't imagine my life witohut them! It's a quick & effective way of grasping small bits of information, such as the time or your computer volume.
 
@@ -96,7 +96,7 @@ The most popular status bar applications are:
 
 [Polybar](https://polybar.github.io/) is my preffered choice of status bar, as it's widely used across the ricing community. It's easy to setup modules & there are a lot of guides/tutorials out there for it.
 
-### Miscellaneous
+## Miscellaneous
 
 Here's a category of general utility stuff which is always useful when creating a rice:
 
@@ -115,7 +115,7 @@ Here's a category of general utility stuff which is always useful when creating 
 - [scrot](https://github.com/dreamer/scrot) - A simple screen capture utility
 - [Shutter](https://shutter-project.org/) - The feature-rich screenshot tool
 
-### Terminal Utilities
+## Terminal Utilities
 
 No rice is complete without a little bit of terminal glamour.
 
