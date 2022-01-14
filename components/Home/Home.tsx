@@ -32,7 +32,7 @@ const HomeComponent: React.FC = () => {
           delay={200}
         >
           <S.ContainerText>
-            I am a 15yo web designer and developer
+            I am a web designer and developer
           </S.ContainerText>
         </ScrollAnimation>
         <ScrollAnimation
