@@ -33,9 +33,9 @@ const AboutComponent: React.FC = () => {
       title: 'Debutur',
       image: Debutur,
       description: 'Easily create, and personalise your portfolio',
-      skills: 'TypeScript Node Express MongoDB',
+      skills: 'TypeScript Next.js Prisma MongoDB',
       github: 'debutur',
-      link: 'debutur.herokuapp.com',
+      link: 'dbtr.vercel.app',
     },
     {
       title: 'SnipBin',
