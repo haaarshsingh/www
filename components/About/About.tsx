@@ -16,9 +16,9 @@ const AboutComponent: React.FC = () => {
     'Node',
     'React',
     'PostgreSQL',
-    'MongoDB',
+    'PlanetScale',
     'Prisma',
-    'Fastify',
+    'Vercel',
     'GraphQL',
   ]
 
