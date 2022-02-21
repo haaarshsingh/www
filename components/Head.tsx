@@ -19,7 +19,7 @@ const Header: React.FC<{ title: string; description: string }> = ({
       <meta property='twitter:url' content={link} />
       <meta property='twitter:description' content={description} />
       <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-      <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+      <meta httpEquiv='X-UA-Compatible' content='ie=edge' />
       <meta name='theme-color' content='#0da7ee' />
       <link
         rel='icon'
