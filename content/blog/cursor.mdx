@@ -1,0 +1,72 @@
+---
+title: 'Custom Cursors in React'
+tags: 'react,next,css,design,ui/ux,typescript'
+published: '2021-12-22'
+---
+
+<img
+  alt='demo'
+  src='https://user-images.githubusercontent.com/69592270/145694947-ee595f08-42bd-42e7-b3e1-b2183c835953.gif'
+/>
+
+One thing I've seen across many designer/design studio websites are a cool custom cursor in place of your default computer one. Recently, I added one to my [website](https://harshhhdev.github.io) aswell.
+
+I had to write one from scratch (using some internet resources of course!), since all the NPM libraries I found were either outdated, or didn't support SSR.
+
+After adding the cursor to my own website, I had an idea to create an NPM package for it for a while. This weekend, I had some freetime from school and got to work!
+
+This library supports [TypeScript](https://typescriptlang.org), along with server-side rendering ([Next.js](https://nextjs.org) and [Remix](https://remix.run))
+
+Want a demo? I setup a quick [demo website](https://harshhhdev.github.io/custom-pointer-react/) to help you tweak and experiment around with values!
+
+# 🚀 Setup
+
+To download the library, head over to your terminal:
+
+```bash:terminal
+yarn add custom-pointer-react
+```
+
+Next, import the cursor component into your file and customise it! Don't forget to wrap your app in the context afterwards.
+
+```tsx:tsx
+import { Cursor } from 'custom-pointer-react'
+...
+const Cursor = () => {
+  return (
+    ...
+    <Cursor {...passParametersToCustomise} />
+    ...
+  )
+}
+...
+export default App
+```
+
+All parameters are optional, and here's a list of the different parameters which you can customise:
+
+| Parameter  | Description                                         | Default |
+| ---------- | --------------------------------------------------- | ------- |
+| color      | The background colour of the cursor                 | #000000 |
+| showRing   | Controls whether to show the ring around the cursor | true    |
+| ringSize   | Controls the size of the ring around the cursor     | 50px    |
+| cursorSize | Controls the size of the cursor                     | 10px    |
+| ringBorder | Controls the width of the ring's border             | 2px     |
+
+Need help finding the right parameters? Check out the [demo website](https://harshhhdev.github.io/custom-pointer-react/)!
+
+Now, go into your app and import the MouseContext provider.
+
+```tsx:pages/_app.tsx
+import { MouseContextProvider } from 'custom-pointer-react'
+...
+ReactDOM.render(
+  <MouseContextProvider>
+    <App />
+  </MouseContextProvider>,
+  document.getElementById('root')
+)
+...
+```
+
+Your custom cursor should be good to go!

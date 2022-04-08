@@ -1,28 +1,17 @@
-import React from 'react'
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
-import { getCssString } from '@css/theme.config'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-export default class Document extends NextDocument {
+export default class PortfolioDocument extends Document {
   render() {
     return (
       <Html lang='en'>
         <Head>
-          <style
-            id='stitches'
-            dangerouslySetInnerHTML={{ __html: getCssString() }}
-          />
           <link
-            rel='preload'
-            href='/GTWalsheimPro-Regular.ttf'
-            as='font'
-            crossOrigin=''
-          />
-          <link
-            href='https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Mukta:wght@400;700&display=swap'
             rel='stylesheet'
+            as='font'
           />
         </Head>
-        <body>
+        <body className='bg-body-light dark:bg-gray-900'>
           <Main />
           <NextScript />
         </body>

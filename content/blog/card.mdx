@@ -1,0 +1,238 @@
+---
+title: 'Creating a NPX introduction card'
+tags: 'productivity,typescript'
+published: '2020-10-23'
+---
+
+I was looking around GitHub the other day, and I found this awesome idea by [Anmol Singh] on creating a npx card to introduce themselves. I thought it was a cool idea, so I made one for [myself] too!
+
+You can hit `npx harsh-dev` (or `pnpx harsh-dev` since [pnpm](https://pnpm.io/) is better) in your terminal right now to learn more about me :wink:
+
+# End result
+
+![image](https://user-images.githubusercontent.com/69592270/161366988-20f4f446-c64d-4b4d-8630-e7fbfb891a2f.png)
+
+# Setting it up
+
+Let's create a new project
+
+```bash:terminal
+mkdir npx-card
+cd npx-card
+
+# Initialise yarn
+yarn init -y
+
+# For NPM
+# npm init -y
+```
+
+Now let's install some needed [NPM modules](https://npmjs.com)
+
+```bash:terminal
+yarn add boxen chalk clear open inquirer
+
+# For NPM
+# npm i boxen chalk clear open inquirer
+```
+
+Making things easier on ourselves, let's also add in [nodemon] for reloading on save.
+
+```bash:terminal
+yarn add nodemon -D
+
+# For NPM
+npm i nodemon --save-dev
+```
+
+Let's go to the scripts section in our package.json and setup [nodemon]
+
+```json:package.json
+  "scripts": {
+    "dev": "nodemon card.js"
+  },
+```
+
+...and let's start!
+
+```bash:terminal
+yarn dev
+
+# For NPM
+# npm run dev
+```
+
+in our `card.js` file, let's import the [NPM modules](https://npmjs.com)
+
+```js:card.js
+const boxen = require('boxen')
+const chalk = require('chalk')
+const inquirer = require('inquirer')
+const clear = require('clear')
+const open = require('open')
+
+// clear the terminal before showing the npx card
+clear()
+```
+
+Now, let's create a new prompt. We can do this using [inquirer](https://github.com/SBoudrias/Inquirer.js#readme).
+
+```js:card.js
+const prompt = inquirer.createPromptModule()
+```
+
+Let's create a new JavaScript object with our prompt questions.
+
+```js:card.js
+const questions = [
+  {
+    type: 'list',
+    name: 'action',
+    message: 'What do you want to do?',
+    choices: [
+      {
+        // Use chalk to style headers
+        name: `Toss an ${chalk.bold('email')}?`,
+        value: () => {
+          open('mailto:example@example.com')
+          console.log(
+            '\nLooking forward to hearing your message and replying to you!\n'
+          )
+        },
+      },
+      {
+        name: 'Exit',
+        value: () => {
+          console.log('Good bye, have a nice day!\n')
+        },
+      },
+    ],
+  },
+]
+```
+
+Let's create another new JavaScript object, this time with data about us.
+
+You should play around with this for a little bit to get the spacing right, having properly centred the fields.
+
+I'll just post mines here, as an example.
+
+```js:card.js
+const data = {
+  name: chalk.bold.green('                     Harsh Singh'),
+  handle: chalk.white('@harshhhdev'),
+  fact: chalk.hex('#B10000')('I love Open-Source!'),
+  twitter: chalk.hex('#00A1D9')('https://twitter.com/Harshhhdev'),
+  github: chalk.hex('#787878')('https://github.com/harshhhdev'),
+  dev: chalk.hex('#330093')('https://dev.to/harshhhdev'),
+  dribbble: chalk.hex('#AB009C')('https://dribbble.com/harshhhdev'),
+  website: chalk.hex('#00AB9E')('https://harshhhdev.github.io'),
+  npx: chalk.hex('#A1AB00')('npx harsh'),
+
+  labelFact: chalk.hex('#FF6262').bold('          Fun Fact:'),
+  labelTwitter: chalk.hex('#629DFF').bold('        Twitter:'),
+  labelGitHub: chalk.hex('#9E9E9E').bold('         GitHub:'),
+  labelDev: chalk.hex('#A959FF').bold('           Dev:'),
+  labelDribbble: chalk.hex('#F259FF').bold('       Dribbble:'),
+  labelWebsite: chalk.hex('#59FFC8').bold('        Website:'),
+  labelCard: chalk.hex('#FFF976').bold('                  Card:'),
+}
+```
+
+Now, let's create a our card using box.
+
+We will use values from above and plug them into it.
+
+```js:card.js
+const me = boxen(
+  [
+    `${data.name}`,
+    ``,
+    `${data.labelFact}  ${data.fact}`,
+    ``,
+    `${data.labelTwitter}  ${data.twitter}`,
+    `${data.labelGitHub}  ${data.github}`,
+    `${data.labelDev}  ${data.dev}`,
+    `${data.labelDribbble}  ${data.dribbble}`,
+    `${data.labelWebsite}  ${data.website}`,
+    ``,
+    `${data.labelCard}  ${data.npx}`,
+    ``,
+    `${chalk.bold("Hi there! I'm Harsh, I'm a passionate MERN stack ")}`,
+    `${chalk.bold('developer and web designer from India, and have a ')}`,
+    `${chalk.bold('hobby for creating beautiful, cool, and responsive ')}`,
+    `${chalk.bold('web apps. Toss me an email if you want to collab!')}`,
+  ].join('\n'),
+  {
+    margin: 1,
+    float: 'center',
+    padding: 1,
+    borderStyle: 'single',
+    borderColor: 'blue',
+  }
+)
+
+// Show the boxen
+console.log(me)
+```
+
+We're almost finished! Let's make sure that we handle the prompt properly.
+
+```js:card.js
+prompt(questions).then((answer) => answer.action())
+```
+
+Now, let's move onto publishing
+
+Create an account on [npmjs](https://npmjs.com/)
+
+Make sure that you are logged on into npm. If you aren't, then do
+
+```bash:terminal
+yarn adduser
+
+# For NPM
+# npm adduser
+```
+
+Now, patch the version
+
+```bash:terminal
+# Make sure your git working directory is clean!
+git commit -a -m "made my npx card"
+
+# Update the version
+yarn version
+
+# For NPM
+# npm version patch
+```
+
+Let's publish to [npmjs](https://npmjs.com/) now!
+
+```bash:terminal
+yarn publish
+
+# For NPM
+# npm publish
+```
+
+If everything is published, then try to execute the script using [npx](https://www.npmjs.com/package/npx)(or my personal favourite, [pnpx](https://pnpm.io/pnpx-cli))
+
+```bash:terminal
+# Try out mines using npx harsh-dev!
+npx your-pkg
+```
+
+If you had any problems, feel free to drop me a DM on my [Twitter](https://twitter.com/harshhhdev/), or ask away in the comments below!
+
+With that, I want to thank [Anmol Singh] for this cool idea and the permission to write a post on it.
+
+If it helped you out, I'm glad :heart: have a nice day!
+
+[anmol singh]: https://github.com/anmol098
+[anmol's card]: https://github.com/anmol098/npx_card
+[my card]: https://github.com/harshhhdev/npx-harsh
+[repo]: https://github.com/anmol098/npx_card
+[nodemon]: https://nodemon.io/
+[myself]: https://github.com/harshhhdev

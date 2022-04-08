@@ -1,0 +1,73 @@
+---
+title: 'NPM or Yarn? Find the right package manager for you'
+tags: 'productivity'
+published: '2020-12-20'
+---
+
+For a long time, I was confused on which package manager I should be using. I just went ahead and used NPM for a while, since that was simply what most people used. I never really bothered to look into what Yarn is, and never bothered to really switch to it, or try it out.
+
+So, before we get started, let's give a brief overview of each.
+
+# Yarn
+
+Yarn is a package manager which corrects the cons of NPM. Yarn still uses the same registry as NPM, so you can download all the same packages. Similar to NPM, you can also download from GitHub.
+
+![image](https://user-images.githubusercontent.com/69592270/102736144-3b66d780-4312-11eb-8eba-fa9352da4732.png)
+
+# NPM
+
+NPM stands for Node Package Manager, and it is the default package manager for Node. It has its own registry with a very large number of packages and modules. It has a registry for both public and private use, along with offering distribution for your your own packages.
+
+![image](https://user-images.githubusercontent.com/69592270/102736199-51749800-4312-11eb-95b5-ed5339572d8f.png)
+
+# Which one should I use?
+
+So, let's break straight to the point. Which package manager should I be using?
+
+So, we are going to break down aspects of NPM and Yarn, and help you decide for yourself which one is better.
+
+# Security
+
+Security is one of the main reasons why Yarn was developed by a team at Facebook. Back when Yarn was released, NPM had some security shortcomings which drove some developers away. Yarn addressed these security concerns and was regarded to be most secure.
+
+Now, with the release of NPM 6 many of these security risks were fixed. While installing a module with known vulnerabilities, NPM will alert you. The command `npm audit` has also been added to fix some common concerns with security.
+
+In my opinion, this is a neck to neck race but Yarn comes out on top. Yarn has features such which you can use to verify the licenses, etc. of modules you download, while NPM does not.
+
+# Performance
+
+This is another reason why Yarn was developed. Back when Yarn was released NPM also had performance issues. In NPM 6, the team at NPM has done a commendable job matching up speeds with Yarn, although Yarn still remains the winner here by a slim margin.
+
+![image](https://user-images.githubusercontent.com/69592270/102734388-b4affb80-430d-11eb-8620-dd73fda356de.png)
+
+# Popularity
+
+A main concern for people who, for example maintain large open-source projects will prefer to use something which is more popular.
+
+NPM is the winner here. There is a much higher quantity of packages installed from NPM than from Yarn.
+
+![image](https://user-images.githubusercontent.com/69592270/102734682-694a1d00-430e-11eb-9c23-67564859c0e2.png)
+
+# CLI Experience
+
+A CLI should also provide a good experience while using it. In my opinion, Yarn is also the winner here. When you use a command, say, install a pacakage the output is much more cleaner, and more organised in Yarn as compared to NPM.
+
+![image](https://user-images.githubusercontent.com/69592270/102736053-fe9ae080-4311-11eb-84e2-a16cf91063ed.png)
+
+![image](https://user-images.githubusercontent.com/69592270/102736104-1eca9f80-4312-11eb-8ed3-a6a4520cf2d4.png)
+
+For the commands when we use the CLI, it depends on preference completely but I'll have to give this one to Yarn as well. The CLI commands are just simpler, and have less words as compared to NPM.
+
+![image](https://user-images.githubusercontent.com/69592270/102734939-23418900-430f-11eb-8095-44e17b859ee2.png)
+
+# Support
+
+NPM and Yarn both have a variety of support for technologies, but the biggest concern is raised with React Native which is not supported by Yarn 2 out of the box. Yarn 2 also does not support node_modules out of the box either, and in my opinion the clear winner here is either Yarn 1 or NPM.
+
+# To conclude
+
+To suit your needs, feel free to use whatever you want. I personally will conclude that Yarn 1 is better than NPM, although I will prefer to use NPM over Yarn 2 (Berry).
+
+The reason I will say that Yarn 2 is lacking behind NPM is the fact that it is quite different from NPM, and it when people want to contribute to my open-source projects, telling then to use the non-default tool might not be the smartest idea.
+
+There are a few problems with Yarn 2 brings up for many people, and I will advocate to all that they use Yarn 1.

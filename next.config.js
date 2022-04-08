@@ -1,15 +1,21 @@
-const withImages = require('next-images')
+const { i18n } = require('./next-i18next.config')
+const { withContentlayer } = require('next-contentlayer')
 
-module.exports = withImages({
-  future: {
-    webpack5: true,
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = withContentlayer()({
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    domains: ['cdn.dribbble.com'],
-    disableStaticImages: true,
+    domains: [
+      'avatars.githubusercontent.com',
+      'dev-to-uploads.s3.amazonaws.com',
+      'i.scdn.co',
+    ],
   },
-  fileExtensions: ['png'],
-  webpack(config, options) {
-    return config
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'hn'],
   },
 })
+
+module.exports = nextConfig

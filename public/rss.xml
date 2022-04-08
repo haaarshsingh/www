@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Articles by Harsh Singh</title>
+        <link>https://hxrsh.in</link>
+        <description>I love writing about my experience coding, and helping others learn more about technology or build cool apps through writing blogs or giving talks. On my blog, you can expect to content ranging from databases to UI/UX design.</description>
+        <lastBuildDate>Mon, 04 Apr 2022 06:54:05 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>2021</copyright>
+        <item>
+            <title><![CDATA[UUID/GUID, CUID & NanoID: What is The Difference?]]></title>
+            <link>https://hxrsh.in/id</link>
+            <guid>https://hxrsh.in/id</guid>
+            <pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Building a Serverless Application with Next.js and CockroachDB!]]></title>
+            <link>https://hxrsh.in/serverless</link>
+            <guid>https://hxrsh.in/serverless</guid>
+            <pubDate>Sun, 13 Mar 2022 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Add a VSC Command Palette to Your Website!]]></title>
+            <link>https://hxrsh.in/palette</link>
+            <guid>https://hxrsh.in/palette</guid>
+            <pubDate>Sat, 22 Jan 2022 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Translating Your Next.js Apps]]></title>
+            <link>https://hxrsh.in/translating</link>
+            <guid>https://hxrsh.in/translating</guid>
+            <pubDate>Fri, 07 Jan 2022 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[2021, an look back]]></title>
+            <link>https://hxrsh.in/2021</link>
+            <guid>https://hxrsh.in/2021</guid>
+            <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Custom Cursors in React]]></title>
+            <link>https://hxrsh.in/cursor</link>
+            <guid>https://hxrsh.in/cursor</guid>
+            <pubDate>Wed, 22 Dec 2021 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Designing for the elderly]]></title>
+            <link>https://hxrsh.in/elderly</link>
+            <guid>https://hxrsh.in/elderly</guid>
+            <pubDate>Wed, 17 Feb 2021 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[NPM or Yarn? Find the right package manager for you]]></title>
+            <link>https://hxrsh.in/pm</link>
+            <guid>https://hxrsh.in/pm</guid>
+            <pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Tips and Ideas for DigitalOcean Hackathon]]></title>
+            <link>https://hxrsh.in/do</link>
+            <guid>https://hxrsh.in/do</guid>
+            <pubDate>Sun, 13 Dec 2020 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Glassmorphism: The UI Design Trend of 2021]]></title>
+            <link>https://hxrsh.in/glassmorphism</link>
+            <guid>https://hxrsh.in/glassmorphism</guid>
+            <pubDate>Sun, 06 Dec 2020 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Web Scraping with Node and Puppeteer]]></title>
+            <link>https://hxrsh.in/scraping</link>
+            <guid>https://hxrsh.in/scraping</guid>
+            <pubDate>Sun, 22 Nov 2020 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Fun DuckDuckGo tricks]]></title>
+            <link>https://hxrsh.in/ddg</link>
+            <guid>https://hxrsh.in/ddg</guid>
+            <pubDate>Sat, 31 Oct 2020 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+        <item>
+            <title><![CDATA[Creating a NPX introduction card]]></title>
+            <link>https://hxrsh.in/card</link>
+            <guid>https://hxrsh.in/card</guid>
+            <pubDate>Fri, 23 Oct 2020 00:00:00 GMT</pubDate>
+            <author>hxrsh@singh.in (Harsh Singh)</author>
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,133 @@
+@import url('./syntax.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border p-0 m-0;
+}
+
+html,
+body {
+  @apply bg-gray-900 font-sans;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  @apply text-gray-900 dark:text-white font-bold text-4xl;
+}
+
+h3 {
+  @apply text-gray-900 dark:text-white font-bold text-2xl;
+}
+
+::selection {
+  @apply bg-gradient-100 text-white;
+}
+
+button {
+  @apply font-sans cursor-pointer select-none;
+}
+
+a {
+  @apply text-gray-400 underline-offset-4 no-underline;
+}
+
+a:hover {
+  @apply text-gray-900 dark:text-white;
+}
+
+p,
+li {
+  @apply text-gray-400 text-base;
+}
+
+li {
+  @apply ml-10 text-lg list-disc;
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500;
+}
+
+img {
+  height: fit-content;
+  user-select: none;
+}
+
+::placeholder {
+  @apply text-white;
+}
+
+.blog a {
+  @apply text-gray-900 dark:text-white hover:underline underline-offset-8;
+}
+
+.blog > .header {
+  @apply hover:no-underline;
+}
+
+.blog p {
+  @apply text-lg my-4;
+}
+
+.blog img {
+  display: block;
+  border-radius: 20px;
+  margin: 100px 0;
+  width: 100%;
+  transform: scale(1.1);
+}
+
+.rehype-code-title {
+  @apply px-5 py-3 font-mono text-sm text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800 mt-5;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply text-white;
+}
+
+.blog pre {
+  @apply border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 px-5 py-3 rounded-b-lg overflow-x-auto;
+}
+
+.blog code {
+  @apply text-gray-900 dark:text-gray-200 px-1 py-0.5 border dark:border-gray-800 rounded-lg bg-gray-100 dark:bg-gray-900;
+}
+
+.blog pre code {
+  @apply text-gray-900 dark:text-gray-200 p-0;
+  border: initial;
+}
+
+.blog table {
+  border-collapse: separate !important;
+  @apply table-auto text-white rounded-xl border border-gray-700 w-full p-3;
+}
+
+.blog thead {
+  @apply text-gray-900 dark:text-white text-lg text-left;
+}
+
+.blog td,
+th {
+  @apply text-gray-500 dark:text-white py-3 px-5;
+}
+
+.blog p > code {
+  @apply text-base text-gray-400 rounded-md;
+}
+
+.blog blockquote {
+  @apply italic border-l-4 pl-4 border-cyan-500 bg-cyan-400/20 py-1 rounded my-5;
+}
