@@ -10,7 +10,8 @@ const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
   const meta = {
     root: 'https://hxrsh.in',
     title: 'Harsh Singh',
-    description: '15yo Highschool student & serverless fan',
+    description:
+      "👋 Hi there, I'm Harsh. 15yo highschool student & serverless fan",
     image: '/banner.png',
     type: 'website',
   }
@@ -28,7 +29,7 @@ const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
         <meta property='og:url' content={`${meta.root}${router.asPath}`} />
         <link rel='canonical' href={`${meta.root}${router.asPath}`} />
         <meta property='og:type' content={meta.type} />
-        <meta property='og:site_name' content='Lee Robinson' />
+        <meta property='og:site_name' content='Harsh Singh' />
         <meta property='og:description' content={meta.description} />
         <meta property='og:title' content={meta.title} />
         <meta property='og:image' content={meta.image} />

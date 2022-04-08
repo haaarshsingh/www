@@ -1,4 +1,4 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Wrapper from '@components/Wrapper'
 import AskMeAnything from '@components/AMA'
@@ -15,7 +15,10 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+/**
+ * Apparently server side rendering messes up next-i18next?
+ */
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const questions = await prisma.question.findMany({
     where: { status: 'ANSWERED' },
     orderBy: { createdAt: 'desc' },
