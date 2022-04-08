@@ -101,7 +101,7 @@ const Intro: FC = () => {
         </motion.p>
         <Socials />
       </motion.div>
-      <motion.div variants={A.Image}>
+      <motion.div variants={A.Image} className='hidden sm:block'>
         <Image
           src='https://avatars.githubusercontent.com/u/69592270?v=4'
           width={150}
