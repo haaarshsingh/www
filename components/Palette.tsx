@@ -47,6 +47,13 @@ const CommandBar = () => {
         perform: () => router.push('/de'),
         parent: 'locale',
       },
+      {
+        id: 'sr',
+        name: 'Serbian',
+        keywords: 'sr',
+        perform: () => router.push('/sr'),
+        parent: 'locale',
+      },
     ])
   }
 

@@ -147,6 +147,9 @@ const LanguageMenu: FC<{
           <Link href={`${meta.root}/de/${router.asPath}`} passHref>
             <a>Deutsch</a>
           </Link>
+          <Link href={`${meta.root}/sr/${router.asPath}`} passHref>
+            <a>srpski</a>
+          </Link>
         </motion.div>
       )}
     </AnimatePresence>
