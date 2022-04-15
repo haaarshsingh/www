@@ -135,8 +135,9 @@ const LanguageMenu: FC<{
           animate='visible'
           exit='hidden'
         >
-          <a href='/en'>{t('english')}</a>
-          <a href='/hn'>{t('hindi')}</a>
+          <a href='/en'>English</a>
+          <a href='/hn'>हिंदी</a>
+          <a href='/de'>Deutsch</a>
         </motion.div>
       )}
     </AnimatePresence>

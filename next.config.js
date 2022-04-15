@@ -12,10 +12,7 @@ const nextConfig = withContentlayer()({
       'i.scdn.co',
     ],
   },
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'hn'],
-  },
+  i18n,
 })
 
 module.exports = nextConfig

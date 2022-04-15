@@ -61,7 +61,7 @@ Server should now be running on [localhost](https://localhost:3000)
 - [CockroachDB](https://cockroachlabs.com/)
 - [Framer Motion](https://framer.com/motion)
 - [Prisma](https://prisma.io/)
-- [SWR](https://swr.vercel.app/)\
+- [SWR](https://swr.vercel.app/)
 - [contentlayer](https://www.contentlayer.dev/)
 - [NextAuth](https://next-auth.js.org/)
 - [Feather Icons](https://feathericons.com/)
@@ -75,6 +75,10 @@ Server should now be running on [localhost](https://localhost:3000)
 Interested in contributing to this repository? Add translations for a language you know!
 
 First, go into the `public` directory and create a new folder with the code of your language. Inside that, create a new file called `common.json`. Paste the file from `public/en/common.json` to get a template of what the content in English would be, then begin to translate it into the language of your choice!
+
+Special thanks to:
+
+- [FleshMobProductions](https://github.com/FleshMobProductions) for German translations
 
 # 🤞 Contributing
 

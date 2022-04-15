@@ -40,6 +40,13 @@ const CommandBar = () => {
         perform: () => router.push('/hn'),
         parent: 'locale',
       },
+      {
+        id: 'de',
+        name: 'German',
+        keywords: 'de german deutsch',
+        perform: () => router.push('/de'),
+        parent: 'locale',
+      },
     ])
   }
 
