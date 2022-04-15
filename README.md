@@ -80,6 +80,7 @@ Special thanks to:
 
 - [FleshMobProductions](https://github.com/FleshMobProductions) and [Yän](https://twitter.com/YaenGames) for German translations
 - [CodeMyst](https://github.com/codemyst) for Serbian translations
+- [Jirushi](https://twitter.com/Jirushi_I) for French translations
 
 # 🤞 Contributing
 
