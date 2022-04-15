@@ -5,16 +5,17 @@ import Navbar from './Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
 
+export const meta = {
+  root: 'https://hxrsh.in',
+  title: 'Harsh Singh',
+  description:
+    "👋 Hi there, I'm Harsh. 15yo highschool student & serverless fan",
+  image: '/banner.png',
+  type: 'website',
+}
+
 const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter()
-  const meta = {
-    root: 'https://hxrsh.in',
-    title: 'Harsh Singh',
-    description:
-      "👋 Hi there, I'm Harsh. 15yo highschool student & serverless fan",
-    image: '/banner.png',
-    type: 'website',
-  }
 
   return (
     <div>
@@ -34,7 +35,8 @@ const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
         <meta property='og:title' content={meta.title} />
         <meta property='og:image' content={meta.image} />
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content='@leeerob' />
+        <meta name='twitter:site' content='@harshhhdev' />
+        <meta name='theme-color' content='#FF70C6' />
         <meta name='twitter:title' content={meta.title} />
         <meta name='twitter:description' content={meta.description} />
         <meta name='twitter:image' content={meta.image} />

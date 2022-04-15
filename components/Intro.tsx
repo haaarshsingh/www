@@ -32,7 +32,7 @@ const Socials: FC = () => {
         },
         {
           icon: FiLinkedin,
-          href: 'https://linkedin.com/harshhhdev',
+          href: 'https://linkedin.com/in/harshhhdev',
         },
         {
           icon: FiYoutube,

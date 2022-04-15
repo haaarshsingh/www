@@ -65,7 +65,7 @@ const Image: FC<{ alt: string; src: string; props: ImageProps }> = ({
   src,
   props,
 }) => {
-  return <NextImage alt={alt} {...props} />
+  return <NextImage alt={alt} height='' {...props} />
 }
 
 const CodeBlock: FC<{

@@ -8,6 +8,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import * as A from '@anims/index'
 import { useDetectClickOutside } from 'react-detect-click-outside'
 import { useTheme } from 'next-themes'
+import Link from 'next/link'
+import { meta } from './Wrapper'
 
 const NavItem: FC<{ href: string; text: string; router: NextRouter }> = ({
   href,
@@ -124,7 +126,8 @@ const LanguageMenu: FC<{
   show: boolean
   // @ts-ignore
   t: TFunction<'common', undefined>
-}> = ({ show, t }) => {
+  router: NextRouter
+}> = ({ show, t, router }) => {
   return (
     <AnimatePresence>
       {show && (
@@ -135,9 +138,15 @@ const LanguageMenu: FC<{
           animate='visible'
           exit='hidden'
         >
-          <a href='/en'>English</a>
-          <a href='/hn'>हिंदी</a>
-          <a href='/de'>Deutsch</a>
+          <Link href={`${meta.root}/en/${router.asPath}`} passHref>
+            <a>English</a>
+          </Link>
+          <Link href={`${meta.root}/hn/${router.asPath}`} passHref>
+            <a>हिंदी</a>
+          </Link>
+          <Link href={`${meta.root}/de/${router.asPath}`} passHref>
+            <a>Deutsch</a>
+          </Link>
         </motion.div>
       )}
     </AnimatePresence>
@@ -173,7 +182,7 @@ const Navbar: FC = () => {
             size={24}
             onClick={() => setOpen((o) => !o)}
           />
-          <LanguageMenu show={open} t={t} />
+          <LanguageMenu show={open} t={t} router={router} />
         </div>
         <Toggle />
       </div>
