@@ -41,7 +41,19 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
       </motion.div>
       <motion.h1 className='text-5xl my-7'>{t('amaHeader')}</motion.h1>
       <motion.p className='text-lg'>{t('amaBio')}</motion.p>
-      <Form />
+      {session ? (
+        <Form />
+      ) : (
+        <div className='border-gray-200 dark:border-gray-700 border-2 rounded-lg my-16 p-10'>
+          <h3 className='text-3xl'>Have a question?</h3>
+          <p className='text-lg mt-10'>
+            Continue by connecting your GitHub account with this website!
+          </p>
+          <p className='text-lg'>
+            No information is displayed to users of this website
+          </p>
+        </div>
+      )}
       {questions.map((question, index) => (
         <Question key={index} question={question} />
       ))}
@@ -114,8 +126,8 @@ const Form: FC = () => {
 const Question: FC<{ question: QuestionType }> = ({ question }) => {
   return (
     <div>
-      <h1 className='mb-5'>{question.content}</h1>
-      <p className='text-2xl mb-10'>{question.answer}</p>
+      <h1 className='mb-5 text-2xl'>{question.content}</h1>
+      <p className='text-lg mb-10'>{question.answer}</p>
     </div>
   )
 }

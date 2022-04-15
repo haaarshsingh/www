@@ -30,15 +30,12 @@ export const artistFetcher = async (
 export const devFetcher = async (
   input: RequestInfo,
   init?: RequestInit
-): Promise<{ followers: number; likes: number; views: number }> => {
-  const res = await fetch(input, init)
-  return res.json()
-}
-
-export const githubFetcher = async (
-  input: RequestInfo,
-  init?: RequestInit
-): Promise<{ stars: number; followers: number }> => {
+): Promise<{
+  followers: number
+  likes: number
+  views: number
+  comments: number
+}> => {
   const res = await fetch(input, init)
   return res.json()
 }

@@ -74,8 +74,8 @@ const Artists = () => {
   return (
     <Music
       data={data!}
-      title={t('musicHeader')}
-      description={t('musicBio')}
+      title={t('artistHeader')}
+      description={t('artistBio')}
       tracks={false}
     />
   )
@@ -129,7 +129,6 @@ const Statistic: FC<{ title: string; value: string }> = ({ title, value }) => {
 
 const Stats: FC = () => {
   const { data: dev } = useSWR('/api/stats/dev', F.devFetcher)
-  const { data: github } = useSWR('/api/stats/github', F.githubFetcher)
 
   const stats = [
     {
@@ -145,8 +144,8 @@ const Stats: FC = () => {
       value: dev?.views!.toLocaleString()!,
     },
     {
-      title: 'GitHub Followers',
-      value: github?.followers!.toLocaleString()!,
+      title: 'Blog Comments',
+      value: dev?.comments!.toLocaleString()!,
     },
   ]
 

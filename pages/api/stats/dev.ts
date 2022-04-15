@@ -6,15 +6,20 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const followers = await allFollowers()
-  const posts: { page_views_count: number; public_reactions_count: number }[] =
-    await allPosts('1000')
+  const posts: {
+    page_views_count: number
+    public_reactions_count: number
+    comments_count: number
+  }[] = await allPosts('1000')
 
   let totalViews = 0
   let totalLikes = 0
+  let totalComments = 0
 
   posts.forEach((post) => {
     totalLikes += post.public_reactions_count
     totalViews += post.page_views_count
+    totalComments += post.comments_count
   })
 
   res.setHeader(
@@ -26,5 +31,6 @@ export default async function handler(
     followers: followers.length,
     likes: totalLikes,
     views: totalViews,
+    comments: totalComments,
   })
 }

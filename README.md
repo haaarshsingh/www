@@ -1,34 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://user-images.githubusercontent.com/69592270/119919017-87f4b580-bf37-11eb-9567-92b86338c4e9.png)
 
-## Getting Started
+<p align="center">
+  <a href="https://hxrsh.in/">
+    <h2 align="center">Harsh Singh</h2>
+  </a>
+</p> 
+<p align="center">15yo web developer and designer</p>
+<p align="center">
+  <a href="https://hxrsh.in">Home</a>
+    ·
+  <a href="https://hxrsh.in/ama">Ask Me Anything</a>
+    ·
+  <a href="https://hxrsh.in/uses">Uses</a>
+    ·
+  <a href="https://hxrsh.in/stats">Stats</a>
+    ·
+  <a href="https://hxrsh.in/blog">Blog</a>
+ </p>
 
-First, run the development server:
+# 🚀 Quickstart
+
+Run the website locally
+
+```
+git clone https://github.com/harshhhdev/harshhhdev.github.io.git
+```
+
+## Setting up the project
 
 ```bash
-npm run dev
-# or
+cd harshhhdev.github.io
+
+# Install deps
+yarn
+```
+
+## Setting up the environment
+
+Now, rename `.env.EXAMPLE` to `.env`
+
+First, create a new database from [CockroachDB serverless](https://cockroachlabs.cloud) and paste the connection string in `DATABASE_URL`.
+
+Register a new [Spotify application](https://developer.spotify.com/), and paste your credentials onto the proper fields. Next, obtain a `REFRESH_TOKEN` by following [this tutorial](https://leerob.io/blog/spotify-api-nextjs).
+
+Finally, head over onto [GitHub](https://github.com), and go into [Settings](https://github.com/settings) > [Developer Settings](https://github.com/settings/apps) > [OAuth apps](https://github.com/settings/developers) and hit "New OAuth App". Configure the app to your needs, and copy/paste the information onto your `.env` file accordingly.
+
+## Starting server
+
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Server should now be running on [localhost](https://localhost:3000)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# 🔨 Tools Used
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://typescriptlang.org)
+- [TailwindCSS](https://tailwindcss.com/)
+- [CockroachDB](https://cockroachlabs.com/)
+- [Framer Motion](https://framer.com/motion)
+- [Prisma](https://prisma.io/)
+- [SWR](https://swr.vercel.app/)\
+- [contentlayer](https://www.contentlayer.dev/)
+- [NextAuth](https://next-auth.js.org/)
+- [Feather Icons](https://feathericons.com/)
+- [Splitbee](https://splitbee.io/)
+- [rehype](https://github.com/rehypejs/rehype)
+- [Prettier](https://prettier.io)
+- [ESLint](https://eslint.io)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# 🌎 Adding Translations
 
-## Learn More
+Interested in contributing to this repository? Add translations for a language you know!
 
-To learn more about Next.js, take a look at the following resources:
+First, go into the `public` directory and create a new folder with the code of your language. Inside that, create a new file called `common.json`. Paste the file from `public/en/common.json` to get a template of what the content in English would be, then begin to translate it into the language of your choice!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 🤞 Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+After setting up the project, and making changes:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```git
+git add .
+git commit -m "commit message"
+git push YOUR_REPO_URL YOUR_BRANCH
+```

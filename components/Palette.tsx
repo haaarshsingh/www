@@ -29,7 +29,7 @@ const CommandBar = () => {
       {
         id: 'eng',
         name: 'English',
-        keywords: 'angrezi en',
+        keywords: 'angrezi anglobhasha en',
         perform: () => router.push('/en'),
         parent: 'locale',
       },
@@ -140,15 +140,9 @@ const ResultItem = React.forwardRef(
             <div>
               {ancestors.length > 0 &&
                 ancestors.map((ancestor) => (
-                  <div key={ancestor.id}>
-                    <span>{ancestor.name}</span>
-                    <span
-                      style={{
-                        marginRight: 8,
-                      }}
-                    >
-                      &rsaquo;
-                    </span>
+                  <div key={ancestor.id} className='text-gray-500'>
+                    <span className='mr-2'>{ancestor.name}</span>
+                    <span>&rsaquo;</span>
                   </div>
                 ))}
               {action.icon}

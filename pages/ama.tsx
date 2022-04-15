@@ -16,7 +16,7 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
 }
 
 /**
- * Apparently server side rendering messes up next-i18next?
+ * Using getStaticProps as apparently server side rendering messes up next-i18next?
  */
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const questions = await prisma.question.findMany({
