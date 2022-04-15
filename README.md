@@ -78,7 +78,7 @@ First, go into the `public` directory and create a new folder with the code of y
 
 Special thanks to:
 
-- [FleshMobProductions](https://github.com/FleshMobProductions) for German translations
+- [FleshMobProductions](https://github.com/FleshMobProductions) and [Yän](https://twitter.com/YaenGames) for German translations
 
 # 🤞 Contributing
 
