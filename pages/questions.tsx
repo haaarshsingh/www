@@ -7,6 +7,7 @@ import prisma from '@lib/prisma'
 import { Question } from '@prisma/client'
 import { FormEvent, useRef } from 'react'
 import { useSession } from 'next-auth/react'
+import NotFound from '@pages/404'
 
 const QuestionsDashboard: NextPage<{ questions: Question[] }> = ({
   questions,
@@ -15,6 +16,8 @@ const QuestionsDashboard: NextPage<{ questions: Question[] }> = ({
 
   const id = useRef<HTMLInputElement>(null)
   const content = useRef<HTMLTextAreaElement>(null)
+
+  if (session?.user?.email !== 'hi.harsh@protonmail.ch') return <NotFound />
 
   const addAnswer = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

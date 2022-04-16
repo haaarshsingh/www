@@ -7,7 +7,7 @@ import Header from '@components/Header'
 import Newsletter from '@components/Newsletter'
 import Link from 'next/link'
 
-const About: NextPage<{ about: { body: { code: string } } }> = ({ about }) => {
+const About: NextPage = () => {
   const { t } = useTranslation('common')
 
   return (
@@ -31,12 +31,8 @@ const About: NextPage<{ about: { body: { code: string } } }> = ({ about }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const about = allInfos.find(
-    (page: { slug: string }) => page.slug === 'about'
-  )!
-
   return {
-    props: { about, ...(await serverSideTranslations(locale!, ['common'])) },
+    props: { ...(await serverSideTranslations(locale!, ['common'])) },
   }
 }
 
