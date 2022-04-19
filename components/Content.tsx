@@ -26,7 +26,7 @@ const Content: FC<{
         {t('blogsHeader')}
       </motion.h1>
       {data.map((item, index) => (
-        <Link href={`/blog/${item.slug}`} key={index} passHref>
+        <Link href={`/blog/${item.slug}`} key={index} passHref locale={false}>
           <motion.a
             href={`/blog/${item.slug}`}
             className='flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer rounded-lg p-5 hover:bg-gray-200 dark:hover:bg-gray-700'

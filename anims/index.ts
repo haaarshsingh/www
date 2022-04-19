@@ -30,6 +30,14 @@ export const Fade: Variants = {
   },
 }
 
+export const FadeSideways: Variants = {
+  hidden: { x: -40, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+  },
+}
+
 export const SimpleFade: Variants = {
   hidden: { opacity: 0 },
   visible: {

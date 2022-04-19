@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Navbar from './Nav'
+import Navbar from './Nav/Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
 
