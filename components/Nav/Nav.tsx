@@ -25,7 +25,7 @@ const NavItem: FC<{ href: string; text: string; router: NextRouter }> = ({
           isActive
             ? 'font-semibold text-gray-800 dark:text-gray-200'
             : 'font-normal text-gray-600 dark:text-gray-400'
-        } sm:inline-block rounded-lg hover:text-gray-900 dark:hover:text-gray-50 transition-all text-lg mr-4 sm:mr-7 hidden sm:fleex`}
+        } sm:inline-block rounded-lg hover:text-gray-900 dark:hover:text-gray-50 transition-all text-lg mr-4 sm:mr-7 hidden`}
       >
         <span className='capsize'>{text}</span>
       </a>
@@ -172,7 +172,7 @@ const Navbar: FC = () => {
   const boundary = useDetectClickOutside({ onTriggered: () => setOpen(false) })
 
   return (
-    <nav className='flex justify-between items-center'>
+    <nav className='flex justify-between items-center touch-none'>
       <div className='z-50'>
         <Hamburger open={navOpen} setOpen={setNavOpen} />
         {links.map((link, index) => (
@@ -216,7 +216,11 @@ const MobileMenu: FC<{ links: string[]; t: TFunction }> = ({ links, t }) => {
     >
       <motion.div className='mt-32 ml-8 flex flex-col'>
         {links.map((link, index) => (
-          <Link href={link.toLowerCase()} key={index} passHref>
+          <Link
+            href={link.toLowerCase() === 'home' ? '/' : link.toLowerCase()}
+            key={index}
+            passHref
+          >
             <motion.a
               className='list-none text-xl my-3 w-fit'
               variants={A.FadeSideways}

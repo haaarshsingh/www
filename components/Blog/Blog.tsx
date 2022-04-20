@@ -50,7 +50,7 @@ const Topic: FC<{
 
 const Post: FC<BlogProps> = ({ slug, title, tags, published }) => {
   return (
-    <Link href={`/blog/${slug}`} passHref>
+    <Link href={`/blog/${slug}`} passHref locale={false}>
       <motion.a className={tags} variants={Fade}>
         <div
           className='h-96 bg-cover bg-no-repeat bg-center rounded-2xl ring-gray-100 dark:ring-gray-900 ring hover:ring-offset-8 border-none ring-offset-gray-100 dark:ring-offset-gray-900 hover:ring-gray-900 dark:hover:ring-white transition-all'
@@ -90,12 +90,7 @@ const Blog: FC = () => {
   const { t } = useTranslation('common')
 
   return (
-    <motion.div
-      className='w-full'
-      variants={FadeContainer}
-      initial='hidden'
-      animate='visible'
-    >
+    <motion.div className='w-full' initial='hidden' animate='visible'>
       <Header head={t('blogHeader')} bio={t('blogBio')} />
       <motion.h1 variants={Fade} className='mt-6 text-bold text-2xl'>
         Search blog by topic

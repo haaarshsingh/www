@@ -16,13 +16,21 @@ export const FastFadeContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.05,
-      staggerChildren: 0.05,
+      delayChildren: 0,
+      staggerChildren: 0.1,
     },
   },
 }
 
 export const Fade: Variants = {
+  hidden: { y: -40, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+}
+
+export const TopicsFade: Variants = {
   hidden: { y: -40, opacity: 0 },
   visible: {
     y: 0,

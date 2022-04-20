@@ -3,23 +3,6 @@ import { useState, FC, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IoArrowUp } from 'react-icons/io5'
 
-// const ButtonContainer = styled(motion.div, {
-//   display: 'flex',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   background: '$main',
-//   padding: 20,
-//   position: 'fixed',
-//   bottom: '2rem',
-//   right: '2rem',
-//   fontSize: '$5',
-//   color: '$primary',
-//   borderRadius: '100%',
-//   '&:hover': {
-//     cursor: 'pointer',
-//   },
-// })
-
 const BackToTop: FC = () => {
   const [showButton, setShowButton] = useState(false)
 

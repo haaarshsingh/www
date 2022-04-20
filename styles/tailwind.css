@@ -10,8 +10,7 @@
 
 html,
 body {
-  @apply bg-gray-900 font-sans;
-  scroll-behavior: smooth;
+  @apply bg-gray-900 font-sans scroll-smooth;
 }
 
 h1 {
@@ -60,8 +59,7 @@ li {
 }
 
 img {
-  height: fit-content;
-  user-select: none;
+  @apply h-fit select-none;
 }
 
 ::placeholder {

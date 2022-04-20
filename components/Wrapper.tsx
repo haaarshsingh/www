@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Navbar from './Nav/Nav'
@@ -16,7 +16,6 @@ export const meta = {
 
 const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter()
-
   return (
     <div>
       <Head>

@@ -55,7 +55,7 @@ const Letter: React.FC<Props> = ({
           {...props}
         >
           {letters.map((letter, index) => (
-            <motion.span key={index} variants={child}>
+            <motion.span key={index} variants={child} className='-z-50'>
               {letter === ' ' ? '\u00A0' : letter}
             </motion.span>
           ))}
