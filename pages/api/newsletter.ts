@@ -1,16 +1,25 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-const question = async (req: NextApiRequest, res: NextApiResponse) => {
+const newsletter = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email } = req.body
 
-  const result = await fetch('https://www.getrevue.co/api/v2/subscribers', {
-    method: 'POST',
-    headers: {
-      Authorization: `Token ${process.env.REVUE_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email }),
-  })
+  try {
+    const response = await fetch(
+      `https://api.buttondown.email/v1/subscribers`,
+      {
+        body: JSON.stringify({ email }),
+        headers: {
+          Authorization: `Token ${process.env.BUTTONDOWN_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }
+    )
+
+    return res.status(200).json({ response })
+  } catch (err) {
+    return res.status(500).json({ err })
+  }
 }
 
-export default question
+export default newsletter

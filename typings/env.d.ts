@@ -8,5 +8,6 @@ namespace NodeJS {
     GITHUB_CLIENT_SECRET: string
     DEV_API: string
     SECRET: string
+    BUTTONDOWN_API_KEY: string
   }
 }
