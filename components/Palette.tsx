@@ -94,7 +94,7 @@ const CommandBar = () => {
 
   return (
     <KBarPortal>
-      <KBarPositioner className='backdrop-blur bg-black/70 select-none'>
+      <KBarPositioner className='backdrop-blur bg-black/70 select-none z-50'>
         <KBarAnimator className='bg-gray-100 dark:bg-gray-900 w-1/3 min-w-500 rounded-lg text-lg text-white overflow-hidden'>
           <KBarSearch className='w-full outline-none p-5 bg-gray-100 dark:bg-gray-900 rounded-lg text-gray-900 dark:text-white' />
           <RenderResults />

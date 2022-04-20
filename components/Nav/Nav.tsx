@@ -133,29 +133,45 @@ const LanguageMenu: FC<{
       {show && (
         <motion.div
           className='absolute mt-10 text-lg bg-gray-200 dark:bg-gray-800 px-3 py-5 rounded flex flex-col border-solid border-2 border-gray-300 dark:border-gray-500 select-none z-10'
-          variants={A.Image}
+          variants={A.LanguageMenu}
           initial='hidden'
           animate='visible'
           exit='hidden'
         >
-          <Link href={`${meta.root}/en/${router.asPath}`} passHref>
-            <a>English</a>
+          <Link
+            href={`${meta.root}/en/${router.asPath}`}
+            passHref
+            locale={false}
+          >
+            <motion.a variants={A.Fade}>English</motion.a>
           </Link>
-          <Link href={`${meta.root}/hn/${router.asPath}`} passHref>
-            <a>हिंदी</a>
+          <Link
+            href={`${meta.root}/hn/${router.asPath}`}
+            passHref
+            locale={false}
+          >
+            <motion.a variants={A.Fade}>हिंदी</motion.a>
           </Link>
-          <Link href={`${meta.root}/de/${router.asPath}`} passHref>
-            <a>Deutsch</a>
+          <Link
+            href={`${meta.root}/de/${router.asPath}`}
+            passHref
+            locale={false}
+          >
+            <motion.a variants={A.Fade}>Deutsch</motion.a>
           </Link>
           <Link
             href={`${meta.root}/fr/${router.asPath}`}
             passHref
             locale={false}
           >
-            <a>Françias</a>
+            <motion.a variants={A.Fade}>Françias</motion.a>
           </Link>
-          <Link href={`${meta.root}/sr/${router.asPath}`} passHref>
-            <a>srpski</a>
+          <Link
+            href={`${meta.root}/sr/${router.asPath}`}
+            passHref
+            locale={false}
+          >
+            <motion.a variants={A.Fade}>srpski</motion.a>
           </Link>
         </motion.div>
       )}
@@ -163,17 +179,19 @@ const LanguageMenu: FC<{
   )
 }
 
-const Navbar: FC = () => {
+const Navbar: FC<{
+  navOpen: boolean
+  setNavOpen: Dispatch<SetStateAction<boolean>>
+}> = ({ navOpen, setNavOpen }) => {
   const router = useRouter()
   const { t } = useTranslation('common')
   const [open, setOpen] = useState(false)
-  const [navOpen, setNavOpen] = useState(false)
   const links = ['home', 'ama', 'uses', 'stats', 'blog']
   const boundary = useDetectClickOutside({ onTriggered: () => setOpen(false) })
 
   return (
-    <nav className='flex justify-between items-center touch-none'>
-      <div className='z-50'>
+    <nav className='flex justify-between items-center w-full'>
+      <div className='z-20'>
         <Hamburger open={navOpen} setOpen={setNavOpen} />
         {links.map((link, index) => (
           <NavItem
@@ -184,7 +202,7 @@ const Navbar: FC = () => {
           />
         ))}
       </div>
-      <div className='flex items-center z-50'>
+      <div className='flex items-center z-20'>
         <div
           className='bg-none border-none flex flex-col items-center'
           ref={boundary}
@@ -208,7 +226,7 @@ const Navbar: FC = () => {
 const MobileMenu: FC<{ links: string[]; t: TFunction }> = ({ links, t }) => {
   return (
     <motion.div
-      className='absolute bg-gray-100 dark:bg-gray-900 w-screen h-screen top-0 left-0 z-40'
+      className='absolute bg-gray-100 dark:bg-gray-900 w-screen h-screen top-0 left-0 z-10'
       variants={A.FastFadeContainer}
       initial='hidden'
       animate='visible'

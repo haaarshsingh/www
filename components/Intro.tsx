@@ -92,7 +92,7 @@ const Intro: FC = () => {
           <button
             onClick={query.toggle}
             style={{ opacity: 1 }}
-            className='mx-2 inline bg-white dark:bg-gray-700 hover:bg-gray-500 text-gray-600 dark:text-white text-sm leading-5 py-0.5 px-1.5 border border-gray-500 rounded-md'
+            className='mx-2 inline bg-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-600 dark:text-white text-sm leading-5 py-0.5 px-1.5 border border-gray-500 rounded-md'
           >
             <kbd className='font-sans no-underline'>⌘</kbd>{' '}
             <kbd className='font-sans'>K</kbd>

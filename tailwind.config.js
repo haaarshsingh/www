@@ -30,12 +30,20 @@ module.exports = {
           light: '#F6F6F6',
         },
       },
+      width: {
+        40: '40vw',
+        60: '60vw',
+        95: '95vw',
+      },
       maxWidth: {
         40: '40vw',
         60: '60vw',
         95: '95vw',
       },
       minWidth: {
+        40: '40vw',
+        60: '60vw',
+        95: '95vw',
         500: '500px',
         iphone: '320px',
       },

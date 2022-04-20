@@ -56,7 +56,7 @@ const Post: FC<BlogProps> = ({ slug, title, tags, published }) => {
           className='h-96 bg-cover bg-no-repeat bg-center rounded-2xl ring-gray-100 dark:ring-gray-900 ring hover:ring-offset-8 border-none ring-offset-gray-100 dark:ring-offset-gray-900 hover:ring-gray-900 dark:hover:ring-white transition-all'
           style={{ backgroundImage: `url("/static/${slug}.jpg")` }}
         />
-        <h1 className='mt-5'>{title}</h1>
+        <h1 className='mt-5 text-white'>{title}</h1>
         <p className='text-2xl mt-3'>
           {format(Date.parse(published), 'dd MMMM, yyyy')}
         </p>

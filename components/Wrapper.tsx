@@ -16,6 +16,8 @@ export const meta = {
 
 const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter()
+  const [open, setOpen] = useState(false)
+
   return (
     <div>
       <Head>
@@ -41,9 +43,9 @@ const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
         <meta name='twitter:image' content={meta.image} />
       </Head>
       <div className='flex flex-col items-center'>
-        <div className='max-w-95 lg:max-w-60 2xl:max-w-40 xl:max-w-30 mt-10'>
-          <Navbar />
-          <main id='main'>{children}</main>
+        <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
+          <Navbar navOpen={open} setNavOpen={setOpen} />
+          {!open && <main id='main'>{children}</main>}
           <Footer />
           <BackToTop />
         </div>
