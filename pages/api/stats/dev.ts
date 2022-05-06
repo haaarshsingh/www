@@ -5,7 +5,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const followers = await allFollowers()
+  const followers = await allFollowers('2000')
+
   const posts: {
     page_views_count: number
     public_reactions_count: number
@@ -28,7 +29,7 @@ export default async function handler(
   )
 
   return res.status(200).json({
-    followers: followers.length,
+    followers: followers,
     likes: totalLikes,
     views: totalViews,
     comments: totalComments,

@@ -115,6 +115,24 @@ const Music: FC<{
   )
 }
 
+const VercelDeployments: FC = () => {
+  const { t } = useTranslation('common')
+
+  return (
+    <motion.div
+      className='mt-24 flex flex-col'
+      variants={A.FadeContainer}
+      initial='hidden'
+      animate='visible'
+    >
+      <motion.h1 variants={A.Fade}>{t('vercelHeader')}</motion.h1>
+      <motion.p className='text-lg mt-5' variants={A.Fade}>
+        {t('vercelBio')}
+      </motion.p>
+    </motion.div>
+  )
+}
+
 const Statistic: FC<{ title: string; value: string }> = ({ title, value }) => {
   return (
     <motion.div
