@@ -39,11 +39,13 @@
   "amaBio": "Je ne sais pas si c'est une bonne idée, ou pas... mais j'ai vu quelques personnes ajouter cela à leurs sites web alors je l'ai aussi fait. N'hésitez pas à poser des questions, ça peut être la merde la plus aléatoire du monde. Les questions n'apparaîtront ici qu'après que j'y aurai répondu, donc je ferai de mon mieux pour répondre à toutes vos questions.",
   "blogHeader": "Harsh & Pensées",
   "blogBio": "J'aime écrire sur mon expérience de codage, et aider les autres à en apprendre plus sur la technologie ou à créer des applications cool en écrivant des blogs ou en donnant des conférences. Sur mon blog, vous pouvez vous attendre à du contenu allant des bases de données au design UI/UX.",
- "aboutHeader": "À propos",
- "aboutBio": "Le titre s'auto-décrit vraiment. Cette page contient quelques informations sur moi, y compris courtes bios et ma photo pour les organisateurs d'événements, ainsi qu'un bref résumé de mon parcours de codeur jusqu'à présent.",
- "tip": "Conseil : Utilisez ",
- "navigate": "pour naviguer sur ce site rapidement",
- "lost": "Vous semblez... perdu?",
- "broken": "Quelque chose est brisé? N'hésitez pas à reporter un problème à l'adresse suivante ",
- "readBlog": "...et pendant que vous êtes là, pourquoi ne pas lire quelques articles sur mon "
+  "aboutHeader": "À propos",
+  "aboutBio": "Le titre s'auto-décrit vraiment. Cette page contient quelques informations sur moi, y compris courtes bios et ma photo pour les organisateurs d'événements, ainsi qu'un bref résumé de mon parcours de codeur jusqu'à présent.",
+  "tip": "Conseil : Utilisez ",
+  "navigate": "pour naviguer sur ce site rapidement",
+  "lost": "Vous semblez... perdu?",
+  "broken": "Quelque chose est brisé? N'hésitez pas à reporter un problème à l'adresse suivante ",
+  "readBlog": "...et pendant que vous êtes là, pourquoi ne pas lire quelques articles sur mon ",
+  "photographyHeader": "Quelques photos",
+  "photographyBio": "Juste quelques photos que j'ai prises ici et là..."
 }

@@ -1,5 +1,5 @@
 export const allFollowers = async () => {
-  return fetch('https://dev.to/api/followers/users?per_page=1000', {
+  return fetch('https://dev.to/api/followers/users?per_page=2000', {
     headers: {
       api_key: process.env.DEV_API,
     },

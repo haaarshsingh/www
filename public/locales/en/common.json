@@ -39,11 +39,13 @@
   "amaBio": "Not sure if this is a good idea, or not... but I saw a few people add this to their websites so I did it too. Feel free to ask away, can be the most random crap in the world. Questions will only appear here after I respond, so I'll do my best to respond to all your questions.",
   "blogHeader": "Harsh & Thoughts",
   "blogBio": "I love writing about my experience coding, and helping others learn more about technology or build cool apps through writing blogs or giving talks. On my blog, you can expect content ranging from databases to UI/UX design.",
- "aboutHeader": "About",
- "aboutBio": "The title really speaks for itself. This page contains some information about me, including short bios and my headshot for event organisers along with a short brief on my coding journey thus far.",
- "tip": "Tip: Use ",
- "navigate": "to quickly navigate this site",
- "lost": "You seem... lost?",
- "broken": "Is something broken? feel free to open up an issue at ",
- "readBlog": "...and while you're here, why not read a few articles on my "
+  "aboutHeader": "About",
+  "aboutBio": "The title really speaks for itself. This page contains some information about me, including short bios and my headshot for event organisers along with a short brief on my coding journey thus far.",
+  "tip": "Tip: Use ",
+  "navigate": "to quickly navigate this site",
+  "lost": "You seem... lost?",
+  "broken": "Is something broken? feel free to open up an issue at ",
+  "readBlog": "...and while you're here, why not read a few articles on my ",
+  "photographyHeader": "Photography",
+  "photographyBio": "Just some photos I've clicked here and there..."
 }

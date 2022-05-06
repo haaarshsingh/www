@@ -39,11 +39,13 @@
   "amaBio": "Ich bin mir nicht sicher, ob das eine gute Idee ist oder nicht... aber ich habe ein paar Leute gesehen, die dies zu ihren Websites hinzugefügt haben, also habe ich es auch getan. Fühlen sie sich frei, alles zu fragen, was Sie wollen. Fragen werden hier erst angezeigt, nachdem ich geantwortet habe, daher werde ich mein Bestes tun, um alle Ihre Fragen zu beantworten.",
   "blogHeader": "Harsh & Thoughts",
   "blogBio": "Ich schreibe gerne über meine Programmiererfahrung und helfe anderen dabei, mehr über Technologie zu erfahren oder coole Apps zu entwickeln, indem ich Blogs schreibe oder Vorträge halte. Auf meinem Blog erwarten Sie Inhalte von Datenbanken bis hin zu UI/UX-Design.",
- "aboutHeader": "About",
- "aboutBio": "Der Titel spricht wirklich für sich. Diese Seite enthält einige Informationen über mich, darunter Kurzbiographien und mein Portrait für Event-Organisatoren, zusammen mit einem kurzen Überblick über meine bisherige Programmierreise.",
- "tip": "Tipp: verwende ",
- "navigate": " um leichter zu navigieren",
- "lost": "Haben Sie sich verlaufen?",
- "broken": "Gibt es ein Problem auf der Webseite? Fühlen Sie sich frei, dies zu melden, indem sie ein Issue eröffnen ",
- "readBlog": "...und während Sie hier sind, warum lesen Sie nicht ein paar Artikel von meinem "
+  "aboutHeader": "About",
+  "aboutBio": "Der Titel spricht wirklich für sich. Diese Seite enthält einige Informationen über mich, darunter Kurzbiographien und mein Portrait für Event-Organisatoren, zusammen mit einem kurzen Überblick über meine bisherige Programmierreise.",
+  "tip": "Tipp: verwende ",
+  "navigate": " um leichter zu navigieren",
+  "lost": "Haben Sie sich verlaufen?",
+  "broken": "Gibt es ein Problem auf der Webseite? Fühlen Sie sich frei, dies zu melden, indem sie ein Issue eröffnen ",
+  "readBlog": "...und während Sie hier sind, warum lesen Sie nicht ein paar Artikel von meinem ",
+  "photographyHeader": "Fotografie ",
+  "photographyBio": "Nur ein paar Bilder, die ich hier und da gemacht habe..."
 }

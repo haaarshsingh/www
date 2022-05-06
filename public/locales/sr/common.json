@@ -39,11 +39,13 @@
   "amaBio": "Nisam siguran da li je ovo dobra ideja ili ne... ali video sam da je nekoliko ljudi dodalo ovo na svoje sajtove pa sam i ja to uradio. Slobodno pitajte, pitanja mogu biti i najveće gluposti na svetu. Pitanja će se pojaviti ovde tek kada odgovorim na njih, tako da ću se potruditi da odgovorim na sva vaša pitanja.",
   "blogHeader": "Haršove Misli",
   "blogBio": "Volim da pišem o svom iskustvu u programiranju i da pomažem drugima da nauče više o tehnologiji ili da naprave kul aplikacije tako što pišem blogove ili držim prezentacije. Na mom blogu možete očekivati da sadržaj bude o svemu od baza podataka pa do UI/UX dizajna.",
- "aboutHeader": "O Meni",
- "aboutBio": "Svrha ove stranice je sama po sebi jasna po naslovu. Stranica sadrži neke informacije o meni, uključujući krakte opise i moju sliku za organizatore događaja, uključujući i kratak opis mog puta u svetu programiranja do sad.",
- "tip": "Savet: Koristi preprečicu ",
- "navigate": "za brzu navigaciju na sajtu",
- "lost": "Izgleda da ste se izgubili?",
- "broken": "Da li je nešto pokvareno? Slobodno otvorite novi issue na ",
- "readBlog": "...i dok ste tu, pročitajte neke od mojih članaka na mom "
+  "aboutHeader": "O Meni",
+  "aboutBio": "Svrha ove stranice je sama po sebi jasna po naslovu. Stranica sadrži neke informacije o meni, uključujući krakte opise i moju sliku za organizatore događaja, uključujući i kratak opis mog puta u svetu programiranja do sad.",
+  "tip": "Savet: Koristi preprečicu ",
+  "navigate": "za brzu navigaciju na sajtu",
+  "lost": "Izgleda da ste se izgubili?",
+  "broken": "Da li je nešto pokvareno? Slobodno otvorite novi issue na ",
+  "readBlog": "...i dok ste tu, pročitajte neke od mojih članaka na mom ",
+  "photographyHeader": "Fotografija",
+  "photographyBio": "Kolekcija nekoliko fotografija koje sam slikao..."
 }

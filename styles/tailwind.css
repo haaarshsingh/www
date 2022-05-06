@@ -1,4 +1,4 @@
-@import url("./syntax.css");
+@import url('./syntax.css');
 
 @tailwind base;
 @tailwind components;
@@ -86,8 +86,8 @@ img {
   @apply px-5 py-3 font-mono text-sm text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800 mt-5;
 }
 
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*='language-'],
+pre[class*='language-'] {
   @apply text-white;
 }
 
@@ -123,4 +123,23 @@ th {
 
 .blog blockquote {
   @apply italic border-l-4 pl-4 border-cyan-500 bg-cyan-400/20 py-1 rounded my-5;
+}
+
+/* padding isn't working on next/image component */
+.p-6 {
+  padding: 20px !important;
+  border-radius: 30px;
+}
+
+.open {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vh;
+  margin: auto;
 }

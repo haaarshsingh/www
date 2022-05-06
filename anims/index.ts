@@ -77,3 +77,9 @@ export const Image: Variants = {
     },
   },
 }
+
+export const transition = {
+  type: 'spring',
+  damping: 25,
+  stiffness: 200,
+}
