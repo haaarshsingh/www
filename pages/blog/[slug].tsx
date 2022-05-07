@@ -11,7 +11,7 @@ const BlogPost: NextPage<{ post: Blog }> = ({ post }) => {
   const Component = useMDXComponent(post.body.code)
 
   return (
-    <Wrapper title={post.title} image={`/${post.title}.jpg`}>
+    <Wrapper title={post.title} image={`/static/${post.title}.jpg`}>
       <Post blog={post} />
       <div className='blog'>
         <Component components={{ ...components }} />
