@@ -10,7 +10,10 @@ const Uses: NextPage<{ length: number }> = ({ length }) => {
   const { t } = useTranslation('common')
 
   return (
-    <Wrapper>
+    <Wrapper
+      title='Photos'
+      description='A small photo gallery I made to keep a track of some cool photos I click here and there.'
+    >
       <Header head={t('photographyHeader')} bio={t('photographyBio')} />
       <Photos length={length} />
     </Wrapper>

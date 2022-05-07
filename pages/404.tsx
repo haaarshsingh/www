@@ -11,7 +11,7 @@ const About: NextPage = () => {
   const { t } = useTranslation('common')
 
   return (
-    <Wrapper>
+    <Wrapper title='Another Boring 404' description="There's nothing here!">
       <h1 className='my-20 text-5xl'>{t('lost')}</h1>
       <div className='blog'>
         <p>

@@ -14,7 +14,10 @@ const Privacy: NextPage<{ privacy: { body: { code: string } } }> = ({
   const { t } = useTranslation('common')
 
   return (
-    <Wrapper>
+    <Wrapper
+      title='Privacy'
+      description="Privacy policy and terms for any projects made under this domain. TLDR; I don't care about your data enough to sell it to companies. Just please don't do act like a doofus."
+    >
       <Header head={t('privacyHeader')} bio={t('privacyBio')} />
       <div className='blog'>
         <Component components={components} />

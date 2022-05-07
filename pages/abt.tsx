@@ -12,7 +12,10 @@ const About: NextPage<{ about: { body: { code: string } } }> = ({ about }) => {
   const { t } = useTranslation('common')
 
   return (
-    <Wrapper>
+    <Wrapper
+      title='About'
+      description='A brief overview of who I am, what I do, and where I started. This page also has important links for event organisers to download headshots along with my speaker bio.'
+    >
       <Header head={t('aboutHeader')} bio={t('aboutBio')} />
       <div className='blog'>
         <Component components={components} />

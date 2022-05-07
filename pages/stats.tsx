@@ -9,7 +9,10 @@ const Dashboard: NextPage = () => {
   const { t } = useTranslation('common')
 
   return (
-    <Wrapper>
+    <Wrapper
+      title='Statsistics'
+      description='Just a bunch of random statistics about me from several different APIs. Let me know if you have any ideas!'
+    >
       <Header head={t('statsHeader')} bio={t('statsBio')} />
       <Stats />
     </Wrapper>

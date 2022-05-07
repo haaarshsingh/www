@@ -8,7 +8,10 @@ import { Question } from '@prisma/client'
 
 const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
   return (
-    <Wrapper>
+    <Wrapper
+      title='Ask me Anything'
+      description='Yeah... you heard it right. Ask away! Just keep it (somewhat) family friendly, and I will do my best to respond.'
+    >
       <AskMeAnything questions={questions} />
       <Newsletter />
     </Wrapper>
@@ -16,7 +19,7 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
 }
 
 /**
- * Using getStaticProps as apparently server side rendering messes up next-i18next?
+ * Using SSR here apparently rendering messes up next-i18next?
  */
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const questions = await prisma.question.findMany({

@@ -6,7 +6,10 @@ import Newsletter from '@components/Newsletter'
 
 const BlogHome: NextPage = () => {
   return (
-    <Wrapper>
+    <Wrapper
+      title='Harsh & Thoughts'
+      description="Harsh Singh's personal blog with posts and tutorials about his opinions and thoughts on just about everything related to technology."
+    >
       <Blog />
       <Newsletter />
     </Wrapper>
