@@ -29,7 +29,7 @@ export const FastFadeContainer: Variants = {
     opacity: 1,
     transition: {
       delayChildren: 0,
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
     },
   },
 }
@@ -47,6 +47,7 @@ export const TopicsFade: Variants = {
   visible: {
     y: 0,
     opacity: 1,
+    transition: { duration: 0.2 },
   },
 }
 

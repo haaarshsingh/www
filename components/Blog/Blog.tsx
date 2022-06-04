@@ -6,7 +6,12 @@ import { allBlogs } from '@layer/generated'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
-import { FastFadeContainer, FadeContainer, Fade } from '@anims/index'
+import {
+  FastFadeContainer,
+  FadeContainer,
+  Fade,
+  TopicsFade,
+} from '@anims/index'
 
 allBlogs.sort((a, b) => {
   return a.published < b.published ? 1 : -1
@@ -41,7 +46,7 @@ const Topic: FC<{
           : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700'
       }`}
       onClick={() => (active ? setActiveTag('') : setActiveTag(text))}
-      variants={Fade}
+      variants={TopicsFade}
     >
       {text}
     </motion.button>
@@ -56,7 +61,7 @@ const Post: FC<BlogProps> = ({ slug, title, tags, published }) => {
           className='h-96 bg-cover bg-no-repeat bg-center rounded-2xl ring-gray-100 dark:ring-gray-900 ring hover:ring-offset-8 border-none ring-offset-gray-100 dark:ring-offset-gray-900 hover:ring-gray-900 dark:hover:ring-white transition-all'
           style={{ backgroundImage: `url("/static/${slug}.jpg")` }}
         />
-        <h1 className='mt-5 text-white'>{title}</h1>
+        <h1 className='mt-5 text-gray-900 dark:text-white'>{title}</h1>
         <p className='text-2xl mt-3'>
           {format(Date.parse(published), 'dd MMMM, yyyy')}
         </p>
@@ -69,10 +74,8 @@ const Blog: FC = () => {
   const topics = [
     'React',
     'UI/UX',
-    'Next',
+    'Next.js',
     'Vercel',
-    'CockroachDB',
-    'Prisma',
     'Databases',
     'Figma',
     'Design',
@@ -80,9 +83,7 @@ const Blog: FC = () => {
     'CSS',
     'GraphQL',
     'serverless',
-    'PlanetScale',
     'SQL',
-    'Productivity',
   ]
   const [active, setActive] = useState('')
   const filteredPosts = filter(active)
@@ -99,7 +100,7 @@ const Blog: FC = () => {
         variants={FastFadeContainer}
         initial='hidden'
         animate='visible'
-        className='grid grid-rows-auto grid-cols-2 sm:grid-rows-4 sm:grid-cols-4 gap-3 mt-6'
+        className='grid grid-rows-auto grid-cols-2 sm:grid-rows-3 sm:grid-cols-4 gap-3 mt-6'
       >
         {topics.map((topic, index) => (
           <Topic
