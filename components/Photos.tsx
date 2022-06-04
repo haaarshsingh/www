@@ -2,12 +2,7 @@ import shuffle from '@lib/shuffle'
 import Image from 'next/image'
 import { FC, useState } from 'react'
 import { motion } from 'framer-motion'
-import {
-  Fade,
-  FadeContainer,
-  FastFadeContainer,
-  transition,
-} from '@anims/index'
+import { Fade, FastFadeContainer, transition } from '@anims/index'
 
 const Picture: FC<{ index: number }> = ({ index }) => {
   const [open, setOpen] = useState(false)
@@ -25,25 +20,13 @@ const Picture: FC<{ index: number }> = ({ index }) => {
         onClick={() => setOpen(false)}
         transition={transition}
       />
-      {open ? (
-        <Image
-          alt='Picture'
-          src={`/static/photography/${index}.jpg`}
-          layout='fill'
-          objectFit='contain'
-          className='cursor-zoom-out z-40 grayscale-0 rounded-2xl'
-          onClick={() => setOpen(!open)}
-        />
-      ) : (
-        <Image
-          alt='Picture'
-          src={`/static/photography/${index}.jpg`}
-          layout='fill'
-          objectFit='cover'
-          className='p-6 transition-all grayscale hover:grayscale-0 cursor-zoom-in'
-          onClick={() => setOpen(!open)}
-        />
-      )}
+      <Image
+        alt='Picture'
+        src={`/static/photography/${index}.jpg`}
+        layout='fill'
+        objectFit='cover'
+        className='p-6 transition-all'
+      />
     </motion.div>
   )
 }
