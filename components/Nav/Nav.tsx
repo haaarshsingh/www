@@ -71,9 +71,10 @@ const Toggle: React.FC = () => {
   const linesProps = useSpring({ opacity, config: properties.springConfig })
 
   return (
-    <motion.div
+    <motion.button
       className='h-6 text-gray-500 dark:hover:text-white'
       variants={A.Image}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <animated.svg
         xmlns='http://www.w3.org/2000/svg'
@@ -86,7 +87,6 @@ const Toggle: React.FC = () => {
         strokeLinecap='round'
         strokeLinejoin='round'
         style={{ ...svgContainerProps, cursor: 'pointer' }}
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       >
         <mask id='mask'>
           <rect x='0' y='0' width='100%' height='100%' fill='white' />
@@ -118,7 +118,7 @@ const Toggle: React.FC = () => {
           <line x1='18.36' y1='5.64' x2='19.78' y2='4.22' />
         </animated.g>
       </animated.svg>
-    </motion.div>
+    </motion.button>
   )
 }
 
@@ -207,11 +207,12 @@ const Navbar: FC<{
           className='bg-none border-none flex flex-col items-center'
           ref={boundary}
         >
-          <FiGlobe
-            className='text-gray-500 dark:hover:text-white transition-colors hover:cursor-pointer mx-3'
-            size={24}
-            onClick={() => setOpen((o) => !o)}
-          />
+          <button onClick={() => setOpen((o) => !o)}>
+            <FiGlobe
+              className='text-gray-500 dark:hover:text-white transition-colors hover:cursor-pointer mx-3'
+              size={24}
+            />
+          </button>
           <LanguageMenu show={open} t={t} router={router} />
         </div>
         <Toggle />
