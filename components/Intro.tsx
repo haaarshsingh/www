@@ -19,24 +19,29 @@ const Socials: FC = () => {
     <motion.div className='flex mt-10' variants={A.FadeContainer}>
       {[
         {
+          aria: 'GitHub',
           icon: FiGithub,
           href: 'https://github.com/harshhhdev',
         },
         {
+          aria: 'Twitter',
           icon: FiTwitter,
           href: 'https://twitter.com/harshhhdev',
         },
         {
+          aria: 'Dribbble',
           icon: FiDribbble,
           href: 'https://dribbble.com/harshhhdev',
         },
         {
+          aria: 'Linkedin',
           icon: FiLinkedin,
           href: 'https://linkedin.com/in/harshhhdev',
         },
         {
+          aria: 'YouTube',
           icon: FiYoutube,
-          href: 'https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ',
+          href: 'https://youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ',
         },
       ].map((link, index) => (
         <Link href={link.href} key={index} passHref>
@@ -48,7 +53,7 @@ const Socials: FC = () => {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.8 }}
             variants={A.Fade}
-            aria-label={link.icon.toString()}
+            aria-label={link.aria}
           >
             <link.icon size={22} />
           </motion.a>
@@ -107,7 +112,7 @@ const Intro: FC = () => {
           src='https://avatars.githubusercontent.com/u/69592270?v=4'
           width={150}
           height={150}
-          alt='Profile'
+          alt='My face'
           className='rounded-full grayscale'
         />
       </motion.div>
