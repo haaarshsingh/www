@@ -33,7 +33,7 @@ const Portfolio = ({ Component, pageProps }: AppProps) => {
         <SessionProvider>
           <Palette />
           <NextNProgress color='#FF70C6' />
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </SessionProvider>
       </KBarProvider>
     </ThemeProvider>
