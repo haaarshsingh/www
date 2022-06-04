@@ -98,16 +98,16 @@ const CodeBlock: FC<{
       ref={textInput}
       onMouseEnter={onEnter}
       onMouseLeave={onExit}
-      className="relative"
+      className='relative'
     >
       {hovered && (
         <button
-          aria-label="Copy code"
-          type="button"
+          aria-label='Copy code'
+          type='button'
           className={`absolute flex justify-center items-center right-3 top-3 w-7 h-7 p-1 rounded border bg-gray-200 dark:bg-[#282e33] ${
             copied
-              ? "focus:outline-none focus:border-green-500 border-green-400 text-green-400"
-              : "border-gray-400 text-gray-400"
+              ? 'focus:border-green-500 border-green-400 text-green-400'
+              : 'border-gray-400 text-gray-400'
           }`}
           onClick={onCopy}
         >
@@ -117,7 +117,7 @@ const CodeBlock: FC<{
 
       <pre>{children}</pre>
     </div>
-  );
+  )
 };
 
 const Copy: FC<{ text: string }> = ({ text }) => {

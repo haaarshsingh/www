@@ -51,7 +51,7 @@ const Newsletter: FC = () => {
           className='bg-gray-200 dark:bg-gray-700 outline-none text-gray-900 dark:text-white h-full m-5 text-lg w-full'
           ref={inputRef}
         />
-        <button className='outline-none bg-white h-full text-lg p-5 hover:bg-gray-100 dark:hover:bg-gray-200 dark:text-gray-900 whitespace-nowrap'>
+        <button className='bg-white h-full text-lg p-5 hover:bg-gray-100 dark:hover:bg-gray-200 dark:text-gray-900 whitespace-nowrap outline-none focus-visible:bg-gray-300'>
           {t('subscribe')}
         </button>
       </form>

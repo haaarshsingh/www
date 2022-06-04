@@ -68,6 +68,7 @@ const Intro: FC = () => {
       variants={A.FadeContainer}
       initial='hidden'
       animate='visible'
+      id='home'
     >
       <motion.div variants={A.FadeContainer} initial='hidden' animate='visible'>
         <motion.h1

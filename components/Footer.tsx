@@ -10,7 +10,7 @@ const Footer: FC = () => {
         <div className='flex flex-col w-1/3'>
           {[
             {
-              link: '/#home',
+              link: '/',
               text: t('home'),
             },
             {

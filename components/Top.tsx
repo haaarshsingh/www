@@ -18,7 +18,7 @@ const BackToTop: FC = () => {
   return (
     <AnimatePresence>
       {showButton && (
-        <motion.div
+        <motion.button
           className='flex justify-center items-center p-5 bottom-8 right-8 text-xl rounded-full cursor-pointer bg-gray-900 text-gray-100 dark:bg-gray-100 dark:text-gray-900 fixed'
           onClick={() => {
             window.scrollTo({
@@ -33,7 +33,7 @@ const BackToTop: FC = () => {
           whileTap={{ scale: 0.8 }}
         >
           <IoArrowUp size={24} />
-        </motion.div>
+        </motion.button>
       )}
     </AnimatePresence>
   )
