@@ -13,6 +13,7 @@ import {
 } from 'kbar'
 import { useRouter } from 'next/router'
 import { useTheme } from 'next-themes'
+import FocusTrap from 'focus-trap-react'
 
 const CommandBar = () => {
   const router = useRouter()
@@ -94,11 +95,13 @@ const CommandBar = () => {
 
   return (
     <KBarPortal>
-      <KBarPositioner className='bg-black/30 select-none z-50'>
-        <KBarAnimator className='bg-gray-100 dark:bg-gray-900 w-1/3 min-w-500 rounded-lg text-lg text-white overflow-hidden'>
-          <KBarSearch className='w-full outline-none p-5 bg-gray-100 dark:bg-gray-900 rounded-lg text-gray-900 dark:text-white' />
-          <RenderResults />
-        </KBarAnimator>
+      <KBarPositioner className='backdrop-blur bg-black/70 select-none z-50'>
+        <FocusTrap>
+          <KBarAnimator className='bg-gray-100 dark:bg-gray-900 w-1/3 min-w-500 rounded-lg text-lg text-white overflow-hidden'>
+            <KBarSearch className='w-full outline-none p-5 bg-gray-100 dark:bg-gray-900 rounded-lg text-gray-900 dark:text-white' />
+            <RenderResults />
+          </KBarAnimator>
+        </FocusTrap>
       </KBarPositioner>
     </KBarPortal>
   )
@@ -139,7 +142,7 @@ const ResultItem = React.forwardRef(
       active: boolean
       currentRootActionId: ActionId
     },
-    ref: React.Ref<HTMLDivElement>
+    ref: React.Ref<HTMLAnchorElement>
   ) => {
     const ancestors = React.useMemo(() => {
       if (!currentRootActionId) return action.ancestors
@@ -150,7 +153,8 @@ const ResultItem = React.forwardRef(
     }, [action.ancestors, currentRootActionId])
 
     return (
-      <div
+      <a
+        href='#'
         ref={ref}
         className={`p-4 flex align-center justify-between cursor-pointer transition-all ${
           active ? 'bg-gray-200 dark:bg-gray-800/50' : 'transparent'
@@ -186,7 +190,7 @@ const ResultItem = React.forwardRef(
             ))}
           </div>
         ) : null}
-      </div>
+      </a>
     )
   }
 )
