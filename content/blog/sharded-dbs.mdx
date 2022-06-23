@@ -6,11 +6,11 @@ published: '2022-04-18'
 
 I love serverless technology. I play around and make lots of different serverless applications to experiment around with other cool technology. Within the huge cluster of technologies I use/experiment with, [PlanetScale] _was_ the database that I primarily used for my personal side-projects, as there wasn't any other "good" option _which the [Prisma ORM](https://prisma.io) supported_.
 
-[PlanetScale] is a [MySQL] serverless platform which simply sells [Vitess], a database clustering system for the horizontal scaling of [MySQL]. They didn't write their own database - possibly contributed to it, but they didn't write it. From the [Vitess] documentation:
+[PlanetScale] is a [MySQL] serverless platform which at the core is basically hosted [Vitess], with tooling and utilities to make it accessible. If you don't already know, [Vitess] a database clustering system for the horizontal scaling of [MySQL]. From the [Vitess] documentation:
 
 > Vitess was created in **2010** to solve the MySQL scalability challenges that the team at YouTube faced.
 
-In this article, we'll be moving towards understanding the structure of these non-ACID legacy sharded databases, why they're unable to support something as crucial as referential integrity, and why we should avoid using them in our applications. This article is more about the technology of [Vitess], although I've included [PlanetScale] in the title because, as I mentioned above, it's just selling [Vitess](https://vitess.io) (with some tooling) as a service and they've gained traction in the following months as being a "reliable" serverless database.
+In this article, we'll be moving towards understanding the structure of these non-ACID legacy sharded databases, why they're unable to support something as crucial as referential integrity, and why we should avoid using them in our applications. This article is more about the technology of [Vitess], although I've included [PlanetScale] in the title because, as I mentioned above, it seels hosted [Vitess](https://vitess.io) as a service and they've gained traction in the following months as being a reliable serverless database.
 
 # Background
 
@@ -38,13 +38,17 @@ Referential integrity is important as it keeps you from introducing new errors i
 
 # Why doesn't Vitess have it?
 
-So, to understand why [Vitess] is unable to support referential integrity, we have to take a dive into the architecture of the database. [Vitess] is a sharded non-ACID SQL database, not a true distributed ACID SQL database.
+So, to understand why [Vitess] is unable to support referential integrity, we have to take a dive into the architecture of the database. [Vitess] is a sharded non-ACID SQL database, not a true ACID SQL database. This means that the data is spread across several shards. 
 
-Now, you must be wondering what those terms are. Let me break them down for you: ACID is an acronym of Atomicity, Consistency, Isolation and Durability.
+Sharding is essentially partitioning a database into smaller parts that are faster, smaller, and more easily managable. This is the model that [Vitess] adopts to scale a database. This model is also used by NoSQL databases such as [MongoDB](https://www.mongodb.com/), and it's the essentially the main reason why the transactions in these databases are not ACID-compliant.
+
+If you're unfamiliar with databases, you must be wondering what some of those terms are. Let me break them down for you: ACID is an acronym of Atomicity, Consistency, Isolation and Durability.
 
 Here, atomicity refers to an action either completing or failing entirely - no partial completion of a transaction. Consistency refers to the transaction leaving the database in a valid state. Isolation simply means that two transactions are executed without any interference with each other, and durability means the changes of the transaction are saved.
 
 A shard is a horizontal partition of data in a database, and each shard is held on a separate database server instance to spread the load. So when we refer to a database which is sharded, we're talking about something like this. Now as I said earlier, [Vitess] is a sharded non-ACID SQL database, which basically means that it DOES NOT guarantee ACID properties of transactions.
+
+Now, it's important to remember that transactions within a single shard in Vitess are fully ACID-compliant, although [PlanetScale] does not give you the option to have foreign keys even with their free plan and scaler plans (which is $29/month!) even though they have their data stored in just a single shard.
 
 ### Why drop it?
 
@@ -80,11 +84,23 @@ It's not just [Vitess], it's been a standard practice for sharded databases to a
 
 Let's briefly talk about what ACID Isolation is. There are four levels to it (according to the SQL-92 standards), including serialisability, read committed, read uncommitted, and repeatable reads. With that being said, there are more levels of isolation, such as [Snapshot isolation](https://en.wikipedia.org/wiki/Snapshot_isolation) which isn't a SQL standard although used by several databases such as [Firebase](https://firebase.google.com/) or [MongoDB](https://www.mongodb.com/). If you're further interested in this, I recommend reading [this post](https://cinish.medium.com/database-acid-cap-isolation-levels-371b7e06a112). To keep it brief, I'm not going to go over what ever level of isolation does/means, but if you'd like to read more about that do check out [this page from the MySQL Documentation](https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html).
 
-ACID isolation refers to the database transactions being ACIDic, which is important as they guarantee that operations behave the way developers expect them to. I'm unsure on what they mean when they say "Guaranteeing ACID Isolation is very contentious and has high costs", but if they mean that guaranteeing ACID Isolation has high costs for _any product_, they're wrong. Several distributed ACID-compliant databases have the highest level of isolation (serialisable transactions) whilst still being performant with fast read/write speeds. In the context of [Vitess] though, they're not wrong as across multiple shards transactions cannot meet any level of isolation.
+ACID isolation refers to the database transactions being ACIDic, which is important as they guarantee that operations behave the way developers expect them to. I'm unsure on what they mean when they say "Guaranteeing ACID Isolation is very contentious and has high costs", but if they mean that guaranteeing ACID Isolation has high costs for _any product_, they're wrong. In the context of [Vitess] though, they're not wrong as across multiple shards transactions cannot meet any level of isolation.
+
+### Serialisable Isolation and Scalability
+
+Now, a common belief within a lot of is that serialisable isolation (which is also the highest level of isolation) leads to your database not being scalable, along with degraded write performance. This belief simply isn't true.
+
+Let's take the examle of [Spanner]. Manny MASSIVE scale apps both inside and outside of [Alphabet (Google)](https://abc.xyz/) rely on the database to effeciently scale their applications, and EVERY database transaction uses serialisable isolation with 'no stale reads' consistency. Even companies such as [DoorDash](https://www.doordash.com/) are using [CockroachDB](https://www.prnewswire.com/news-releases/introducing-cockroachdb-21-1-the-worlds-most-powerful-global-database-is-now-also-the-easiest-301293675.html) (another distributed ACID-compliant database) to scale up to some of the most massive workloads on the planet.
+
+Serialisable isolation will only cause problems if the application creates these 'hot spots' within the database, where it heavily contends on rows/pages in the database. Reads and writes of the same hot spot data in different transactions will contend and force blocking and/or restarts. Hot spots will create problems at any isolation level, but it is more pronounced at higher isolation levels like serialisable. 
+
+These issues aren't unsolvable though! Databases we discussed such as [CockroachDB] and [Spanner] offer ways to read "back in time". This provides lower consistency (e.g. stale reads are possible), but it also avoids contention. [CockroachDB] also offers hash sharding, follower reads, and other tools to resolve hot spot issues. 
 
 # Conclusion
 
-With all of this, you must be wondering: why would anybody want to use [PlanetScale] or [Vitess]? Well, I wonder the same. With many companies and websites, the reason was that they picked [Vitess] back when there weren't any better options. If you go to the beginning of the article, notice how it was created back in 2010. Now that we can enjoy an ACID-compliant scalable database with referential integrity, it would be in our best interest to shift towards these new databases, and I've started doing so already! Technology changes rapidly, and keeping your database up to speed is a crucial component of any application.
+With all of this, you must be wondering: why would anybody want to use [PlanetScale] or [Vitess]? Well, I wonder the same. With many companies and websites, the reason was that they picked [Vitess] back when there weren't any better options. If you go to the beginning of the article, notice how it was created back in 2010. Now that we can enjoy an ACID-compliant scalable database with referential integrity, it would be in our best interest to shift towards these new databases, and I've started doing so already!
+
+With that being said however, no technology is a hill to die on. Technologies such as [Vitess] are more battle-tested than [CockroachDB] or [Spanner] as they've scaled up to massive workloads such as [Slack](https://vitess.io/docs/13.0/overview/history/) or [YouTube](https://slack.engineering/scaling-datastores-at-slack-with-vitess/). Technology changes rapidly, and having a reliable databases which prevents errors and failures in the long-term can be of great support to the applications we build.
 
 [planetscale]: https://planetscale.com
 [mysql]: https://www.mysql.com/
