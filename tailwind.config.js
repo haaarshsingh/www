@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Barlow', 'Mukta'],
+        sans: ['Lexend Deca', 'Mukta'],
       },
       colors: {
         gray: {
