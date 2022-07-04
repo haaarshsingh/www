@@ -42,7 +42,7 @@ const Post: FC<{ blog: Blog }> = ({ blog }) => {
       >
         <div className="w-full h-full absolute bg-gradient-100" />
       </div>
-      <h1 className="text-4xl xl:text-6xl">{blog.title}</h1>
+      <h1 className="text-4xl xl:text-6xl !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r">{blog.title}</h1>
       <div className="flex justify-between mt-6">
         <p className="text-base sm:text-xl">
           {format(Date.parse(blog.published), "dd MMMM, yyyy")}
