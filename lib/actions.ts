@@ -52,7 +52,7 @@ const actions: Action[] = [
     shortcut: ['u'],
     keywords: 'tech gear',
     section: 'Navigation',
-    subtitle: 'My (budget) gear',
+    subtitle: 'All my gear',
     perform: () => window.open('/uses', '_self'),
   },
   {

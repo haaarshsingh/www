@@ -143,8 +143,8 @@ const BackgroundAnimation: FC = () => {
             values='0%;3%;0%'
             repeatCount='indefinite'
           ></animate>
-          <stop offset='0%' stop-color='#ff0'></stop>
-          <stop offset='100%' stop-color='#ff00'></stop>
+          <stop offset='0%' stopColor='#ff0'></stop>
+          <stop offset='100%' stopColor='#ff00'></stop>
         </radialGradient>
         <radialGradient
           id='Gradient2'
@@ -160,8 +160,8 @@ const BackgroundAnimation: FC = () => {
             values='0%;3%;0%'
             repeatCount='indefinite'
           ></animate>
-          <stop offset='0%' stop-color='#9EFF00'></stop>
-          <stop offset='100%' stop-color='#0ff0'></stop>
+          <stop offset='0%' stopColor='#9EFF00'></stop>
+          <stop offset='100%' stopColor='#0ff0'></stop>
         </radialGradient>
         <radialGradient
           id='Gradient3'
@@ -177,8 +177,8 @@ const BackgroundAnimation: FC = () => {
             values='0%;3%;0%'
             repeatCount='indefinite'
           ></animate>
-          <stop offset='0%' stop-color='#f0f'></stop>
-          <stop offset='100%' stop-color='#f0f0'></stop>
+          <stop offset='0%' stopColor='#f0f'></stop>
+          <stop offset='100%' stopColor='#f0f0'></stop>
         </radialGradient>
       </defs>
       <rect x='0' y='0' width='100%' height='100%' fill='url(#Gradient1)'>

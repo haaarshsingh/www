@@ -183,7 +183,7 @@ const ResultItem = React.forwardRef(
             {action.shortcut.map((sc) => (
               <kbd
                 key={sc}
-                className='bg-gray-300 dark:bg-gray-800 dark:text-gray-300 px-2 py-1 text-sm ml-2 rounded h-fit'
+                className='bg-gray-300 dark:bg-gray-800 dark:text-gray-300 text-white px-2 py-1 text-sm ml-2 rounded h-fit'
               >
                 {sc}
               </kbd>
