@@ -42,8 +42,8 @@ const Topic: FC<{
     <motion.button
       className={`text-lg p-3 rounded-full flex justify-center align-center transition-all ${
         active
-          ? 'bg-gray-900 dark:bg-gray-100 hover:bg-gray-700 dark:hover:bg-gray-300 text-gray-100 dark:text-gray-900'
-          : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700'
+          ? 'from-gradient-100 to-gradient-200 bg-gradient-to-r hover:bg-gray-700 text-white dark:hover:bg-gray-300'
+          : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-slate-200 dark:hover:bg-gray-700'
       }`}
       onClick={() => (active ? setActiveTag('') : setActiveTag(text))}
       variants={TopicsFade}
@@ -53,18 +53,15 @@ const Topic: FC<{
   )
 }
 
-const Post: FC<BlogProps> = ({ slug, title, tags, published }) => {
+const Post: FC<BlogProps> = ({ slug, title, tags, description, published, readingTime }) => {
   return (
     <Link href={`/blog/${slug}`} passHref locale={false}>
-      <motion.a className={tags} variants={Fade}>
-        <div
-          className='h-96 bg-cover bg-no-repeat bg-center rounded-2xl ring-gray-100 dark:ring-gray-900 ring hover:ring-offset-8 border-none ring-offset-gray-100 dark:ring-offset-gray-900 hover:ring-gray-900 dark:hover:ring-white transition-all'
-          style={{ backgroundImage: `url("/static/${slug}.jpg")` }}
-        />
-        <h1 className='mt-5 text-gray-900 dark:text-white'>{title}</h1>
-        <p className='text-2xl mt-3'>
-          {format(Date.parse(published), 'dd MMMM, yyyy')}
-        </p>
+      <motion.a className={`${tags} my-5 hover:bg-gray-800 p-7 rounded-lg transition-all`} variants={Fade}>
+        <h1 className='text-gray-900 dark:text-white text-2xl'>{title}</h1>
+        <p className='text-lg mt-3 text-gray-300'>{description}</p>
+        <div className='flex'>
+          <p className='text-lg mt-3 text-gray-500'>{Math.round(readingTime.minutes)} minutes • {readingTime.words} words • {format(Date.parse(published), 'dd MMMM, yyyy')}</p>
+        </div>
       </motion.a>
     </Link>
   )
@@ -115,7 +112,7 @@ const Blog: FC = () => {
         variants={FadeContainer}
         initial='hidden'
         animate='visible'
-        className='grid grid-rows-auto sm:grid-cols-2 gap-10 mt-24'
+        className='flex flex-col mt-10'
       >
         {filteredPosts!.map((blog, index) => (
           <Post {...blog} key={index} />

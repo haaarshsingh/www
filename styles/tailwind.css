@@ -4,13 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Magnat";
+  src: url("../public/fonts/MagnatText-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Magnat";
+  src: url("../public/fonts/MagnatHead-Semibold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
 * {
   @apply box-border p-0 m-0;
 }
 
 html,
 body {
-  @apply bg-gray-900 font-sans scroll-smooth;
+  @apply bg-gray-900 scroll-smooth;
+  font-family: 'Magnat';
 }
 
 h1 {
@@ -26,7 +41,7 @@ h3 {
 }
 
 button {
-  @apply font-sans cursor-pointer select-none;
+  @apply cursor-pointer select-none;
 }
 
 a {
@@ -67,11 +82,11 @@ img {
 }
 
 .blog a {
-  @apply text-gray-900 dark:text-white hover:underline underline-offset-8;
+  @apply text-gray-900 dark:text-white underline underline-offset-4 decoration-gray-600 hover:decoration-gray-500
 }
 
 .blog > .header {
-  @apply hover:no-underline;
+  @apply no-underline;
 }
 
 .blog p {
@@ -123,6 +138,10 @@ th {
 
 .blog blockquote {
   @apply italic border-l-4 pl-4 border-cyan-500 bg-cyan-400/20 py-1 rounded my-5;
+}
+
+kbd {
+  @apply !font-mono;
 }
 
 /* padding isn't working on next/image component */

@@ -126,7 +126,7 @@ const BackgroundAnimation: FC = () => {
     <svg
       viewBox='0 0 100 100'
       preserveAspectRatio='xMidYMid slice'
-      className='absolute w-full h-full top-0 left-0 dark:opacity-20 opacity-30 pointer-events-none overflow-visible'
+      className='absolute w-full h-full top-0 left-0 hue-rotate-180 dark:opacity-20 opacity-30 pointer-events-none overflow-visible'
     >
       <defs>
         <radialGradient

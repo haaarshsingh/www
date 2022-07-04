@@ -2,6 +2,7 @@
 title: 'UUID/GUID, CUID & NanoID: What is The Difference?'
 tags: 'planetscale,sql,productivity,databases,prisma,serverless'
 published: '2022-04-03'
+description: 'Understanding the differences between these IDs'
 ---
 
 So recently, I was on a live steam with [@itsaydrian](https://twitter.com/itsaydrian) on [Twitch](https://www.twitch.tv/videos/1440503147) where I demonstrated how to migrate a live serverless application ([Next.js](https://nextjs.org) and [Vercel](https://vercel.com)) from a [PostgreSQL](https://postgresql.org) database onto [CockroachDB serverless](https://cockroachlabs.com/lp/serverless) with zero application downtime. If you're interested in that, please do check out [the video](https://youtu.be/U57GDhVEU50).
@@ -67,6 +68,6 @@ On the NanoID's README, there's a section for [benchmarks](https://github.com/ai
 
 # Conclusion
 
-With that being said, I think I've given a fair comparison of the different methods of ID generation, their pros, and their cons. For most cases, I believe the best option is [NanoID] due to the fact that it's insanely customisable whilst being performant. It's slowly but surely taking over [uuidv4](https://www.npmjs.com/package/uuidv4), if we look at this [npm trends](https://www.npmtrends.com/cuid-vs-nanoid-vs-uuid) comparison between the three. In the context of [Prisma](https://prisma.io), the built-in CUID is perhaps the best choice.
+With that being said, I think I've given a fair comparison of the different methods of ID generation, their pros, and their cons. For most cases, I believe the best option is [NanoID] due to the fact that it's really customisable whilst being performant. It's slowly but surely taking over [uuidv4](https://www.npmjs.com/package/uuidv4), if we look at this [npm trends](https://www.npmtrends.com/cuid-vs-nanoid-vs-uuid) comparison between the three. In the context of [Prisma](https://prisma.io), the built-in CUID is perhaps the best choice.
 
 [nanoid]: https://github.com/ai/nanoid
