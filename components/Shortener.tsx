@@ -19,11 +19,11 @@ const Shortener: FC = () => {
       animate='visible'
     >
       <motion.h1 className='text-5xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'>
-        Whoa! What's this?
+        Whoa! What is this?
       </motion.h1>
       <motion.p className='text-lg'>
-        Hey there. My URL shortener currently isn't available for public use.
-        With that being said however, please don't hesitate to{' '}
+        Hey there. My URL shortener currently is not available for public use.
+        With that being said however, please do not hesitate to{' '}
         <a className='link' href='mailto:hi.harsh@pm.me'>
           email
         </a>{' '}
@@ -31,7 +31,7 @@ const Shortener: FC = () => {
         <a className='link' href='https://twitter.com/harshhhdev'>
           Twitter
         </a>{' '}
-        if you're interested in using it.
+        if you are interested in using it.
       </motion.p>
       {/* <motion.div className='flex items-center text-lg mb-5'>
         {session ? (
