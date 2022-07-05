@@ -97,8 +97,5 @@ export default withOGImage<'query', keyof typeof ImageProps>({
         </div>
       `
     },
-  },
-  dev: {
-    inspectHtml: true,
-  },
+  }
 })

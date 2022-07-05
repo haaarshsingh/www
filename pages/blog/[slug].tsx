@@ -6,12 +6,22 @@ import Newsletter from '@components/Newsletter'
 import Post from '@components/Blog/Post'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import components from 'components/MDX'
+import { format } from 'date-fns'
 
 const BlogPost: NextPage<{ post: Blog }> = ({ post }) => {
   const Component = useMDXComponent(post.body.code)
 
   return (
-    <Wrapper title={post.title} image={`/static/${post.title}.jpg`}>
+    <Wrapper
+      title={post.title}
+      image={`/api/image?title=${encodeURI(post.title)}&description=${encodeURI(
+        post.description
+      )}&readingTime=${Math.round(post.readingTime.minutes)}&words=${
+        post.readingTime.words
+      }&date=${encodeURI(
+        format(Date.parse(post.published), 'dd MMMM, yyyy')
+      )}&`}
+    >
       <Post blog={post} />
       <div className='blog'>
         <Component components={{ ...components }} />

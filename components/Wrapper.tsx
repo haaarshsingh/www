@@ -10,7 +10,7 @@ export const meta = {
   title: 'Harsh Singh',
   description:
     "👋 Hi there, I'm Harsh. 15yo highschool student & serverless fan",
-  image: '/banner.png',
+  image: 'https://hxrsh.in/banner.png',
   type: 'website',
 }
 
