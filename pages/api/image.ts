@@ -9,6 +9,11 @@ enum ImageProps {
 }
 
 const style = `
+  * {
+    margin: 0;
+    font-family: "Magnat";
+  }
+
   @font-face {
     font-family: "Magnat";
     src: url("https://hxrsh.in/fonts/MagnatText-Regular.otf");
@@ -34,7 +39,6 @@ const style = `
     background-size: cover;
     background-image: url("https://hxrsh.in/static/BlogBG.jpg");
     color: white;
-    font-family: "Magnat";
   }
 
   h1 {
