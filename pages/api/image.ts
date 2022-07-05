@@ -24,8 +24,8 @@ const style = `
   }
 
   div.main {
-    width:  1200px;
-    height: 630px;
+    width: 100vw;
+    height: 100vh;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
