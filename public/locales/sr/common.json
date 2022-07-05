@@ -47,5 +47,9 @@
   "broken": "Da li je nešto pokvareno? Slobodno otvorite novi issue na ",
   "readBlog": "...i dok ste tu, pročitajte neke od mojih članaka na mom ",
   "photographyHeader": "Fotografija",
-  "photographyBio": "Kolekcija nekoliko fotografija koje sam slikao..."
+  "photographyBio": "Kolekcija nekoliko fotografija koje sam slikao...",
+  "shortenerHeader": "Skraćivanje Linkova",
+  "shortenerBio": "Koristite moj domen za skraćivanje vaših linkova. Možete videti sve linkove koje ste skratili ovde.",
+  "wordsHeader": "Reči",
+  "wordsBio": "Neke engleske reči koje mi se sviđaju"
 }

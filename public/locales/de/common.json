@@ -47,5 +47,9 @@
   "broken": "Gibt es ein Problem auf der Webseite? Fühlen Sie sich frei, dies zu melden, indem sie ein Issue eröffnen ",
   "readBlog": "...und während Sie hier sind, warum lesen Sie nicht ein paar Artikel von meinem ",
   "photographyHeader": "Fotografie ",
-  "photographyBio": "Nur ein paar Bilder, die ich hier und da gemacht habe..."
+  "photographyBio": "Nur ein paar Bilder, die ich hier und da gemacht habe...",
+  "shortenerHeader": "Linkverkürzer",
+  "shortenerBio": "Verwenden Sie meine Domain, um Ihre Links zu kürzen. Hier können Sie alle Links sehen, die Sie erstellt haben.",
+  "wordsHeader": "Wörter",
+  "wordsBio": "Eine kleine Sammlung zufälliger englischer Wörter, die ich wirklich mag"
 }

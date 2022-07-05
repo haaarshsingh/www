@@ -39,7 +39,9 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
           </a>
         )}
       </motion.div>
-      <motion.h1 className='text-5xl my-7'>{t('amaHeader')}</motion.h1>
+      <motion.h1 className='text-5xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'>
+        {t('amaHeader')}
+      </motion.h1>
       <motion.p className='text-lg'>{t('amaBio')}</motion.p>
       {session ? (
         <Form />

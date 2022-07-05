@@ -44,6 +44,10 @@ button {
   @apply cursor-pointer select-none;
 }
 
+input, button {
+  font-family: 'Magnat';
+}
+
 a {
   @apply text-gray-400 underline-offset-4 no-underline;
 }
@@ -81,8 +85,8 @@ img {
   @apply text-white;
 }
 
-.blog a {
-  @apply text-gray-900 dark:text-white underline underline-offset-4 decoration-gray-600 hover:decoration-gray-500
+.blog a, .link {
+  @apply text-gray-900 dark:text-white underline underline-offset-4 decoration-gray-600 hover:decoration-gray-500;
 }
 
 .blog > .header {

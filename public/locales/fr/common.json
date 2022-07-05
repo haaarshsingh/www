@@ -47,5 +47,9 @@
   "broken": "Quelque chose est brisé? N'hésitez pas à reporter un problème à l'adresse suivante ",
   "readBlog": "...et pendant que vous êtes là, pourquoi ne pas lire quelques articles sur mon ",
   "photographyHeader": "Quelques photos",
-  "photographyBio": "Juste quelques photos que j'ai prises ici et là..."
+  "photographyBio": "Juste quelques photos que j'ai prises ici et là...",
+  "shortenerHeader": "Raccourcisseur d'URL",
+  "shortenerBio": "Utilisez mon domaine pour raccourcir vos liens. Vous pouvez voir tous les liens que vous avez créés ici.",
+  "wordsHeader": "Mots",
+  "wordsBio": "Une petite collection de mots anglais aléatoires que j'aime vraiment"
 }

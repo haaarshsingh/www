@@ -47,5 +47,9 @@
   "broken": "Is something broken? feel free to open up an issue at ",
   "readBlog": "...and while you're here, why not read a few articles on my ",
   "photographyHeader": "Photography",
-  "photographyBio": "Just some photos I've clicked here and there..."
+  "photographyBio": "Just some photos I've clicked here and there...",
+  "shortenerHeader": "URL Shortener",
+  "shortenerBio": "Use my domain to shorten your links! All of the links you've created are present on this page.",
+  "wordsHeader": "Words",
+  "wordsBio": "A small collection of random English words that I really like."
 }

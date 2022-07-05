@@ -5,7 +5,10 @@ import { FadeContainer, Fade } from '@anims/index'
 const Header: FC<{ head: string; bio: string }> = ({ head, bio }) => {
   return (
     <motion.div variants={FadeContainer} initial='hidden' animate='visible'>
-      <motion.h1 className='mt-20 text-5xl !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r' variants={Fade}>
+      <motion.h1
+        className='mt-20 text-5xl w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'
+        variants={Fade}
+      >
         {head}
       </motion.h1>
       <motion.p className='text-xl mt-5 mb-20' variants={Fade}>

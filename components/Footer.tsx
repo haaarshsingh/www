@@ -46,6 +46,14 @@ const Footer: FC = () => {
               text: t('photographyHeader'),
             },
             {
+              link: '/words',
+              text: t('wordsHeader'),
+            },
+            {
+              link: '/shortener',
+              text: t('shortenerHeader'),
+            },
+            {
               link: '/rss.xml',
               text: 'RSS',
             },
