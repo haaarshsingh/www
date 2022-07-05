@@ -4,8 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["cockroachdb"]
+  provider = "prisma-client-js"
 }
 
 enum Status {
@@ -17,8 +16,14 @@ model Question {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   status    Status   @default(UNANSWERED)
-  content   String   @db.VarChar(100)
+  content   String
   answer    String?
+}
+
+model Link {
+  id   String @id @default(uuid())
+  slug String @unique
+  url  String
 }
 
 model Account {

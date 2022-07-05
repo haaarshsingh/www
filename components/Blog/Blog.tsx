@@ -12,6 +12,8 @@ import {
   Fade,
   TopicsFade,
 } from '@anims/index'
+import { FiDribbble, FiGithub, FiTwitter } from 'react-icons/fi'
+import Image from './Image'
 
 allBlogs.sort((a, b) => {
   return a.published < b.published ? 1 : -1
@@ -53,14 +55,27 @@ const Topic: FC<{
   )
 }
 
-const Post: FC<BlogProps> = ({ slug, title, tags, description, published, readingTime }) => {
+const Post: FC<BlogProps> = ({
+  slug,
+  title,
+  tags,
+  description,
+  published,
+  readingTime,
+}) => {
   return (
     <Link href={`/blog/${slug}`} passHref locale={false}>
-      <motion.a className={`${tags} my-5 hover:bg-gray-800 p-7 rounded-lg transition-all`} variants={Fade}>
+      <motion.a
+        className={`${tags} my-5 hover:bg-gray-800 p-7 rounded-lg transition-all`}
+        variants={Fade}
+      >
         <h1 className='text-gray-900 dark:text-white text-2xl'>{title}</h1>
         <p className='text-lg mt-3 text-gray-300'>{description}</p>
         <div className='flex'>
-          <p className='text-lg mt-3 text-gray-500'>{Math.round(readingTime.minutes)} minutes • {readingTime.words} words • {format(Date.parse(published), 'dd MMMM, yyyy')}</p>
+          <p className='text-lg mt-3 text-gray-500'>
+            {Math.round(readingTime.minutes)} minutes • {readingTime.words}{' '}
+            words • {format(Date.parse(published), 'dd MMMM, yyyy')}
+          </p>
         </div>
       </motion.a>
     </Link>
