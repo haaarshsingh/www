@@ -9,7 +9,7 @@ export const meta = {
   root: 'https://hxrsh.in',
   title: 'Harsh Singh',
   description:
-    "👋 Hi there, I'm Harsh. 15yo highschool student & serverless fan",
+    "Passionate developer and speaker who's interested in frontend, databases and design",
   image: 'https://hxrsh.in/banner.png',
   type: 'website',
 }

@@ -14,11 +14,11 @@ const BlogPost: NextPage<{ post: Blog }> = ({ post }) => {
   return (
     <Wrapper
       title={post.title}
-      image={`/api/image?title=${encodeURI(post.title)}&description=${encodeURI(
-        post.description
-      )}&readingTime=${Math.round(post.readingTime.minutes)}&words=${
-        post.readingTime.words
-      }&date=${encodeURI(
+      image={`https://hxrsh.in/api/image?title=${encodeURI(
+        post.title
+      )}&description=${encodeURI(post.description)}&readingTime=${Math.round(
+        post.readingTime.minutes
+      )}&words=${post.readingTime.words}&date=${encodeURI(
         format(Date.parse(post.published), 'dd MMMM, yyyy')
       )}&`}
     >
