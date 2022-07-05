@@ -21,6 +21,7 @@ const BlogPost: NextPage<{ post: Blog }> = ({ post }) => {
       )}&words=${post.readingTime.words}&date=${encodeURI(
         format(Date.parse(post.published), 'dd MMMM, yyyy')
       )}&`}
+      description={post.description}
     >
       <Post blog={post} />
       <div className='blog'>
