@@ -29,8 +29,8 @@ const style = `
   }
 
   div.main {
-    width: 100vw;
-    height: 100vh;
+    width: 1200px;
+    height: 630px;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
