@@ -28,17 +28,20 @@ const style = `
     font-style: normal;
   }
 
-  div.main {
+  .main {
     width: 1200px;
     height: 630px;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 48px;
     background-size: cover;
     background-image: url("https://hxrsh.in/static/BlogBG.jpg");
     color: white;
+  }
+
+  .top {
+  	margin: 50px 0 0 50px;
   }
 
   h1 {
@@ -54,12 +57,13 @@ const style = `
     color: #A0A0A0;
   }
 
-  div.bottom {
+  .bottom {
     display: flex;
     justify-content: space-between;
+    margin: 0 50px 50px 50px;
   }
 
-  div.socials {
+  .socials {
     display: flex;
     align-items: center;
   }
@@ -75,7 +79,7 @@ export default withOGImage<'query', keyof typeof ImageProps>({
       return `
         <div class='main'>
           <style>${style}</style>  
-          <div>
+          <div class='top'>
             <h1>${title}</h1>
             <p class='description'>${description}</p>
           </div>
