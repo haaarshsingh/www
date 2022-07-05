@@ -11,6 +11,17 @@ export const FadeContainer: Variants = {
   },
 }
 
+export const WordsContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.02,
+    },
+  },
+}
+
 export const LanguageMenu: Variants = {
   hidden: { y: -50, opacity: 0 },
   visible: {

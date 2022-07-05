@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { motion } from 'framer-motion'
+import { Fade, WordsContainer } from '@anims/index'
 
 const Words: FC = () => {
   const cursors = [
@@ -118,9 +119,15 @@ const Words: FC = () => {
   ]
 
   return (
-    <motion.div className='flex flex-col items-center'>
+    <motion.div
+      className='flex flex-col items-center'
+      variants={WordsContainer}
+      initial='hidden'
+      animate='visible'
+    >
       {words.map((word, index) => (
-        <h1
+        <motion.h1
+          variants={Fade}
           className='text-3xl w-full h-fit my-5 text-center hover:!text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 hover:!bg-gradient-to-r'
           style={{
             cursor: cursors[Math.floor(Math.random() * cursors.length)],
@@ -128,7 +135,7 @@ const Words: FC = () => {
           key={index}
         >
           {word}
-        </h1>
+        </motion.h1>
       ))}
     </motion.div>
   )
