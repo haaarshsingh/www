@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => ({
   props: {
     post: allBlogs.find((post) => post.slug === context.params?.slug),
     params: context.params,
-    ...(await serverSideTranslations(context.locale!, ['common'])),
+    ...(await serverSideTranslations('en', ['common'])),
   },
 })
 
