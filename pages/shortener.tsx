@@ -1,8 +1,7 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import Wrapper from '@components/Wrapper'
 import { useTranslation } from 'next-i18next'
-import Header from '@components/Header'
 import Shortener from '@components/Shortener'
 
 const Uses: NextPage = () => {
@@ -15,10 +14,14 @@ const Uses: NextPage = () => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const links = await fetch('/api/links')
+  console.log(links)
+
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common'])),
+      links: links,
     },
   }
 }

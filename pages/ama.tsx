@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Wrapper from '@components/Wrapper'
 import AskMeAnything from '@components/AMA'
@@ -18,10 +18,7 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
   )
 }
 
-/**
- * Using SSR here apparently rendering messes up next-i18next?
- */
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const questions = await prisma.question.findMany({
     where: { status: 'ANSWERED' },
     orderBy: { createdAt: 'desc' },

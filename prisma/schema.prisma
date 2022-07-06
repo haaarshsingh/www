@@ -16,14 +16,16 @@ model Question {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   status    Status   @default(UNANSWERED)
-  content   String
+  content   String   @db.String(100)
   answer    String?
 }
 
 model Link {
-  id   String @id @default(uuid())
-  slug String @unique
-  url  String
+  id     String @id @default(uuid())
+  slug   String @unique
+  url    String
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
@@ -68,6 +70,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  links         Link[]
 }
 
 model VerificationToken {

@@ -18,22 +18,7 @@ const Shortener: FC = () => {
       initial='hidden'
       animate='visible'
     >
-      <motion.h1 className='text-5xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'>
-        Whoa! What is this?
-      </motion.h1>
-      <motion.p className='text-lg'>
-        Hey there. My URL shortener currently is not available for public use.
-        With that being said however, please do not hesitate to{' '}
-        <a className='link' href='mailto:hi.harsh@pm.me'>
-          email
-        </a>{' '}
-        me or DM me on{' '}
-        <a className='link' href='https://twitter.com/harshhhdev'>
-          Twitter
-        </a>{' '}
-        if you are interested in using it.
-      </motion.p>
-      {/* <motion.div className='flex items-center text-lg mb-5'>
+      <motion.div className='flex items-center text-lg mb-5'>
         {session ? (
           <>
             <Image
@@ -69,7 +54,7 @@ const Shortener: FC = () => {
             No information is displayed to users of this website
           </p>
         </div>
-      )} */}
+      )}
     </motion.div>
   )
 }
@@ -113,14 +98,14 @@ const Form: FC = () => {
   }
   return (
     <form className='my-10'>
-      <div className='flex'>
+      <div className='flex items-center'>
         <p className='text-3xl text-white'>https://hxrsh.in/</p>
         <input
           placeholder='your-slug'
           className='bg-transparent text-3xl w-full outline-none'
         />
       </div>
-      <div className='flex'>
+      <div className='flex items-center mt-2'>
         <p className='text-3xl text-white'>https://</p>
         <input
           placeholder='example.com'
