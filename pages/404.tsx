@@ -16,7 +16,7 @@ const About: NextPage = () => {
       <div className='blog'>
         <p>
           {t('broken')}
-          <Link href='htps://github.com/harshhhdev/harshhhdev.github.io/issues/new'>
+          <Link href='https://github.com/harshhhdev/harshhhdev.github.io/issues/new'>
             harshhhdev/harshhhdev.github.io
           </Link>
         </p>
