@@ -6,7 +6,6 @@ module.exports = {
     locales: ['en', 'hn', 'de', 'fr', 'sr'],
     ignoreRoutes: ['/blog/', '/public/'],
     serializeConfig: false,
-    defaultNS: 'app',
-    serializeConfig: false,
+    localePath: path.resolve('./public/locales'),
   },
 }
