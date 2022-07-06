@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/69592270/119919017-87f4b580-bf37-11eb-9567-92b86338c4e9.png)
+![image](https://hxrsh.in/banner.png)
 
 <p align="center">
   <a href="https://hxrsh.in/">
