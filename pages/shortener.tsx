@@ -1,9 +1,9 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import Wrapper from '@components/Wrapper'
-import { useTranslation } from 'next-i18next'
 import Shortener from '@components/Shortener'
 import { Link } from '@prisma/client'
+import prisma from '@lib/prisma'
 import { getSession } from 'next-auth/react'
 import { CustomSession } from './api/auth/[...nextauth]'
 
