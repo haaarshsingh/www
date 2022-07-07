@@ -48,7 +48,7 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
       <motion.p className='text-lg' variants={A.Fade}>
         {t('amaBio')}
       </motion.p>
-      {session ? (
+      {true ? (
         <Form />
       ) : (
         <motion.div
@@ -115,7 +115,7 @@ const Form: FC = () => {
         placeholder='Ask away...'
         maxLength={100}
         ref={content}
-        className='w-full mt-8 mb-5 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y font-sans text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
+        className='w-full mt-8 mb-5 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
       />
       {visible && (
         <motion.p className='text-green-400 mb-5'>
