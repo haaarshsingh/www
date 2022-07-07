@@ -21,12 +21,12 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
     >
       <motion.div className='flex items-center text-lg mb-5'>
         {session ? (
-          <motion.div variants={A.Fade}>
+          <motion.div variants={A.Fade} className='flex items-center'>
             <Image
               width={40}
               height={40}
-              src='https://avatars.githubusercontent.com/u/69592270?v=4'
-              alt='profile'
+              src={session.user?.image!}
+              alt='Your profile pic'
               className='rounded-full'
             />
             <Link href='/api/auth/logout' passHref>
