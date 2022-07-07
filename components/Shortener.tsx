@@ -92,8 +92,8 @@ const Form: FC = () => {
     headers.append('Content-Type', 'application/json')
 
     const raw = JSON.stringify({
-      slug: sanitize(slug.current?.value!),
-      url: sanitize(url.current?.value!),
+      slug: sanitize(`https://hxrsh.in` + slug.current?.value!),
+      url: sanitize(`https://` + url.current?.value!),
     })
 
     const requestOptions: RequestInit = {
@@ -116,12 +116,13 @@ const Form: FC = () => {
   }
 
   return (
-    <motion.form className='my-10' onSubmit={createLink} variants={A.Fade}>
+    <form className='my-10' onSubmit={createLink}>
       <motion.div className='flex items-center' variants={A.Fade}>
         <p className='text-3xl text-white'>https://hxrsh.in/</p>
         <input
           placeholder='your-slug'
           className='bg-transparent text-3xl w-full outline-none'
+          ref={slug}
         />
       </motion.div>
       <motion.div className='flex items-center mt-2' variants={A.Fade}>
@@ -129,6 +130,7 @@ const Form: FC = () => {
         <input
           placeholder='example.com'
           className='bg-transparent text-3xl w-full outline-none'
+          ref={url}
         />
       </motion.div>
       {visible && (
@@ -150,7 +152,7 @@ const Form: FC = () => {
       >
         Create URL
       </motion.button>
-    </motion.form>
+    </form>
   )
 }
 
