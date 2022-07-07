@@ -80,6 +80,7 @@ const Shortener: FC<{ links: LinkType[] }> = ({ links }) => {
 const Form: FC = () => {
   const slug = useRef<HTMLInputElement>(null)
   const url = useRef<HTMLInputElement>(null)
+  const [newSlug, setNewSlug] = useState('')
   const [visible, setVisible] = useState(false)
   const [error, setError] = useState('')
 
@@ -92,8 +93,8 @@ const Form: FC = () => {
     headers.append('Content-Type', 'application/json')
 
     const raw = JSON.stringify({
-      slug: sanitize(`https://hxrsh.in` + slug.current?.value!),
-      url: sanitize(`https://` + url.current?.value!),
+      slug: sanitize(`https://hxrsh.in/${slug.current?.value!}`),
+      url: sanitize(`https://${url.current?.value!}`),
     })
 
     const requestOptions: RequestInit = {
@@ -103,9 +104,11 @@ const Form: FC = () => {
     }
 
     try {
-      await fetch('/api/link', requestOptions)
+      const response = await fetch('/api/link', requestOptions)
+      console.log(response)
 
       setVisible(true)
+      setNewSlug(slug!.current!.value)
 
       slug!.current!.value = ''
       url!.current!.value = ''
@@ -116,8 +119,8 @@ const Form: FC = () => {
   }
 
   return (
-    <form className='my-10' onSubmit={createLink}>
-      <motion.div className='flex items-center' variants={A.Fade}>
+    <motion.form className='my-10' onSubmit={createLink} variants={A.Fade}>
+      <motion.div className='flex items-center'>
         <p className='text-3xl text-white'>https://hxrsh.in/</p>
         <input
           placeholder='your-slug'
@@ -125,7 +128,7 @@ const Form: FC = () => {
           ref={slug}
         />
       </motion.div>
-      <motion.div className='flex items-center mt-2' variants={A.Fade}>
+      <motion.div className='flex items-center mt-2'>
         <p className='text-3xl text-white'>https://</p>
         <input
           placeholder='example.com'
@@ -134,13 +137,13 @@ const Form: FC = () => {
         />
       </motion.div>
       {visible && (
-        <motion.p className='mt-5 text-green-400 mb-5' variants={A.Fade}>
+        <motion.p className='mt-5 text-green-400 mb-5'>
           🎉 Your link is live at{' '}
           <a
-            href={`https://hxrsh.in/gay`}
+            href={`https://hxrsh.in/${newSlug}`}
             className='text-gray-900 dark:text-white underline underline-offset-4 decoration-gray-600 hover:decoration-gray-500'
           >
-            hxrsh.in/gay!
+            hxrsh.in/{newSlug}!
           </a>
         </motion.p>
       )}
@@ -148,11 +151,10 @@ const Form: FC = () => {
       <motion.button
         className='my-10 text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-8 py-3 text-lg rounded border border-solid border-gray-900 dark:border-white hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white focus:bg-gray-100 dark:focus-visible:bg-gray-900 focus:text-gray-900 dark:focus:text-white duration-200'
         type='submit'
-        variants={A.Fade}
       >
         Create URL
       </motion.button>
-    </form>
+    </motion.form>
   )
 }
 

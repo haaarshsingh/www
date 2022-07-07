@@ -5,9 +5,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Wrapper from '@components/Wrapper'
 import Newsletter from '@components/Newsletter'
 
-const LinkRedirect: NextPage<{ uses: string }> = ({ uses }) => {
+const LinkRedirect: NextPage<{ valid: boolean }> = ({ valid }) => {
   return (
-    <Wrapper title='Another Boring 404' description="There's nothing here!">
+    <Wrapper
+      title={valid === false ? 'Another Boring 404' : 'Redirect'}
+      description={
+        valid === false
+          ? "There's nothing here!"
+          : 'This page redirects you to... well, click and find out!'
+      }
+    >
       <NotFound />
       <Newsletter />
     </Wrapper>
