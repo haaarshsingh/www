@@ -7,15 +7,24 @@ const link = async (req: NextApiRequest, res: NextApiResponse) => {
   const session: CustomSession | null = await getSession({ req })
   const { slug, url } = req.body
 
-  const shortenedLink = prisma.link.create({
-    data: {
-      slug: slug,
-      url: url,
-      userId: 'cl1pj1tkh00063nv1flxlefw6',
-    },
-  })
+  if (typeof session?.user?.id === 'string') {
+    try {
+      const shortenedLink = await prisma.link.create({
+        data: {
+          slug: slug,
+          url: url,
+          userId: session.user.id,
+        },
+      })
 
-  return res.status(200).json({ shortenedLink })
+      return res.status(200).json({ shortenedLink })
+    } catch (err) {
+      console.error(err)
+      return res.status(509).json({ error: err })
+    }
+  }
+
+  return res.status(401).json({ error: "User isn't authenticated" })
 }
 
 export default link

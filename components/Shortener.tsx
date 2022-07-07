@@ -104,8 +104,7 @@ const Form: FC = () => {
     }
 
     try {
-      const response = await fetch('/api/link', requestOptions)
-      console.log(response)
+      await fetch('/api/link', requestOptions)
 
       setVisible(true)
       setNewSlug(slug!.current!.value)
