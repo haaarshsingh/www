@@ -93,7 +93,7 @@ const Form: FC = () => {
     headers.append('Content-Type', 'application/json')
 
     const raw = JSON.stringify({
-      slug: sanitize(`https://hxrsh.in/${slug.current?.value!}`),
+      slug: sanitize(slug.current?.value!),
       url: sanitize(`https://${url.current?.value!}`),
     })
 
