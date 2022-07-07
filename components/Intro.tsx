@@ -116,7 +116,7 @@ const Intro: FC = () => {
           className='rounded-full z-10'
         />
       </motion.div>
-      <BackgroundAnimation />
+    <BackgroundAnimation />
     </motion.div>
   );
 };

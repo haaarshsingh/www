@@ -21,8 +21,7 @@ model Question {
 }
 
 model Link {
-  id     String @id @default(uuid())
-  slug   String @unique
+  slug   String @id
   url    String
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

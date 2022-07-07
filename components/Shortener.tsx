@@ -1,13 +1,15 @@
-import { FC, FormEvent, useRef, useState } from 'react'
+import { FC, FormEvent, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import * as A from '@anims/index'
 import Image from 'next/image'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { signIn, useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { sanitize } from 'dompurify'
+import { FiCheck, FiClipboard } from 'react-icons/fi'
+import type { Link as LinkType } from '@prisma/client'
 
-const Shortener: FC = () => {
+const Shortener: FC<{ links: LinkType[] }> = ({ links }) => {
   const { t } = useTranslation('common')
   const { data: session, status } = useSession()
 
@@ -20,7 +22,7 @@ const Shortener: FC = () => {
     >
       <motion.div className='flex items-center text-lg mb-5'>
         {session ? (
-          <>
+          <motion.div variants={A.Fade}>
             <Image
               width={40}
               height={40}
@@ -28,24 +30,32 @@ const Shortener: FC = () => {
               alt='profile'
               className='rounded-full'
             />
-            <Link href='/api/auth/logout' passHref>
+            <NextLink href='/api/auth/logout' passHref>
               <a className='ml-3'>{t('logout')}</a>
-            </Link>
-          </>
+            </NextLink>
+          </motion.div>
         ) : (
-          <a href='#' onClick={() => signIn('github')}>
+          <motion.a href='#' onClick={() => signIn('github')} variants={A.Fade}>
             {t('loginWithGitHub')}
-          </a>
+          </motion.a>
         )}
       </motion.div>
-      <motion.h1 className='text-5xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'>
+      <motion.h1
+        className='text-5xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'
+        variants={A.Fade}
+      >
         {t('shortenerHeader')}
       </motion.h1>
-      <motion.p className='text-lg'>{t('shortenerBio')}</motion.p>
-      {true ? (
+      <motion.p className='text-lg' variants={A.Fade}>
+        {t('shortenerBio')}
+      </motion.p>
+      {session ? (
         <Form />
       ) : (
-        <div className='border-gray-200 dark:border-gray-700 border-2 rounded-lg my-16 p-10'>
+        <motion.div
+          variants={A.Fade}
+          className='border-gray-200 dark:border-gray-700 border-2 rounded-lg my-16 p-10'
+        >
           <h3 className='text-3xl'>Want to shorten a link?</h3>
           <p className='text-lg mt-10'>
             Continue by connecting your GitHub account with this website!
@@ -53,7 +63,15 @@ const Shortener: FC = () => {
           <p className='text-lg'>
             No information is displayed to users of this website
           </p>
-        </div>
+        </motion.div>
+      )}
+      {links && (
+        <>
+          <motion.h1 variants={A.Fade}>Your Links</motion.h1>
+          {links.map((link, index) => (
+            <Link slug={link.slug} url={link.url} key={index} />
+          ))}
+        </>
       )}
     </motion.div>
   )
@@ -65,7 +83,7 @@ const Form: FC = () => {
   const [visible, setVisible] = useState(false)
   const [error, setError] = useState('')
 
-  const createPost = async (e: FormEvent<HTMLFormElement>) => {
+  const createLink = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (slug!.current!.value === '' || url!.current!.value === '') return
@@ -85,7 +103,7 @@ const Form: FC = () => {
     }
 
     try {
-      await fetch('/api/url', requestOptions)
+      await fetch('/api/link', requestOptions)
 
       setVisible(true)
 
@@ -96,24 +114,25 @@ const Form: FC = () => {
       console.log(err)
     }
   }
+
   return (
-    <form className='my-10'>
-      <div className='flex items-center'>
+    <motion.form className='my-10' onSubmit={createLink}>
+      <motion.div className='flex items-center' variants={A.Fade}>
         <p className='text-3xl text-white'>https://hxrsh.in/</p>
         <input
           placeholder='your-slug'
           className='bg-transparent text-3xl w-full outline-none'
         />
-      </div>
-      <div className='flex items-center mt-2'>
+      </motion.div>
+      <motion.div className='flex items-center mt-2' variants={A.Fade}>
         <p className='text-3xl text-white'>https://</p>
         <input
           placeholder='example.com'
           className='bg-transparent text-3xl w-full outline-none'
         />
-      </div>
+      </motion.div>
       {visible && (
-        <p className='mt-5 text-green-400 mb-5'>
+        <motion.p className='mt-5 text-green-400 mb-5' variants={A.Fade}>
           🎉 Your link is live at{' '}
           <a
             href={`https://hxrsh.in/gay`}
@@ -121,16 +140,69 @@ const Form: FC = () => {
           >
             hxrsh.in/gay!
           </a>
-        </p>
+        </motion.p>
       )}
       {error !== '' && <p className='mt-5 text-rose-400'>😅 {error}</p>}
-      <button
+      <motion.button
         className='my-10 text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-8 py-3 text-lg rounded border border-solid border-gray-900 dark:border-white hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white focus:bg-gray-100 dark:focus-visible:bg-gray-900 focus:text-gray-900 dark:focus:text-white duration-200'
         type='submit'
+        variants={A.Fade}
       >
         Create URL
-      </button>
-    </form>
+      </motion.button>
+    </motion.form>
+  )
+}
+
+const Link: FC<Pick<LinkType, 'slug' | 'url'>> = ({ slug, url }) => {
+  const [copied, setCopied] = useState(false)
+  const [originalCopied, setOriginalCopied] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => setCopied(false), 10000)
+  }, [copied, setCopied])
+
+  useEffect(() => {
+    setTimeout(() => setOriginalCopied(false), 10000)
+  }, [originalCopied, setOriginalCopied])
+
+  return (
+    <motion.div variants={A.Fade} className='my-10'>
+      <h1 className='flex items-center text-xl !text-gray-300'>
+        Shortened URL:{' '}
+        <NextLink href={`https://hxrsh.in/${slug}`} passHref>
+          <a className='link ml-1'>hxrsh.in/{slug}</a>
+        </NextLink>
+        {copied ? (
+          <FiCheck className='ml-2' />
+        ) : (
+          <FiClipboard
+            className='ml-2 hover:text-white cursor-pointer transition-colors'
+            onClick={() => {
+              setCopied(true)
+              navigator.clipboard.writeText(`https://hxrsh.in/${slug}`)
+            }}
+          />
+        )}
+      </h1>
+      <h1 className='flex items-center text-xl !text-gray-300 mt-2'>
+        Original URL:{' '}
+        <NextLink href={url} passHref>
+          <a className='link ml-1'>{url}</a>
+        </NextLink>
+        {originalCopied ? (
+          <FiCheck className='ml-2' />
+        ) : (
+          <FiClipboard
+            className='ml-2 hover:text-white cursor-pointer transition-colors'
+            onClick={() => {
+              setOriginalCopied(true)
+              navigator.clipboard.writeText(url)
+            }}
+          />
+        )}
+      </h1>
+    </motion.div>
   )
 }
 

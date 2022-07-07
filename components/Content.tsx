@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { FiEye, FiChevronRight } from 'react-icons/fi'
 import { useTranslation } from 'next-i18next'
 import { format } from 'timeago.js'
-import { motion } from 'framer-motion'
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import * as A from '@anims/index'
 import { allBlogs, Blog } from '@layer/generated'
 allBlogs.sort((a, b) => {
@@ -14,6 +14,7 @@ const Content: FC<{
   data: Blog[]
 }> = ({ data }) => {
   const { t } = useTranslation('common')
+  const [selected, setSelected] = useState(0)
 
   return (
     <motion.div
@@ -25,28 +26,17 @@ const Content: FC<{
       <motion.h1 variants={A.Fade} className='mb-12'>
         {t('blogsHeader')}
       </motion.h1>
-      {data.map((item, index) => (
-        <Link href={`/blog/${item.slug}`} key={index} passHref locale={false}>
-          <motion.a
-            href={`/blog/${item.slug}`}
-            className='flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer rounded-lg p-5 hover:bg-gray-200 dark:hover:bg-gray-700'
-            variants={A.Fade}
-          >
-            <h1 className='text-xl text-ellipsis whitespace-nowrap overflow-hidden w-11/12 sm:w-2/3'>
-              {typeof item.title === 'string' && item.title}
-            </h1>
-            <div className='flex items-center justify-center h-full'>
-              <p className='text-gray-500 dark:text-white'>
-                {format(item.published)}
-                {' · '}
-                {Math.trunc(item.readingTime.minutes)}
-                {' minute read'}
-              </p>
-              <div className='flex text-white'></div>
-            </div>
-          </motion.a>
-        </Link>
-      ))}
+      <AnimateSharedLayout>
+        {data.map((item, index) => (
+          <Post
+            item={item}
+            key={index}
+            onMouseOver={() => setSelected(index + 1)}
+            onMouseLeave={() => setSelected(0)}
+            isSelected={selected === index + 1}
+          />
+        ))}
+      </AnimateSharedLayout>
       <Link href='/blog' passHref>
         <motion.a
           className='flex items-center text-xl group w-fit mt-10'
@@ -57,6 +47,55 @@ const Content: FC<{
         </motion.a>
       </Link>
     </motion.div>
+  )
+}
+
+const Post: FC<{
+  item: Blog
+  isSelected: boolean
+  onMouseOver: () => void
+  onMouseLeave: () => void
+}> = ({ item, isSelected, onMouseOver, onMouseLeave }) => {
+  return (
+    <Link href={`/blog/${item.slug}`} passHref locale={false}>
+      <motion.a
+        href={`/blog/${item.slug}`}
+        className='relative flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer rounded-lg p-5'
+        variants={A.Fade}
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
+      >
+        <AnimatePresence>
+          {isSelected && (
+            <motion.div
+              layoutId='box'
+              className='bg-[#FFFFFF20] rounded-lg w-full h-16 absolute'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 1000,
+                damping: 70,
+              }}
+            />
+          )}
+        </AnimatePresence>
+
+        <h1 className='text-xl text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-2/3'>
+          {typeof item.title === 'string' && item.title}
+        </h1>
+        <div className='flex items-center justify-center h-full'>
+          <p className='text-gray-500 dark:text-white'>
+            {format(item.published)}
+            {' · '}
+            {Math.trunc(item.readingTime.minutes)}
+            {' minute read'}
+          </p>
+          <div className='flex text-white'></div>
+        </div>
+      </motion.a>
+    </Link>
   )
 }
 

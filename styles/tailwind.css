@@ -44,7 +44,7 @@ button {
   @apply cursor-pointer select-none;
 }
 
-input, button {
+input, button, textarea {
   font-family: 'Magnat';
 }
 
