@@ -81,7 +81,6 @@ const Post: FC<{
             />
           )}
         </AnimatePresence>
-
         <h1 className='text-xl text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-2/3'>
           {typeof item.title === 'string' && item.title}
         </h1>

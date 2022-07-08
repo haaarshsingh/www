@@ -24,18 +24,18 @@ const Portfolio = ({ Component, pageProps }: AppProps) => {
         light: 'light',
       }}
     >
-      <KBarProvider
+      {/* <KBarProvider
         options={{
           enableHistory: true,
         }}
         actions={actions}
-      >
-        <SessionProvider>
-          <Palette />
-          <NextNProgress color='#FF70C6' />
-          <Component {...pageProps} />
-        </SessionProvider>
-      </KBarProvider>
+      > */}
+      <SessionProvider>
+        {/* <Palette /> */}
+        <NextNProgress color='#FF70C6' />
+        <Component {...pageProps} />
+      </SessionProvider>
+      {/* </KBarProvider> */}
     </ThemeProvider>
   )
 }

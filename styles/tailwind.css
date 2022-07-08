@@ -166,3 +166,7 @@ kbd {
   width: 100vh;
   margin: auto;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  @apply hidden;
+}
