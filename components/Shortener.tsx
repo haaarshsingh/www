@@ -30,7 +30,7 @@ const Shortener: FC<{ links: LinkType[] }> = ({ links }) => {
               alt='Your profile pic'
               className='rounded-full'
             />
-            <NextLink href='/api/auth/logout' passHref>
+            <NextLink href='/api/auth/signout' passHref>
               <a className='ml-3'>{t('logout')}</a>
             </NextLink>
           </motion.div>

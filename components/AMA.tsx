@@ -29,7 +29,7 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
               alt='Your profile pic'
               className='rounded-full'
             />
-            <Link href='/api/auth/logout' passHref>
+            <Link href='/api/auth/signout' passHref>
               <a className='ml-3'>{t('logout')}</a>
             </Link>
           </motion.div>
