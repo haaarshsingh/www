@@ -12,6 +12,8 @@ import {
   Fade,
   TopicsFade,
 } from '@anims/index'
+import { FiDribbble, FiGithub, FiTwitter } from 'react-icons/fi'
+import Image from './Image'
 
 allBlogs.sort((a, b) => {
   return a.published < b.published ? 1 : -1

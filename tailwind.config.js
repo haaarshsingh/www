@@ -47,7 +47,7 @@ module.exports = {
         500: '500px',
         iphone: '320px',
       },
-      height: { 300: '300px', 500: '500px' },
+      height: { 500: '500px' },
       screens: {
         sm: '640px',
         md: '768px',
