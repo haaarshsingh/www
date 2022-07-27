@@ -66,7 +66,7 @@ const Post: FC<BlogProps> = ({
   return (
     <Link href={`/blog/${slug}`} passHref locale={false}>
       <motion.a
-        className={`${tags} my-5 hover:bg-gray-800 p-7 rounded-lg transition-all`}
+        className={`${tags} my-5 hover:bg-gray-200 dark:hover:bg-gray-800 p-7 rounded-lg transition-all`}
         variants={Fade}
       >
         <h1 className='text-gray-900 dark:text-white text-2xl'>{title}</h1>
