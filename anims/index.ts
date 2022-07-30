@@ -11,6 +11,17 @@ export const FadeContainer: Variants = {
   },
 }
 
+export const BlogContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0,
+      staggerChildren: 0.3,
+    },
+  },
+}
+
 export const WordsContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {

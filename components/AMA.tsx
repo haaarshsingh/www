@@ -74,12 +74,14 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
 const Form: FC = () => {
   const content = useRef<HTMLTextAreaElement>(null)
   const [visible, setVisible] = useState(false)
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const createPost = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (content!.current!.value === '') return
+    if (content !== null && content.current!.value === '') return
+    setLoading(true)
 
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')
@@ -94,15 +96,24 @@ const Form: FC = () => {
       body: raw,
     }
 
-    try {
-      await fetch('/api/question', requestOptions)
+    fetch('/api/question', requestOptions)
+      .then(async (res) => {
+        if (res.status === 200) {
+          setVisible(true)
+          setLoading(false)
+        } else {
+          const response = await res.json()
+          setError(response.error)
+          setLoading(false)
+        }
 
-      setVisible(true)
-      content!.current!.value = ''
-    } catch (err) {
-      setError(true)
-      console.error(err)
-    }
+        return (content.current!.value = '')
+      })
+      .catch(async (err) => {
+        setError(err)
+        setLoading(false)
+        console.error(err)
+      })
   }
 
   return (
@@ -115,23 +126,32 @@ const Form: FC = () => {
         placeholder='Ask away...'
         maxLength={100}
         ref={content}
-        className='w-full mt-8 mb-5 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
+        className='w-full mt-8 mb-2 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
       />
       {visible && (
         <motion.p className='text-green-400 mb-5'>
           🎉 I will try my best to respond soon!
         </motion.p>
       )}
-      {error && (
-        <p className='text-rose-400'>😅 An error occured, try again!</p>
+      {error !== '' && <p className='text-rose-400 mb-5'>{error}</p>}
+      {loading ? (
+        <motion.button
+          className='flex items-center justify-center mt-3 w-28 h-14 bg-gray-200 dark:bg-gray-800 px-8 py-3 text-lg rounded border border-solid border-gray-300 dark:border-gray-500 cursor-not-allowed'
+          type='submit'
+          variants={A.Fade}
+          disabled
+        >
+          <div className='loading' />
+        </motion.button>
+      ) : (
+        <motion.button
+          className='flex items-center justify-center mt-3 w-28 h-14 text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-8 py-3 text-lg rounded border border-solid border-gray-900 dark:border-white hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white focus:bg-gray-100 dark:focus-visible:bg-gray-900 focus:text-gray-900 dark:focus:text-white duration-200'
+          type='submit'
+          variants={A.Fade}
+        >
+          Ask
+        </motion.button>
       )}
-      <motion.button
-        className='text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-8 py-3 text-lg rounded border border-solid border-gray-900 dark:border-white hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white focus:bg-gray-100 dark:focus-visible:bg-gray-900 focus:text-gray-900 dark:focus:text-white duration-200'
-        type='submit'
-        variants={A.Fade}
-      >
-        Ask
-      </motion.button>
     </motion.form>
   )
 }

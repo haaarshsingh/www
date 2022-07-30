@@ -19,6 +19,8 @@ const question = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(509).json({ error: err })
       }
     }
+
+    return res.status(401).json({ error: 'You must login to ask questions!' })
   }
 
   if (req.method === 'PUT') {

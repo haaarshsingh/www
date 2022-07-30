@@ -142,3 +142,21 @@ kbd {
   width: 100vh;
   margin: auto;
 }
+
+.loading {
+  @apply w-5 h-5 border-4 border-solid border-[#bdbdbd] dark:border-gray-600 border-t-[#888888] dark:border-t-white;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

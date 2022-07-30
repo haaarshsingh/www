@@ -50,10 +50,6 @@ const Footer: FC = () => {
               text: t('wordsHeader'),
             },
             {
-              link: '/shortener',
-              text: t('shortenerHeader'),
-            },
-            {
               link: '/rss.xml',
               text: 'RSS',
             },

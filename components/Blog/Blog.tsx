@@ -11,6 +11,7 @@ import {
   FadeContainer,
   Fade,
   TopicsFade,
+  BlogContainer,
 } from '@anims/index'
 
 allBlogs.sort((a, b) => {
@@ -65,7 +66,7 @@ const Post: FC<BlogProps> = ({
     <Link href={`/blog/${slug}`} passHref locale={false}>
       <motion.a
         className={`${tags} my-5 hover:bg-gray-200 dark:hover:bg-gray-800 p-7 rounded-lg transition-all`}
-        variants={Fade}
+        variants={TopicsFade}
       >
         <h1 className='text-gray-900 dark:text-white text-2xl'>{title}</h1>
         <p className='text-lg mt-3 text-gray-300'>{description}</p>
@@ -122,7 +123,7 @@ const Blog: FC = () => {
         ))}
       </motion.div>
       <motion.div
-        variants={FadeContainer}
+        variants={BlogContainer}
         initial='hidden'
         animate='visible'
         className='flex flex-col mt-10'
