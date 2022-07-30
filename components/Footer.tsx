@@ -22,7 +22,7 @@ const Footer: FC = () => {
               text: t('blog'),
             },
           ].map((link, index) => (
-            <a href={link.link} key={index} className='my-2 text-lg w-fit'>
+            <a href={link.link} key={index} className='my-2 text-base w-fit'>
               {link.text}
             </a>
           ))}
@@ -61,7 +61,7 @@ const Footer: FC = () => {
             <a
               href={link.link.toLowerCase()}
               key={index}
-              className='my-2 text-lg w-fit'
+              className='my-2 text-base w-fit'
             >
               {link.text}
             </a>
@@ -107,14 +107,14 @@ const Footer: FC = () => {
               target='_blank'
               rel='noreferrer'
               key={index}
-              className='my-2 text-lg w-fit'
+              className='my-2 text-base w-fit'
             >
               {link.text}
             </a>
           ))}
         </div>
       </div>
-      <p className='text-lg text-center my-20 text-gray-900 dark:text-white'>
+      <p className='text-base text-center my-20 text-gray-900 dark:text-white'>
         {t('footer')}
       </p>
     </footer>

@@ -1,9 +1,10 @@
-import { FC, ReactNode, useState } from 'react'
+import { Dispatch, FC, ReactNode, SetStateAction, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Navbar from './Nav/Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
+import Palette from './Palette'
 
 export const meta = {
   root: 'https://hxrsh.in',
@@ -19,9 +20,12 @@ const Wrapper: FC<{
   title?: string
   description?: string
   image?: string
-}> = ({ children, title, description, image }) => {
+  menu?: number
+  setMenu?: Dispatch<SetStateAction<number>>
+}> = ({ children, title, description, image, menu, setMenu }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
+  const [kmenu, setKmenu] = useState(0)
 
   return (
     <div>
@@ -57,6 +61,7 @@ const Wrapper: FC<{
         <meta name='twitter:image' content={image ? image : meta.image} />
       </Head>
       <div className='flex flex-col items-center'>
+        <Palette open={menu || kmenu} setOpen={setMenu || setKmenu} />
         <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
           <Navbar navOpen={open} setNavOpen={setOpen} />
           {!open && <main id='main'>{children}</main>}

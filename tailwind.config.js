@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Mukta'],
+        sans: ['Inter'],
+        mono: ['Fira Code'],
       },
       colors: {
         gray: {

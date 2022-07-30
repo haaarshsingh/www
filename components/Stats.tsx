@@ -16,7 +16,7 @@ const Track: FC<{ track: F.SpotifyTrack }> = ({ track }) => {
         rel='noreferrer'
         target='_blank'
       >
-        <h2 className='text-xl text-gray-900 dark:text-white font-bold'>
+        <h2 className='text-lg text-gray-900 dark:text-white font-bold'>
           {track.title}
         </h2>
         <p>{track.artist}</p>
@@ -33,18 +33,19 @@ const Artist: FC<{ artist: F.SpotifyArtist }> = ({ artist }) => {
         rel='noreferrer'
         target='_blank'
       >
-        <Image
-          src={artist.pic.url}
-          height={100}
-          width={100}
-          alt={artist.name}
-          className='rounded-full'
-        />
+        <div className='w-20 h-20 rounded-full relative overflow-hidden'>
+          <Image
+            src={artist.pic.url}
+            alt={artist.name}
+            layout='fill'
+            objectFit='cover'
+          />
+        </div>
         <div className='ml-5 flex flex-col justify-center items-start'>
-          <h2 className='text-2xl text-gray-900 dark:text-white font-bold'>
+          <h2 className='text-xl text-gray-900 dark:text-white font-bold'>
             {artist.name}
           </h2>
-          <p className='text-xl'>
+          <p className='text-base'>
             {artist.followers.toLocaleString()} followers
           </p>
         </div>
@@ -95,7 +96,7 @@ const Music: FC<{
       animate='visible'
     >
       <motion.h1 variants={A.Fade}>{title}</motion.h1>
-      <motion.p className='text-lg mt-5' variants={A.Fade}>
+      <motion.p className='text-lg mt-1' variants={A.Fade}>
         {description}
       </motion.p>
       <motion.div
@@ -115,32 +116,14 @@ const Music: FC<{
   )
 }
 
-const VercelDeployments: FC = () => {
-  const { t } = useTranslation('common')
-
-  return (
-    <motion.div
-      className='mt-24 flex flex-col'
-      variants={A.FadeContainer}
-      initial='hidden'
-      animate='visible'
-    >
-      <motion.h1 variants={A.Fade}>{t('vercelHeader')}</motion.h1>
-      <motion.p className='text-lg mt-5' variants={A.Fade}>
-        {t('vercelBio')}
-      </motion.p>
-    </motion.div>
-  )
-}
-
 const Statistic: FC<{ title: string; value: string }> = ({ title, value }) => {
   return (
     <motion.div
       className='bg-gray-50 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 flex flex-col justify-center p-7 rounded select-none border border-gray-200 dark:border-gray-700'
       variants={A.Fade}
     >
-      <p className='text-xl'>{title}</p>
-      <h1 className='mb-3 mt-2'>{value}</h1>
+      <p className='text-base'>{title}</p>
+      <h1 className='mt-2'>{value}</h1>
     </motion.div>
   )
 }

@@ -39,8 +39,8 @@ const Newsletter: FC = () => {
 
   return (
     <div className='mt-60 mb-20 p-5 md:p-10 rounded-lg border-gray-200 dark:border-gray-700 border-2'>
-      <h1>{t('newsletter')}</h1>
-      <p className='my-5 text-lg'>{t('newsletterBio')}</p>
+      <h1 className='text-xl'>{t('newsletter')}</h1>
+      <p className='mt-5 mb-8 text-base'>{t('newsletterBio')}</p>
       <form
         className='bg-gray-200 dark:bg-gray-700 flex justify-between items-center text-lg rounded-lg overflow-hidden'
         onSubmit={subscribe}
@@ -48,10 +48,10 @@ const Newsletter: FC = () => {
         <input
           placeholder={t('placeholder')}
           type='email'
-          className='bg-gray-200 dark:bg-gray-700 outline-none text-gray-900 dark:text-white h-full m-5 text-lg w-full'
+          className='bg-gray-200 dark:bg-gray-700 outline-none text-gray-900 dark:text-white h-full m-5 text-base w-full'
           ref={inputRef}
         />
-        <button className='bg-white h-full text-lg p-5 hover:bg-gray-100 dark:hover:bg-gray-200 dark:text-gray-900 whitespace-nowrap outline-none focus-visible:bg-gray-300'>
+        <button className='bg-white h-full text-base p-5 hover:bg-gray-100 dark:hover:bg-gray-200 dark:text-gray-900 whitespace-nowrap outline-none focus-visible:bg-gray-300'>
           {t('subscribe')}
         </button>
       </form>

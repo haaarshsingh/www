@@ -59,11 +59,11 @@ const Toggle: React.FC = () => {
     transform,
     config: properties.springConfig,
   })
-  const centerCircleProps: any = useSpring({
+  const centerCircleProps = useSpring({
     r,
     config: properties.springConfig,
   })
-  const maskedCircleProps: any = useSpring({
+  const maskedCircleProps = useSpring({
     cx,
     cy,
     config: properties.springConfig,
@@ -74,6 +74,7 @@ const Toggle: React.FC = () => {
     <motion.button
       className='h-6 text-gray-500 dark:hover:text-white'
       variants={A.Image}
+      name='Theme Toggle'
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <animated.svg
@@ -91,6 +92,7 @@ const Toggle: React.FC = () => {
         <mask id='mask'>
           <rect x='0' y='0' width='100%' height='100%' fill='white' />
           <animated.circle
+            /* @ts-ignore */
             style={maskedCircleProps}
             cx='12'
             cy='4'
@@ -99,6 +101,7 @@ const Toggle: React.FC = () => {
           />
         </mask>
         <animated.circle
+          /* @ts-ignore */
           style={centerCircleProps}
           fill='currentColor'
           cx='12'
@@ -207,7 +210,7 @@ const Navbar: FC<{
           className='bg-none border-none flex flex-col items-center'
           ref={boundary}
         >
-          <button onClick={() => setOpen((o) => !o)}>
+          <button name='Language Toggle' onClick={() => setOpen((o) => !o)}>
             <FiGlobe
               className='text-gray-500 dark:hover:text-white transition-colors hover:cursor-pointer mx-3'
               size={24}

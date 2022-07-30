@@ -1,6 +1,4 @@
 export const allFollowers = async (limit: string) => {
-  let res: any
-
   const page1 = fetch(`https://dev.to/api/followers/users?per_page=${limit}`, {
     headers: {
       api_key: process.env.DEV_API,

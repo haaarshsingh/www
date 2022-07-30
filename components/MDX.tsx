@@ -38,10 +38,8 @@ const Header1: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
       href={`#${id}`}
       className='my-12 flex items-center group w-fit header no-outline'
     >
-      <h1 className='opacity-0 group-hover:opacity-100 text-3xl'>#</h1>
-      <h1 id={id} className='text-4xl ml-2'>
-        {children}
-      </h1>
+      <h1 className='opacity-0 group-hover:opacity-100 mr-1'>#</h1>
+      <h1 id={id}>{children}</h1>
     </a>
   )
 }
@@ -52,10 +50,8 @@ const Header3: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
       href={`#${id}`}
       className='text-2xl mb-5 mt-4 flex items-center group w-fit header no-outline'
     >
-      <h3 className='opacity-0 group-hover:opacity-100'>#</h3>
-      <h3 id={id} className='text-3xl ml-2'>
-        {children}
-      </h3>
+      <h3 className='opacity-0 group-hover:opacity-100 mr-1'>#</h3>
+      <h3 id={id}>{children}</h3>
     </a>
   )
 }
@@ -67,7 +63,7 @@ const Image: FC<{ alt: string; props: ImageProps }> = ({ alt, props }) => {
 const CodeBlock: FC<{
   className: string | undefined
   children: ReactChildren
-}> = ({ className, children }): JSX.Element => {
+}> = ({ children }): JSX.Element => {
   const textInput = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -110,8 +106,7 @@ const CodeBlock: FC<{
           {copied ? <FiCheck /> : <FiClipboard />}
         </button>
       )}
-
-      <pre>{children}</pre>
+      <pre className='text-sm'>{children}</pre>
     </div>
   )
 }
@@ -125,7 +120,7 @@ const Copy: FC<{ text: string }> = ({ text }) => {
 
   return (
     <button
-      className={`flex items-center text-gray-900 dark:text-white py-3 px-4 text-xl rounded-lg transition-colors ${
+      className={`flex items-center text-gray-900 dark:text-white py-3 px-4 text-base rounded-lg transition-colors ${
         copied
           ? 'bg-green-500 hover:bg-green-600 text-gray-100'
           : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
@@ -144,7 +139,7 @@ const Copy: FC<{ text: string }> = ({ text }) => {
 const Download: FC = () => {
   return (
     <a
-      className='bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center text-white py-3 px-4 text-xl rounded-lg transition-colors my-5 no-outline w-fit header'
+      className='bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header'
       href='/pfp.jpg'
       download='pfp.jpg'
     >

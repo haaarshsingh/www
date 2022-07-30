@@ -35,3 +35,7 @@ export default async function handler(
     comments: totalComments,
   })
 }
+
+export const config = {
+  runtime: 'experimental-edge',
+}

@@ -1,16 +1,12 @@
 import '@css/tailwind.css'
 import '@components/Nav/nav.css'
-
+import 'kmenu/dist/index.css'
 import type { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar'
 import { SessionProvider } from 'next-auth/react'
-import Palette from '@components/Palette'
-import { KBarProvider } from 'kbar'
 import { ThemeProvider } from 'next-themes'
-
 import splitbee from '@splitbee/web'
-import actions from '@lib/actions'
 
 const Portfolio = ({ Component, pageProps }: AppProps) => {
   splitbee.init()
@@ -24,18 +20,10 @@ const Portfolio = ({ Component, pageProps }: AppProps) => {
         light: 'light',
       }}
     >
-      <KBarProvider
-        options={{
-          enableHistory: true,
-        }}
-        actions={actions}
-      >
-        <SessionProvider>
-          <Palette />
-          <NextNProgress color='#FF70C6' />
-          <Component {...pageProps} />
-        </SessionProvider>
-      </KBarProvider>
+      <SessionProvider>
+        <NextNProgress color='#FF70C6' />
+        <Component {...pageProps} />
+      </SessionProvider>
     </ThemeProvider>
   )
 }

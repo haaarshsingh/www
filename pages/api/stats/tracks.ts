@@ -21,3 +21,7 @@ export default async function handler(
 
   return res.status(200).json({ tracks })
 }
+
+export const config = {
+  runtime: 'experimental-edge',
+}

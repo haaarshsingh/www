@@ -23,7 +23,7 @@ const Content: FC<{
       initial='hidden'
       animate='visible'
     >
-      <motion.h1 variants={A.Fade} className='mb-12'>
+      <motion.h1 variants={A.Fade} className='mb-12 text-2xl'>
         {t('blogsHeader')}
       </motion.h1>
       <AnimateSharedLayout>
@@ -39,7 +39,7 @@ const Content: FC<{
       </AnimateSharedLayout>
       <Link href='/blog' passHref>
         <motion.a
-          className='flex items-center text-xl group w-fit mt-10'
+          className='flex items-center text-lg group w-fit mt-10'
           variants={A.Fade}
         >
           {t('viewBlogs')}
@@ -69,7 +69,7 @@ const Post: FC<{
           {isSelected && (
             <motion.div
               layoutId='box'
-              className='bg-[#FFFFFF20] rounded-lg w-full h-16 absolute'
+              className='bg-[#00000010] dark:bg-[#FFFFFF20] rounded-lg w-full h-16 absolute'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -81,8 +81,7 @@ const Post: FC<{
             />
           )}
         </AnimatePresence>
-
-        <h1 className='text-xl text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-2/3'>
+        <h1 className='!text-lg text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12'>
           {typeof item.title === 'string' && item.title}
         </h1>
         <div className='flex items-center justify-center h-full'>
@@ -92,7 +91,6 @@ const Post: FC<{
             {Math.trunc(item.readingTime.minutes)}
             {' minute read'}
           </p>
-          <div className='flex text-white'></div>
         </div>
       </motion.a>
     </Link>

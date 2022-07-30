@@ -128,7 +128,7 @@ const Words: FC = () => {
       {words.map((word, index) => (
         <motion.h1
           variants={Fade}
-          className='text-3xl w-full h-fit my-5 text-center hover:!text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 hover:!bg-gradient-to-r'
+          className='!text-3xl w-full h-fit my-5 text-center hover:!text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 hover:!bg-gradient-to-r'
           style={{
             cursor: cursors[Math.floor(Math.random() * cursors.length)],
           }}

@@ -1,198 +1,239 @@
-import * as React from 'react'
-
+import { Command, Palette as KMenu, PaletteConfig } from 'kmenu'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import {
-  ActionId,
-  KBarAnimator,
-  KBarPortal,
-  KBarPositioner,
-  KBarSearch,
-  KBarResults,
-  useMatches,
-  ActionImpl,
-  useRegisterActions,
-} from 'kbar'
-import { useRouter } from 'next/router'
+  FiDribbble,
+  FiGithub,
+  FiGlobe,
+  FiLinkedin,
+  FiMoon,
+  FiRss,
+  FiSun,
+  FiTwitter,
+  FiYoutube,
+  FiZap,
+} from 'react-icons/fi'
+import { BsChatSquareDots } from 'react-icons/bs'
+import { BiPaintRoll, BiStats } from 'react-icons/bi'
+import { AiOutlineBehance, AiOutlineLaptop } from 'react-icons/ai'
+import {
+  TbBrandTelegram,
+  TbLanguageHiragana,
+  TbMessageLanguage,
+} from 'react-icons/tb'
+import { RiSnapchatLine } from 'react-icons/ri'
 import { useTheme } from 'next-themes'
-import FocusTrap from 'focus-trap-react'
 
-const CommandBar = () => {
-  const router = useRouter()
+const Palette: FC<{
+  open: number
+  setOpen: Dispatch<SetStateAction<number>>
+}> = ({ open, setOpen }) => {
   const { theme, setTheme } = useTheme()
 
-  const useLanguageActions = () => {
-    useRegisterActions([
-      {
-        id: 'locale',
-        name: 'Change locale…',
-        keywords: 'interface language locale',
-        section: 'Preferences',
-      },
-      {
-        id: 'eng',
-        name: 'English',
-        keywords: 'angrezi anglobhasha en',
-        perform: () => router.push('/en'),
-        parent: 'locale',
-      },
-      {
-        id: 'hn',
-        name: 'Hindi',
-        keywords: 'hn',
-        perform: () => router.push('/hn'),
-        parent: 'locale',
-      },
-      {
-        id: 'de',
-        name: 'German',
-        keywords: 'de german deutsch',
-        perform: () => router.push('/de'),
-        parent: 'locale',
-      },
-      {
-        id: 'fr',
-        name: 'French',
-        keywords: 'france fr',
-        perform: () => router.push('/fr'),
-        parent: 'locale',
-      },
-      {
-        id: 'sr',
-        name: 'Serbian',
-        keywords: 'sr',
-        perform: () => router.push('/sr'),
-        parent: 'locale',
-      },
-    ])
-  }
-
-  const useThemeActions = () => {
-    useRegisterActions([
-      {
-        id: 'theme',
-        name: 'Change theme…',
-        keywords: 'interface color dark light white black',
-        section: 'Preferences',
-      },
-      {
-        id: 'light',
-        name: 'Light',
-        keywords: 'light white',
-        perform: () => setTheme('light'),
-        parent: 'theme',
-      },
-      {
-        id: 'dark',
-        name: 'Dark',
-        keywords: 'dark black',
-        perform: () => setTheme('dark'),
-        parent: 'theme',
-      },
-    ])
-  }
-
-  useLanguageActions()
-  useThemeActions()
-
-  return (
-    <KBarPortal>
-      <KBarPositioner className='backdrop-blur bg-black/70 select-none z-50'>
-        <FocusTrap>
-          <KBarAnimator className='bg-gray-100 dark:bg-gray-900 w-1/3 min-w-500 rounded-lg text-lg text-white overflow-hidden'>
-            <KBarSearch className='w-full outline-none p-5 bg-gray-100 dark:bg-gray-900 rounded-lg text-gray-900 dark:text-white' />
-            <RenderResults />
-          </KBarAnimator>
-        </FocusTrap>
-      </KBarPositioner>
-    </KBarPortal>
-  )
-}
-
-const RenderResults = () => {
-  const { results, rootActionId } = useMatches()
-
-  return (
-    <KBarResults
-      items={results}
-      onRender={({ item, active }) =>
-        typeof item === 'string' ? (
-          <div className='ml-4 text-sm text-gray-600 uppercase py-5'>
-            {item}
-          </div>
-        ) : (
-          <ResultItem
-            action={item}
-            active={active}
-            currentRootActionId={rootActionId!}
-          />
-        )
-      }
-    />
-  )
-}
-
-// eslint-disable-next-line react/display-name
-const ResultItem = React.forwardRef(
-  (
+  const mainCommands: Command[] = [
     {
-      action,
-      active,
-      currentRootActionId,
-    }: {
-      action: ActionImpl
-      active: boolean
-      currentRootActionId: ActionId
+      icon: <FiGlobe />,
+      text: 'Home',
+      href: 'https://hxrsh.in',
+      category: 'Navigation',
     },
-    ref: React.Ref<HTMLAnchorElement>
-  ) => {
-    const ancestors = React.useMemo(() => {
-      if (!currentRootActionId) return action.ancestors
-      const index = action.ancestors.findIndex(
-        (ancestor) => ancestor.id === currentRootActionId
-      )
-      return action.ancestors.slice(index + 1)
-    }, [action.ancestors, currentRootActionId])
+    {
+      icon: <FiZap />,
+      text: 'About',
+      href: 'https://hxrsh.in/abt',
+      category: 'Navigation',
+    },
+    {
+      icon: <BsChatSquareDots />,
+      text: 'Ask me Anything',
+      href: 'https://hxrsh.in/ama',
+      category: 'Navigation',
+    },
+    {
+      icon: <AiOutlineLaptop />,
+      text: 'Uses',
+      href: 'https://hxrsh.in/uses',
+      category: 'Navigation',
+    },
+    {
+      icon: <BiStats />,
+      text: 'Stats',
+      href: 'https://hxrsh.in/stats',
+      category: 'Navigation',
+    },
+    {
+      icon: <FiRss />,
+      text: 'RSS Feed',
+      href: 'https://hxrsh.in/rss.xml',
+      category: 'Navigation',
+    },
+    {
+      icon: <BiPaintRoll />,
+      text: 'Change Theme',
+      perform: () => setOpen(2),
+      category: 'Preferences',
+    },
+    {
+      icon: <TbLanguageHiragana />,
+      text: 'Change Language',
+      keywords: 'Locale',
+      perform: () => setOpen(3),
+      category: 'Preferences',
+    },
+    {
+      icon: <FiTwitter />,
+      text: 'Twitter',
+      href: 'https://twitter.com/harshhhdev',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <FiGithub />,
+      text: 'GitHub',
+      href: 'https://github.com/harshhhdev',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <FiLinkedin />,
+      text: 'Linkedin',
+      href: 'https://linkedin.com/in/harshhhdev',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <FiDribbble />,
+      text: 'Dribbble',
+      href: 'https://dribbble.com/harshhhdev',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <AiOutlineBehance />,
+      text: 'Behance',
+      href: 'https://behance.net/harshhhdev',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <FiYoutube />,
+      text: 'YouTube',
+      href: 'https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <TbBrandTelegram />,
+      text: 'Telegram',
+      href: 'https://t.me/harshhhdev',
+      newTab: true,
+      category: 'Socials',
+    },
+    {
+      icon: <RiSnapchatLine />,
+      text: 'Snapchat',
+      href: 'https://snapchat.com/add/harshhhhsingh',
+      newTab: true,
+      category: 'Socials',
+    },
+  ]
 
-    return (
-      <a
-        href='#'
-        ref={ref}
-        className={`p-4 flex align-center justify-between cursor-pointer transition-all ${
-          active ? 'bg-gray-200 dark:bg-gray-800/50' : 'transparent'
-        }`}
-      >
-        <div className='flex gap-3 items-center'>
-          <div className='flex flex-col text-gray-900 dark:text-white text-lg'>
-            <div>
-              {ancestors.length > 0 &&
-                ancestors.map((ancestor) => (
-                  <div key={ancestor.id} className='text-gray-500'>
-                    <span className='mr-2'>{ancestor.name}</span>
-                    <span>&rsaquo;</span>
-                  </div>
-                ))}
-              {action.icon}
-              <span>{action.name}</span>
-            </div>
-            {action.subtitle && (
-              <span className='text-base text-gray-400'>{action.subtitle}</span>
-            )}
-          </div>
-        </div>
-        {action.shortcut?.length ? (
-          <div className='flex items-center justify-center'>
-            {action.shortcut.map((sc) => (
-              <kbd
-                key={sc}
-                className='bg-gray-300 dark:bg-gray-800 dark:text-gray-300 text-white px-2 py-1 text-sm ml-2 rounded h-fit'
-              >
-                {sc}
-              </kbd>
-            ))}
-          </div>
-        ) : null}
-      </a>
-    )
+  const themeCommands: Command[] = [
+    {
+      icon: <FiSun />,
+      text: 'Light',
+      category: 'Themes',
+      perform: () => setTheme('light'),
+    },
+    {
+      icon: <FiMoon />,
+      text: 'Dark',
+      category: 'Themes',
+      perform: () => setTheme('dark'),
+    },
+  ]
+
+  const languageCommands: Command[] = [
+    {
+      icon: <TbMessageLanguage />,
+      text: 'English',
+      category: 'Languages',
+      href: '/',
+    },
+    {
+      icon: <TbMessageLanguage />,
+      text: 'Hindi',
+      category: 'Languages',
+      href: '/in',
+    },
+    {
+      icon: <TbMessageLanguage />,
+      text: 'German',
+      category: 'Languages',
+      href: '/de',
+    },
+    {
+      icon: <TbMessageLanguage />,
+      text: 'French',
+      category: 'Languages',
+      href: '/fr',
+    },
+    {
+      icon: <TbMessageLanguage />,
+      text: 'Serbian',
+      category: 'Languages',
+      href: '/sr',
+    },
+  ]
+
+  const darkConfig: PaletteConfig = {
+    backgroundColor: '#181818',
+    borderColor: '#3F3F3F',
+    inputColor: '#FFFFFF',
+    headingColor: '#777777',
+    commandInactive: '#777777',
+    commandActive: '#FFFFFF',
+    barBackground: '#FFFFFF20',
   }
-)
 
-export default CommandBar
+  const lightConfig: PaletteConfig = {
+    backgroundColor: '#F6F6F6',
+    borderColor: '#FFF',
+    inputColor: '#000',
+    headingColor: '#828282',
+    commandInactive: '#828282',
+    commandActive: '#343434',
+    barBackground: '#82828220',
+  }
+
+  return (
+    <>
+      <KMenu
+        open={open}
+        setOpen={setOpen}
+        index={1}
+        commands={mainCommands}
+        categories={['Navigation', 'Preferences', 'Socials']}
+        config={theme === 'light' ? lightConfig : darkConfig}
+        main
+      />
+      <KMenu
+        open={open}
+        setOpen={setOpen}
+        index={2}
+        commands={themeCommands}
+        categories={['Themes']}
+        config={theme === 'light' ? lightConfig : darkConfig}
+      />
+      <KMenu
+        open={open}
+        setOpen={setOpen}
+        index={3}
+        commands={languageCommands}
+        categories={['Languages']}
+        config={theme === 'light' ? lightConfig : darkConfig}
+      />
+    </>
+  )
+}
+
+export default Palette

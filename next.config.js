@@ -13,6 +13,7 @@ const nextConfig = withContentlayer()({
     ],
   },
   i18n,
+  productionBrowserSourceMaps: true,
 })
 
 module.exports = nextConfig

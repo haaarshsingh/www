@@ -40,7 +40,7 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
         )}
       </motion.div>
       <motion.h1
-        className='text-5xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'
+        className='!text-3xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'
         variants={A.Fade}
       >
         {t('amaHeader')}
@@ -139,8 +139,8 @@ const Form: FC = () => {
 const Question: FC<{ question: QuestionType }> = ({ question }) => {
   return (
     <motion.div variants={A.Fade}>
-      <h1 className='mb-5 text-2xl'>{question.content}</h1>
-      <p className='text-lg mb-10'>{question.answer}</p>
+      <h1 className='mb-5 !text-xl'>{question.content}</h1>
+      <p className='text-base mb-10'>{question.answer}</p>
     </motion.div>
   )
 }

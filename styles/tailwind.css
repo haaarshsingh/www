@@ -3,21 +3,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: "Magnat";
-  src: url("../public/fonts/MagnatText-Regular.otf");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Magnat";
-  src: url("../public/fonts/MagnatHead-Semibold.otf");
-  font-weight: bold;
-  font-style: normal;
-}
-
 * {
   @apply box-border p-0 m-0;
 }
@@ -25,15 +10,15 @@
 html,
 body {
   @apply bg-gray-900 scroll-smooth;
-  font-family: 'Magnat';
+  font-family: 'Albert Sans', sans-serif;
 }
 
 h1 {
-  @apply text-gray-900 dark:text-white font-bold text-4xl;
+  @apply text-gray-900 dark:text-white font-bold !text-2xl;
 }
 
 h3 {
-  @apply text-gray-900 dark:text-white font-bold text-2xl;
+  @apply text-gray-900 dark:text-white font-bold !text-lg;
 }
 
 ::selection {
@@ -44,8 +29,10 @@ button {
   @apply cursor-pointer select-none;
 }
 
-button, input, textarea {
-  font-family: 'Magnat';
+button,
+input,
+textarea {
+  font-family: 'Albert Sans', sans-serif;
 }
 
 a {
@@ -65,18 +52,6 @@ li {
   @apply ml-10 text-lg list-disc;
 }
 
-::-webkit-scrollbar {
-  @apply w-2;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-900;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-500;
-}
-
 img {
   @apply sm:h-fit select-none;
 }
@@ -85,7 +60,8 @@ img {
   @apply text-white;
 }
 
-.blog a, .link {
+.blog a,
+.link {
   @apply text-gray-900 dark:text-white underline underline-offset-4 decoration-gray-600 hover:decoration-gray-500;
 }
 
@@ -94,7 +70,7 @@ img {
 }
 
 .blog p {
-  @apply text-lg my-4;
+  @apply text-base my-4;
 }
 
 .blog img {
@@ -115,7 +91,7 @@ pre[class*='language-'] {
 }
 
 .blog code {
-  @apply text-gray-900 dark:text-gray-200 px-1 py-0.5 border dark:border-gray-800 rounded-lg bg-gray-100 dark:bg-gray-900 overflow-scroll;
+  @apply text-gray-900 dark:text-gray-200 px-1 py-0.5 border dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-900 overflow-scroll !text-sm;
 }
 
 .blog pre code {
@@ -128,7 +104,7 @@ pre[class*='language-'] {
 }
 
 .blog thead {
-  @apply text-gray-900 dark:text-white text-lg text-left;
+  @apply text-gray-900 dark:text-white text-base text-left;
 }
 
 .blog td,
@@ -137,7 +113,7 @@ th {
 }
 
 .blog p > code {
-  @apply text-base text-gray-400 rounded-md;
+  @apply text-base text-gray-400 rounded;
 }
 
 .blog blockquote {
