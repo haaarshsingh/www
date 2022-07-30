@@ -9,23 +9,11 @@ enum ImageProps {
 }
 
 const style = `
+  @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;800');
+
   * {
     margin: 0;
-    font-family: "Magnat";
-  }
-
-  @font-face {
-    font-family: "Magnat";
-    src: url("https://hxrsh.in/fonts/MagnatText-Regular.otf");
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Magnat";
-    src: url("https://hxrsh.in/fonts/MagnatHead-Semibold.otf");
-    font-weight: bold;
-    font-style: normal;
+    font-family: "Albert Sans", sans-serif;
   }
 
   .main {
@@ -97,5 +85,5 @@ export default withOGImage<'query', keyof typeof ImageProps>({
         </div>
       `
     },
-  }
+  },
 })

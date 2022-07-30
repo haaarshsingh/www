@@ -74,7 +74,7 @@ const Toggle: React.FC = () => {
     <motion.button
       className='h-6 text-gray-500 dark:hover:text-white'
       variants={A.Image}
-      name='Theme Toggle'
+      aria-label='Theme Toggle'
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <animated.svg
@@ -210,7 +210,10 @@ const Navbar: FC<{
           className='bg-none border-none flex flex-col items-center'
           ref={boundary}
         >
-          <button name='Language Toggle' onClick={() => setOpen((o) => !o)}>
+          <button
+            aria-label='Language Toggle'
+            onClick={() => setOpen((o) => !o)}
+          >
             <FiGlobe
               className='text-gray-500 dark:hover:text-white transition-colors hover:cursor-pointer mx-3'
               size={24}
