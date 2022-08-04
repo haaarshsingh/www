@@ -91,6 +91,7 @@ const Intro: FC<{ setOpen: Dispatch<SetStateAction<number>> }> = ({
               second: 'numeric',
               day: 'numeric',
               month: 'short',
+              timeZone: 'America/Chicago',
             })}
           </p>
           <div className='w-1 h-1 rounded-full bg-gray-300 mx-2' />
