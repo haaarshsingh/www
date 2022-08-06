@@ -1,10 +1,14 @@
-import { Command, Palette as KMenu, PaletteConfig } from 'kmenu'
-import { Dispatch, FC, SetStateAction, useState } from 'react'
+import { Command, CommandMenu, useCommands, useKmenu } from 'kmenu'
+import { FC } from 'react'
 import {
+  FiAtSign,
+  FiBook,
+  FiBookmark,
   FiDribbble,
   FiGithub,
   FiGlobe,
   FiLinkedin,
+  FiMap,
   FiMoon,
   FiRss,
   FiSun,
@@ -22,216 +26,224 @@ import {
 } from 'react-icons/tb'
 import { RiSnapchatLine } from 'react-icons/ri'
 import { useTheme } from 'next-themes'
+import { allBlogs } from '@layer/generated'
 
-const Palette: FC<{
-  open: number
-  setOpen: Dispatch<SetStateAction<number>>
-}> = ({ open, setOpen }) => {
-  const { theme, setTheme } = useTheme()
+const Palette: FC = () => {
+  const { setTheme } = useTheme()
+  const [input, setInput, open, setOpen] = useKmenu()
 
-  const mainCommands: Command[] = [
+  const main: Command[] = [
     {
-      icon: <FiGlobe />,
-      text: 'Home',
-      href: 'https://hxrsh.in',
-      category: 'Navigation',
+      category: 'Utility',
+      commands: [
+        {
+          icon: <FiMap />,
+          text: 'Navigation...',
+          perform: () => setOpen(2),
+        },
+        {
+          icon: <FiAtSign />,
+          text: 'Socials...',
+          perform: () => setOpen(3),
+        },
+        {
+          icon: <FiBookmark />,
+          text: 'Blogs...',
+          perform: () => setOpen(4),
+        },
+      ],
     },
     {
-      icon: <FiZap />,
-      text: 'About',
-      href: 'https://hxrsh.in/abt',
-      category: 'Navigation',
-    },
-    {
-      icon: <BsChatSquareDots />,
-      text: 'Ask me Anything',
-      href: 'https://hxrsh.in/ama',
-      category: 'Navigation',
-    },
-    {
-      icon: <AiOutlineLaptop />,
-      text: 'Uses',
-      href: 'https://hxrsh.in/uses',
-      category: 'Navigation',
-    },
-    {
-      icon: <BiStats />,
-      text: 'Stats',
-      href: 'https://hxrsh.in/stats',
-      category: 'Navigation',
-    },
-    {
-      icon: <FiRss />,
-      text: 'RSS Feed',
-      href: 'https://hxrsh.in/rss.xml',
-      category: 'Navigation',
-    },
-    {
-      icon: <BiPaintRoll />,
-      text: 'Change Theme',
-      perform: () => setOpen(2),
       category: 'Preferences',
-    },
-    {
-      icon: <TbLanguageHiragana />,
-      text: 'Change Language',
-      keywords: 'Locale',
-      perform: () => setOpen(3),
-      category: 'Preferences',
-    },
-    {
-      icon: <FiTwitter />,
-      text: 'Twitter',
-      href: 'https://twitter.com/harshhhdev',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <FiGithub />,
-      text: 'GitHub',
-      href: 'https://github.com/harshhhdev',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <FiLinkedin />,
-      text: 'Linkedin',
-      href: 'https://linkedin.com/in/harshhhdev',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <FiDribbble />,
-      text: 'Dribbble',
-      href: 'https://dribbble.com/harshhhdev',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <AiOutlineBehance />,
-      text: 'Behance',
-      href: 'https://behance.net/harshhhdev',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <FiYoutube />,
-      text: 'YouTube',
-      href: 'https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <TbBrandTelegram />,
-      text: 'Telegram',
-      href: 'https://t.me/harshhhdev',
-      newTab: true,
-      category: 'Socials',
-    },
-    {
-      icon: <RiSnapchatLine />,
-      text: 'Snapchat',
-      href: 'https://snapchat.com/add/harshhhhsingh',
-      newTab: true,
-      category: 'Socials',
+      commands: [
+        {
+          icon: <BiPaintRoll />,
+          text: 'Change Theme...',
+          perform: () => setOpen(5),
+        },
+        {
+          icon: <TbLanguageHiragana />,
+          text: 'Change Language...',
+          keywords: 'Locale',
+          perform: () => setOpen(6),
+        },
+      ],
     },
   ]
 
-  const themeCommands: Command[] = [
+  const navigation: Command[] = [
     {
-      icon: <FiSun />,
-      text: 'Light',
+      category: 'Navigation',
+      commands: [
+        {
+          icon: <FiGlobe />,
+          text: 'Home',
+          href: 'https://hxrsh.in',
+        },
+        {
+          icon: <FiZap />,
+          text: 'About',
+          href: 'https://hxrsh.in/abt',
+        },
+        {
+          icon: <BsChatSquareDots />,
+          text: 'Ask me Anything',
+          href: 'https://hxrsh.in/ama',
+        },
+        {
+          icon: <AiOutlineLaptop />,
+          text: 'Uses',
+          href: 'https://hxrsh.in/uses',
+        },
+        {
+          icon: <BiStats />,
+          text: 'Stats',
+          href: 'https://hxrsh.in/stats',
+        },
+        {
+          icon: <FiRss />,
+          text: 'RSS Feed',
+          href: 'https://hxrsh.in/rss.xml',
+        },
+      ],
+    },
+  ]
+
+  const social: Command[] = [
+    {
+      category: 'Socials',
+      commands: [
+        {
+          icon: <FiTwitter />,
+          text: 'Twitter',
+          href: 'https://twitter.com/harshhhdev',
+          newTab: true,
+        },
+        {
+          icon: <FiGithub />,
+          text: 'GitHub',
+          href: 'https://github.com/harshhhdev',
+          newTab: true,
+        },
+        {
+          icon: <FiLinkedin />,
+          text: 'Linkedin',
+          href: 'https://linkedin.com/in/harshhhdev',
+          newTab: true,
+        },
+        {
+          icon: <FiDribbble />,
+          text: 'Dribbble',
+          href: 'https://dribbble.com/harshhhdev',
+          newTab: true,
+        },
+        {
+          icon: <AiOutlineBehance />,
+          text: 'Behance',
+          href: 'https://behance.net/harshhhdev',
+          newTab: true,
+        },
+        {
+          icon: <FiYoutube />,
+          text: 'YouTube',
+          href: 'https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ',
+          newTab: true,
+        },
+        {
+          icon: <TbBrandTelegram />,
+          text: 'Telegram',
+          href: 'https://t.me/harshhhdev',
+          newTab: true,
+        },
+        {
+          icon: <RiSnapchatLine />,
+          text: 'Snapchat',
+          href: 'https://snapchat.com/add/harshhhhsingh',
+          newTab: true,
+        },
+      ],
+    },
+  ]
+
+  const blogs: Command[] = [
+    {
+      category: 'Blogs',
+      commands: allBlogs.map((blog) => {
+        return {
+          icon: <FiBook />,
+          text: blog.title,
+          href: `https://hxrsh.in/blog/${blog.slug}`,
+        }
+      }),
+    },
+  ]
+
+  const theme: Command[] = [
+    {
       category: 'Themes',
-      perform: () => setTheme('light'),
-    },
-    {
-      icon: <FiMoon />,
-      text: 'Dark',
-      category: 'Themes',
-      perform: () => setTheme('dark'),
-    },
-  ]
-
-  const languageCommands: Command[] = [
-    {
-      icon: <TbMessageLanguage />,
-      text: 'English',
-      category: 'Languages',
-      href: '/',
-    },
-    {
-      icon: <TbMessageLanguage />,
-      text: 'Hindi',
-      category: 'Languages',
-      href: '/in',
-    },
-    {
-      icon: <TbMessageLanguage />,
-      text: 'German',
-      category: 'Languages',
-      href: '/de',
-    },
-    {
-      icon: <TbMessageLanguage />,
-      text: 'French',
-      category: 'Languages',
-      href: '/fr',
-    },
-    {
-      icon: <TbMessageLanguage />,
-      text: 'Serbian',
-      category: 'Languages',
-      href: '/sr',
+      commands: [
+        {
+          icon: <FiSun />,
+          text: 'Light',
+          perform: () => setTheme('light'),
+        },
+        {
+          icon: <FiMoon />,
+          text: 'Dark',
+          perform: () => setTheme('dark'),
+        },
+      ],
     },
   ]
 
-  const darkConfig: PaletteConfig = {
-    backgroundColor: '#181818',
-    borderColor: '#3F3F3F',
-    inputColor: '#FFFFFF',
-    headingColor: '#777777',
-    commandInactive: '#777777',
-    commandActive: '#FFFFFF',
-    barBackground: '#FFFFFF20',
-  }
+  const language: Command[] = [
+    {
+      category: 'Languages',
+      commands: [
+        {
+          icon: <TbMessageLanguage />,
+          text: 'English',
+          href: '/',
+        },
+        {
+          icon: <TbMessageLanguage />,
+          text: 'Hindi',
+          href: '/in',
+        },
+        {
+          icon: <TbMessageLanguage />,
+          text: 'German',
+          href: '/de',
+        },
+        {
+          icon: <TbMessageLanguage />,
+          text: 'French',
+          href: '/fr',
+        },
+        {
+          icon: <TbMessageLanguage />,
+          text: 'Serbian',
+          href: '/sr',
+        },
+      ],
+    },
+  ]
 
-  const lightConfig: PaletteConfig = {
-    backgroundColor: '#F6F6F6',
-    borderColor: '#FFF',
-    inputColor: '#000',
-    headingColor: '#828282',
-    commandInactive: '#828282',
-    commandActive: '#343434',
-    barBackground: '#82828220',
-  }
+  const [mainCommands, setMainCommands] = useCommands(main)
+  const [navigationCommands, setNavigationCommands] = useCommands(navigation)
+  const [socialCommands, setSocialCommands] = useCommands(social)
+  const [blogCommands, setBlogCommands] = useCommands(blogs)
+  const [themeCommands, setThemeCommands] = useCommands(theme)
+  const [languageCommands, setLanguageCommands] = useCommands(language)
 
   return (
     <>
-      <KMenu
-        open={open}
-        setOpen={setOpen}
-        index={1}
-        commands={mainCommands}
-        categories={['Navigation', 'Preferences', 'Socials']}
-        config={theme === 'light' ? lightConfig : darkConfig}
-        main
-      />
-      <KMenu
-        open={open}
-        setOpen={setOpen}
-        index={2}
-        commands={themeCommands}
-        categories={['Themes']}
-        config={theme === 'light' ? lightConfig : darkConfig}
-      />
-      <KMenu
-        open={open}
-        setOpen={setOpen}
-        index={3}
-        commands={languageCommands}
-        categories={['Languages']}
-        config={theme === 'light' ? lightConfig : darkConfig}
-      />
+      <CommandMenu commands={mainCommands} index={1} main />
+      <CommandMenu commands={navigationCommands} index={2} />
+      <CommandMenu commands={socialCommands} index={3} />
+      <CommandMenu commands={blogCommands} index={4} />
+      <CommandMenu commands={themeCommands} index={5} />
+      <CommandMenu commands={languageCommands} index={6} />
     </>
   )
 }

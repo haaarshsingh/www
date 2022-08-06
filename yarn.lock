@@ -2799,12 +2799,13 @@ kleur@^4.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.4.tgz#8c202987d7e577766d039a8cd461934c01cda04d"
   integrity sha512-8QADVssbrFjivHWQU7KkMgptGTl6WAcSdlbBPY4uNF+mWr6DGcKrvY2w4FQJoXch7+fKMjj0dRrL75vk3k23OA==
 
-kmenu@^0.0.25-dev:
-  version "0.0.25-dev"
-  resolved "https://registry.yarnpkg.com/kmenu/-/kmenu-0.0.25-dev.tgz#0474800b1cd05242c3585f5f964d04569ad0ccd8"
-  integrity sha512-cP1k9peKVxlVjpmDL0Gmc5NyDVgTNlwIMmJhQDt326/bqRxksRZToXn6QLZegO1gYNo01hDx56pdloZZS2Qkzg==
+kmenu@^1.0.0-beta-dev:
+  version "1.0.0-beta-dev"
+  resolved "https://registry.yarnpkg.com/kmenu/-/kmenu-1.0.0-beta-dev.tgz#64e8e7877e1877c36155a1b0ae08a6837dc9cf22"
+  integrity sha512-FVgR72VXvuKObdkv6hj3Z7HblnJQHM7R+hyYNxOUjCjgRD3VLV2ipP3WU1GBwJf9TmewYUWol+JyK5OqeXaAuQ==
   dependencies:
     framer-motion "^4.1.17"
+    react-scrollbar-size "^5.0.0"
 
 lambdafs@^2.0.2:
   version "2.1.1"
@@ -4176,6 +4177,11 @@ react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-scrollbar-size@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-scrollbar-size/-/react-scrollbar-size-5.0.0.tgz#29892779dfcb9077ce18e2483d1dba6400c58fb0"
+  integrity sha512-Ly3OuRMz4yDFViTh+ANH6TrG8EqrgjC1uxxm2a/95+2Ijy3XT+bWtzm4QmgZUcUVg+8BCKzmPMM7z39ZtucDIQ==
 
 react-spring@^9.4.4:
   version "9.4.4"

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import {
   FiTwitter,
   FiDribbble,
@@ -12,6 +12,7 @@ import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 import Wavy from '@anims/WavyText'
 import * as A from '@anims/index'
+import { useKmenu } from 'kmenu'
 
 const Socials: FC = () => {
   return (
@@ -62,10 +63,10 @@ const Socials: FC = () => {
   )
 }
 
-const Intro: FC<{ setOpen: Dispatch<SetStateAction<number>> }> = ({
-  setOpen,
-}) => {
+const Intro: FC = () => {
   const { t } = useTranslation('common')
+  const [input, setInput, open, setOpen, toggle] = useKmenu()
+
   const [time, setTime] = useState(new Date())
   useEffect(() => {
     setInterval(() => setTime(new Date()), 1000)
@@ -147,7 +148,7 @@ const Intro: FC<{ setOpen: Dispatch<SetStateAction<number>> }> = ({
           <button
             style={{ opacity: 1 }}
             className='z-10 mx-2 inline bg-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-600 dark:text-white text-sm leading-5 py-0.5 px-1.5 border border-gray-500 rounded-md'
-            onClick={() => setOpen(1)}
+            onClick={toggle}
           >
             <kbd className='font-sans no-underline'>⌘</kbd>{' '}
             <kbd className='font-sans'>K</kbd>
@@ -191,9 +192,9 @@ const BackgroundAnimation: FC = () => {
             dur='34s'
             values='0%;3%;0%'
             repeatCount='indefinite'
-          ></animate>
-          <stop offset='0%' stopColor='#ff0'></stop>
-          <stop offset='100%' stopColor='#ff00'></stop>
+          />
+          <stop offset='0%' stopColor='#ff0' />
+          <stop offset='100%' stopColor='#ff00' />
         </radialGradient>
         <radialGradient
           id='Gradient2'
@@ -208,9 +209,9 @@ const BackgroundAnimation: FC = () => {
             dur='23.5s'
             values='0%;3%;0%'
             repeatCount='indefinite'
-          ></animate>
-          <stop offset='0%' stopColor='#9EFF00'></stop>
-          <stop offset='100%' stopColor='#0ff0'></stop>
+          />
+          <stop offset='0%' stopColor='#9EFF00' />
+          <stop offset='100%' stopColor='#0ff0' />
         </radialGradient>
         <radialGradient
           id='Gradient3'
@@ -225,9 +226,9 @@ const BackgroundAnimation: FC = () => {
             dur='21.5s'
             values='0%;3%;0%'
             repeatCount='indefinite'
-          ></animate>
-          <stop offset='0%' stopColor='#f0f'></stop>
-          <stop offset='100%' stopColor='#f0f0'></stop>
+          />
+          <stop offset='0%' stopColor='#f0f' />
+          <stop offset='100%' stopColor='#f0f0' />
         </radialGradient>
       </defs>
       <rect x='0' y='0' width='100%' height='100%' fill='url(#Gradient1)'>
@@ -236,13 +237,13 @@ const BackgroundAnimation: FC = () => {
           dur='20s'
           values='25%;0%;25%'
           repeatCount='indefinite'
-        ></animate>
+        />
         <animate
           attributeName='y'
           dur='21s'
           values='0%;25%;0%'
           repeatCount='indefinite'
-        ></animate>
+        />
         <animateTransform
           attributeName='transform'
           type='rotate'
@@ -250,7 +251,7 @@ const BackgroundAnimation: FC = () => {
           to='360 50 50'
           dur='17s'
           repeatCount='indefinite'
-        ></animateTransform>
+        />
       </rect>
       <rect x='0' y='0' width='100%' height='100%' fill='url(#Gradient2)'>
         <animate
@@ -258,13 +259,13 @@ const BackgroundAnimation: FC = () => {
           dur='23s'
           values='-25%;0%;-25%'
           repeatCount='indefinite'
-        ></animate>
+        />
         <animate
           attributeName='y'
           dur='24s'
           values='0%;50%;0%'
           repeatCount='indefinite'
-        ></animate>
+        />
         <animateTransform
           attributeName='transform'
           type='rotate'
@@ -272,7 +273,7 @@ const BackgroundAnimation: FC = () => {
           to='360 50 50'
           dur='18s'
           repeatCount='indefinite'
-        ></animateTransform>
+        />
       </rect>
       <rect x='0' y='0' width='100%' height='100%' fill='url(#Gradient3)'>
         <animate
@@ -280,13 +281,13 @@ const BackgroundAnimation: FC = () => {
           dur='25s'
           values='0%;25%;0%'
           repeatCount='indefinite'
-        ></animate>
+        />
         <animate
           attributeName='y'
           dur='26s'
           values='0%;25%;0%'
           repeatCount='indefinite'
-        ></animate>
+        />
         <animateTransform
           attributeName='transform'
           type='rotate'
@@ -294,7 +295,7 @@ const BackgroundAnimation: FC = () => {
           to='0 50 50'
           dur='19s'
           repeatCount='indefinite'
-        ></animateTransform>
+        />
       </rect>
     </svg>
   )

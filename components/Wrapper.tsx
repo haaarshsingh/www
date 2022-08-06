@@ -1,10 +1,12 @@
-import { Dispatch, FC, ReactNode, SetStateAction, useState } from 'react'
+import { FC, ReactNode, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Navbar from './Nav/Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
 import Palette from './Palette'
+import { MenuConfig, MenuProvider } from 'kmenu'
+import { useTheme } from 'next-themes'
 
 export const meta = {
   root: 'https://hxrsh.in',
@@ -20,12 +22,28 @@ const Wrapper: FC<{
   title?: string
   description?: string
   image?: string
-  menu?: number
-  setMenu?: Dispatch<SetStateAction<number>>
-}> = ({ children, title, description, image, menu, setMenu }) => {
+}> = ({ children, title, description, image }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const [kmenu, setKmenu] = useState(0)
+  const { theme } = useTheme()
+
+  const darkConfig: MenuConfig = {
+    backdropColor: 'rgba(0, 0, 0, 0.90)',
+    backdropBlur: 5,
+    backgroundColor: '#121212',
+    borderWidth: 1,
+    borderColor: '#393939',
+    inputColor: '#FFFFFF',
+    commandActive: '#CFCFCF',
+    commandInactive: '#4E4E4E',
+    barBackground: '#FFFFFF10',
+    inputBorder: '#393939',
+  }
+
+  const lightConfig: MenuConfig = {
+    backdropColor: 'rgba(256, 256, 256, 0.50)',
+    backdropBlur: 5,
+  }
 
   return (
     <div>
@@ -60,15 +78,20 @@ const Wrapper: FC<{
         />
         <meta name='twitter:image' content={image ? image : meta.image} />
       </Head>
-      <div className='flex flex-col items-center'>
-        <Palette open={menu || kmenu} setOpen={setMenu || setKmenu} />
-        <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
-          <Navbar navOpen={open} setNavOpen={setOpen} />
-          {!open && <main id='main'>{children}</main>}
-          <Footer />
-          <BackToTop />
+      <MenuProvider
+        config={theme === 'dark' ? darkConfig : lightConfig}
+        dimensions={{ sectionHeight: 37, commandHeight: 56 }}
+      >
+        <Palette />
+        <div className='flex flex-col items-center'>
+          <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
+            <Navbar navOpen={open} setNavOpen={setOpen} />
+            {!open && <main id='main'>{children}</main>}
+            <Footer />
+            <BackToTop />
+          </div>
         </div>
-      </div>
+      </MenuProvider>
     </div>
   )
 }
