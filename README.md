@@ -5,7 +5,7 @@
     <h2 align="center">Harsh Singh</h2>
   </a>
 </p> 
-<p align="center">15yo web developer and designer</p>
+<p align="center">16yo web developer and designer</p>
 <p align="center">
   <a href="https://hxrsh.in">Home</a>
     ·
