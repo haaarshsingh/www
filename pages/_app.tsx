@@ -4,7 +4,6 @@ import 'kmenu/dist/index.css'
 import type { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar'
-import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider } from 'next-themes'
 import splitbee from '@splitbee/web'
 
@@ -20,10 +19,8 @@ const Portfolio = ({ Component, pageProps }: AppProps) => {
         light: 'light',
       }}
     >
-      <SessionProvider>
-        <NextNProgress color='#FF70C6' />
-        <Component {...pageProps} />
-      </SessionProvider>
+      <NextNProgress color='#FF70C6' />
+      <Component {...pageProps} />
     </ThemeProvider>
   )
 }

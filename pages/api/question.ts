@@ -1,53 +1,29 @@
+import pool from '@lib/db'
+import type { Question } from '@typings/types'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getSession } from 'next-auth/react'
-import prisma from '@lib/prisma'
 
 const question = async (req: NextApiRequest, res: NextApiResponse) => {
+  const client = await pool.connect()
+
   if (req.method === 'POST') {
-    const session = await getSession({ req })
     const { content } = req.body
 
-    if (session) {
-      try {
-        const question = await prisma.question.create({
-          data: { content: content },
-        })
+    try {
+      const query = await client.query(
+        `INSERT INTO "public"."Question" (id, "createdAt", status, content) VALUES (gen_random_uuid(), NOW(), 'UNANSWERED', '${content}')`
+      )
 
-        return res.status(200).json({ question })
-      } catch (err) {
-        console.error(err)
-        return res.status(509).json({ error: err })
-      }
-    }
-
-    return res.status(401).json({ error: 'You must login to ask questions!' })
-  }
-
-  if (req.method === 'PUT') {
-    const session = await getSession({ req })
-    const { answer, id } = req.body
-
-    if (session) {
-      try {
-        const question = await prisma.question.update({
-          where: { id: id },
-          data: { answer: answer, status: 'ANSWERED' },
-        })
-
-        return res.status(200).json({ question })
-      } catch (err) {
-        console.error(err)
-        return res.status(509).json({ error: err })
-      }
+      return res.status(200).json({ question: query.rows })
+    } catch (err) {
+      console.error(err)
+      return res.status(509).json({ error: err })
     }
   }
 
-  const questions = await prisma.question.findMany({
-    orderBy: { createdAt: 'desc' },
-  })
+  const questions = await client.query('SELECT * FROM "public"."Question"')
 
   return res.status(200).json(
-    questions.map((question) => ({
+    questions.rows.map((question: Question) => ({
       id: question.id,
       status: question.status,
       content: question.content,

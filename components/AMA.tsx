@@ -1,16 +1,21 @@
-import Image from 'next/image'
-import { FC, FormEvent, useRef, useState } from 'react'
+import {
+  Dispatch,
+  FC,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 import * as A from '@anims/index'
-import { Question as QuestionType } from '@prisma/client'
-import Link from 'next/link'
-import { signIn, useSession } from 'next-auth/react'
+import type { Question as QuestionType } from '@typings/types'
 import { sanitize } from 'dompurify'
+import { cva } from 'class-variance-authority'
 
 const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
   const { t } = useTranslation('common')
-  const { data: session, status } = useSession()
 
   return (
     <motion.div
@@ -19,26 +24,6 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
       initial='hidden'
       animate='visible'
     >
-      <motion.div className='flex items-center text-lg mb-5'>
-        {session ? (
-          <motion.div variants={A.Fade} className='flex items-center'>
-            <Image
-              width={40}
-              height={40}
-              src={session.user?.image!}
-              alt='Your profile pic'
-              className='rounded-full'
-            />
-            <Link href='/api/auth/signout' passHref>
-              <a className='ml-3'>{t('logout')}</a>
-            </Link>
-          </motion.div>
-        ) : (
-          <motion.a variants={A.Fade} href='#' onClick={() => signIn('github')}>
-            {t('loginWithGitHub')}
-          </motion.a>
-        )}
-      </motion.div>
       <motion.h1
         className='!text-3xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'
         variants={A.Fade}
@@ -126,7 +111,7 @@ const Form: FC = () => {
         placeholder='Ask away...'
         maxLength={100}
         ref={content}
-        className='w-full mt-8 mb-2 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
+        className='w-full my-8 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
       />
       {visible && (
         <motion.p className='text-green-400 mb-5'>
@@ -134,24 +119,7 @@ const Form: FC = () => {
         </motion.p>
       )}
       {error !== '' && <p className='text-rose-400 mb-5'>{error}</p>}
-      {loading ? (
-        <motion.button
-          className='flex items-center justify-center mt-3 w-28 h-14 bg-gray-200 dark:bg-gray-800 px-8 py-3 text-lg rounded border border-solid border-gray-300 dark:border-gray-500 cursor-not-allowed'
-          type='submit'
-          variants={A.Fade}
-          disabled
-        >
-          <div className='loading' />
-        </motion.button>
-      ) : (
-        <motion.button
-          className='flex items-center justify-center mt-3 w-28 h-14 text-white bg-gray-900 dark:text-gray-900 dark:bg-white px-8 py-3 text-lg rounded border border-solid border-gray-900 dark:border-white hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white focus:bg-gray-100 dark:focus-visible:bg-gray-900 focus:text-gray-900 dark:focus:text-white duration-200'
-          type='submit'
-          variants={A.Fade}
-        >
-          Ask
-        </motion.button>
-      )}
+      <Button loading={loading} setLoading={setLoading} />
     </motion.form>
   )
 }
@@ -162,6 +130,51 @@ const Question: FC<{ question: QuestionType }> = ({ question }) => {
       <h1 className='mb-5 !text-xl'>{question.content}</h1>
       <p className='text-base mb-10'>{question.answer}</p>
     </motion.div>
+  )
+}
+
+const button = cva('button', {
+  variants: { loading: { true: 'is-busy' } },
+  defaultVariants: {
+    loading: false,
+  },
+})
+
+const Button: FC<{
+  loading: boolean
+  setLoading: Dispatch<SetStateAction<boolean>>
+}> = ({ loading, setLoading }) => {
+  const [aspectRatio, setAspectRatio] = useState(1)
+
+  const ref = useRef<HTMLButtonElement>(null)
+
+  useEffect(
+    () => setAspectRatio(ref.current!.clientWidth / ref.current!.clientHeight),
+    []
+  )
+
+  return (
+    <button
+      ref={ref}
+      className={button({ loading })}
+      style={{
+        ['--button-aspect-ratio' as string]: aspectRatio,
+      }}
+      onClick={() => {
+        setLoading((loading) => !loading)
+      }}
+      type='submit'
+    >
+      <span className='button__content'>
+        <span
+          {...(loading ? { role: 'progressbar' } : {})}
+          aria-hidden={!loading}
+        >
+          {loading ? 'Loading...' : 'Ask Question'}
+        </span>
+      </span>
+      <span aria-hidden className='button__disco' />
+    </button>
   )
 }
 

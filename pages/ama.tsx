@@ -1,10 +1,10 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Wrapper from '@components/Wrapper'
 import AskMeAnything from '@components/AMA'
 import Newsletter from '@components/Newsletter'
-import prisma from '@lib/prisma'
-import { Question } from '@prisma/client'
+import type { Question } from '@typings/types'
+import pool from '@lib/db'
 
 const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
   return (
@@ -19,14 +19,25 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const questions = await prisma.question.findMany({
-    where: { status: 'ANSWERED' },
-    orderBy: { createdAt: 'desc' },
-  })
+  try {
+    const client = await pool.connect()
+    const result = await client.query(
+      'SELECT * FROM public."Question" WHERE status=\'ANSWERED\''
+    )
+
+    return {
+      props: {
+        questions: result.rows,
+        ...(await serverSideTranslations(locale!, ['common'])),
+      },
+    }
+  } catch (error) {
+    console.log(error)
+  }
 
   return {
     props: {
-      questions,
+      questions: undefined,
       ...(await serverSideTranslations(locale!, ['common'])),
     },
   }
