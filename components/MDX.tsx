@@ -1,5 +1,5 @@
-import NextImage, { ImageProps } from "next/image";
-import NextLink from "next/link";
+import NextImage, { ImageProps } from 'next/image'
+import NextLink from 'next/link'
 import {
   FC,
   ReactChildren,
@@ -7,154 +7,177 @@ import {
   useEffect,
   useRef,
   useState,
-} from "react";
-import { FiCheck, FiClipboard, FiDownload } from "react-icons/fi";
+} from 'react'
+import { FiCheck, FiClipboard, FiDownload } from 'react-icons/fi'
 
 const Link: FC<{ href: string; children: ReactNode }> = ({
   href,
   children,
 }) => {
-  const link = href;
-  const internal = link && (link.startsWith("/") || link.startsWith("#"));
+  const link = href
+  const internal = link && (link.startsWith('/') || link.startsWith('#'))
 
   if (internal) {
     return (
       <NextLink href={href}>
         <a>{children}</a>
       </NextLink>
-    );
+    )
   }
 
   return (
-    <a target="_blank" rel="noopener noreferrer" href={href}>
+    <a target='_blank' rel='noopener noreferrer' href={href}>
       {children}
     </a>
-  );
-};
+  )
+}
 
 const Header1: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
   return (
     <a
       href={`#${id}`}
-      className="my-12 flex items-center group w-fit header no-outline"
+      className='my-12 flex items-center group w-fit header no-outline'
     >
-      <h1 className="opacity-0 group-hover:opacity-100 mr-1">#</h1>
+      <h1 className='opacity-0 group-hover:opacity-100 mr-1'>#</h1>
       <h1 id={id}>{children}</h1>
     </a>
-  );
-};
+  )
+}
 
 const Header3: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
   return (
     <a
       href={`#${id}`}
-      className="text-2xl mb-5 mt-4 flex items-center group w-fit header no-outline"
+      className='text-2xl mb-5 mt-4 flex items-center group w-fit header no-outline'
     >
-      <h3 className="opacity-0 group-hover:opacity-100 mr-1">#</h3>
+      <h3 className='opacity-0 group-hover:opacity-100 mr-1'>#</h3>
       <h3 id={id}>{children}</h3>
     </a>
-  );
-};
+  )
+}
 
 const Image: FC<{ alt: string; props: ImageProps }> = ({ alt, props }) => {
-  return <NextImage alt={alt} layout="fill" {...props} priority />;
-};
+  const [imageLoading, setImageLoading] = useState(false)
+
+  return (
+    <div
+      className={[
+        'img h-fit w-fit rounded-xl',
+        `img--blur-down`,
+        imageLoading && 'is-loaded',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <NextImage
+        alt={alt}
+        layout='intrinsic'
+        objectFit='contain'
+        width={2000}
+        height={1500}
+        className='img__element'
+        {...props}
+        onLoad={() => setImageLoading(true)}
+      />
+    </div>
+  )
+}
 
 const CodeBlock: FC<{
-  className: string | undefined;
-  children: ReactChildren;
+  className: string | undefined
+  children: ReactChildren
 }> = ({ children }): JSX.Element => {
-  const textInput = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const textInput = useRef<HTMLDivElement>(null)
+  const [hovered, setHovered] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const onEnter = () => {
-    setHovered(true);
-  };
+    setHovered(true)
+  }
 
   const onExit = () => {
-    setHovered(false);
-    setCopied(false);
-  };
+    setHovered(false)
+    setCopied(false)
+  }
 
   const onCopy = () => {
-    setCopied(true);
-    navigator.clipboard.writeText(textInput.current?.textContent!);
+    setCopied(true)
+    navigator.clipboard.writeText(textInput.current?.textContent!)
     setTimeout(() => {
-      setCopied(false);
-    }, 3000);
-  };
+      setCopied(false)
+    }, 3000)
+  }
 
   return (
     <div
       ref={textInput}
       onMouseEnter={onEnter}
       onMouseLeave={onExit}
-      className="relative"
+      className='relative'
     >
       {hovered && (
         <button
-          aria-label="Copy code"
-          type="button"
+          aria-label='Copy code'
+          type='button'
           className={`absolute flex justify-center items-center right-3 top-3 w-7 h-7 p-1 rounded border bg-gray-200 dark:bg-[#282e33] ${
             copied
-              ? "focus:border-green-500 border-green-400 text-green-400"
-              : "border-gray-400 text-gray-400"
+              ? 'focus:border-green-500 border-green-400 text-green-400'
+              : 'border-gray-400 text-gray-400'
           }`}
           onClick={onCopy}
         >
           {copied ? <FiCheck /> : <FiClipboard />}
         </button>
       )}
-      <pre className="text-sm">{children}</pre>
+      <pre className='text-sm'>{children}</pre>
     </div>
-  );
-};
+  )
+}
 
 const Copy: FC<{ text: string }> = ({ text }) => {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setCopied(false), 10000);
-  }, [copied, setCopied]);
+    setTimeout(() => setCopied(false), 10000)
+  }, [copied, setCopied])
 
   return (
     <button
       className={`flex items-center text-gray-900 dark:text-white py-3 px-4 text-base rounded-lg transition-colors ${
         copied
-          ? "bg-green-500 hover:bg-green-600 text-gray-100"
-          : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+          ? 'bg-green-500 hover:bg-green-600 text-gray-100'
+          : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
       }`}
       onClick={() => {
-        navigator.clipboard.writeText(text);
-        setCopied(true);
+        navigator.clipboard.writeText(text)
+        setCopied(true)
       }}
     >
-      {copied ? <FiCheck className="mr-2" /> : <FiClipboard className="mr-2" />}
-      {copied ? "Copied" : "Copy"}
+      {copied ? <FiCheck className='mr-2' /> : <FiClipboard className='mr-2' />}
+      {copied ? 'Copied' : 'Copy'}
     </button>
-  );
-};
+  )
+}
 
 const Download: FC = () => {
   return (
     <a
-      className="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header"
-      href="/HarshBranding.zip"
-      download="HarshBranding.zip"
+      className='bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header'
+      href='/HarshBranding.zip'
+      download='HarshBranding.zip'
     >
-      <FiDownload className="mr-2" /> Download Assets
+      <FiDownload className='mr-2' /> Download Assets
     </a>
-  );
-};
+  )
+}
 
 const Table: FC<{ children: ReactChildren }> = ({ children }) => {
   return (
-    <div className="w-fit border-gray-700 border rounded-xl overflow-x-scroll">
+    <div className='w-fit border-gray-700 border rounded-xl overflow-x-scroll'>
       {children}
     </div>
-  );
-};
+  )
+}
 
 const Components = {
   a: Link,
@@ -165,6 +188,6 @@ const Components = {
   table: Table,
   Copy,
   Download,
-};
+}
 
-export default Components;
+export default Components

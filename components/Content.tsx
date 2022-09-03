@@ -69,9 +69,9 @@ const Post: FC<{
           {isSelected && (
             <motion.div
               layoutId='box'
-              className='bg-[#00000010] dark:bg-[#FFFFFF20] rounded-lg w-full h-16 absolute'
+              className='bg-[#00000010] dark:bg-[#FFFFFF50] rounded-lg w-full h-16 absolute'
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={{ opacity: 0.2 }}
               exit={{ opacity: 0 }}
               transition={{
                 type: 'spring',

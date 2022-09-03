@@ -66,6 +66,7 @@ const Socials: FC = () => {
 const Intro: FC = () => {
   const { t } = useTranslation('common')
   const [input, setInput, open, setOpen, toggle] = useKmenu()
+  const [imageLoading, setImageLoading] = useState(false)
 
   const [time, setTime] = useState(new Date())
   useEffect(() => {
@@ -74,18 +75,36 @@ const Intro: FC = () => {
 
   return (
     <motion.div
-      className='mt-20 flex items-start p-2'
+      className='mt-40 flex items-center justify-between z-10'
       variants={A.FadeContainer}
       initial='hidden'
       animate='visible'
       id='home'
     >
-      <motion.div variants={A.FadeContainer} initial='hidden' animate='visible'>
+      <div
+        className={[
+          '!hidden sm:!block rounded-2xl img h-fit z-10',
+          `img--blur-down`,
+          imageLoading && 'is-loaded',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+      >
+        <Image
+          src='https://avatars.githubusercontent.com/u/69592270?v=4'
+          width={400}
+          height={400}
+          alt='My face'
+          className='img__element'
+          onLoad={() => setImageLoading(true)}
+        />
+      </div>
+      <div className='flex flex-col ml-5 sm:ml-20 w-full'>
         <motion.span
-          className='flex items-center text-sm w-full font-mono text-gray-300'
+          className='flex items-center text-xs font-mono text-gray-300'
           variants={A.Fade}
         >
-          <p className='text-sm'>
+          <p className='text-xs'>
             {time.toLocaleString('en-GB', {
               hour: 'numeric',
               minute: 'numeric',
@@ -114,7 +133,7 @@ const Intro: FC = () => {
           </a>
         </motion.span>
         <motion.h1
-          className='text-3xl z-10 !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r w-fit pt-2 mb-2'
+          className='!text-6xl z-10 !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r w-fit py-2 my-2'
           variants={A.Fade}
         >
           {t('header')}
@@ -137,17 +156,17 @@ const Intro: FC = () => {
             fill='#666666'
           />
         </motion.svg>
-        <motion.p className='z-10 text-lg mr-20' variants={A.Fade}>
+        <motion.p className='z-10 text-lg' variants={A.Fade}>
           {t('bio')}
         </motion.p>
         <motion.p
-          className='z-10 text-lg mr-20 mt-10 hidden sm:flex'
+          className='z-10 text-md xl:text-lg mt-10 hidden sm:flex'
           variants={A.Fade}
         >
           {t('tip')}
           <button
             style={{ opacity: 1 }}
-            className='z-10 mx-2 inline bg-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-600 dark:text-white text-sm leading-5 py-0.5 px-1.5 border border-gray-500 rounded-md'
+            className='z-10 mx-2 inline bg-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-600 dark:text-white text-xs leading-5 py-0.5 px-1.5 border border-gray-500 rounded-md'
             onClick={toggle}
           >
             <kbd className='font-sans no-underline'>⌘</kbd>{' '}
@@ -156,16 +175,7 @@ const Intro: FC = () => {
           {t('navigate')}
         </motion.p>
         <Socials />
-      </motion.div>
-      <motion.div variants={A.Image} className='hidden sm:block'>
-        <Image
-          src='https://avatars.githubusercontent.com/u/69592270?v=4'
-          width={150}
-          height={150}
-          alt='My face'
-          className='rounded-full z-10'
-        />
-      </motion.div>
+      </div>
       <BackgroundAnimation />
     </motion.div>
   )

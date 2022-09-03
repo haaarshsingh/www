@@ -282,3 +282,48 @@ kbd {
   --button-disco-opacity-enabled: var(--button-disco-opacity);
   cursor: progress;
 }
+
+.img {
+  --img-blur: 42px;
+  --img-scale: 1.5;
+  --img-transition-duration: 1.2s;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  padding-bottom: var(--img-aspect-ratio);
+}
+
+.img__element,
+.img__placeholder {
+  inset: 0;
+  position: absolute;
+  display: block;
+  max-width: 100%;
+  width: 100%;
+}
+
+.img__element {
+  font-size: 0;
+  opacity: 0;
+}
+
+.img--blur-down .img__element,
+.img--blur-down .img__placeholder {
+  filter: blur(var(--img-blur));
+  transform: scale(var(--img-scale));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .img--blur-down .img__element {
+    transition: var(--img-transition-duration) ease;
+    transition-property: filter, opacity, transform;
+    will-change: filter, transform;
+  }
+}
+
+.img--blur-down.is-loaded .img__element {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
