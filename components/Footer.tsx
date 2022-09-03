@@ -41,10 +41,10 @@ const Footer: FC = () => {
               link: '/uses',
               text: t('uses'),
             },
-            {
-              link: '/photography',
-              text: t('photographyHeader'),
-            },
+            // {
+            //   link: '/photography',
+            //   text: t('photographyHeader'),
+            // },
             {
               link: '/words',
               text: t('wordsHeader'),
