@@ -1,8 +1,9 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import components from '@components/MDX'
 import Wrapper from '@components/Wrapper'
 import Header from '@components/Header'
+import { allInfos } from '@layer/generated'
 
 const Privacy: NextPage<{ privacy: { body: { code: string } } }> = ({
   privacy,
@@ -20,6 +21,16 @@ const Privacy: NextPage<{ privacy: { body: { code: string } } }> = ({
       </div>
     </Wrapper>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const privacy = allInfos.find(
+    (page: { slug: string }) => page.slug === 'privacy'
+  )!
+
+  return {
+    props: { privacy },
+  }
 }
 
 export default Privacy

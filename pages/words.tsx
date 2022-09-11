@@ -1,9 +1,12 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Wrapper from '@components/Wrapper'
 import Header from '@components/Header'
 import Words from '@components/Words'
+import { allInfos } from '@layer/generated'
 
-const Uses: NextPage<{ uses: { body: { code: string } } }> = ({ uses }) => {
+const WordsPage: NextPage<{ uses: { body: { code: string } } }> = ({
+  uses,
+}) => {
   return (
     <Wrapper
       title='Words'
@@ -15,4 +18,14 @@ const Uses: NextPage<{ uses: { body: { code: string } } }> = ({ uses }) => {
   )
 }
 
-export default Uses
+export const getStaticProps: GetStaticProps = async () => {
+  const privacy = allInfos.find(
+    (page: { slug: string }) => page.slug === 'words'
+  )!
+
+  return {
+    props: { privacy },
+  }
+}
+
+export default WordsPage
