@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter'],
-        serif: ['Newsreader'],
+        mono: ['Fira Code'],
       },
       colors: {
         gray: {

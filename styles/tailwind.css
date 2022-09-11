@@ -15,7 +15,7 @@ body {
 }
 
 h1 {
-  @apply text-gray-900 dark:text-white font-semibold !text-2xl;
+  @apply text-gray-900 dark:text-white font-bold !text-2xl;
 }
 
 h3 {
@@ -43,11 +43,7 @@ textarea {
 }
 
 a {
-  @apply text-gray-300 underline-offset-4 transition-colors;
-}
-
-a:hover {
-  @apply text-gray-900 dark:text-white;
+  @apply text-white transition-colors;
 }
 
 p,
@@ -64,15 +60,10 @@ img {
 }
 
 i {
-  @apply text-black dark:text-white font-serif;
+  @apply text-black dark:text-white;
 }
 
 ::placeholder {
-  @apply text-white;
-}
-
-.blog a,
-.link {
   @apply text-white;
 }
 

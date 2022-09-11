@@ -87,10 +87,10 @@ const Intro: FC = () => {
       </div>
       <div className='flex flex-col ml-5 sm:ml-20 w-full'>
         <motion.span
-          className='flex items-center text-sm text-gray-600'
+          className='flex items-center font-mono text-sm text-gray-600'
           variants={A.Fade}
         >
-          <p className='text-sm w-[120px]'>
+          <p className='text-sm'>
             {time.toLocaleString('en-GB', {
               hour: 'numeric',
               minute: 'numeric',
@@ -100,8 +100,8 @@ const Intro: FC = () => {
               timeZone: 'America/Chicago',
             })}
           </p>
-          <div className='w-1 h-1 rounded-full bg-gray-600' />
-          <p className='text-gray-600 text-sm w-[170px] text-right'>
+          <div className='w-1 h-1 mx-2 rounded-full bg-gray-600' />
+          <p className='text-gray-600 text-sm text-right'>
             <a
               href='https://en.wikipedia.org/wiki/Dallas%E2%80%93Fort_Worth_metroplex'
               target='_blank'
