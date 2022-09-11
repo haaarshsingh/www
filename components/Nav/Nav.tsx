@@ -4,7 +4,6 @@ import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import { AnimatePresence, motion } from 'framer-motion'
 import * as A from '@anims/index'
-import { useDetectClickOutside } from 'react-detect-click-outside'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 
@@ -129,7 +128,6 @@ const Navbar: FC<{
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const links = ['Home', 'AMA', 'Uses', 'Music', 'Blog']
-  const boundary = useDetectClickOutside({ onTriggered: () => setOpen(false) })
 
   return (
     <nav className='flex justify-between items-center w-full'>
