@@ -1,19 +1,58 @@
 import Link from 'next/link'
 import { FC, useState } from 'react'
-import { FiEye, FiChevronRight } from 'react-icons/fi'
-import { useTranslation } from 'next-i18next'
-import { format } from 'timeago.js'
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
+import { FiChevronRight } from 'react-icons/fi'
+import { AnimatePresence, motion } from 'framer-motion'
+import { format } from 'date-fns'
 import * as A from '@anims/index'
 import { allBlogs, Blog } from '@layer/generated'
-allBlogs.sort((a, b) => {
-  return a.published < b.published ? 1 : -1
-})
+allBlogs.sort((a, b) => (a.published < b.published ? 1 : -1))
+
+type Talk = {
+  title: string
+  href: string
+  date: string
+  event: string
+}
+
+const talks: Talk[] = [
+  {
+    title: 'Building an Accessible Command Menu with React',
+    href: 'https://youtu.be/2DL4QC0QrOg',
+    date: '09/08',
+    event: 'React JAX',
+  },
+  {
+    title: 'Building Serverless Remix Applications with GraphQL and Prisma',
+    href: 'https://youtu.be/_Kr-FprQoAI',
+    date: '20/06',
+    event: 'Remix India',
+  },
+  {
+    title: 'Kubernetes and the Architecture Serverless Databases',
+    href: 'https://youtu.be/m2eM-p8zQgM',
+    date: '04/05',
+    event: 'DoK Students Day',
+  },
+  {
+    title:
+      'Migrating a Serverless PostgreSQL Application to CockroachDB With Zero Downtime',
+    href: 'https://youtu.be/U57GDhVEU50',
+    date: '29/03',
+    event: 'CockroachDB Stream',
+  },
+  {
+    title: 'Database Design 101',
+    href: 'https://youtu.be/PUfqXnWhwLk',
+    date: '31/08',
+    event: 'Prisma Meetup',
+  },
+]
 
 const Content: FC<{
-  data: Blog[]
-}> = ({ data }) => {
-  const { t } = useTranslation('common')
+  text: string
+  blogs?: Blog[]
+  talks?: Talk[]
+}> = ({ text, blogs, talks }) => {
   const [selected, setSelected] = useState(0)
 
   return (
@@ -24,26 +63,44 @@ const Content: FC<{
       animate='visible'
     >
       <motion.h1 variants={A.Fade} className='mb-12 text-2xl'>
-        {t('blogsHeader')}
+        {text}
       </motion.h1>
-      <AnimateSharedLayout>
-        {data.map((item, index) => (
+      {blogs &&
+        blogs.map((blog, index) => (
           <Post
-            item={item}
+            blog={blog}
             key={index}
             onMouseOver={() => setSelected(index + 1)}
             onMouseLeave={() => setSelected(0)}
             isSelected={selected === index + 1}
           />
         ))}
-      </AnimateSharedLayout>
-      <Link href='/blog' passHref>
+      {talks &&
+        talks.map((talk, index) => (
+          <Post
+            talk={talk}
+            key={index}
+            onMouseOver={() => setSelected(index + 1)}
+            onMouseLeave={() => setSelected(0)}
+            isSelected={selected === index + 1}
+          />
+        ))}
+      <Link
+        href={
+          blogs
+            ? '/blog'
+            : 'https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ'
+        }
+        passHref
+      >
         <motion.a
-          className='flex items-center text-lg group w-fit mt-10'
+          className='flex items-center text-BASE group w-fit mt-10 transition-colors text-white'
           variants={A.Fade}
+          rel='noreferrer'
+          target={blogs ? '_self' : '_blank'}
         >
-          {t('viewBlogs')}
-          <FiChevronRight className='group-hover:translate-x-1 transition-all ml-1 mt-1' />
+          {blogs ? 'All Posts' : 'My Channel'}
+          <FiChevronRight className='group-hover:translate-x-1 transition-transform ml-1' />
         </motion.a>
       </Link>
     </motion.div>
@@ -51,47 +108,53 @@ const Content: FC<{
 }
 
 const Post: FC<{
-  item: Blog
+  blog?: Blog
+  talk?: Talk
   isSelected: boolean
   onMouseOver: () => void
   onMouseLeave: () => void
-}> = ({ item, isSelected, onMouseOver, onMouseLeave }) => {
+}> = ({ blog, talk, isSelected, onMouseOver, onMouseLeave }) => {
   return (
-    <Link href={`/blog/${item.slug}`} passHref locale={false}>
+    <Link
+      href={blog ? `/blog/${blog.slug}` : talk!.href}
+      passHref
+      locale={false}
+    >
       <motion.a
-        href={`/blog/${item.slug}`}
         className='relative flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer rounded-lg p-5'
         variants={A.Fade}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
+        rel='noreferrer'
+        target={blog ? '_self' : '_blank'}
       >
+        <h2 className='text-base font-medium text-white text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12 transition-colors'>
+          {blog ? blog.title : talk?.title}
+        </h2>
+        <div className='flex items-center justify-center h-full'>
+          <p className='text-gray-600'>
+            {blog
+              ? `${Math.round(blog.readingTime.minutes)} minutes`
+              : talk?.event}{' '}
+            • {blog ? format(new Date(blog.published), 'dd/MM') : talk?.date}
+          </p>
+        </div>
         <AnimatePresence>
           {isSelected && (
             <motion.div
               layoutId='box'
-              className='bg-[#00000010] dark:bg-[#FFFFFF50] rounded-lg w-full h-16 absolute'
+              className='bg-[#FFFFFF] dark:bg-[#FFFFFF] rounded-lg w-full h-16 absolute'
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.2 }}
+              animate={{ opacity: 0.1 }}
               exit={{ opacity: 0 }}
               transition={{
                 type: 'spring',
-                stiffness: 1000,
-                damping: 70,
+                stiffness: 1500,
+                damping: 60,
               }}
             />
           )}
         </AnimatePresence>
-        <h1 className='!text-lg text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12'>
-          {typeof item.title === 'string' && item.title}
-        </h1>
-        <div className='flex items-center justify-center h-full'>
-          <p className='text-gray-500 dark:text-white'>
-            {format(item.published)}
-            {' · '}
-            {Math.trunc(item.readingTime.minutes)}
-            {' minute read'}
-          </p>
-        </div>
       </motion.a>
     </Link>
   )
@@ -100,5 +163,10 @@ const Post: FC<{
 export const Blogs: FC = () => {
   const blogs = allBlogs.slice(0, 5)
 
-  return <Content data={blogs} />
+  return (
+    <>
+      <Content text='Writing' blogs={blogs} />
+      <Content text='Speaking' talks={talks} />
+    </>
+  )
 }

@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   @apply box-border p-0 m-0;
 }
@@ -10,19 +11,25 @@
 html,
 body {
   @apply bg-gray-900 scroll-smooth;
-  font-family: 'Albert Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
-  @apply text-gray-900 dark:text-white font-bold !text-2xl;
+  @apply text-gray-900 dark:text-white font-semibold !text-2xl;
 }
 
 h3 {
-  @apply text-gray-900 dark:text-white font-bold !text-lg;
+  @apply text-gray-900 dark:text-white font-bold text-base;
+}
+
+::-moz-selection {
+  color: #e5e5e5;
+  background: #3c3c3c;
 }
 
 ::selection {
-  @apply bg-gradient-100 text-white;
+  color: #e5e5e5;
+  background: #3c3c3c;
 }
 
 button {
@@ -32,11 +39,11 @@ button {
 button,
 input,
 textarea {
-  font-family: 'Albert Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 a {
-  @apply text-gray-400 underline-offset-4 no-underline;
+  @apply text-gray-300 underline-offset-4 transition-colors;
 }
 
 a:hover {
@@ -45,15 +52,19 @@ a:hover {
 
 p,
 li {
-  @apply text-gray-400 text-base;
+  @apply text-gray-600 text-base;
 }
 
 li {
-  @apply ml-10 text-lg list-disc;
+  @apply ml-10 list-disc my-2;
 }
 
 img {
   @apply sm:h-fit select-none;
+}
+
+i {
+  @apply text-black dark:text-white font-serif;
 }
 
 ::placeholder {
@@ -62,7 +73,7 @@ img {
 
 .blog a,
 .link {
-  @apply text-gray-900 dark:text-white underline underline-offset-4 decoration-gray-600 hover:decoration-gray-500;
+  @apply text-white;
 }
 
 .blog > .header {
@@ -70,7 +81,7 @@ img {
 }
 
 .blog p {
-  @apply text-base my-4;
+  @apply text-base my-4 leading-7;
 }
 
 .blog img {
@@ -78,7 +89,7 @@ img {
 }
 
 .rehype-code-title {
-  @apply px-5 py-3 font-mono text-sm text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800 mt-5;
+  @apply px-5 py-3 text-sm text-gray-800 font-mono bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800 mt-5;
 }
 
 code[class*='language-'],
@@ -91,16 +102,12 @@ pre[class*='language-'] {
 }
 
 .blog code {
-  @apply text-gray-900 dark:text-gray-200 px-1 py-0.5 border dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-900 overflow-scroll !text-sm;
+  @apply text-gray-900 dark:text-gray-200 px-1 py-0.5 border dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900 overflow-scroll !text-sm;
 }
 
 .blog pre code {
   @apply text-gray-900 dark:text-gray-200 p-0;
   border: initial;
-}
-
-.blog table {
-  @apply table-auto text-white w-full p-3;
 }
 
 .blog thead {
@@ -109,7 +116,11 @@ pre[class*='language-'] {
 
 .blog td,
 th {
-  @apply text-gray-500 dark:text-white py-3 px-5;
+  @apply text-white py-5 px-7;
+}
+
+.blog td {
+  @apply text-gray-600;
 }
 
 .blog p > code {
@@ -117,11 +128,7 @@ th {
 }
 
 .blog blockquote {
-  @apply italic border-l-4 pl-4 border-cyan-500 bg-cyan-400/20 py-1 rounded my-5;
-}
-
-kbd {
-  @apply !font-mono;
+  @apply italic border-l-4 pl-4 border-gray-700 bg-gray-700/50 py-1 rounded my-5;
 }
 
 /* padding isn't working on next/image component */
@@ -172,11 +179,11 @@ kbd {
 
 .button {
   --button-color-bg: rgb(24 24 27);
-  --button-color-border: rgb(255, 255, 255);
+  --button-color-border: #ffffff;
   --button-color-disco: #ff70c6;
-  --button-color-text: rgb(161 161 170);
+  --button-color-text: rgb(255, 255, 255);
   --button-color-text-busy: rgb(113 113 122);
-  --button-border-width: 2px;
+  --button-border-width: 1px;
   --button-disco-animation: disco 1.5s linear infinite;
   --button-disco-gradient-stops: transparent 135deg,
     var(--button-color-disco) 180deg, transparent 225deg;
@@ -190,8 +197,7 @@ kbd {
   appearance: none;
   position: relative;
   border: 0;
-  font: inherit;
-  width: 140px;
+  width: 150px;
   overflow: hidden;
   margin: calc(var(--button-border-width) * -1);
   padding: var(--button-border-width);
@@ -200,12 +206,7 @@ kbd {
   transform: none;
   user-select: none;
   will-change: transform;
-  /* background-color: var(--button-color-border); */
-  @apply bg-gray-200 dark:bg-gray-800;
-}
-
-.button:hover {
-  @apply brightness-95 dark:brightness-90;
+  @apply bg-gray-200 dark:bg-gray-700;
 }
 
 .button:active {

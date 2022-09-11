@@ -1,4 +1,3 @@
-const { i18n } = require('./next-i18next.config')
 const { withContentlayer } = require('next-contentlayer')
 
 /** @type {import('next').NextConfig} */
@@ -12,7 +11,6 @@ const nextConfig = withContentlayer()({
       'i.scdn.co',
     ],
   },
-  i18n,
   productionBrowserSourceMaps: true,
 })
 

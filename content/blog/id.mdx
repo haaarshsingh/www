@@ -13,7 +13,7 @@ After the stream, I too was curious what the difference is between the two. Afte
 
 We'll be looking at UUID and CUID, along with [NanoID] as it has started to gain traction lately.
 
-# What is UUID?
+## What is UUID?
 
 UUID, or universally unique identifier, is a 128 bit label used for information in operating systems. The probability that an ID will be replicated isn't zero, it's close enough that when we generate a UUID, the chances of the identifier being used ANYWHERE else is near zero.
 
@@ -35,7 +35,7 @@ Don't we all love clean and short URLs? Nobody likes seeing a bunch of digits an
 
 Which is true! If we look into the history of UUID, we realise that it wasn't ever really made to be used in web applications. If we have a website such as, say, [HasteBin](https://www.toptal.com/developers/hastebin/), which depends upon generating these short, three letter IDs to easily share with people, this causes a problem.
 
-# CUID
+## CUID
 
 CUID aims to solve the exact problem we discussed above with UUIDs. Quoted from [CUID's GitHub](https://github.com/ericelliott/cuid):
 
@@ -47,7 +47,7 @@ They're shorter, but what about collisions? I found this [online benchmark](http
 
 Since the talk I gave about was related to [Prisma ORM](https://prisma.io/), the [Prisma schema](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference) (in relational databases) can generate both either a CUID or UUID, depending on the needs of your application.
 
-# ...what about NanoID?
+## ...what about NanoID?
 
 As a bonus, we'll being going over [NanoID]. It's said to be a tiny (only 130 bytes minified and gzipped), fast (x2 faster than UUID), safe, short, and portable.
 
@@ -66,7 +66,7 @@ Anyways, I think you get the point. Just because something's short doesn't mean 
 
 On the NanoID's README, there's a section for [benchmarks](https://github.com/ai/nanoid#benchmark) which they've run with other popular generators. As we can see here, compared to [uuidv4](https://www.npmjs.com/package/uuidv4), there's a huge upscale in performance.
 
-# Conclusion
+## Conclusion
 
 With that being said, I think I've given a fair comparison of the different methods of ID generation, their pros, and their cons. For most cases, I believe the best option is [NanoID] due to the fact that it's really customisable whilst being performant. It's slowly but surely taking over [uuidv4](https://www.npmjs.com/package/uuidv4), if we look at this [npm trends](https://www.npmtrends.com/cuid-vs-nanoid-vs-uuid) comparison between the three. In the context of [Prisma](https://prisma.io), the built-in CUID is perhaps the best choice.
 

@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter'],
-        mono: ['Fira Code'],
+        serif: ['Newsreader'],
       },
       colors: {
         gray: {
@@ -18,10 +18,10 @@ module.exports = {
           300: '#999999',
           400: '#888888',
           500: '#666666',
-          600: '#444444',
-          700: '#333333',
+          600: '#707070',
+          700: '#2e2e2e',
           800: '#222222',
-          900: '#111111',
+          900: '#1C1C1C',
         },
         gradient: {
           100: '#FF70C6',

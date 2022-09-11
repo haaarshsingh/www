@@ -1,9 +1,6 @@
 import { FC } from 'react'
-import { useTranslation } from 'next-i18next'
 
 const Footer: FC = () => {
-  const { t } = useTranslation('common')
-
   return (
     <footer className='flex flex-col justify-center mt-40'>
       <div className='flex'>
@@ -11,15 +8,15 @@ const Footer: FC = () => {
           {[
             {
               link: '/',
-              text: t('home'),
+              text: 'Home',
             },
             {
               link: '/abt',
-              text: t('about'),
+              text: 'About',
             },
             {
               link: '/blog',
-              text: t('blog'),
+              text: 'Blog',
             },
           ].map((link, index) => (
             <a href={link.link} key={index} className='my-2 text-base w-fit'>
@@ -31,23 +28,19 @@ const Footer: FC = () => {
           {[
             {
               link: '/ama',
-              text: t('ama'),
+              text: 'AMA',
             },
             {
               link: '/stats',
-              text: t('stats'),
+              text: 'Music',
             },
             {
               link: '/uses',
-              text: t('uses'),
+              text: 'Uses',
             },
-            // {
-            //   link: '/photography',
-            //   text: t('photographyHeader'),
-            // },
             {
               link: '/words',
-              text: t('wordsHeader'),
+              text: 'Words',
             },
             {
               link: '/rss.xml',
@@ -67,35 +60,35 @@ const Footer: FC = () => {
           {[
             {
               link: 'https://github.com/harshhhdev',
-              text: t('github'),
+              text: 'GitHub',
             },
             {
               link: 'https://twitter.com/harshhhdev',
-              text: t('twitter'),
+              text: 'Twitter',
             },
             {
               link: 'https://dribbble.com/harshhhdev',
-              text: t('dribbble'),
+              text: 'Dribbble',
             },
             {
               link: 'https://linkedin.com/in/harshhhdev',
-              text: t('linkedin'),
-            },
-            {
-              link: 'https://www.youtube.com/channel/UC6ix6gYRC62pM0sMRYKPKUQ',
-              text: t('youtube'),
+              text: 'Linkedin',
             },
             {
               link: 'https://t.me/harshhhdev',
-              text: t('telegram'),
+              text: 'Telegram',
             },
             {
               link: 'https://www.behance.net/harshhhdev',
-              text: t('behance'),
+              text: 'Behance',
+            },
+            {
+              link: 'https://discord.com/users/518432133111611397',
+              text: 'Discord',
             },
             {
               link: 'https://www.snapchat.com/add/harshhhhsingh',
-              text: t('snapchat'),
+              text: 'Snapchat',
             },
           ].map((link, index) => (
             <a
@@ -111,7 +104,7 @@ const Footer: FC = () => {
         </div>
       </div>
       <p className='text-base text-center my-20 text-gray-900 dark:text-white'>
-        {t('footer')}
+        No ads, no tracking. Enjoy your day.
       </p>
     </footer>
   )

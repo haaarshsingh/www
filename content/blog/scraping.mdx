@@ -11,7 +11,7 @@ Before we get started, let's just talk a little bit about web scraping and what 
 
 So, to introduce today's project, we'll be building a simple [GitHub] follower counter, to count how many followers a user has on [GitHub] through the terminal.
 
-# Initialising
+## Initialising
 
 First, let's make a directory for this repository.
 
@@ -23,7 +23,7 @@ cd github-follower-counter
 
 Open it in your code editor. If you're using [Visual Studio Code](https://code.visualstudio.org) you can simply do `code .`
 
-Initialise [yarn](https://yarnpkg.org)(or [npm](https://npmjs.com))
+Initialise with [Yarn](https://yarnpkg.org) (or [NPM](https://npmjs.com)).
 
 ```bash:terminal
 yarn init -y
@@ -32,7 +32,7 @@ yarn init -y
 # npm init -y
 ```
 
-Install [puppeteer](https://pptr.dev/)
+Install [puppeteer](https://pptr.dev/):
 
 ```bash:terminal
 yarn add puppeteer
@@ -41,7 +41,7 @@ yarn add puppeteer
 # npm i puppeteer
 ```
 
-# Getting started with the code
+## Getting started with the code
 
 First off, let's import [puppeteer](https://pptr.dev/) into our project.
 
@@ -49,7 +49,7 @@ First off, let's import [puppeteer](https://pptr.dev/) into our project.
 const puppeteer = require('puppeteer')
 ```
 
-Now, let's get the terminal arguments from the user. To do this, we can use [process.argv](https://nodejs.org/docs/latest/api/process.html)
+Now, let's get the terminal arguments from the user. To do this, we can use [process.argv](https://nodejs.org/docs/latest/api/process.html):
 
 ```js:index.js
 let username = process.argv[2]
@@ -83,13 +83,13 @@ Inside of here, we can see that the `span` element, with the class of `text-bold
 
 ![image](https://user-images.githubusercontent.com/69592270/99896841-49b5cb00-2c62-11eb-9f0a-bd81c06a09be.png)
 
-Back to our code, let's do
+Back to our code, let's do:
 
 ```js:index.js
 const followerCount = document.querySelector('span.text-bold').innerHTML
 ```
 
-Now, let's output the results. There is an error however. If a user does not exist, then it will show us as "optional" on the follower count. To prevent this, we can do...
+Now, let's output the results. There is an error however. If a user does not exist, then it will show us as "optional" on the follower count. To prevent this, we can add:
 
 ```js:index.js
 if (followerCount == 'optional')
@@ -100,15 +100,14 @@ else return `That user has a total of ${followerCount} followers!`
 Next, back to our function, let's output this.
 
 ```js:index.js
-   let githubFollowers = await page.evaluate(() => {
-      const followerCount = document.querySelector('span.text-bold').innerHTML
+let githubFollowers = await page.evaluate(() => {
+   const followerCount = document.querySelector('span.text-bold').innerHTML
 
-      if (followerCount == 'optional') return('Error! Incorrect username, make sure to double check your spelling.')
-      else return(`That user has a total of ${followerCount} followers!`)
-   })
+   if (followerCount == 'optional') return('Error! Incorrect username, make sure to double check your spelling.')
+   else return(`That user has a total of ${followerCount} followers!`)
+})
 
-   console.log(githubFollowers)
-   })
+console.log(githubFollowers)
 ```
 
 Make sure to close the browser window as well.
@@ -123,11 +122,11 @@ At the bottom, don't forget to call this function.
 getFollowers()
 ```
 
-And you should be good to go! Make sure to run `node index.js` followed by a username to test it out!
+...and you should be good to go! Make sure to run `node index.js` followed by a username to test it out.
 
 \_Note: a far better way to do this is to use the [GitHub API]. This was primarily a way on how to select and get certain elements, if you're looking to make an actual project with this, then the [GitHub API] is the way to go!
 
-Thanks for reading, Happy Thanksgiving.
+Thanks for reading, and Happy Thanksgiving. 👋
 
 [this]: https://prowebscraper.com/blog/is-web-scraping-legal/
 [here]: https://developers.google.com/web/tools/puppeteer/

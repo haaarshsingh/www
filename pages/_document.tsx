@@ -6,7 +6,7 @@ export default class PortfolioDocument extends Document {
       <Html lang='en'>
         <Head>
           <link
-            href='https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;800&family=Fira+Code&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap'
             rel='stylesheet'
           />
         </Head>

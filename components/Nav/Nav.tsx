@@ -1,15 +1,12 @@
 import NextLink from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
-import { TFunction, useTranslation } from 'next-i18next'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
-import { FiGlobe } from 'react-icons/fi'
 import { useSpring, animated } from 'react-spring'
 import { AnimatePresence, motion } from 'framer-motion'
 import * as A from '@anims/index'
 import { useDetectClickOutside } from 'react-detect-click-outside'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
-import { meta } from '../Wrapper'
 
 const NavItem: FC<{ href: string; text: string; router: NextRouter }> = ({
   href,
@@ -23,9 +20,9 @@ const NavItem: FC<{ href: string; text: string; router: NextRouter }> = ({
       <a
         className={`${
           isActive
-            ? 'font-semibold text-gray-800 dark:text-gray-200'
-            : 'font-normal text-gray-600 dark:text-gray-400'
-        } sm:inline-block rounded-lg hover:text-gray-900 dark:hover:text-gray-50 transition-all text-lg mr-4 sm:mr-7 hidden`}
+            ? 'text-gray-800 dark:text-gray-200'
+            : 'text-gray-600 dark:text-gray-400'
+        } sm:inline-block rounded-lg hover:text-gray-900 dark:hover:text-gray-50 transition-all mr-4 sm:mr-7 hidden`}
       >
         <span className='capsize'>{text}</span>
       </a>
@@ -125,71 +122,13 @@ const Toggle: React.FC = () => {
   )
 }
 
-const LanguageMenu: FC<{
-  show: boolean
-  // @ts-ignore
-  t: TFunction<'common', undefined>
-  router: NextRouter
-}> = ({ show, t, router }) => {
-  return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          className='absolute mt-10 text-lg bg-gray-200 dark:bg-gray-800 px-3 py-5 rounded flex flex-col border-solid border-2 border-gray-300 dark:border-gray-500 select-none z-10'
-          variants={A.LanguageMenu}
-          initial='hidden'
-          animate='visible'
-          exit='hidden'
-        >
-          <Link
-            href={`${meta.root}/en/${router.asPath}`}
-            passHref
-            locale={false}
-          >
-            <motion.a variants={A.Fade}>English</motion.a>
-          </Link>
-          <Link
-            href={`${meta.root}/hn/${router.asPath}`}
-            passHref
-            locale={false}
-          >
-            <motion.a variants={A.Fade}>हिंदी</motion.a>
-          </Link>
-          <Link
-            href={`${meta.root}/de/${router.asPath}`}
-            passHref
-            locale={false}
-          >
-            <motion.a variants={A.Fade}>Deutsch</motion.a>
-          </Link>
-          <Link
-            href={`${meta.root}/fr/${router.asPath}`}
-            passHref
-            locale={false}
-          >
-            <motion.a variants={A.Fade}>Françias</motion.a>
-          </Link>
-          <Link
-            href={`${meta.root}/sr/${router.asPath}`}
-            passHref
-            locale={false}
-          >
-            <motion.a variants={A.Fade}>srpski</motion.a>
-          </Link>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
-
 const Navbar: FC<{
   navOpen: boolean
   setNavOpen: Dispatch<SetStateAction<boolean>>
 }> = ({ navOpen, setNavOpen }) => {
   const router = useRouter()
-  const { t } = useTranslation('common')
   const [open, setOpen] = useState(false)
-  const links = ['home', 'ama', 'uses', 'stats', 'blog']
+  const links = ['Home', 'AMA', 'Uses', 'Music', 'Blog']
   const boundary = useDetectClickOutside({ onTriggered: () => setOpen(false) })
 
   return (
@@ -198,39 +137,24 @@ const Navbar: FC<{
         <Hamburger open={navOpen} setOpen={setNavOpen} />
         {links.map((link, index) => (
           <NavItem
-            href={`/${link}`}
-            text={t(link)}
+            href={`/${link.toLowerCase()}`}
+            text={link}
             router={router}
             key={index}
           />
         ))}
       </div>
       <div className='flex items-center z-20'>
-        <div
-          className='bg-none border-none flex flex-col items-center'
-          ref={boundary}
-        >
-          <button
-            aria-label='Language Toggle'
-            onClick={() => setOpen((o) => !o)}
-          >
-            <FiGlobe
-              className='text-gray-500 dark:hover:text-white transition-colors hover:cursor-pointer mx-3'
-              size={24}
-            />
-          </button>
-          <LanguageMenu show={open} t={t} router={router} />
-        </div>
         <Toggle />
       </div>
       <AnimatePresence>
-        {navOpen && <MobileMenu links={links} t={t} />}
+        {navOpen && <MobileMenu links={links} />}
       </AnimatePresence>
     </nav>
   )
 }
 
-const MobileMenu: FC<{ links: string[]; t: TFunction }> = ({ links, t }) => {
+const MobileMenu: FC<{ links: string[] }> = ({ links }) => {
   return (
     <motion.div
       className='absolute bg-gray-100 dark:bg-gray-900 w-screen h-screen top-0 left-0 z-10'
@@ -250,7 +174,7 @@ const MobileMenu: FC<{ links: string[]; t: TFunction }> = ({ links, t }) => {
               className='list-none text-xl my-3 w-fit'
               variants={A.FadeSideways}
             >
-              {t(link)}
+              {link}
             </motion.a>
           </Link>
         ))}

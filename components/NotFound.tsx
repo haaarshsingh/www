@@ -1,25 +1,20 @@
-import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { FC } from 'react'
 
 const NotFound: FC = () => {
-  const { t } = useTranslation('common')
-
   return (
     <div>
-      <h1 className='my-20 text-5xl'>{t('lost')}</h1>
-      <div className='blog'>
-        <p>
-          {t('broken')}
-          <Link href='https://github.com/harshhhdev/harshhhdev.github.io/issues/new'>
-            harshhhdev/harshhhdev.github.io
-          </Link>
-        </p>
-        <p>
-          {t('readBlog')}
-          <Link href='/blog'>blog?</Link>
-        </p>
-      </div>
+      <h1 className='my-20 text-5xl'>Not found.</h1>
+      <p>
+        <i>
+          {'The computer was born to solve problems that did not exist before'}
+        </i>
+        . If the link is broken, do open an issue at{' '}
+        <Link href='https://github.com/harshhhdev/harshhhdev.github.io'>
+          harshhhdev/harshhhdev.github.io
+        </Link>
+        .
+      </p>
     </div>
   )
 }

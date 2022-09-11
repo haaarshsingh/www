@@ -7,13 +7,13 @@ description: 'Build a fluid and interactive text animation'
 
 Hello there! It's been a while. Although now that my [AP Computer Science](https://apstudents.collegeboard.org/courses/ap-computer-science-a) exams are over, and summer is almost here (30 days of school left!), I will hopefully have more time on my hands to devote to projects and writing.
 
-In our blog post today, we'll be looking at how we can create a satisfying wavy text animation using [Framer Motion](https://www.framer.com/motion/), [React](https://reactjs.org) and [TypeScript](https://typescriptlang.org). 
+In our blog post today, we'll be looking at how we can create a satisfying wavy text animation using [Framer Motion](https://www.framer.com/motion/), [React](https://reactjs.org) and [TypeScript](https://typescriptlang.org).
 
 Here's a demo of the project in [CodeSandbox](https://j69kkr.csb.app/)!
 
-# Getting Started
+## Getting Started
 
-I know you're eager for action, so let's begin! Start by initialising a [React] and [TypeScript](https://typescriptlang.org) project using [create-react-app](https://create-react-app.dev/). 
+I know you're eager for action, so let's begin! Start by initialising a [React] and [TypeScript](https://typescriptlang.org) project using [create-react-app](https://create-react-app.dev/).
 
 ```bash:terminal
 npx create-react-app wavy-text --template typescript
@@ -72,11 +72,11 @@ h1 {
 }
 ```
 
-# Creating The Animation
+## Creating The Animation
 
-Awesome! Now that we have that boring stuff setup and working, let's get into the actual meat of this project. 
+Awesome! Now that we have that boring stuff setup and working, let's get into the actual meat of this project.
 
-Switching gears onto [React] now, let's create a new file at `src/WavyText.tsx` and import what we'll need for this project and configure our props for the component. 
+Switching gears onto [React] now, let's create a new file at `src/WavyText.tsx` and import what we'll need for this project and configure our props for the component.
 
 ```tsx:src/WavyText.tsx
 import { FC } from "react";
@@ -89,9 +89,9 @@ interface Props extends HTMLMotionProps<"div"> {
 }
 ```
 
-Since we're using [Motion](https://framer.com/motion), we need to use [HTMLMotionProps](https://www.framer.com/docs/component) to forward our props onto our HTML component. 
+Since we're using [Motion](https://framer.com/motion), we need to use [HTMLMotionProps](https://www.framer.com/docs/component) to forward our props onto our HTML component.
 
-Let's now start to create our [React function component](https://reactjs.org/docs/components-and-props) inside our file and pass our props through. 
+Let's now start to create our [React function component](https://reactjs.org/docs/components-and-props) inside our file and pass our props through.
 
 ```tsx:src/WavyText.tsx
 const Letter: FC<Props> = ({
@@ -112,7 +112,7 @@ const letters = Array.from(text);
 
 > Do note that if you're using an international language, you might want to check out [Grapheme Splitter](https://github.com/orling/grapheme-splitter) to divide strings into individual user perceived characters, as opposed to computer perceived characters. Since our text is in English, it'd just add unnecessary complication and an extra step to our project so I'm not adding it in :)
 
-Awesome! Let's now map individual letters in this array under another component. 
+Awesome! Let's now map individual letters in this array under another component.
 
 ```tsx:src/WavyText.tsx
 return (
@@ -131,7 +131,7 @@ return (
 
 Our animation functionality basically works now... there's just a slight problem. The animation looks terrible. Luckily, we can use [Variants](https://www.framer.com/docs/animation/) in [Framer Motion](https://framer.com/motion) to solve our problem.
 
-Outside (or inside - we can even declare them in a new file and import them in) our `WavyText` component, we can create two different animations for both the container and the child. 
+Outside (or inside - we can even declare them in a new file and import them in) our `WavyText` component, we can create two different animations for both the container and the child.
 
 ```tsx:src/WavyText.tsx
 const container: Variants = {
@@ -176,7 +176,7 @@ Now that we have that done, we can set the `variants` in our components to the a
   animate="visible"
   {...props}
 >
-``` 
+```
 
 ...and in our child component:
 
@@ -197,7 +197,7 @@ Open up the `src/App.tsx` file now. Start by importing your component, and then 
 
 Wonderful! Our animation should now be working as we expected. On my example, I've also implemented a "replay" functionality, if you're interested into looking at the code behind that, be sure to check out [CodeSandbox](https://codesandbox.io/s/framer-motion-react-wavy-letter-text-animation-j69kkr)
 
-# Conclusion
+## Conclusion
 
 That's all I have for you! Hopefully you learned something new, and you use later end up using this animation to liven up your own websites! I'm also currently using this animation on [my website](https://hxrsh.in/) :)
 
@@ -205,4 +205,4 @@ If you'd like to see more design, a11y and related articles on my blog - do let 
 
 Enjoy the rest of your day 👋
 
-[React]: https://reactjs.org
+[react]: https://reactjs.org
