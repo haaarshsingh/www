@@ -133,7 +133,7 @@ const Intro: FC = () => {
         </motion.p>
         <motion.p className='my-5' variants={A.Fade}>
           Following passion. <i>Living what I love.</i> Enjoys lifting weights,
-          evening walks, databases, Linux, Vim, and other computer random
+          evening walks, databases, Linux, Vim, and other random computer
           things.
         </motion.p>
         <motion.svg

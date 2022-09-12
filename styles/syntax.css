@@ -6,7 +6,7 @@
 }
 
 .token.punctuation {
-  @apply text-gray-700 dark:text-gray-300;
+  @apply text-gray-700 dark:text-gray-600;
 }
 
 .token.property,
@@ -16,7 +16,7 @@
 .token.constant,
 .token.symbol,
 .token.deleted {
-  @apply text-green-400;
+  @apply text-white;
 }
 
 .token.selector,
@@ -25,7 +25,7 @@
 .token.char,
 .token.builtin,
 .token.inserted {
-  @apply text-cyan-500;
+  @apply text-gray-600;
 }
 
 .token.operator,
@@ -33,22 +33,22 @@
 .token.url,
 .language-css .token.string,
 .style .token.string {
-  @apply text-yellow-500;
+  @apply text-gray-600;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  @apply text-red-400;
+  @apply text-white;
 }
 
 .token.function,
 .token.class-name {
-  @apply text-blue-400;
+  @apply text-white;
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-  @apply text-yellow-500;
+  @apply text-white;
 }

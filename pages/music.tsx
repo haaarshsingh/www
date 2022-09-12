@@ -6,7 +6,7 @@ const Dashboard: NextPage = () => {
   return (
     <Wrapper
       title='Music'
-      description='Just a bunch of random statistics about me from several different APIs. Let me know if you have any ideas!'
+      description='The music I listen to, fetched periodically from Spotify.'
     >
       <Music />
     </Wrapper>

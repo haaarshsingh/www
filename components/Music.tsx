@@ -150,16 +150,24 @@ const MusicComponent: FC = () => {
           Music
         </motion.h1>
         <motion.p variants={A.Fade} className='my-4'>
-          Mostly Punjabi and occasionally some Hindi rap/pop music.{' '}
-          <i>Music is my safe kind-of high.</i> Follow me on{' '}
+          Mostly Punjabi and occasionally some Hindi rap/pop music. These
+          statistics are fetched periodically from the{' '}
+          <a
+            href='https://developer.spotify.com/console/get-current-user-top-artists-and-tracks/'
+            rel='noreferrer'
+            target='_blank'
+          >
+            Spotify API
+          </a>
+          . Follow my{' '}
           <a
             href='https://open.spotify.com/user/j5v1f8np0j8zgjp2omt9ejm52'
             rel='noreferrer'
             target='_blank'
           >
-            Spotify
+            profile
           </a>{' '}
-          to listen to some music together.
+          for playlists and more.
         </motion.p>
         <SpotifyComponents />
       </div>

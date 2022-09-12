@@ -1,21 +1,25 @@
 import Link from 'next/link'
 import { FC } from 'react'
+import { motion } from 'framer-motion'
+import { Fade, FadeContainer } from '@anims/index'
 
 const NotFound: FC = () => {
   return (
-    <div>
-      <h1 className='my-20 text-5xl'>Not found.</h1>
-      <p>
+    <motion.div variants={FadeContainer} initial='hidden' animate='visible'>
+      <motion.h1 className='my-20 text-5xl' variants={Fade}>
+        Not found.
+      </motion.h1>
+      <motion.p variants={Fade}>
         <i>
-          {'The computer was born to solve problems that did not exist before'}
+          Computers were simply made to solve errors that did not exist before.
         </i>
-        . If the link is broken, do open an issue at{' '}
-        <Link href='https://github.com/harshhhdev/harshhhdev.github.io'>
-          harshhhdev/harshhhdev.github.io
-        </Link>
-        .
-      </p>
-    </div>
+      </motion.p>
+      <motion.p className='my-3' variants={Fade}>
+        After wanting to create a nonpareil website, I found love in minimalism.
+        Subtle animations, monochromatic colours, and simplicity reflect my new
+        values of design.
+      </motion.p>
+    </motion.div>
   )
 }
 

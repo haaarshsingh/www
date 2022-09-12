@@ -85,7 +85,7 @@ i {
 
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply text-white;
+  @apply !text-gray-600;
 }
 
 .blog pre {

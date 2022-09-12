@@ -31,14 +31,14 @@ const talks: Talk[] = [
     title: 'Kubernetes and the Architecture Serverless Databases',
     href: 'https://youtu.be/m2eM-p8zQgM',
     date: '04/05',
-    event: 'DoK Students Day',
+    event: 'DoK Community',
   },
   {
     title:
       'Migrating a Serverless PostgreSQL Application to CockroachDB With Zero Downtime',
     href: 'https://youtu.be/U57GDhVEU50',
     date: '29/03',
-    event: 'CockroachDB Stream',
+    event: 'Cockroach Labs',
   },
   {
     title: 'Database Design 101',
