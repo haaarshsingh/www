@@ -2,11 +2,18 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeContainer } from '@anims/index'
+import { FiArrowLeft } from 'react-icons/fi'
 
 const NotFound: FC = () => {
   return (
     <motion.div variants={FadeContainer} initial='hidden' animate='visible'>
-      <motion.h1 className='my-20 text-5xl' variants={Fade}>
+      <Link href='/' passHref>
+        <a className='mt-20 flex items-center group'>
+          <FiArrowLeft className='mr-2 group-hover:-translate-x-1 transition-transform' />
+          Back
+        </a>
+      </Link>
+      <motion.h1 className='text-5xl my-10' variants={Fade}>
         Not found.
       </motion.h1>
       <motion.p variants={Fade}>
