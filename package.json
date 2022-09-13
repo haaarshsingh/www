@@ -19,7 +19,6 @@
     "dompurify": "^2.3.6",
     "framer-motion": "6.5.0",
     "fs": "^0.0.1-security",
-    "kmenu": "^1.0.0-beta-dev",
     "next": "12.1.0",
     "next-api-og-image": "^4.0.1",
     "next-contentlayer": "^0.1.2",

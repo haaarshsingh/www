@@ -1,6 +1,5 @@
 import '@css/tailwind.css'
 import '@components/Nav/nav.css'
-import 'kmenu/dist/index.css'
 import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 import { ThemeProvider } from 'next-themes'

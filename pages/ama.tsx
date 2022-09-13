@@ -15,7 +15,7 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const client = await pool.connect()
     const result = await client.query(

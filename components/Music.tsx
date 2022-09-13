@@ -1,22 +1,25 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react'
-import useSWR from 'swr'
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import * as F from '@lib/fetchers'
 import * as A from '@anims/index'
+import { MusicData } from '@pages/music'
 
-const Track: FC<{
-  track: F.SpotifyTrack
+const Row: FC<{
+  artist?: F.SpotifyArtist
+  track?: F.SpotifyTrack
   active: boolean
   index: number
   setIndex: Dispatch<SetStateAction<number>>
-}> = ({ track, active, index, setIndex }) => {
+}> = ({ artist, track, active, index, setIndex }) => {
   return (
     <motion.a
-      href={track.url}
+      href={artist?.url || track?.url}
       rel='noreferrer'
       target='_blank'
       className={`flex items-center justify-between py-5 ${
-        index !== 9 ? 'border-b-gray-700 border-b-solid border-b' : ''
+        index !== 9 && index !== 19
+          ? 'border-b-gray-700 border-b-solid border-b'
+          : ''
       }`}
       variants={A.Fade}
       onMouseMove={() => setIndex(index)}
@@ -28,43 +31,7 @@ const Track: FC<{
           color: active ? '#FFFFFF' : '#444444',
         }}
       >
-        {track.title}
-      </h2>
-      <p
-        className='text-base transition-colors w-2/3 text-ellipsis overflow-hidden whitespace-nowrap text-right'
-        style={{ color: active ? '#6E6E6E' : '#444444' }}
-      >
-        {track.artist}
-      </p>
-    </motion.a>
-  )
-}
-
-const Artist: FC<{
-  artist: F.SpotifyArtist
-  active: boolean
-  index: number
-  setIndex: Dispatch<SetStateAction<number>>
-}> = ({ artist, active, index, setIndex }) => {
-  return (
-    <motion.a
-      href={artist.url}
-      rel='noreferrer'
-      target='_blank'
-      className={`flex items-center justify-between py-5 ${
-        index !== 9 ? 'border-b-gray-700 border-b-solid border-b' : ''
-      }`}
-      variants={A.Fade}
-      onMouseMove={() => setIndex(index)}
-      onMouseLeave={() => setIndex(-1)}
-    >
-      <h2
-        className='text-gray-900 dark:text-white text-base font-medium w-1/3 text-ellipsis overflow-hidden whitespace-nowrap transition-colors'
-        style={{
-          color: active ? '#FFFFFF' : '#444444',
-        }}
-      >
-        {artist.name}
+        {artist?.name || track?.title}
       </h2>
       <p
         className='text-base transition-colors w-2/3 text-ellipsis overflow-hidden whitespace-nowrap text-right'
@@ -72,17 +39,18 @@ const Artist: FC<{
           color: active ? '#6E6E6E' : '#444444',
         }}
       >
-        {artist.followers.toLocaleString()} followers
+        {artist?.followers
+          ? `${artist?.followers.toLocaleString()} followers`
+          : track?.artist}
       </p>
     </motion.a>
   )
 }
 
-const SpotifyComponents = () => {
-  const { data: tracksData } = useSWR('/api/stats/tracks', F.trackFetcher)
-  const { data: artistsData } = useSWR('/api/stats/artists', F.artistFetcher)
+const SpotifyComponents: FC<{ data: MusicData[] }> = ({ data }) => {
+  const [index, setIndex] = useState(-1)
 
-  if (!tracksData || !artistsData) return null
+  useEffect(() => console.log(index), [index, setIndex])
 
   return (
     <motion.div
@@ -91,53 +59,48 @@ const SpotifyComponents = () => {
       animate='visible'
       className='mt-16'
     >
-      <Music data={tracksData!} tracks={true} />
-      <Music data={artistsData!} tracks={false} />
+      {data.map((row, i) => (
+        <div
+          className='w-full flex border-t-gray-700 border-t-solid border-t'
+          key={i}
+        >
+          <motion.h2
+            className='mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
+            variants={A.Fade}
+          >
+            {row.category}
+          </motion.h2>
+          <div className='flex flex-col w-full'>
+            {row.data.map((column, idx) => (
+              <Row
+                key={idx}
+                artist={
+                  row.category === 'Artists'
+                    ? (column as F.SpotifyArtist)
+                    : undefined
+                }
+                track={
+                  row.category === 'Tracks'
+                    ? (column as F.SpotifyTrack)
+                    : undefined
+                }
+                index={row.category === 'Artists' ? 10 + idx : idx}
+                active={
+                  (row.category === 'Artists'
+                    ? index === 10 + idx
+                    : index === idx) || index === -1
+                }
+                setIndex={setIndex}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </motion.div>
   )
 }
 
-const Music: FC<{
-  data: F.SpotifyTrack[] | F.SpotifyArtist[]
-  tracks: boolean
-}> = ({ data, tracks }) => {
-  const [index, setIndex] = useState(-1)
-
-  return (
-    <div className='w-full flex border-t-gray-700 border-t-solid border-t'>
-      <motion.h2
-        className='mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
-        variants={A.Fade}
-      >
-        {tracks ? 'Tracks' : 'Artists'}
-      </motion.h2>
-      <div className='flex flex-col w-full'>
-        {tracks
-          ? // @ts-ignore
-            data?.tracks?.map((track, i) => (
-              <Track
-                key={i}
-                track={track}
-                active={index === i || index === -1}
-                index={i}
-                setIndex={setIndex}
-              />
-            )) // @ts-ignore
-          : data?.artists?.map((artist, i) => (
-              <Artist
-                key={i}
-                artist={artist}
-                active={index === i || index === -1}
-                index={i}
-                setIndex={setIndex}
-              />
-            ))}
-      </div>
-    </div>
-  )
-}
-
-const MusicComponent: FC = () => {
+const MusicComponent: FC<{ data: MusicData[] }> = ({ data }) => {
   return (
     <motion.div
       className='mt-12 flex flex-col'
@@ -150,26 +113,26 @@ const MusicComponent: FC = () => {
           Music
         </motion.h1>
         <motion.p variants={A.Fade} className='my-4'>
-          Mostly Punjabi and occasionally some Hindi rap/pop music. These
-          statistics are fetched periodically from the{' '}
+          Mostly Punjabi and occasionally some Hindi rap/pop music.{' '}
           <a
-            href='https://developer.spotify.com/console/get-current-user-top-artists-and-tracks/'
+            href='https://open.spotify.com/playlist/7jJcKVKHVXzBdpkrQfXvbl'
             rel='noreferrer'
             target='_blank'
           >
-            Spotify API
-          </a>
-          . Follow my{' '}
+            Chillisthan
+          </a>{' '}
+          is my current playlist of songs curated over the years. These
+          statistics are fetched periodically from{' '}
           <a
             href='https://open.spotify.com/user/j5v1f8np0j8zgjp2omt9ejm52'
             rel='noreferrer'
             target='_blank'
           >
-            profile
-          </a>{' '}
-          for playlists and more.
+            Spotify
+          </a>
+          .
         </motion.p>
-        <SpotifyComponents />
+        <SpotifyComponents data={data} />
       </div>
     </motion.div>
   )

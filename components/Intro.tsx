@@ -4,7 +4,6 @@ import { FC, useEffect, useState } from 'react'
 import { FiTwitter, FiDribbble, FiLinkedin, FiGithub } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 import * as A from '@anims/index'
-import { useKmenu } from 'kmenu'
 
 const Socials: FC = () => {
   return (
@@ -51,7 +50,6 @@ const Socials: FC = () => {
 }
 
 const Intro: FC = () => {
-  const [input, setInput, open, setOpen, toggle] = useKmenu()
   const [imageLoading, setImageLoading] = useState(false)
 
   const [time, setTime] = useState(new Date())
