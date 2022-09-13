@@ -44,34 +44,9 @@ const Post: FC<{
   )
 }
 
-const List: FC<{ blogs: BlogProps[]; year: string }> = ({ blogs, year }) => {
+const Blog: FC = () => {
   const [index, setIndex] = useState(-1)
 
-  return (
-    <div className='flex border-t-gray-700 border-t-solid border-t'>
-      <motion.h2
-        className='mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
-        variants={Fade}
-      >
-        {year}
-      </motion.h2>
-      <div className='flex flex-col w-full'>
-        {blogs.map((blog, i) => (
-          <Post
-            blog={blog}
-            active={index === i || index === -1}
-            index={i}
-            setIndex={setIndex}
-            key={i}
-            maxIndex={blogs.length - 1}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const Blog: FC = () => {
   const filtered = allBlogs.reduce((group: any, post) => {
     const { published } = post
     const year = published.substring(0, 4)
@@ -79,6 +54,24 @@ const Blog: FC = () => {
     group[year].push(post)
     return group
   }, {})
+
+  const data = [
+    {
+      year: '2022',
+      increment: 0,
+      data: filtered['2022'],
+    },
+    {
+      year: '2021',
+      increment: filtered['2022'].length,
+      data: filtered['2021'],
+    },
+    {
+      year: '2020',
+      increment: filtered['2022'].length + filtered['2021'].length,
+      data: filtered['2020'],
+    },
+  ]
 
   return (
     <motion.div
@@ -103,9 +96,28 @@ const Blog: FC = () => {
           .
         </motion.p>
       </div>
-      <List blogs={filtered['2022']} year='2022' />
-      <List blogs={filtered['2021']} year='2021' />
-      <List blogs={filtered['2020']} year='2020' />
+      {data.map((d, i) => (
+        <div className='flex border-t-gray-700 border-t-solid border-t' key={i}>
+          <motion.h2
+            className='mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
+            variants={Fade}
+          >
+            {d.year}
+          </motion.h2>
+          <div className='flex flex-col w-full'>
+            {d.data.map((blog: BlogProps, idx: number) => (
+              <Post
+                blog={blog}
+                active={index === idx + d.increment || index === -1}
+                index={idx + d.increment}
+                setIndex={setIndex}
+                key={idx}
+                maxIndex={d.data.length}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </motion.div>
   )
 }
