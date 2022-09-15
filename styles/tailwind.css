@@ -46,6 +46,25 @@ a {
   @apply text-white transition-colors;
 }
 
+a:hover {
+  @apply text-white;
+}
+
+p > a,
+li > a {
+  @apply underline underline-offset-4 decoration-gray-700;
+  background: linear-gradient(0deg, #ffffff20, #ffffff20) no-repeat right bottom /
+    0 var(--bg-h);
+  transition: background-size 0.2s;
+  --bg-h: 100%;
+}
+
+li > a:where(:hover, :focus-visible),
+p > a:where(:hover, :focus-visible) {
+  background-size: 100% var(--bg-h);
+  background-position-x: left;
+}
+
 p,
 li {
   @apply text-gray-600 text-base;

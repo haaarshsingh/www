@@ -33,10 +33,13 @@ const Post: FC<{
           {blog.title}
         </h2>
         <p
-          className='text-base transition-colors'
+          className='hidden sm:block text-base transition-colors'
           style={{ color: active ? '#6E6E6E' : '#444444' }}
         >
           {Math.round(blog.readingTime.minutes)} minutes •{' '}
+          {format(new Date(blog.published), 'dd/MM')}
+        </p>
+        <p className='block sm:hidden'>
           {format(new Date(blog.published), 'dd/MM')}
         </p>
       </motion.a>
@@ -99,7 +102,7 @@ const Blog: FC = () => {
       {data.map((d, i) => (
         <div className='flex border-t-gray-700 border-t-solid border-t' key={i}>
           <motion.h2
-            className='mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
+            className='hidden sm:block mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
             variants={Fade}
           >
             {d.year}

@@ -8,7 +8,7 @@ const NotFound: FC = () => {
   return (
     <motion.div variants={FadeContainer} initial='hidden' animate='visible'>
       <Link href='/' passHref>
-        <a className='mt-20 flex items-center group'>
+        <a className='mt-20 flex items-center group w-fit'>
           <FiArrowLeft className='mr-2 group-hover:-translate-x-1 transition-transform' />
           Back
         </a>
@@ -22,9 +22,9 @@ const NotFound: FC = () => {
         </i>
       </motion.p>
       <motion.p className='my-3' variants={Fade}>
-        After wanting to create a nonpareil website, I found love in minimalism.
-        Subtle animations, monochromatic colours, and simplicity reflect my new
-        values of design.
+        After wanting to create a nonpareil website, I found love in minimalism:
+        subtle animations, monochromatic colours, and simplicity to reflect my
+        new values of design.
       </motion.p>
     </motion.div>
   )

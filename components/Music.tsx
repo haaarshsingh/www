@@ -65,7 +65,7 @@ const SpotifyComponents: FC<{ data: MusicData[] }> = ({ data }) => {
           key={i}
         >
           <motion.h2
-            className='mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
+            className='hidden sm:block mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
             variants={A.Fade}
           >
             {row.category}

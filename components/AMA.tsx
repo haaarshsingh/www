@@ -25,7 +25,7 @@ const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
         Ask Me Anything
       </motion.h1>
       <motion.p variants={A.Fade} className='my-4'>
-        Curious about me? Ask away.
+        Ask away, but keep in mind that I may take a while to respond.
       </motion.p>
       <Form />
       {questions.map((question, index) => (

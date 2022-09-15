@@ -9,6 +9,8 @@ const nextConfig = withContentlayer()({
       'avatars.githubusercontent.com',
       'dev-to-uploads.s3.amazonaws.com',
       'i.scdn.co',
+      'images.unsplash.com',
+      'im.vsco.co',
     ],
   },
   productionBrowserSourceMaps: true,

@@ -61,8 +61,12 @@ const Wrapper: FC<{
       <div className='flex flex-col items-center'>
         <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
           <Navbar navOpen={open} setNavOpen={setOpen} />
-          {!open && <main id='main'>{children}</main>}
-          <Footer />
+          {!open && (
+            <main id='main'>
+              {children}
+              <Footer />
+            </main>
+          )}
           <BackToTop />
         </div>
       </div>

@@ -88,7 +88,7 @@ const Intro: FC = () => {
           className='flex items-center font-mono text-sm text-gray-600'
           variants={A.Fade}
         >
-          <p className='text-sm'>
+          <p className='text-[14px] tracking-tighter time'>
             {time.toLocaleString('en-GB', {
               hour: 'numeric',
               minute: 'numeric',
@@ -99,7 +99,7 @@ const Intro: FC = () => {
             })}
           </p>
           <div className='w-1 h-1 mx-2 rounded-full bg-gray-600' />
-          <p className='text-gray-600 text-sm text-right'>
+          <div className='text-gray-600 text-[14px] tracking-tighter text-right'>
             <a
               href='https://en.wikipedia.org/wiki/Dallas%E2%80%93Fort_Worth_metroplex'
               target='_blank'
@@ -117,7 +117,7 @@ const Intro: FC = () => {
             >
               Texas
             </a>
-          </p>
+          </div>
         </motion.span>
         <motion.h1
           className='text-4xl z-10 !text-transparent bg-clip-text from-gradient-100 to-gradient-200 !bg-gradient-to-r w-fit py-2 my-2'

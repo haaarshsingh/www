@@ -23,7 +23,7 @@ const Post: FC<{ blog: Blog }> = ({ blog }) => {
         <p className='text-base'>
           {format(Date.parse(blog.published), 'dd MMMM, yyyy')}
         </p>
-        <div className='flex'>
+        <div className='sm:flex hidden'>
           <div className='text-base flex justify-center items-center text-gray-400'>
             <FiClock className='mr-2' />
             {Math.trunc(blog.readingTime.minutes)}

@@ -8,7 +8,7 @@ const AMA: NextPage<{ questions: Question[] }> = ({ questions }) => {
   return (
     <Wrapper
       title='Ask me Anything'
-      description='Yeah... you heard it right. Ask away! Just keep it (somewhat) family friendly, and I will do my best to respond.'
+      description='Ask away. I will do my best to respond.'
     >
       <AskMeAnything questions={questions} />
     </Wrapper>

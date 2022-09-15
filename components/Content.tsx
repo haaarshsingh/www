@@ -62,7 +62,7 @@ const Content: FC<{
       initial='hidden'
       animate='visible'
     >
-      <motion.h1 variants={A.Fade} className='mb-12 text-2xl'>
+      <motion.h1 variants={A.Fade} className='ml-3 sm:ml-0 mb-12 text-2xl'>
         {text}
       </motion.h1>
       {blogs &&
@@ -94,7 +94,7 @@ const Content: FC<{
         passHref
       >
         <motion.a
-          className='flex items-center text-BASE group w-fit mt-10 transition-colors text-white'
+          className='flex items-center text-BASE group ml-3 sm:ml-0 w-fit mt-10 transition-colors text-white'
           variants={A.Fade}
           rel='noreferrer'
           target={blogs ? '_self' : '_blank'}
@@ -128,7 +128,7 @@ const Post: FC<{
         rel='noreferrer'
         target={blog ? '_self' : '_blank'}
       >
-        <h2 className='text-base font-medium text-white text-ellipsis ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12 transition-colors'>
+        <h2 className='text-base font-medium text-white text-ellipsis sm:ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12 transition-colors'>
           {blog ? blog.title : talk?.title}
         </h2>
         <div className='flex items-center justify-center h-full'>
@@ -143,7 +143,7 @@ const Post: FC<{
           {isSelected && (
             <motion.div
               layoutId='box'
-              className='bg-[#FFFFFF] dark:bg-[#FFFFFF] rounded-lg w-full h-16 absolute'
+              className='bg-[#FFFFFF] dark:bg-[#FFFFFF] hidden sm:block rounded-lg w-full h-16 absolute'
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.1 }}
               exit={{ opacity: 0 }}
