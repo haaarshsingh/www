@@ -47,7 +47,10 @@ const Post: FC<{
   )
 }
 
-const Blog: FC = () => {
+const Blog: FC<{ followers: string; views: string }> = ({
+  followers,
+  views,
+}) => {
   const [index, setIndex] = useState(-1)
 
   const filtered = allBlogs.reduce((group: any, post) => {
@@ -90,9 +93,14 @@ const Blog: FC = () => {
         <motion.p variants={Fade} className='my-4 mb-16'>
           <i>Writing software, and then teaching others.</i> Thoughts and
           tutorials on everything from design to databases. Read by{' '}
-          <span className='text-gray-400'>99,013</span> people till date. Join{' '}
-          <span className='text-gray-400'>1,273</span> others and follow my blog
-          on{' '}
+          <span className='text-gray-100'>
+            {parseInt(views).toLocaleString()}
+          </span>{' '}
+          people till date. Join{' '}
+          <span className='text-gray-100'>
+            {parseInt(followers).toLocaleString()}
+          </span>{' '}
+          others and follow my blog on{' '}
           <a href='https://dev.to/harshhhdev' rel='noreferrer' target='_blank'>
             Dev
           </a>
