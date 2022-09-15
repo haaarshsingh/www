@@ -1,7 +1,6 @@
 import NextLink from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
-import { Dispatch, FC, SetStateAction, useState } from 'react'
-import { useSpring, animated } from 'react-spring'
+import { Dispatch, FC, SetStateAction } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import * as A from '@anims/index'
 import Link from 'next/link'
