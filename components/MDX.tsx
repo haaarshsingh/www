@@ -123,7 +123,7 @@ const CodeBlock: FC<{
         <button
           aria-label='Copy code'
           type='button'
-          className={`absolute flex justify-center items-center right-3 top-3 w-7 h-7 p-1 rounded border bg-gray-200 dark:bg-gray-900 ${
+          className={`absolute flex justify-center items-center right-3 top-3 w-7 h-7 p-1 rounded border bg-gray-900 ${
             copied
               ? 'focus:border-green-500 border-green-400 text-green-400'
               : 'border-gray-700 text-gray-600'
@@ -147,10 +147,10 @@ const Copy: FC<{ text: string }> = ({ text }) => {
 
   return (
     <button
-      className={`flex items-center text-gray-900 dark:text-white py-3 px-4 text-base rounded-lg transition-colors ${
+      className={`flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors ${
         copied
           ? 'bg-green-500 hover:bg-green-600 text-gray-100'
-          : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+          : 'bg-gray-700 hover:bg-gray-600'
       }`}
       onClick={() => {
         navigator.clipboard.writeText(text)
@@ -166,7 +166,7 @@ const Copy: FC<{ text: string }> = ({ text }) => {
 const Download: FC = () => {
   return (
     <a
-      className='bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header'
+      className='bg-gray-700 hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header'
       href='/HarshBranding.zip'
       download='HarshBranding.zip'
     >

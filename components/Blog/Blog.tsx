@@ -25,7 +25,7 @@ const Post: FC<{
         onMouseLeave={() => setIndex(-1)}
       >
         <h2
-          className='text-gray-900 dark:text-white text-base font-medium w-3/4 text-ellipsis overflow-hidden whitespace-nowrap transition-colors'
+          className='text-white text-base font-medium w-3/4 text-ellipsis overflow-hidden whitespace-nowrap transition-colors'
           style={{
             color: active ? '#FFFFFF' : '#444444',
           }}

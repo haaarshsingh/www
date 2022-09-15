@@ -90,7 +90,7 @@ const Form: FC = () => {
         placeholder='Ask away...'
         maxLength={100}
         ref={content}
-        className='w-full my-8 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-600 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 transition-colors'
+        className='w-full my-8 bg-gray-900 rounded-md border-gray-700 border p-5 resize-y text-base text-white box-border outline-none focus:bg-gray-200 transition-colors'
       />
       {visible && (
         <motion.p className='text-green-400 mb-5'>

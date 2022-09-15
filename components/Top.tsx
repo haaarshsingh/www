@@ -19,7 +19,7 @@ const BackToTop: FC = () => {
     <AnimatePresence>
       {showButton && (
         <motion.button
-          className='flex justify-center items-center p-5 bottom-8 right-8 text-xl rounded-full cursor-pointer bg-gray-900 text-gray-100 dark:bg-white dark:text-gray-900 fixed'
+          className='flex justify-center items-center p-5 bottom-8 right-8 text-xl rounded-full cursor-pointer bg-white text-gray-900 fixed'
           onClick={() => {
             window.scrollTo({
               top: 0,

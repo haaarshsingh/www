@@ -143,7 +143,7 @@ const Post: FC<{
           {isSelected && (
             <motion.div
               layoutId='box'
-              className='bg-[#FFFFFF] dark:bg-[#FFFFFF] hidden sm:block rounded-lg w-full h-16 absolute'
+              className='bg-[#FFFFFF] hidden sm:block rounded-lg w-full h-16 absolute'
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.1 }}
               exit={{ opacity: 0 }}

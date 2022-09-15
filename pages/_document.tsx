@@ -10,7 +10,7 @@ export default class PortfolioDocument extends Document {
             rel='stylesheet'
           />
         </Head>
-        <body className='bg-body-light dark:bg-gray-900'>
+        <body className='bg-gray-900'>
           <Main />
           <NextScript />
         </body>

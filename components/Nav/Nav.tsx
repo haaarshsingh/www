@@ -16,10 +16,8 @@ const NavItem: FC<{ href: string; text: string; router: NextRouter }> = ({
     <NextLink href={href === '/home' ? '/' : href} passHref>
       <a
         className={`${
-          isActive
-            ? 'text-gray-800 dark:text-gray-200'
-            : 'text-gray-600 dark:text-gray-400'
-        } sm:inline-block rounded-lg hover:text-gray-900 dark:hover:text-gray-50 transition-all mr-4 sm:mr-7 hidden`}
+          isActive ? 'text-gray-200' : 'text-gray-400'
+        } sm:inline-block rounded-lg hover:text-gray-50 transition-all mr-4 sm:mr-7 hidden`}
       >
         <span className='capsize'>{text}</span>
       </a>
@@ -57,7 +55,7 @@ const Navbar: FC<{
 const MobileMenu: FC<{ links: string[] }> = ({ links }) => {
   return (
     <motion.div
-      className='absolute bg-gray-100 dark:bg-gray-900 w-screen h-screen top-0 left-0 z-10'
+      className='absolute bg-gray-900 w-screen h-screen top-0 left-0 z-10'
       variants={A.FastFadeContainer}
       initial='hidden'
       animate='visible'
