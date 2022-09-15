@@ -3556,11 +3556,6 @@ next-i18next@^10.5.0:
     i18next-fs-backend "^1.0.7"
     react-i18next "^11.15.5"
 
-next-themes@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.1.1.tgz#122113a458bf1d1be5ffed66778ab924c106f82a"
-  integrity sha512-Iqxt6rhS/KfK/iHJ0tfFjTcdLEAI0AgwFuAFrMwLOPK5e+MI3I+fzyvBoS+VaOS+NldUiazurhgwYhrfV0VXsQ==
-
 next@^12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/next/-/next-12.3.0.tgz#0e4c1ed0092544c7e8f4c998ca57cf6529e286cb"

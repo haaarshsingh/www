@@ -4,13 +4,12 @@ import { useRouter } from 'next/router'
 import Navbar from './Nav/Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
-import { useTheme } from 'next-themes'
 
 export const meta = {
   root: 'https://hxrsh.in',
   title: 'Harsh Singh',
   description:
-    "Passionate developer and speaker who's interested in frontend, databases and design",
+    '🎨🛠️ 16yo frontend engineer who enjoys design, Vim, Linux, tinkering with databases and other computer things',
   image: 'https://hxrsh.in/banner.png',
   type: 'website',
 }
@@ -23,7 +22,6 @@ const Wrapper: FC<{
 }> = ({ children, title, description, image }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const { theme } = useTheme()
 
   return (
     <div>
