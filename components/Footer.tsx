@@ -17,7 +17,7 @@ const Footer: FC = () => {
             rel='noreferrer'
             className='hover:text-gray-600'
           >
-            <SiTwitter className='text-lg mr-2' />
+            <SiTwitter className='text-lg mr-2' aria-label='Twitter icon' />
           </a>
           <a
             href='https://github.com/harshhhdev'
@@ -25,7 +25,7 @@ const Footer: FC = () => {
             rel='noreferrer'
             className='hover:text-gray-600'
           >
-            <SiGithub className='text-lg ml-2' />
+            <SiGithub className='text-lg ml-2' aria-label='GitHub icon' />
           </a>
         </div>
       </div>

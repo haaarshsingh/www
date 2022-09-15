@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@splitbee/web": "^0.3.0",
     "@types/dompurify": "^2.3.3",
     "babel-plugin-superjson-next": "^0.4.3",
     "chrome-aws-lambda": "^6.0.0",

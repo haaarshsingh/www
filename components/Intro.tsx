@@ -41,7 +41,7 @@ const Socials: FC = () => {
             variants={A.Fade}
             aria-label={link.aria}
           >
-            <link.icon size={22} color='#707070' />
+            <link.icon size={22} color='#747474' />
           </motion.a>
         </Link>
       ))}
