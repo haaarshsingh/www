@@ -1,137 +1,134 @@
-import Header from '@components/Header'
-import { format } from 'date-fns'
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { Blog as BlogProps } from '@layer/generated/types'
-import { allBlogs } from '@layer/generated'
 import Link from 'next/link'
-import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
-import {
-  FastFadeContainer,
-  FadeContainer,
-  Fade,
-  TopicsFade,
-  BlogContainer,
-} from '@anims/index'
+import { Fade, FastFadeContainer } from '@anims/index'
+import { format } from 'date-fns'
+import { allBlogs } from '@layer/generated'
+allBlogs.sort((a, b) => (a.published < b.published ? 1 : -1))
 
-allBlogs.sort((a, b) => {
-  return a.published < b.published ? 1 : -1
-})
-
-const filter = (query: string) => {
-  if (!query) return allBlogs
-
-  return allBlogs.filter((blog: BlogProps) => {
-    const tags = blog.tags.toLowerCase()
-    return tags.includes(query.toLowerCase())
-  })
-}
-
-const Topic: FC<{
-  text: string
-  activeTag: string
-  setActiveTag: Dispatch<SetStateAction<string>>
-}> = ({ text, activeTag, setActiveTag }) => {
-  const [active, setActive] = useState(activeTag === text)
-
-  useEffect(() => {
-    if (activeTag === text) setActive(true)
-    else setActive(false)
-  }, [setActive, activeTag, text])
-
+const Post: FC<{
+  blog: BlogProps
+  active: boolean
+  index: number
+  setIndex: Dispatch<SetStateAction<number>>
+  maxIndex: number
+}> = ({ blog, active, index, setIndex, maxIndex }) => {
   return (
-    <motion.button
-      className={`text-lg p-3 rounded-full flex justify-center align-center transition-all ${
-        active
-          ? 'from-gradient-100 to-gradient-200 bg-gradient-to-r hover:bg-gray-700 text-white dark:hover:bg-gray-300'
-          : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-slate-200 dark:hover:bg-gray-700'
-      }`}
-      onClick={() => (active ? setActiveTag('') : setActiveTag(text))}
-      variants={TopicsFade}
-    >
-      {text}
-    </motion.button>
-  )
-}
-
-const Post: FC<BlogProps> = ({
-  slug,
-  title,
-  tags,
-  description,
-  published,
-  readingTime,
-}) => {
-  return (
-    <Link href={`/blog/${slug}`} passHref locale={false}>
+    <Link href={`/blog/${blog.slug}`} passHref locale={false}>
       <motion.a
-        className={`${tags} my-5 hover:bg-gray-200 dark:hover:bg-gray-800 p-7 rounded-lg transition-all`}
-        variants={TopicsFade}
+        className={`flex items-center justify-between w-full py-5 ${
+          index !== maxIndex ? 'border-b-gray-700 border-b-solid border-b' : ''
+        }`}
+        variants={Fade}
+        onMouseMove={() => setIndex(index)}
+        onMouseLeave={() => setIndex(-1)}
       >
-        <h1 className='text-gray-900 dark:text-white text-2xl'>{title}</h1>
-        <p className='text-lg mt-3 text-gray-300'>{description}</p>
-        <div className='flex'>
-          <p className='text-lg mt-3 text-gray-500'>
-            {Math.round(readingTime.minutes)} minutes • {readingTime.words}{' '}
-            words • {format(Date.parse(published), 'dd MMMM, yyyy')}
-          </p>
-        </div>
+        <h2
+          className='text-white text-base font-medium w-3/4 text-ellipsis overflow-hidden whitespace-nowrap transition-colors'
+          style={{
+            color: active ? '#FFFFFF' : '#444444',
+          }}
+        >
+          {blog.title}
+        </h2>
+        <p
+          className='hidden sm:block text-base transition-colors'
+          style={{ color: active ? '#6E6E6E' : '#444444' }}
+        >
+          {Math.round(blog.readingTime.minutes)} minutes •{' '}
+          {format(new Date(blog.published), 'dd/MM')}
+        </p>
+        <p className='block sm:hidden'>
+          {format(new Date(blog.published), 'dd/MM')}
+        </p>
       </motion.a>
     </Link>
   )
 }
 
-const Blog: FC = () => {
-  const topics = [
-    'React',
-    'UI/UX',
-    'Next.js',
-    'Vercel',
-    'Databases',
-    'Figma',
-    'Design',
-    'TypeScript',
-    'CSS',
-    'GraphQL',
-    'serverless',
-    'SQL',
-  ]
-  const [active, setActive] = useState('')
-  const filteredPosts = filter(active)
+const Blog: FC<{ followers: string; views: string }> = ({
+  followers,
+  views,
+}) => {
+  const [index, setIndex] = useState(-1)
 
-  const { t } = useTranslation('common')
+  const filtered = allBlogs.reduce((group: any, post) => {
+    const { published } = post
+    const year = published.substring(0, 4)
+    group[year] = group[year] ?? []
+    group[year].push(post)
+    return group
+  }, {})
+
+  const data = [
+    {
+      year: '2022',
+      increment: 0,
+      data: filtered['2022'],
+    },
+    {
+      year: '2021',
+      increment: filtered['2022'].length,
+      data: filtered['2021'],
+    },
+    {
+      year: '2020',
+      increment: filtered['2022'].length + filtered['2021'].length,
+      data: filtered['2020'],
+    },
+  ]
 
   return (
-    <motion.div className='w-full' initial='hidden' animate='visible'>
-      <Header head={t('blogHeader')} bio={t('blogBio')} />
-      <motion.h1 variants={Fade} className='mt-6 text-bold text-2xl'>
-        Search blog by topic
-      </motion.h1>
-      <motion.div
-        variants={FastFadeContainer}
-        initial='hidden'
-        animate='visible'
-        className='grid grid-rows-auto grid-cols-2 sm:grid-rows-3 sm:grid-cols-4 gap-3 mt-6'
-      >
-        {topics.map((topic, index) => (
-          <Topic
-            text={topic}
-            activeTag={active}
-            setActiveTag={setActive}
-            key={index}
-          />
-        ))}
-      </motion.div>
-      <motion.div
-        variants={BlogContainer}
-        initial='hidden'
-        animate='visible'
-        className='flex flex-col mt-10'
-      >
-        {filteredPosts!.map((blog, index) => (
-          <Post {...blog} key={index} />
-        ))}
-      </motion.div>
+    <motion.div
+      className='w-full'
+      variants={FastFadeContainer}
+      initial='hidden'
+      animate='visible'
+    >
+      <div className='mt-12'>
+        <motion.h1 className='!text-2xl' variants={Fade}>
+          Blog
+        </motion.h1>
+        <motion.p variants={Fade} className='my-4 mb-16'>
+          <i>Writing software, and then teaching others.</i> Thoughts and
+          tutorials on everything from design to databases. Read by{' '}
+          <span className='text-gray-100'>
+            {parseInt(views).toLocaleString()}
+          </span>{' '}
+          people till date. Join{' '}
+          <span className='text-gray-100'>
+            {parseInt(followers).toLocaleString()}
+          </span>{' '}
+          others and follow my blog on{' '}
+          <a href='https://dev.to/harshhhdev' rel='noreferrer' target='_blank'>
+            Dev
+          </a>
+          .
+        </motion.p>
+      </div>
+      {data.map((d, i) => (
+        <div className='flex border-t-gray-700 border-t-solid border-t' key={i}>
+          <motion.h2
+            className='hidden sm:block mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
+            variants={Fade}
+          >
+            {d.year}
+          </motion.h2>
+          <div className='flex flex-col w-full'>
+            {d.data.map((blog: BlogProps, idx: number) => (
+              <Post
+                blog={blog}
+                active={index === idx + d.increment || index === -1}
+                index={idx + d.increment}
+                setIndex={setIndex}
+                key={idx}
+                maxIndex={d.data.length}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </motion.div>
   )
 }

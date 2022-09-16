@@ -32,14 +32,16 @@ const Link: FC<{ href: string; children: ReactNode }> = ({
   )
 }
 
-const Header1: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
+const Header2: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
   return (
     <a
       href={`#${id}`}
-      className='my-12 flex items-center group w-fit header no-outline'
+      className='my-8 flex items-center group w-fit header no-outline text-xl font-bold text-white'
     >
-      <h1 className='opacity-0 group-hover:opacity-100 mr-1'>#</h1>
-      <h1 id={id}>{children}</h1>
+      <h2 className='opacity-0 group-hover:opacity-100 mr-2 text-gray-600'>
+        #
+      </h2>
+      <h2 id={id}>{children}</h2>
     </a>
   )
 }
@@ -48,9 +50,11 @@ const Header3: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
   return (
     <a
       href={`#${id}`}
-      className='text-2xl mb-5 mt-4 flex items-center group w-fit header no-outline'
+      className='my-8 flex items-center group w-fit header no-outline'
     >
-      <h3 className='opacity-0 group-hover:opacity-100 mr-1'>#</h3>
+      <h3 className='opacity-0 group-hover:opacity-100 mr-2 !text-gray-500'>
+        #
+      </h3>
       <h3 id={id}>{children}</h3>
     </a>
   )
@@ -62,7 +66,7 @@ const Image: FC<{ alt: string; props: ImageProps }> = ({ alt, props }) => {
   return (
     <div
       className={[
-        'img h-fit w-fit rounded-xl',
+        'my-14 img h-fit w-fit rounded-xl',
         `img--blur-down`,
         imageLoading && 'is-loaded',
       ]
@@ -119,10 +123,10 @@ const CodeBlock: FC<{
         <button
           aria-label='Copy code'
           type='button'
-          className={`absolute flex justify-center items-center right-3 top-3 w-7 h-7 p-1 rounded border bg-gray-200 dark:bg-[#282e33] ${
+          className={`absolute flex justify-center items-center right-3 top-3 w-7 h-7 p-1 rounded border bg-gray-900 ${
             copied
               ? 'focus:border-green-500 border-green-400 text-green-400'
-              : 'border-gray-400 text-gray-400'
+              : 'border-gray-700 text-gray-600'
           }`}
           onClick={onCopy}
         >
@@ -143,10 +147,10 @@ const Copy: FC<{ text: string }> = ({ text }) => {
 
   return (
     <button
-      className={`flex items-center text-gray-900 dark:text-white py-3 px-4 text-base rounded-lg transition-colors ${
+      className={`flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors ${
         copied
           ? 'bg-green-500 hover:bg-green-600 text-gray-100'
-          : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+          : 'bg-gray-700 hover:bg-gray-600'
       }`}
       onClick={() => {
         navigator.clipboard.writeText(text)
@@ -162,7 +166,7 @@ const Copy: FC<{ text: string }> = ({ text }) => {
 const Download: FC = () => {
   return (
     <a
-      className='bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header'
+      className='bg-gray-700 hover:bg-gray-600 flex items-center text-white py-3 px-4 text-base rounded-lg transition-colors my-5 no-outline w-fit header'
       href='/HarshBranding.zip'
       download='HarshBranding.zip'
     >
@@ -181,7 +185,7 @@ const Table: FC<{ children: ReactChildren }> = ({ children }) => {
 
 const Components = {
   a: Link,
-  h1: Header1,
+  h2: Header2,
   h3: Header3,
   Image: Image,
   pre: CodeBlock,

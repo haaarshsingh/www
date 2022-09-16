@@ -1,4 +1,3 @@
-const { i18n } = require('./next-i18next.config')
 const { withContentlayer } = require('next-contentlayer')
 
 /** @type {import('next').NextConfig} */
@@ -10,9 +9,10 @@ const nextConfig = withContentlayer()({
       'avatars.githubusercontent.com',
       'dev-to-uploads.s3.amazonaws.com',
       'i.scdn.co',
+      'images.unsplash.com',
+      'im.vsco.co',
     ],
   },
-  i18n,
   productionBrowserSourceMaps: true,
 })
 

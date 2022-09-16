@@ -4,15 +4,12 @@ import { useRouter } from 'next/router'
 import Navbar from './Nav/Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
-import Palette from './Palette'
-import { MenuConfig, MenuProvider } from 'kmenu'
-import { useTheme } from 'next-themes'
 
 export const meta = {
   root: 'https://hxrsh.in',
   title: 'Harsh Singh',
   description:
-    "Passionate developer and speaker who's interested in frontend, databases and design",
+    '🎨🛠️ 16yo frontend engineer who enjoys design, Vim, Linux, tinkering with databases and other computer things',
   image: 'https://hxrsh.in/banner.png',
   type: 'website',
 }
@@ -25,25 +22,6 @@ const Wrapper: FC<{
 }> = ({ children, title, description, image }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const { theme } = useTheme()
-
-  const darkConfig: MenuConfig = {
-    backdropColor: 'rgba(0, 0, 0, 0.90)',
-    backdropBlur: 5,
-    backgroundColor: '#121212',
-    borderWidth: 1,
-    borderColor: '#393939',
-    inputColor: '#FFFFFF',
-    commandActive: '#CFCFCF',
-    commandInactive: '#4E4E4E',
-    barBackground: '#FFFFFF10',
-    inputBorder: '#393939',
-  }
-
-  const lightConfig: MenuConfig = {
-    backdropColor: 'rgba(256, 256, 256, 0.50)',
-    backdropBlur: 5,
-  }
 
   return (
     <div>
@@ -78,20 +56,18 @@ const Wrapper: FC<{
         />
         <meta name='twitter:image' content={image ? image : meta.image} />
       </Head>
-      <MenuProvider
-        config={theme === 'dark' ? darkConfig : lightConfig}
-        dimensions={{ sectionHeight: 37, commandHeight: 56 }}
-      >
-        <Palette />
-        <div className='flex flex-col items-center'>
-          <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
-            <Navbar navOpen={open} setNavOpen={setOpen} />
-            {!open && <main id='main'>{children}</main>}
-            <Footer />
-            <BackToTop />
-          </div>
+      <div className='flex flex-col items-center'>
+        <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
+          <Navbar navOpen={open} setNavOpen={setOpen} />
+          {!open && (
+            <main id='main'>
+              {children}
+              <Footer />
+            </main>
+          )}
+          <BackToTop />
         </div>
-      </MenuProvider>
+      </div>
     </div>
   )
 }

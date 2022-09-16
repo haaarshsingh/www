@@ -1,5 +1,5 @@
 ---
-title: 'Migrating Your PostgreSQL Database From Heroku to CockroachDB'
+title: 'Migrating From PostgreSQL on Heroku to CockroachDB'
 tags: 'databases,serverless,sql'
 published: '2022-09-02'
 description: 'A guide on migrating from Heroku to CockroachDB'
@@ -7,7 +7,7 @@ description: 'A guide on migrating from Heroku to CockroachDB'
 
 After almost a decade, [Heroku announced that they will eliminate all of their free tier services](https://techcrunch.com/2022/08/25/heroku-announces-plans-to-eliminate-free-plans-blaming-fraud-and-abuse/). They'll also delete inactive accounts and associated storage with those accounts that have been inactive for over a year. In their [blog post](https://blog.heroku.com/next-chapter), they blamed 'abuse' for their demise of free services.
 
-Quoted from the [TechCrunch article](),
+Quoted from the [TechCrunch article](https://techcrunch.com/2022/08/25/heroku-announces-plans-to-eliminate-free-plans-blaming-fraud-and-abuse/),
 
 > In a blog post, Bob Wise, Heroku general manager and Salesforce EVP, blamed 'abuse' on the demise of the free services, which span the free plans for Heroku Dynos and Heroku Postgres as well as the free plan for Heroku Data for Redis. 'Our product, engineering, and security teams are spending an extraordinary amount of effort to manage fraud and abuse of the Heroku free product plans,' Wise said. 'We will continue to provide low-cost solutions for compute and data resources.'
 
@@ -21,7 +21,7 @@ What does this mean? Well, with my cursory knowledge of startups, free tiers mos
 
 With that being said, this forces us developers to migrate from Heroku or [pay a _minimum_ of $25 a month](https://www.heroku.com/pricing). Even worse, if you want to run PostgreSQL, you'll have to pay $50 every single month!
 
-# Migrating Away From Heroku
+## Migrating Away From Heroku
 
 I don't know about you, but I don't have that much money to throw around. However, if you use Heroku, don't worry! Plenty of platforms still have free tiers. For instance, you can use [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/) for free hosting and awesome edge functions, [Upstash](https://upstash.com/) for serverless Redis, and [CockroachDB](https://www.cockroachlabs.com/) for a serverless and distributed PostgreSQL database!
 
@@ -39,7 +39,7 @@ So, let's go into our terminal and run a command. I'm using [Arch Linux](https:/
 
 Anyways, if you've installed and configured PostgreSQL already, you can just run:
 
-```bash
+```bash:terminal
 pg_dump --host=host.ec2.compute-1.amazonaws.com --port=5432 --username=your_username --password --dbname=database_name > db.sql
 ```
 
@@ -61,7 +61,7 @@ We'll be going with the latter, as the `IMPORT PGDUMP` statement requires you to
 
 Copy paste your connection string from the modal, and run the following function:
 
-```bash
+```bash:terminal
 cockroach import db pgdump db.sql --url "postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]" --ignore-unsupported-statements
 ```
 
@@ -73,7 +73,7 @@ Anyways, with that, you should get the message '`successfully imported pgdump fi
 
 Awesome, we've done it - you can simply substitute in your Heroku Database URL with the new one from CockroachDB, and everything should work as expected!
 
-# Conclusion
+## Conclusion
 
 ...and that's it! We migrated our entire database from Heroku's PostgreSQL onto CockroachDB serverless. We've not only migrated our database, but upgraded it as well :P - there's simply no comparison between the two!
 

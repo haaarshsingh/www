@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 import * as A from '@anims/index'
 import type { Question as QuestionType } from '@typings/types'
@@ -15,40 +14,20 @@ import { sanitize } from 'dompurify'
 import { cva } from 'class-variance-authority'
 
 const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
-  const { t } = useTranslation('common')
-
   return (
     <motion.div
-      className='mt-20'
+      className='mt-12'
       variants={A.FadeContainer}
       initial='hidden'
       animate='visible'
     >
-      <motion.h1
-        className='!text-3xl my-7 w-fit !text-transparent !bg-clip-text !from-gradient-100 !to-gradient-200 !bg-gradient-to-r'
-        variants={A.Fade}
-      >
-        {t('amaHeader')}
+      <motion.h1 className='!text-2xl' variants={A.Fade}>
+        Ask Me Anything
       </motion.h1>
-      <motion.p className='text-lg' variants={A.Fade}>
-        {t('amaBio')}
+      <motion.p variants={A.Fade} className='my-4'>
+        Ask away, but keep in mind that I may take a while to respond.
       </motion.p>
-      {true ? (
-        <Form />
-      ) : (
-        <motion.div
-          className='border-gray-200 dark:border-gray-700 border-2 rounded-lg my-16 p-10'
-          variants={A.Fade}
-        >
-          <h3 className='text-3xl'>Have a question?</h3>
-          <p className='text-lg mt-10'>
-            Continue by connecting your GitHub account with this website!
-          </p>
-          <p className='text-lg'>
-            No information is displayed to users of this website
-          </p>
-        </motion.div>
-      )}
+      <Form />
       {questions.map((question, index) => (
         <Question key={index} question={question} />
       ))}
@@ -111,7 +90,7 @@ const Form: FC = () => {
         placeholder='Ask away...'
         maxLength={100}
         ref={content}
-        className='w-full my-8 bg-gray-100 dark:bg-gray-900 rounded-md border-gray-300 dark:border-gray-700 border p-5 resize-y text-base text-gray-900 dark:text-white box-border outline-none focus:bg-gray-200 dark:focus:bg-gray-800 transition-all'
+        className='w-full my-8 bg-gray-900 rounded-md border-gray-700 border p-5 resize-y text-base text-white box-border outline-none focus:bg-gray-200 transition-colors'
       />
       {visible && (
         <motion.p className='text-green-400 mb-5'>

@@ -6,11 +6,11 @@ export default class PortfolioDocument extends Document {
       <Html lang='en'>
         <Head>
           <link
-            href='https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;800&family=Fira+Code&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap'
             rel='stylesheet'
           />
         </Head>
-        <body className='bg-body-light dark:bg-gray-900'>
+        <body className='bg-gray-900'>
           <Main />
           <NextScript />
         </body>

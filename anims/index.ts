@@ -5,8 +5,8 @@ export const FadeContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
+      delayChildren: 0.1,
+      staggerChildren: 0.1,
     },
   },
 }
@@ -51,13 +51,13 @@ export const FastFadeContainer: Variants = {
     opacity: 1,
     transition: {
       delayChildren: 0,
-      staggerChildren: 0.15,
+      staggerChildren: 0.05,
     },
   },
 }
 
 export const Fade: Variants = {
-  hidden: { y: -40, opacity: 0 },
+  hidden: { y: 10, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -65,11 +65,11 @@ export const Fade: Variants = {
 }
 
 export const TopicsFade: Variants = {
-  hidden: { y: -40, opacity: 0 },
+  hidden: { y: -10, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.2 },
+    transition: { duration: 0.1 },
   },
 }
 

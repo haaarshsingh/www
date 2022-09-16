@@ -1,5 +1,5 @@
 ---
-title: 'Creating a NPX introduction card'
+title: 'Business Cards in the Terminal'
 tags: 'productivity,typescript'
 published: '2020-10-23'
 description: 'Introduce yourself in the terminal, a NPX command all about you'
@@ -9,13 +9,13 @@ I was looking around GitHub the other day, and I found this awesome idea by [Anm
 
 You can hit `npx harsh-dev` (or `pnpx harsh-dev` since [pnpm](https://pnpm.io/) is better) in your terminal right now to learn more about me :wink:
 
-# End result
+## What we're making today
 
 ![image](https://user-images.githubusercontent.com/69592270/161366988-20f4f446-c64d-4b4d-8630-e7fbfb891a2f.png)
 
-# Setting it up
+## Setting it up
 
-Let's create a new project
+Let's create a new project:
 
 ```bash:terminal
 mkdir npx-card
@@ -28,7 +28,7 @@ yarn init -y
 # npm init -y
 ```
 
-Now let's install some needed [NPM modules](https://npmjs.com)
+Now let's install some [NPM](https://npmjs.com) packages:
 
 ```bash:terminal
 yarn add boxen chalk clear open inquirer
@@ -37,7 +37,7 @@ yarn add boxen chalk clear open inquirer
 # npm i boxen chalk clear open inquirer
 ```
 
-Making things easier on ourselves, let's also add in [nodemon] for reloading on save.
+Let's also add in [nodemon] as a development dependency for reloading on save.
 
 ```bash:terminal
 yarn add nodemon -D
@@ -46,7 +46,7 @@ yarn add nodemon -D
 npm i nodemon --save-dev
 ```
 
-Let's go to the scripts section in our package.json and setup [nodemon]
+Let's go to the scripts section in our package.json and setup [nodemon]:
 
 ```json:package.json
   "scripts": {
@@ -63,7 +63,7 @@ yarn dev
 # npm run dev
 ```
 
-in our `card.js` file, let's import the [NPM modules](https://npmjs.com)
+Inside our `card.js` file, let's import our NPM modules.
 
 ```js:card.js
 const boxen = require('boxen')
@@ -82,7 +82,7 @@ Now, let's create a new prompt. We can do this using [inquirer](https://github.c
 const prompt = inquirer.createPromptModule()
 ```
 
-Let's create a new JavaScript object with our prompt questions.
+Let's create a new JavaScript array of objects with our prompt questions.
 
 ```js:card.js
 const questions = [
@@ -140,9 +140,7 @@ const data = {
 }
 ```
 
-Now, let's create a our card using box.
-
-We will use values from above and plug them into it.
+Now, let's create a our card using box. We will use values from above and plug them into it.
 
 ```js:card.js
 const me = boxen(
@@ -177,7 +175,7 @@ const me = boxen(
 console.log(me)
 ```
 
-We're almost finished! Let's make sure that we handle the prompt properly.
+We're almost finished! Let's just make sure that we handle the prompt properly.
 
 ```js:card.js
 prompt(questions).then((answer) => answer.action())
@@ -218,12 +216,14 @@ yarn publish
 # npm publish
 ```
 
-If everything is published, then try to execute the script using [npx](https://www.npmjs.com/package/npx)(or my personal favourite, [pnpx](https://pnpm.io/pnpx-cli))
+If everything is published, then try to execute the script using [npx](https://www.npmjs.com/package/npx) (or [pnpx](https://pnpm.io/pnpx-cli)):
 
 ```bash:terminal
 # Try out mines using npx harsh-dev!
 npx your-pkg
 ```
+
+## Conclusion
 
 If you had any problems, feel free to drop me a DM on my [Twitter](https://twitter.com/harshhhdev/), or ask away in the comments below!
 
