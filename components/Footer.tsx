@@ -8,7 +8,7 @@ const Footer: FC = () => {
       <hr className='mt-40 w-1/6 border-gray-700' />
       <div className='mt-10 w-2/3 mb-20 text-center'>
         <p className='text-sm mb-5 text-white'>
-          Happy {format(new Date(2020, 1, 10), 'EEEE')} ✌️
+          Happy {format(new Date(), 'EEEE')} ✌️
         </p>
         <div className='flex items-center justify-center'>
           <a
