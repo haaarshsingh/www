@@ -69,18 +69,6 @@ Server should now be running on [localhost](https://localhost:3000)
 - [Prettier](https://prettier.io)
 - [ESLint](https://eslint.io)
 
-# 🌎 Adding Translations
-
-Interested in contributing to this repository? Add translations for a language you know!
-
-First, go into the `public` directory and create a new folder with the code of your language. Inside that, create a new file called `common.json`. Paste the file from `public/en/common.json` to get a template of what the content in English would be, then begin to translate it into the language of your choice!
-
-Special thanks to:
-
-- [FleshMobProductions](https://github.com/FleshMobProductions) and [Yän](https://twitter.com/YaenGames) for German translations
-- [CodeMyst](https://github.com/codemyst) for Serbian translations
-- [Jirushi](https://twitter.com/Jirushi_I) for French translations
-
 # 🤞 Contributing
 
 After setting up the project, and making changes:
