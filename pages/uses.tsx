@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import components from '@components/MDX'
+import components from '@components/MDX/MDX'
 import Wrapper from '@components/Wrapper'
 import { motion } from 'framer-motion'
 import { allInfos } from '@layer/generated'

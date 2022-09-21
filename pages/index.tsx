@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Intro from '@components/Intro'
+import Intro from '@components/Intro/Intro'
 import Wrapper from '@components/Wrapper'
 import { Blogs } from '@components/Content'
 

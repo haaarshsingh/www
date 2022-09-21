@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Wrapper from '@components/Wrapper'
-import Music from '@components/Music'
+import Music from '@components/Music/Music'
 import {
   SpotifyArtist,
   SpotifyTrack,
