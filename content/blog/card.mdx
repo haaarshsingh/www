@@ -5,65 +5,46 @@ published: '2020-10-23'
 description: 'Introduce yourself in the terminal, a NPX command all about you'
 ---
 
-I was looking around GitHub the other day, and I found this awesome idea by [Anmol Singh] on creating a npx card to introduce themselves. I thought it was a cool idea, so I made one for [myself] too!
+I was looking around GitHub the other day, and I found this awesome idea by [Anmol Singh] on creating a npx card to introduce themselves. I thought it was a cool idea, so I made one for [myself] too.
 
-You can hit `npx harsh-dev` (or `pnpx harsh-dev` since [pnpm](https://pnpm.io/) is better) in your terminal right now to learn more about me :wink:
+I really liked the idea, and I wanted to share it with y'all too.
 
-## What we're making today
+# Getting Started
 
-![image](https://user-images.githubusercontent.com/69592270/161366988-20f4f446-c64d-4b4d-8630-e7fbfb891a2f.png)
-
-## Setting it up
-
-Let's create a new project:
+Let's create a new project. Skip ahead if you're familiar with this.
 
 ```bash:terminal
 mkdir npx-card
 cd npx-card
 
-# Initialise yarn
 yarn init -y
 
-# For NPM
-# npm init -y
-```
-
-Now let's install some [NPM](https://npmjs.com) packages:
-
-```bash:terminal
 yarn add boxen chalk clear open inquirer
-
-# For NPM
-# npm i boxen chalk clear open inquirer
 ```
 
-Let's also add in [nodemon] as a development dependency for reloading on save.
+> I wrote this article back in October 2020 when Node.js didn't have an integrated watch mode. You can now just use the --watch flag.
+
+Let's also install [nodemon] as a development dependency to automatically restart our Node application.
 
 ```bash:terminal
 yarn add nodemon -D
-
-# For NPM
-npm i nodemon --save-dev
 ```
 
-Let's go to the scripts section in our package.json and setup [nodemon]:
+Let's go to the scripts section in our `package.json` and setup [nodemon]
 
 ```json:package.json
-  "scripts": {
-    "dev": "nodemon card.js"
-  },
+"scripts": {
+  "dev": "nodemon card.js"
+}
 ```
 
-...and let's start!
+# Building our card
 
 ```bash:terminal
 yarn dev
-
-# For NPM
-# npm run dev
 ```
 
-Inside our `card.js` file, let's import our NPM modules.
+Import your modules, clear the terminal before showing the card.
 
 ```js:card.js
 const boxen = require('boxen')
@@ -72,19 +53,14 @@ const inquirer = require('inquirer')
 const clear = require('clear')
 const open = require('open')
 
-// clear the terminal before showing the npx card
 clear()
 ```
 
-Now, let's create a new prompt. We can do this using [inquirer](https://github.com/SBoudrias/Inquirer.js#readme).
+Let's create a new prompt using [Inquirer](https://github.com/SBoudrias/Inquirer.js#readme) along with an array of objects which contain our questions.
 
 ```js:card.js
 const prompt = inquirer.createPromptModule()
-```
 
-Let's create a new JavaScript array of objects with our prompt questions.
-
-```js:card.js
 const questions = [
   {
     type: 'list',
@@ -112,17 +88,13 @@ const questions = [
 ]
 ```
 
-Let's create another new JavaScript object, this time with data about us.
-
-You should play around with this for a little bit to get the spacing right, having properly centred the fields.
-
-I'll just post mines here, as an example.
+Let's create a new object, this time with data about us. I had to play around with this for a little bit to get the spacing right, having properly centred the fields.
 
 ```js:card.js
 const data = {
   name: chalk.bold.green('                     Harsh Singh'),
   handle: chalk.white('@harshhhdev'),
-  fact: chalk.hex('#B10000')('I love Open-Source!'),
+  fact: chalk.hex('#B10000')('I speak three languages'),
   twitter: chalk.hex('#00A1D9')('https://twitter.com/Harshhhdev'),
   github: chalk.hex('#787878')('https://github.com/harshhhdev'),
   dev: chalk.hex('#330093')('https://dev.to/harshhhdev'),
@@ -140,7 +112,7 @@ const data = {
 }
 ```
 
-Now, let's create a our card using box. We will use values from above and plug them into it.
+Let's create our card using those values.
 
 ```js:card.js
 const me = boxen(
@@ -171,65 +143,44 @@ const me = boxen(
   }
 )
 
-// Show the boxen
 console.log(me)
 ```
 
-We're almost finished! Let's just make sure that we handle the prompt properly.
+Let's make sure that we handle the prompt properly.
 
 ```js:card.js
 prompt(questions).then((answer) => answer.action())
 ```
 
-Now, let's move onto publishing
+# Publishing
 
-Create an account on [npmjs](https://npmjs.com/)
-
-Make sure that you are logged on into npm. If you aren't, then do
+Start by creating an account on [NPM](https://npmjs.com/) and connect your user account.
 
 ```bash:terminal
 yarn adduser
-
-# For NPM
 # npm adduser
 ```
 
-Now, patch the version
+Now, patch the version:
 
 ```bash:terminal
-# Make sure your git working directory is clean!
-git commit -a -m "made my npx card"
+git commit -a -m "message"
 
-# Update the version
 yarn version
-
-# For NPM
 # npm version patch
-```
 
-Let's publish to [npmjs](https://npmjs.com/) now!
-
-```bash:terminal
 yarn publish
-
-# For NPM
 # npm publish
 ```
 
-If everything is published, then try to execute the script using [npx](https://www.npmjs.com/package/npx) (or [pnpx](https://pnpm.io/pnpx-cli)):
+If that worked, try to executing it using [npx](https://www.npmjs.com/package/npx).
 
 ```bash:terminal
-# Try out mines using npx harsh-dev!
+# npx harsh-dev
 npx your-pkg
 ```
 
-## Conclusion
-
-If you had any problems, feel free to drop me a DM on my [Twitter](https://twitter.com/harshhhdev/), or ask away in the comments below!
-
-With that, I want to thank [Anmol Singh] for this cool idea and the permission to write a post on it.
-
-If it helped you out, I'm glad :heart: have a nice day!
+That's it, hopefully you enjoyed this cool little idea. Enjoy your day.
 
 [anmol singh]: https://github.com/anmol098
 [anmol's card]: https://github.com/anmol098/npx_card

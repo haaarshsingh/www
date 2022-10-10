@@ -10,17 +10,17 @@ description: 'Add interactive custom cursors on your websites'
   src='https://user-images.githubusercontent.com/69592270/145694947-ee595f08-42bd-42e7-b3e1-b2183c835953.gif'
 />
 
-One thing I've seen across many designer/design studio websites are a cool custom cursor in place of your default computer one. Recently, I added one to my [website](https://harshhhdev.github.io) aswell.
+I've come across many design studio websites with a neat custom cursor in place of your default computer one. Might not be the most accessible thing in the world, but it looks cool. Recently, I added one to my [website](https://harshsingh.xyz) as well.
 
-I had to write one from scratch (using some internet resources of course!), since all the NPM libraries I found were either outdated, or didn't support SSR.
+I wrote mines from scratch as all the NPM libraries I found were either outdated, or didn't support server-side rendering.
 
-After adding the cursor to my own website, I had an idea to create an NPM package for it for a while. This weekend, I had some freetime from school and got to work!
+After adding the cursor to my own website, I'd been wanting to create an NPM package for it for a while, and I got to work this weekend creating [custom-pointer-react](https://github.com/harshhhdev/custom-pointer-react). I couldn't find a better name which wasn't already taken.
 
 This library supports [TypeScript](https://typescriptlang.org), along with server-side rendering ([Next.js](https://nextjs.org) and [Remix](https://remix.run))
 
-Want a demo? I setup a quick [demo website](https://harshhhdev.github.io/custom-pointer-react/) to help you tweak and experiment around with values!
+Want a demo? I setup a quick [demo website](https://harshsingh.xyz/custom-pointer-react/) to for you to tweak and experiment with the library.
 
-## 🚀 Setup
+# 🚀 Setup
 
 To download the library, head over to your terminal:
 
@@ -28,7 +28,7 @@ To download the library, head over to your terminal:
 yarn add custom-pointer-react
 ```
 
-Next, import the cursor component into your file and customise it! Don't forget to wrap your app in the context afterwards.
+Next, import the cursor component into your file and customise it. Don't forget to wrap your app in the context afterwards.
 
 ```tsx:tsx
 import { Cursor } from 'custom-pointer-react'
@@ -54,9 +54,9 @@ All parameters are optional, and here's a list of the different parameters which
 | cursorSize | Controls the size of the cursor                     | 10px    |
 | ringBorder | Controls the width of the ring's border             | 2px     |
 
-Need help finding the right parameters? Check out the [demo website](https://harshhhdev.github.io/custom-pointer-react/)!
+Need help finding the right parameters? Check out the [demo website](https://harshhhdev.github.io/custom-pointer-react/).
 
-Now, go into your app and import the MouseContext provider.
+Now, go into your app and import the `MouseContext` provider.
 
 ```tsx:pages/_app.tsx
 import { MouseContextProvider } from 'custom-pointer-react'
@@ -70,12 +70,6 @@ ReactDOM.render(
 ...
 ```
 
-Your custom cursor should be good to go!
+Your custom cursor should be good to go.
 
-## Conclusion
-
-That's all for today. I just wanted to quickly show off this new React library I created.
-
-What're your thoughts on custom cursors? Personally, I think they can hinder accessibility, so you should try to use them carefully. They'd be a perfect fit for your designer or agency home page though!
-
-Anyways, that sums up today's post. Until next time. 👋
+I hope this helped you out, I'm interested to see what you make with the library. Enjoy the rest of your day.
