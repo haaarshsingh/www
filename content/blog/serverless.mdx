@@ -5,7 +5,7 @@ published: '2022-03-13'
 description: 'Build a serverless application with a modern stack'
 ---
 
-Hey there! Hope you're having a wonderful day or night - today, we'll be building a simple [Next.js] serverless application deployed on [Vercel], which uses [CockroachDB] for the backend serverless database.
+Hey there. Hope you're having a wonderful day or night - today, we'll be building a simple [Next.js] serverless application deployed on [Vercel], which uses [CockroachDB] for the backend serverless database.
 
 Curious what we'll be building? Check it out live demo at [guestbook.hxrsh.in](https://guestbook.hxrsh.in), and the code at [harshhhdev/guestbook](https://github.com/harshhhdev/guestbook).
 
@@ -18,7 +18,7 @@ Well, let me break it down for you, here's a list of things which separate [Cock
 2.  You're not wasting a penny
     - [CockroachDB's pricing](https://www.cockroachlabs.com/pricing/) is simple, and to the point. You get 5GB storage for free, which is plenty, along with $1 for every extra gigabyte of storage you use. Along with this, you get 250M request units monthly, and pay just $1 for every 10M extra request units. If this isn't a steal, I don't know what is.
 3.  Avoid downtime
-    - Behind the scenes, your data is replicated _at least_ 3 times - meaning that you won't face downtime for things like availability zone outages, database upgrades, and security patches. Even schema changes are online!
+    - Behind the scenes, your data is replicated _at least_ 3 times - meaning that you won't face downtime for things like availability zone outages, database upgrades, and security patches. Even schema changes are online.
 
 For the name, well... I really like it. It's memorable - we forget names such as [Hasura](https://hasura.io/) and [Aurora](https://aws.amazon.com/rds/aurora/) rather quickly, but this one will for sure stick to the back of your mind for being unique.
 
@@ -32,7 +32,7 @@ A simple, clean and dark web app deployed to [Vercel]. It's inspired by [leerob'
 
 ## Getting Started
 
-Let's kickstart our [Next.js] and [TypeScript](https://typescriptlang.org) project!
+Let's kickstart our [Next.js] and [TypeScript](https://typescriptlang.org) project.
 
 ```bash:terminal
 npx create-next-app@latest --ts
@@ -59,7 +59,7 @@ yarn add next-auth @next-auth/prisma-adapter
 
 To do this, first go to [GitHub], navigate over to settings > developer settings > OAuth Apps and click "Create New OAuth App". Enter in the required information, and for callback URL input in `http://localhost:3000/api/auth/callback/github`.
 
-Awesome! Now let's go back to our project and create a new file at `pages/api/auth/[...nextauth].ts` which will contain our configuration.
+Awesome. Now let's go back to our project and create a new file at `pages/api/auth/[...nextauth].ts` which will contain our configuration.
 
 ```ts:pages/api/[...nextauth].ts
 import NextAuth from 'next-auth'
@@ -195,7 +195,7 @@ model VerificationToken {
 }
 ```
 
-Cool! Now we need to setup our `Post` model. We'll give it a many-to-one relationship with user, as a single user can create an infinite amount of posts.
+Cool. Now we need to setup our `Post` model. We'll give it a many-to-one relationship with user, as a single user can create an infinite amount of posts.
 
 ```:prisma/schema.prisma
 model Post {
@@ -221,7 +221,7 @@ Inside here, create a field called `DATABASE_URL` and add in the URL you just co
 
 Now that we have that done, let's run `yarn prisma generate` to generate the [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client).
 
-Awesome! Now, let's run `yarn prisma migrate dev` to sync [CockroachDB] with our database schema.
+Awesome. Now, let's run `yarn prisma migrate dev` to sync [CockroachDB] with our database schema.
 
 Now, we have one final step before we can start using [Prisma] inside of our [Next.js] application.
 
@@ -245,7 +245,7 @@ This instantiates a single instance PrismaClient and saves it on the global obje
 
 For more details, [see this link](https://www.prisma.io/docs/support/help-articles/nextjs-prisma-client-dev-practices)
 
-Cool! Now that we have our database setup, it's time to switch gears for a bit and add styling to our application using [TailwindCSS]. Following the documentation on their website, we need to do the following:
+Cool. Now that we have our database setup, it's time to switch gears for a bit and add styling to our application using [TailwindCSS]. Following the documentation on their website, we need to do the following:
 
 ```bash:terminal
 # Install needed development dependencies
@@ -255,7 +255,7 @@ yarn add tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-Awesome! We can now started customising our file. Let's just add in our content paths, along with some other stuff.
+Awesome. We can now started customising our file. Let's just add in our content paths, along with some other stuff.
 
 ```js:tailwind.config.js
 module.exports = {
@@ -297,7 +297,7 @@ module.exports = {
 }
 ```
 
-Cool! We can now move onto styling our application. Delete all content inside your `styles/global.css`, and add in these basic styles.
+Cool. We can now move onto styling our application. Delete all content inside your `styles/global.css`, and add in these basic styles.
 
 ```css:styles/global.css
 @tailwind components;
@@ -400,7 +400,7 @@ const Home: NextPage = () => {
 export default Home
 ```
 
-Awesome! Now let's first work on a `Header` component which will help us login with [GitHub] into our application. Create a new file at `components/Header.tsx`.
+Awesome. Now let's first work on a `Header` component which will help us login with [GitHub] into our application. Create a new file at `components/Header.tsx`.
 
 Inside here, create a component called `Login`. This will be our Login button, and we'll do conditional rendering to render either a "Login" or "Logout" button depending upon the user being authenticated or not.
 
@@ -432,7 +432,7 @@ const Login: FC = () => {
 }
 ```
 
-Awesome! Let's create another component, which will be our default export from this file. We'll add some basic text and headings here, explaining to users what this application is about. We'll also bring in our `Login` component here.
+Awesome. Let's create another component, which will be our default export from this file. We'll add some basic text and headings here, explaining to users what this application is about. We'll also bring in our `Login` component here.
 
 ```tsx:components/Header.tsx
 const Header: FC = () => {
@@ -461,7 +461,7 @@ const Header: FC = () => {
 }
 ```
 
-Superb! Let's now work on setting up our API routes. Create a new file under the directory `pages/api/new.ts` and inside of here let's setup some basic logic for creating a new post.
+Superb. Let's now work on setting up our API routes. Create a new file under the directory `pages/api/new.ts` and inside of here let's setup some basic logic for creating a new post.
 
 ```ts:pages/api/new.ts
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -492,7 +492,7 @@ const newPost = async (req: NextApiRequest, res: NextApiResponse) => {
 export default newPost
 ```
 
-Awesome! While we're at this, let's create the Form component which calls this API route.
+Awesome. While we're at this, let's create the Form component which calls this API route.
 
 ```tsx:components/Form.tsx
 import { FC, FormEvent, useRef, useState } from 'react'
@@ -506,7 +506,7 @@ const Form: FC = () => {
     <div>
       <form className='w-full mb-16' onSubmit={(e) => createPost(e)}>
         <textarea
-          placeholder='Go ahead, say what you like!'
+          placeholder='Go ahead, say what you like.'
           maxLength={100}
           className='w-full mt-8 bg-gray-800 rounded-md border-gray-700 border-2 p-5 resize-y font-sans text-base text-white box-border'
         />
@@ -579,9 +579,9 @@ const createPost = async (e: FormEvent<HTMLFormElement>) => {
 }
 ```
 
-That's a big method! Let's break it down. It first prevents the form from reloading by doing `e.preventDefault()`. Then, it creates some new headers and adds a `Content-Type` of `application/json` to tell the route that our body is in JSON. Next is the `raw` object which sanitises the value of our input (which we get through `useRef`), before wrapping our fetch method in a `trycatch`. Inside the `trycatch`, we use set our successs hook to true, clear our textarea and mutate which lets us change the cached data for a given route, which in our case is `/api/posts`. In case this fails, we set our error hook to true and log the error.
+That's a big method. Let's break it down. It first prevents the form from reloading by doing `e.preventDefault()`. Then, it creates some new headers and adds a `Content-Type` of `application/json` to tell the route that our body is in JSON. Next is the `raw` object which sanitises the value of our input (which we get through `useRef`), before wrapping our fetch method in a `trycatch`. Inside the `trycatch`, we use set our successs hook to true, clear our textarea and mutate which lets us change the cached data for a given route, which in our case is `/api/posts`. In case this fails, we set our error hook to true and log the error.
 
-Whew! That was long. Try to create a post now, it should work! But we're not done yet, lots more to do.
+Whew. That was long. Try to create a post now, it should work. But we're not done yet, lots more to do.
 
 Let's create another file to seed our database.
 
@@ -624,7 +624,7 @@ main()
   })
 ```
 
-Awesome! Although if we try to run this method, it'll result in an error. We need to setup `ts-node` for this in our [Next.js] environment.
+Awesome. Although if we try to run this method, it'll result in an error. We need to setup `ts-node` for this in our [Next.js] environment.
 
 Let's start by installing `ts-node` as a development dependency.
 
@@ -640,7 +640,7 @@ Now, in our `package.json`, let's do:
   },
 ```
 
-Awesome! We can now run `yarn prisma db seed` to populate our database with initial values for posts.
+Awesome. We can now run `yarn prisma db seed` to populate our database with initial values for posts.
 
 Let's now go back to our main file, and strap everything together. We need to create a `getServerSideProps` function which which runs on the server side at request time. Here, we'll call the `findMany` method in [Prisma] to find all of our posts, and sort them by when they were created. We'll also include the user relation to be returned from this function, so we have access to it.
 
@@ -659,7 +659,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 ```
 
-Beware! You might run into a JSON serialising problem. To fix this, simply install the following packages:
+Beware. You might run into a JSON serialising problem. To fix this, simply install the following packages:
 
 ```bash:terminal
 yarn add superjson babel-plugin-superjson-next
@@ -674,7 +674,7 @@ Now, create a new file `.babelrc` and configure it for [superjson](https://githu
 }
 ```
 
-Spectacular! Now that we have that going, we'll have to create a new type for this value of posts that we're returning, as we're unable to use the default type generated by [Prisma].
+Spectacular. Now that we have that going, we'll have to create a new type for this value of posts that we're returning, as we're unable to use the default type generated by [Prisma].
 
 If you're following along in JavaScript, feel free to skip this. But for [TypeScript] users, create a new file at `typings/index.ts`.
 
@@ -689,7 +689,7 @@ const postWithUser = Prisma.validator<Prisma.PostArgs>()({
 export type PostWithUser = Prisma.PostGetPayload<typeof postWithUser>
 ```
 
-Cool! Now that we have that, let's import it into `pages/index.tsx` and use it inside props.
+Cool. Now that we have that, let's import it into `pages/index.tsx` and use it inside props.
 
 ```tsx:pages/index.tsx
 // ...
@@ -707,7 +707,7 @@ const Home: NextPage<{ posts: PostWithUser[] }> = ({ posts }) => {
 }
 ```
 
-Good work! Let's now move over to create an API route for posts to fetch them as they're updated. Create a file at `pages/api/posts.ts` and run `findMany` to get all posts from [Prisma] and sort them out. We'll then return a code of 200, and map the posts onto a JSON format.
+Good work. Let's now move over to create an API route for posts to fetch them as they're updated. Create a file at `pages/api/posts.ts` and run `findMany` to get all posts from [Prisma] and sort them out. We'll then return a code of 200, and map the posts onto a JSON format.
 
 ```ts:pages/api/posts.ts
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -785,17 +785,17 @@ export default Posts
 
 This basically takes in an array of posts as props as a fallback, and then waits for a response from the API. This uses a library called [date-fns](https://date-fns.org/) to format the time.
 
-Awesome! Go back to the `index.tsx` file and add in this component, passing the data returned from `getServerSideProps` as props.
+Awesome. Go back to the `index.tsx` file and add in this component, passing the data returned from `getServerSideProps` as props.
 
-...and we're finished! WHOO-HOO! If you made it down here, good work! I'd love to hear your thoughts in the comments below. We should now have a fully functioning, 100% serverless application powered by [CockroachDB].
+...and we're finished. If you made it down here, good work. I'd love to hear your thoughts in the comments below. We should now have a fully functioning, 100% serverless application powered by [CockroachDB].
 
 This post took me a long time to write and create. If you enjoyed it, please be sure to give it a "❤" and follow me for similar posts.
 
-I will be live with @aydrian on Twitch explaining how to migrate this exact application written in [PostgreSQL](https://www.postgresql.org/) onto [CockroachDB] with zero application downtime, so stay tuned for that!
+I will be live with @aydrian on Twitch explaining how to migrate this exact application written in [PostgreSQL](https://www.postgresql.org/) onto [CockroachDB] with zero application downtime, so stay tuned for that.
 
-With that being said, I'll conclude this by saying that serverless computing is amazing, and has a lot of potential. I'm planning to write another post sometime soon on when you should or shouldn't use a serverless database, so stay tuned and follow for more!
+With that being said, I'll conclude this by saying that serverless computing is amazing, and has a lot of potential. I'm planning to write another post sometime soon on when you should or shouldn't use a serverless database, so stay tuned and follow for more.
 
-Enjoy your day, goodbye 👋!
+Enjoy your day, goodbye 👋.
 
 [next.js]: https://nextjs.org
 [vercel]: https://vercel.com

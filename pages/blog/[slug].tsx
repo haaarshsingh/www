@@ -12,9 +12,9 @@ const BlogPost: NextPage<{ post: Blog }> = ({ post }) => {
   return (
     <Wrapper
       title={post.title}
-      image={`https://hxrsh.in/api/image?title=${encodeURI(
+      image={`https://harshsingh.xyz/api/image?title=${encodeURI(
         post.title
-      )}&description=${encodeURI(post.description)}&readingTime=${Math.round(
+      )}&description=${encodeURI(post.description)}&time=${Math.round(
         post.readingTime.minutes
       )}&words=${post.readingTime.words}&date=${encodeURI(
         format(Date.parse(post.published), 'dd MMMM, yyyy')

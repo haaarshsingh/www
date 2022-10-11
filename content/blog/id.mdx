@@ -33,7 +33,7 @@ Don't we all love clean and short URLs? Nobody likes seeing a bunch of digits an
 
 > It may seem minor, but to build a product that developers love to use, we need to care about details like these.
 
-Which is true! If we look into the history of UUID, we realise that it wasn't ever really made to be used in web applications. If we have a website such as, say, [HasteBin](https://www.toptal.com/developers/hastebin/), which depends upon generating these short, three letter IDs to easily share with people, this causes a problem.
+Which is true. If we look into the history of UUID, we realise that it wasn't ever really made to be used in web applications. If we have a website such as, say, [HasteBin](https://www.toptal.com/developers/hastebin/), which depends upon generating these short, three letter IDs to easily share with people, this causes a problem.
 
 ## CUID
 
@@ -43,7 +43,7 @@ CUID aims to solve the exact problem we discussed above with UUIDs. Quoted from 
 
 CUID aims to focus on horizontal scalability (as today's applications don't run on a single machine), performance, size, security, and portability. [The GitHub repository](https://github.com/ericelliott/cuid#motivation) offers a more specific breakdown of the problems that this aims to solve.
 
-They're shorter, but what about collisions? I found this [online benchmark](https://gist.github.com/evalphobia/1f40afcfc73ce207d890dd4b1705a0c9) ran on a GitHub gist, showing that the chances for collisions are still extremely slim. It found no collisions on 100 million iterations!
+They're shorter, but what about collisions? I found this [online benchmark](https://gist.github.com/evalphobia/1f40afcfc73ce207d890dd4b1705a0c9) ran on a GitHub gist, showing that the chances for collisions are still extremely slim. It found no collisions on 100 million iterations.
 
 Since the talk I gave about was related to [Prisma ORM](https://prisma.io/), the [Prisma schema](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference) (in relational databases) can generate both either a CUID or UUID, depending on the needs of your application.
 

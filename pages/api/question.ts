@@ -2,7 +2,7 @@ import pool from '@lib/db'
 import type { Question } from '@typings/types'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-const question = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const client = await pool.connect()
 
   if (req.method === 'POST') {
@@ -33,4 +33,4 @@ const question = async (req: NextApiRequest, res: NextApiResponse) => {
   )
 }
 
-export default question
+export default handler

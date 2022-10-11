@@ -31,7 +31,7 @@ I think it's completely appropriate to bring in other arguments here as well. Wh
 
 > Why code in JavaScript when you can code in Assembly? Actually, why even code in Assembly when you jut directly can code in binary?
 
-So, essentially, this means that generally abstractions are oftentimes necessary for us as developers, which I totally agree with! Now, the problem here is that not all abstractions are good, which segues onto my next point about how ORMs abstract away features of relational databases.
+So, essentially, this means that generally abstractions are oftentimes necessary for us as developers, which I totally agree with. Now, the problem here is that not all abstractions are good, which segues onto my next point about how ORMs abstract away features of relational databases.
 
 ### Abstracting away features of databases
 
@@ -53,7 +53,7 @@ But anyways, back to the topic -- for the average startup, ORMs can help them sh
 
 As mentioned above, the fact that ORMs don't give you complete control over the queries you run in your database might cause you to overcomplicate simple queries.
 
-Let me to explain: say that you're building a social media platform and you have to fetch a list of users from your database, fetch their recent posts, do something with them, and then write them back to your database. If you were using an ORM, this would require FOUR queries and trips to your database when in reality this could be done rather easily with just a single plain SQL query! If you have to keep on doing this, then it's definitely not great for performance. Along with this, ORMs tend to produce sub-par JOINs and further reduce efficiency in that way.
+Let me to explain: say that you're building a social media platform and you have to fetch a list of users from your database, fetch their recent posts, do something with them, and then write them back to your database. If you were using an ORM, this would require FOUR queries and trips to your database when in reality this could be done rather easily with just a single plain SQL query. If you have to keep on doing this, then it's definitely not great for performance. Along with this, ORMs tend to produce sub-par JOINs and further reduce efficiency in that way.
 
 To add onto that, if you have a bit of prior knowledge on ORMs, you are probably well aware of the 'N+1 selects' problem. In case you're not already familiar, I found this great [Stack Overflow Answer](https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping) which describes it in detail.
 
@@ -105,8 +105,8 @@ Although it's worth asking yourself: considering that you don't need an ORM to p
 
 ## Conclusion
 
-In the end, I think ORMs are an nice tool if used appropriately in the correct scenario. Once you balance out the positives and negatives however, it may seem that including an ORM in your stack may not be the best idea once your startup scales. I love tools which make SQL easier to work with! There's something called [sqlc](https://sqlc.dev/) which basically compiles SQL to type-safe [Go](https://go.dev/). Tools like this provide us with some of the same advantages as an ORM, just without effecting our actual database workflow.
+In the end, I think ORMs are an nice tool if used appropriately in the correct scenario. Once you balance out the positives and negatives however, it may seem that including an ORM in your stack may not be the best idea once your startup scales. I love tools which make SQL easier to work with. There's something called [sqlc](https://sqlc.dev/) which basically compiles SQL to type-safe [Go](https://go.dev/). Tools like this provide us with some of the same advantages as an ORM, just without effecting our actual database workflow.
 
-The underlying issue I saw oftentimes -- especially in the JavaScript community -- was that people treated ORMs as if they were some kind of 'silver bullet'. I've seen several large influencers on Twitter (mostly those who have only a cursory understanding of databases and SQL) highly praise ORMs for being flexible. I had written this article with the aim of familiarising you about the different advantages and disadvantages that ORMs provide to help you effective decide when it would be appropriate to include them in your tech stack. I hope you found this useful!
+The underlying issue I saw oftentimes -- especially in the JavaScript community -- was that people treated ORMs as if they were some kind of 'silver bullet'. I've seen several large influencers on Twitter (mostly those who have only a cursory understanding of databases and SQL) highly praise ORMs for being flexible. I had written this article with the aim of familiarising you about the different advantages and disadvantages that ORMs provide to help you effective decide when it would be appropriate to include them in your tech stack. I hope you found this useful.
 
 That's all for today, until next time 👋.
