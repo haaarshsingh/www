@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { format } from 'date-fns'
 import * as A from '@anims/index'
 import { allBlogs, Blog } from '@layer/generated'
@@ -53,11 +53,12 @@ const Content: FC<{
   blogs?: Blog[]
   talks?: Talk[]
 }> = ({ text, blogs, talks }) => {
+  const [hover, setHover] = useState(false)
   const [selected, setSelected] = useState(0)
 
   return (
     <motion.div
-      className='mt-60 flex w-full flex-col'
+      className='mt-60 flex flex-col relative'
       variants={A.FadeContainer}
       initial='hidden'
       animate='visible'
@@ -65,26 +66,8 @@ const Content: FC<{
       <motion.h1 variants={A.Fade} className='ml-3 sm:ml-0 mb-12 text-2xl'>
         {text}
       </motion.h1>
-      {blogs &&
-        blogs.map((blog, index) => (
-          <Post
-            blog={blog}
-            key={index}
-            onMouseOver={() => setSelected(index + 1)}
-            onMouseLeave={() => setSelected(0)}
-            isSelected={selected === index + 1}
-          />
-        ))}
-      {talks &&
-        talks.map((talk, index) => (
-          <Post
-            talk={talk}
-            key={index}
-            onMouseOver={() => setSelected(index + 1)}
-            onMouseLeave={() => setSelected(0)}
-            isSelected={selected === index + 1}
-          />
-        ))}
+      {blogs && <Map content={blogs} blogs={true} />}
+      {talks && <Map content={talks} blogs={false} />}
       <Link
         href={
           blogs
@@ -104,6 +87,51 @@ const Content: FC<{
         </motion.a>
       </Link>
     </motion.div>
+  )
+}
+
+const Map: FC<{ content: Blog[] | Talk[]; blogs: boolean }> = ({
+  content,
+  blogs,
+}) => {
+  const [hover, setHover] = useState(false)
+  const [selected, setSelected] = useState(0)
+
+  return (
+    <div className='flex flex-col align-center relative'>
+      <div
+        className='bg-[#FFFFFF20] hidden sm:block rounded-lg w-full h-16 absolute transition-all'
+        style={{
+          transform: `translateY(${selected * 64 - 64}px)`,
+          opacity: hover ? 1 : 0,
+        }}
+      />
+      {blogs
+        ? content.map((content, index) => (
+            <Post
+              blog={content as Blog}
+              key={index}
+              onMouseOver={() => {
+                setHover(true)
+                setSelected(index + 1)
+              }}
+              onMouseLeave={() => setHover(false)}
+              isSelected={selected === index}
+            />
+          ))
+        : content.map((content, index) => (
+            <Post
+              talk={content as Talk}
+              key={index}
+              onMouseOver={() => {
+                setHover(true)
+                setSelected(index + 1)
+              }}
+              onMouseLeave={() => setHover(false)}
+              isSelected={selected === index}
+            />
+          ))}
+    </div>
   )
 }
 
@@ -128,7 +156,7 @@ const Post: FC<{
         rel='noreferrer'
         target={blog ? '_self' : '_blank'}
       >
-        <h2 className='text-base font-medium text-white text-ellipsis sm:ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12 transition-colors'>
+        <h2 className='text-base font-medium text-white text-ellipsis md:ml-0 sm:ml-5 whitespace-nowrap overflow-hidden w-11/12 sm:w-7/12 transition-colors'>
           {blog ? blog.title : talk?.title}
         </h2>
         <div className='flex items-center justify-center h-full'>
@@ -139,22 +167,6 @@ const Post: FC<{
             • {blog ? format(new Date(blog.published), 'dd/MM') : talk?.date}
           </p>
         </div>
-        <AnimatePresence>
-          {isSelected && (
-            <motion.div
-              layoutId='box'
-              className='bg-[#FFFFFF] hidden sm:block rounded-lg w-full h-16 absolute'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.1 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                type: 'spring',
-                stiffness: 1500,
-                damping: 60,
-              }}
-            />
-          )}
-        </AnimatePresence>
       </motion.a>
     </Link>
   )
