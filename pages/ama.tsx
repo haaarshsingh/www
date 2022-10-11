@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Wrapper from '@components/Wrapper'
-import AskMeAnything from '@components/AMA/AMA'
+import AskMeAnything from '@components/AMA'
 import type { Question } from '@typings/types'
 import pool from '@lib/db'
 

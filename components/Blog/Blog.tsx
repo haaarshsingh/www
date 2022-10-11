@@ -4,8 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Fade, FastFadeContainer } from '@anims/index'
 import { format } from 'date-fns'
-import * as S from './Blog.style'
-import { Content } from '../Music/Music.style'
 import { allBlogs } from '@layer/generated'
 allBlogs.sort((a, b) => (a.published < b.published ? 1 : -1))
 
@@ -18,21 +16,33 @@ const Post: FC<{
 }> = ({ blog, active, index, setIndex, maxIndex }) => {
   return (
     <Link href={`/blog/${blog.slug}`} passHref locale={false}>
-      <S.Blog
-        last={index !== maxIndex}
+      <motion.a
+        className={`flex items-center justify-between w-full py-5 ${
+          index !== maxIndex ? 'border-b-gray-700 border-b-solid border-b' : ''
+        }`}
         variants={Fade}
         onMouseMove={() => setIndex(index)}
         onMouseLeave={() => setIndex(-1)}
       >
-        <Content blog active={active}>
+        <h2
+          className='text-white text-base font-medium w-3/4 text-ellipsis overflow-hidden whitespace-nowrap transition-colors'
+          style={{
+            color: active ? '#FFFFFF' : '#444444',
+          }}
+        >
           {blog.title}
-        </Content>
-        <Content hide info activeLight={active}>
+        </h2>
+        <p
+          className='hidden sm:block text-base transition-colors'
+          style={{ color: active ? '#6E6E6E' : '#444444' }}
+        >
           {Math.round(blog.readingTime.minutes)} minutes •{' '}
           {format(new Date(blog.published), 'dd/MM')}
-        </Content>
-        <Content show>{format(new Date(blog.published), 'dd/MM')}</Content>
-      </S.Blog>
+        </p>
+        <p className='block sm:hidden'>
+          {format(new Date(blog.published), 'dd/MM')}
+        </p>
+      </motion.a>
     </Link>
   )
 }
@@ -70,25 +80,42 @@ const Blog: FC<{ followers: string; views: string }> = ({
   ]
 
   return (
-    <S.Wrapper variants={FastFadeContainer} initial='hidden' animate='visible'>
-      <S.HeaderContainer>
-        <motion.h1 variants={Fade}>Blog</motion.h1>
-        <S.Description variants={Fade}>
+    <motion.div
+      className='w-full'
+      variants={FastFadeContainer}
+      initial='hidden'
+      animate='visible'
+    >
+      <div className='mt-12'>
+        <motion.h1 className='!text-2xl' variants={Fade}>
+          Blog
+        </motion.h1>
+        <motion.p variants={Fade} className='my-4 mb-16'>
           <i>Writing software, and then teaching others.</i> Thoughts and
           tutorials on everything from design to databases. Read by{' '}
-          <span>{parseInt(views).toLocaleString()}</span> people till date. Join{' '}
-          <span>{parseInt(followers).toLocaleString()}</span> others and follow
-          my blog on{' '}
+          <span className='text-gray-100'>
+            {parseInt(views).toLocaleString()}
+          </span>{' '}
+          people till date. Join{' '}
+          <span className='text-gray-100'>
+            {parseInt(followers).toLocaleString()}
+          </span>{' '}
+          others and follow my blog on{' '}
           <a href='https://dev.to/harshhhdev' rel='noreferrer' target='_blank'>
             Dev
           </a>
           .
-        </S.Description>
-      </S.HeaderContainer>
+        </motion.p>
+      </div>
       {data.map((d, i) => (
-        <S.Container key={i}>
-          <S.Year variants={Fade}>{d.year}</S.Year>
-          <S.BlogWrapper>
+        <div className='flex border-t-gray-700 border-t-solid border-t' key={i}>
+          <motion.h2
+            className='hidden sm:block mt-5 text-lg mr-16 ml-4 text-gray-600 w-fit'
+            variants={Fade}
+          >
+            {d.year}
+          </motion.h2>
+          <div className='flex flex-col w-full'>
             {d.data.map((blog: BlogProps, idx: number) => (
               <Post
                 blog={blog}
@@ -99,10 +126,10 @@ const Blog: FC<{ followers: string; views: string }> = ({
                 maxIndex={d.data.length}
               />
             ))}
-          </S.BlogWrapper>
-        </S.Container>
+          </div>
+        </div>
       ))}
-    </S.Wrapper>
+    </motion.div>
   )
 }
 

@@ -4,27 +4,13 @@ import { useRouter } from 'next/router'
 import Navbar from './Nav/Nav'
 import Footer from './Footer'
 import BackToTop from './Top'
-import { styled } from '@css/theme.config'
-
-const Container = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-})
-
-const ContentWrapper = styled('div', {
-  width: '95vw',
-  marginTop: 40,
-  '@lg': { width: '60vw' },
-  '@2xl': { width: '40vw' },
-})
 
 export const meta = {
-  root: 'https://harshsingh.xyz',
+  root: 'https://hxrsh.in',
   title: 'Harsh Singh',
   description:
     '🎨🛠️ 16yo frontend engineer who enjoys design, Vim, Linux, tinkering with databases and other computer things',
-  image: 'https://harshsingh.xyz/banner.png',
+  image: 'https://hxrsh.in/banner.png',
   type: 'website',
 }
 
@@ -70,8 +56,8 @@ const Wrapper: FC<{
         />
         <meta name='twitter:image' content={image ? image : meta.image} />
       </Head>
-      <Container>
-        <ContentWrapper>
+      <div className='flex flex-col items-center'>
+        <div className='w-95 lg:w-60 2xl:w-40 xl:w-30 mt-10'>
           <Navbar navOpen={open} setNavOpen={setOpen} />
           {!open && (
             <main id='main'>
@@ -80,8 +66,8 @@ const Wrapper: FC<{
             </main>
           )}
           <BackToTop />
-        </ContentWrapper>
-      </Container>
+        </div>
+      </div>
     </div>
   )
 }

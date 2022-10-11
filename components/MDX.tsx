@@ -36,7 +36,7 @@ const Header2: FC<{ children: ReactNode; id: string }> = ({ children, id }) => {
   return (
     <a
       href={`#${id}`}
-      className='my-8 flex items-center group w-fit header no-outline font-bold text-white'
+      className='my-8 flex items-center group w-fit header no-outline text-xl font-bold text-white'
     >
       <h2 className='opacity-0 group-hover:opacity-100 mr-2 text-gray-600'>
         #

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@stitches/react": "^1.2.8",
     "@types/dompurify": "^2.3.3",
     "babel-plugin-superjson-next": "^0.4.3",
     "chrome-aws-lambda": "^6.0.0",

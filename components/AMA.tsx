@@ -8,24 +8,30 @@ import {
   useState,
 } from 'react'
 import { motion } from 'framer-motion'
-import { FadeContainer, Fade } from '@anims/index'
+import * as A from '@anims/index'
 import type { Question as QuestionType } from '@typings/types'
 import { sanitize } from 'dompurify'
 import { cva } from 'class-variance-authority'
-import * as S from './AMA.style'
 
 const AMA: FC<{ questions: QuestionType[] }> = ({ questions }) => {
   return (
-    <S.Wrapper variants={FadeContainer} initial='hidden' animate='visible'>
-      <motion.h1 variants={Fade}>Ask Me Anything</motion.h1>
-      <S.Description variants={Fade}>
+    <motion.div
+      className='mt-12'
+      variants={A.FadeContainer}
+      initial='hidden'
+      animate='visible'
+    >
+      <motion.h1 className='!text-2xl' variants={A.Fade}>
+        Ask Me Anything
+      </motion.h1>
+      <motion.p variants={A.Fade} className='my-4'>
         Ask away, but keep in mind that I may take a while to respond.
-      </S.Description>
+      </motion.p>
       <Form />
       {questions.map((question, index) => (
         <Question key={index} question={question} />
       ))}
-    </S.Wrapper>
+    </motion.div>
   )
 }
 
@@ -75,20 +81,33 @@ const Form: FC = () => {
   }
 
   return (
-    <S.Form onSubmit={createPost} variants={Fade}>
-      <S.Textarea placeholder='Ask away...' maxLength={100} ref={content} />
-      {visible && <S.Message>I will try my best to respond soon.</S.Message>}
-      {error !== '' && <S.Message error>{error}</S.Message>}
+    <motion.form
+      className='w-full mb-16'
+      onSubmit={createPost}
+      variants={A.Fade}
+    >
+      <textarea
+        placeholder='Ask away...'
+        maxLength={100}
+        ref={content}
+        className='w-full my-8 bg-gray-900 rounded-md border-gray-700 border p-5 resize-y text-base text-white box-border outline-none focus:bg-gray-200 transition-colors'
+      />
+      {visible && (
+        <motion.p className='text-green-400 mb-5'>
+          🎉 I will try my best to respond soon!
+        </motion.p>
+      )}
+      {error !== '' && <p className='text-rose-400 mb-5'>{error}</p>}
       <Button loading={loading} setLoading={setLoading} />
-    </S.Form>
+    </motion.form>
   )
 }
 
 const Question: FC<{ question: QuestionType }> = ({ question }) => {
   return (
-    <motion.div variants={Fade}>
-      <S.QuestionTitle>{question.content}</S.QuestionTitle>
-      <S.Question>{question.answer}</S.Question>
+    <motion.div variants={A.Fade}>
+      <h1 className='mb-5 !text-xl'>{question.content}</h1>
+      <p className='text-base mb-10'>{question.answer}</p>
     </motion.div>
   )
 }
@@ -104,9 +123,10 @@ const Button: FC<{
   loading: boolean
   setLoading: Dispatch<SetStateAction<boolean>>
 }> = ({ loading, setLoading }) => {
+  const [aspectRatio, setAspectRatio] = useState(1)
+
   const ref = useRef<HTMLButtonElement>(null)
 
-  const [aspectRatio, setAspectRatio] = useState(1)
   useEffect(
     () => setAspectRatio(ref.current!.clientWidth / ref.current!.clientHeight),
     []
@@ -124,7 +144,7 @@ const Button: FC<{
       }}
       type='submit'
     >
-      <span className='button_content'>
+      <span className='button__content'>
         <span
           {...(loading ? { role: 'progressbar' } : {})}
           aria-hidden={!loading}
@@ -132,7 +152,7 @@ const Button: FC<{
           {loading ? 'Loading...' : 'Ask Question'}
         </span>
       </span>
-      <span aria-hidden className='button_disco' />
+      <span aria-hidden className='button__disco' />
     </button>
   )
 }

@@ -3,49 +3,29 @@ import { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeContainer } from '@anims/index'
 import { FiArrowLeft } from 'react-icons/fi'
-import { styled } from '@css/theme.config'
-
-const Icon = styled(FiArrowLeft, {
-  marginRight: 8,
-  transition: '0.1s linear transform',
-})
-
-const Back = styled(motion.a, {
-  marginTop: 80,
-  display: 'flex',
-  alignItems: 'center',
-  width: 'fit-content',
-  [`&:hover ${Icon}`]: {
-    transform: 'translateX(-5px)',
-  },
-})
-
-const Header = styled(motion.h1, { margin: '40px 0' })
-
-const Text = styled(motion.p, {
-  variants: { margin: { true: { margin: '12px 0' } } },
-})
 
 const NotFound: FC = () => {
   return (
     <motion.div variants={FadeContainer} initial='hidden' animate='visible'>
       <Link href='/' passHref>
-        <Back variants={Fade}>
-          <Icon />
+        <a className='mt-20 flex items-center group w-fit'>
+          <FiArrowLeft className='mr-2 group-hover:-translate-x-1 transition-transform' />
           Back
-        </Back>
+        </a>
       </Link>
-      <Header variants={Fade}>Not found.</Header>
-      <Text variants={Fade}>
+      <motion.h1 className='text-5xl my-10' variants={Fade}>
+        Not found.
+      </motion.h1>
+      <motion.p variants={Fade}>
         <i>
           Computers were simply made to solve errors that did not exist before.
         </i>
-      </Text>
-      <Text margin variants={Fade}>
+      </motion.p>
+      <motion.p className='my-3' variants={Fade}>
         After wanting to create a nonpareil website, I found love in minimalism:
         subtle animations, monochromatic colours, and simplicity to reflect my
         new values of design.
-      </Text>
+      </motion.p>
     </motion.div>
   )
 }

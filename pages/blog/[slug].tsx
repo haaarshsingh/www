@@ -1,9 +1,9 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Wrapper from '@components/Wrapper'
 import { allBlogs, Blog } from '@layer/generated'
-import Post from '@components/Blog/Post/Post'
+import Post from '@components/Blog/Post'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import components from '@components/MDX/MDX'
+import components from 'components/MDX'
 import { format } from 'date-fns'
 
 const BlogPost: NextPage<{ post: Blog }> = ({ post }) => {

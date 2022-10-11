@@ -1,7 +1,8 @@
 import { GetStaticProps, NextPage } from 'next'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import components from '@components/MDX/MDX'
+import components from '@components/MDX'
 import Wrapper from '@components/Wrapper'
+import Header from '@components/Header'
 import { allInfos } from '@layer/generated'
 
 const About: NextPage<{ about: { body: { code: string } } }> = ({ about }) => {

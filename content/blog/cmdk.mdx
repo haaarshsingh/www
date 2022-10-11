@@ -5,11 +5,11 @@ published: '2022-09-10'
 description: 'All about building custom accessible command menus'
 ---
 
-Hey everyone! Over the past few months, I've been building my very own [command menu component](https://capiche.com/e/consumer-dev-tools-command-palette) for [React](https://reactjs.org) called [kmenu]! In this post, I want to go over how you can also create your OWN command menu.
+Over the past few months, I've been building my very own [command menu component](https://capiche.com/e/consumer-dev-tools-command-palette) for [React](https://reactjs.org) called [kmenu]. In this post, I want to go over how you can also create your OWN command menu.
 
-I originally gave this talk at about building a command menu at [React JAX](https://www.meetup.com/react-jax/), and the recording should be up soon! In the meanwhile, you can follow this tutorial or the [CodeSandbox].
+I originally gave this talk at about building a command menu at [React JAX](https://www.meetup.com/react-jax/) which you can watch on [YouTube](https://youtu.be/2DL4QC0QrOg). In the meanwhile, you can follow this tutorial or the [CodeSandbox].
 
-Before we begin, you can now check it out LIVE at over at [kmenu.hxrsh.in](https://kmenu.hxrsh.in), and get started with the documentation over on the [GitHub](https://github.com/harshhhdev/kmenu) -- if you enjoy it, don't forget to leave a star! I'm trying to reach 400 stars soon 🎉.
+Before we begin, you can now check it out live at over at [kmenu.hxrsh.in](https://kmenu.hxrsh.in), and get started with the documentation over on the [GitHub](https://github.com/harshhhdev/kmenu).
 
 ## Background
 
@@ -23,7 +23,7 @@ Companies such as [Vercel](https://vercel.com), [GitHub](https://docs.github.com
 
 With that, there are a few different approaches for adding a command menu to your website: you can use an open source library (like [kmenu], [cmdk](https://cmdk.paco.me/), or [kbar](https://kbar.vercel.app/)), use a proprietary tool such as [CommandBar](commandbar.com), or build your own. This tutorial focuses on building your own implementation, however you may not need to depending on whether or not you're satisfied with the other options available.
 
-As said above, in this post, we'll be focusing on building our own command menu implementation. Our menu will be accessible, fully animated, and you can customise it to your needs!
+As said above, in this post, we'll be focusing on building our own command menu implementation. Our menu will be accessible, fully animated, and you can customise it to your needs.
 
 ## 🚀 Getting Started
 
@@ -38,7 +38,7 @@ yarn tailwindcss init -p
 
 Next, open up your `tailwind.config.js` and add in your code directories under `content`. This varies depending upon whether or not you're using something like [Create React App](https://tailwindcss.com/docs/guides/create-react-app) or [Next.js](https://tailwindcss.com/docs/guides/nextjs).
 
-This is also the time to import in any fonts. For my project, I'm going to use [Albert Sans](https://github.com/usted/Albert-Sans), the [brand new font on Google Fonts](https://twitter.com/googlefonts/status/1552983139219378176)!
+This is also the time to import in any fonts. For my project, I'm going to use [Albert Sans](https://github.com/usted/Albert-Sans), the [brand new font on Google Fonts](https://twitter.com/googlefonts/status/1552983139219378176).
 
 As a side note: I personally believe that [Tailwind is an anti-pattern](https://javascript.plainenglish.io/tailwind-is-an-anti-pattern-ed3f64f565f0), but I've only used it for the purposes of building this command menu quicker. If your website doesn't already include Tailwind, I heavily advocate that you use a regular CSS approach as opposed to this.
 
@@ -225,7 +225,7 @@ Awesome. Now, let's head back onto our main component make sure map the command 
 }
 ```
 
-Cool. We should now see all of our commands on our screen! They may not look very pretty, but at least they work. 😅
+Cool. We should now see all of our commands on our screen. They may not look very pretty, but at least they work.
 
 ### Implementing Search
 
@@ -281,7 +281,7 @@ Next, we need to make sure that we map our results instead of the original comma
 }
 ```
 
-Awesome. Type something into your search bar -- it should work!
+Awesome. Type something into your search bar, it should work.
 
 ### Handling Selection States
 
@@ -700,7 +700,7 @@ useEffect(() => {
 }, [inViewTop, inViewBottom, selected])
 ```
 
-Awesome, and that's all! Our listbox should now be automatically scrollable if we navigate it with our arrow keys.
+Awesome, and that's all. Our listbox should now be automatically scrollable if we navigate it with our arrow keys.
 
 ### Final Touches
 
@@ -761,7 +761,7 @@ Additionally, make sure to actually assign it to your dialog component:
 >
 ```
 
-Sheesh! We just built our own command menu. As a side note, you can also change the placeholder colour inside our input to match your needs:
+We just built our own command menu. As a side note, you can also change the placeholder colour inside our input to match your needs:
 
 ```css:styles/global.css
 input::placeholder {
@@ -771,9 +771,9 @@ input::placeholder {
 
 ## Conclusion
 
-Anyways, with that, we're finished! If you have any errors setting up your command menu, feel free to comment down below or check out the [CodeSandbox] for reference.
+Anyways, with that, we're finished. If you have any errors setting up your command menu, feel free to comment down below or check out the [CodeSandbox] for reference.
 
-I'm curious to see what you make with this command menu! I think a good step forward to scaling this menu would be adding things like keywords, categories, or nested commands. Feel free to share some cool things you've made with this command menu!
+I'm curious to see what you make with this command menu. I think a good step forward to scaling this menu would be adding things like keywords, categories, or nested commands. Feel free to share some cool things you've made with it.
 
 Do remember to give [kmenu] a glance if you're interested in it, it's packed with awesome features and functionality.
 
