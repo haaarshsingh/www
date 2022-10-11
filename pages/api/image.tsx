@@ -10,8 +10,8 @@ const font = fetch(new URL('../../public/Inter.ttf', import.meta.url)).then(
   (res) => res.arrayBuffer()
 )
 
-// @ts-ignore
 const fontBold = fetch(
+  // @ts-ignore
   new URL('../../public/Inter-Bold.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer())
 
