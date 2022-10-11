@@ -5,10 +5,12 @@ export const config = {
   runtime: 'experimental-edge',
 }
 
+// @ts-ignore
 const font = fetch(new URL('../../public/Inter.ttf', import.meta.url)).then(
   (res) => res.arrayBuffer()
 )
 
+// @ts-ignore
 const fontBold = fetch(
   new URL('../../public/Inter-Bold.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer())
