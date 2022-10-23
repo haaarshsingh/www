@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://hxrsh.in/sitemap.xml
+Sitemap: https://harshsingh.xyz/sitemap.xml

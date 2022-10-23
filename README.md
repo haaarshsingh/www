@@ -1,21 +1,21 @@
-![image](https://hxrsh.in/banner.png)
+![image](https://harshsingh.xyz/banner.png)
 
 <p align="center">
-  <a href="https://hxrsh.in/">
+  <a href="https://harshsingh.xyz/">
     <h2 align="center">Harsh Singh</h2>
   </a>
 </p> 
 <p align="center">16yo web developer and designer</p>
 <p align="center">
-  <a href="https://hxrsh.in">Home</a>
+  <a href="https://harshsingh.xyz">Home</a>
     ·
-  <a href="https://hxrsh.in/ama">Ask Me Anything</a>
+  <a href="https://harshsingh.xyz/ama">Ask Me Anything</a>
     ·
-  <a href="https://hxrsh.in/uses">Uses</a>
+  <a href="https://harshsingh.xyz/uses">Uses</a>
     ·
-  <a href="https://hxrsh.in/stats">Stats</a>
+  <a href="https://harshsingh.xyz/stats">Stats</a>
     ·
-  <a href="https://hxrsh.in/blog">Blog</a>
+  <a href="https://harshsingh.xyz/blog">Blog</a>
  </p>
 
 # 🚀 Quickstart

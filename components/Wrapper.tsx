@@ -6,11 +6,11 @@ import Footer from './Footer'
 import BackToTop from './Top'
 
 export const meta = {
-  root: 'https://hxrsh.in',
+  root: 'https://harshsingh.xyz',
   title: 'Harsh Singh',
   description:
-    '🎨🛠️ 16yo frontend engineer who enjoys design, Vim, Linux, tinkering with databases and other computer things',
-  image: 'https://hxrsh.in/banner.png',
+    'Frontend engineer building tools and polished user interactions.',
+  image: 'https://harshsingh.xyz/banner.png',
   type: 'website',
 }
 
