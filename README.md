@@ -4,7 +4,7 @@
   <a href="https://harshsingh.xyz/">
     <h2 align="center">Harsh Singh</h2>
   </a>
-</p> 
+</p>
 <p align="center">Building tools and polished user interactions.</p>
 <p align="center">
   <a href="https://harshsingh.xyz">Home</a>
