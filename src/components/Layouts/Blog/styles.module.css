@@ -1,0 +1,27 @@
+.info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 0px;
+}
+
+.info > p {
+  margin: 0px;
+}
+
+.separator {
+  margin: 0px 5px;
+}
+
+.title {
+  margin: 15px 0 25px 0;
+}
+
+.hr {
+  border: 1px solid var(--grey8);
+}
+
+.header {
+  z-index: 2;
+  margin-bottom: 30px;
+}

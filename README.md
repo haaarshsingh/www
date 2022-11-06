@@ -5,20 +5,18 @@
     <h2 align="center">Harsh Singh</h2>
   </a>
 </p> 
-<p align="center">16yo web developer and designer</p>
+<p align="center">Building tools and polished user interactions.</p>
 <p align="center">
   <a href="https://harshsingh.xyz">Home</a>
     ·
-  <a href="https://harshsingh.xyz/ama">Ask Me Anything</a>
-    ·
   <a href="https://harshsingh.xyz/uses">Uses</a>
     ·
-  <a href="https://harshsingh.xyz/stats">Stats</a>
+  <a href="https://harshsingh.xyz/music">Music</a>
     ·
-  <a href="https://harshsingh.xyz/blog">Blog</a>
- </p>
+  <a href="https://harshsingh.xyz/blog">Writing</a>
+</p>
 
-# 🚀 Quickstart
+## Quickstart
 
 Run the website locally
 
@@ -26,67 +24,23 @@ Run the website locally
 git clone https://github.com/harshhhdev/harshhhdev.github.io.git
 ```
 
-## Setting up the project
+### Setting up the project
 
 ```bash
 cd harshhhdev.github.io
 
 # Install deps
-yarn
+pnpm install
 ```
 
-## Setting up the environment
-
-Now, rename `.env.EXAMPLE` to `.env`
-
-First, create a new database from [CockroachDB serverless](https://cockroachlabs.cloud) and paste the connection string in `DATABASE_URL`.
-
-Register a new [Spotify application](https://developer.spotify.com/), and paste your credentials onto the proper fields. Next, obtain a `REFRESH_TOKEN` by following [this tutorial](https://leerob.io/blog/spotify-api-nextjs).
-
-Finally, head over onto [GitHub](https://github.com), and go into [Settings](https://github.com/settings) > [Developer Settings](https://github.com/settings/apps) > [OAuth apps](https://github.com/settings/developers) and hit "New OAuth App". Configure the app to your needs, and copy/paste the information onto your `.env` file accordingly.
-
-## Starting server
+### Starting server
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 Server should now be running on [localhost](https://localhost:3000)
 
-# 🔨 Tools Used
+## Forking
 
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://typescriptlang.org)
-- [TailwindCSS](https://tailwindcss.com/)
-- [CockroachDB](https://cockroachlabs.com/)
-- [Framer Motion](https://framer.com/motion)
-- [Prisma](https://prisma.io/)
-- [SWR](https://swr.vercel.app/)
-- [contentlayer](https://www.contentlayer.dev/)
-- [NextAuth](https://next-auth.js.org/)
-- [Feather Icons](https://feathericons.com/)
-- [rehype](https://github.com/rehypejs/rehype)
-- [Prettier](https://prettier.io)
-- [ESLint](https://eslint.io)
-
-# 🌎 Adding Translations
-
-Interested in contributing to this repository? Add translations for a language you know!
-
-First, go into the `public` directory and create a new folder with the code of your language. Inside that, create a new file called `common.json`. Paste the file from `public/en/common.json` to get a template of what the content in English would be, then begin to translate it into the language of your choice!
-
-Special thanks to:
-
-- [FleshMobProductions](https://github.com/FleshMobProductions) and [Yän](https://twitter.com/YaenGames) for German translations
-- [CodeMyst](https://github.com/codemyst) for Serbian translations
-- [Jirushi](https://twitter.com/Jirushi_I) for French translations
-
-# 🤞 Contributing
-
-After setting up the project, and making changes:
-
-```git
-git add .
-git commit -m "commit message"
-git push YOUR_REPO_URL YOUR_BRANCH
-```
+This project is licenced with the '[Do What The F*ck You Want To Public License (wtfpl)](https://choosealicense.com/licenses/wtfpl/)' licence, and the permissions/limitations are rather self-explanatory. Attribution isn't required, but I'd appreciate it.

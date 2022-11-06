@@ -1,0 +1,17 @@
+---
+import * as I from '@components/Home'
+import Wrapper from '@components/Layouts/Wrapper/Wrapper.astro'
+import '@css/globals.css'
+---
+
+<Wrapper path='/'>
+  <I.Intro client:load />
+  <main>
+    <article>
+      <I.Ethos client:load />
+      <I.Work />
+      <I.Blogs />
+      <I.Speaking />
+    </article>
+  </main>
+</Wrapper>

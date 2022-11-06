@@ -1,0 +1,24 @@
+.index {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  margin-left: -150px;
+  text-decoration: none;
+  color: var(--grey0);
+}
+
+.index > svg {
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .index {
+    position: relative;
+    margin: 0px 0px 25px 0px;
+    width: fit-content;
+  }
+}
+
+.section {
+  margin-top: 100px;
+}

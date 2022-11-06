@@ -1,0 +1,105 @@
+---
+import '@css/globals.css'
+import '@css/blog.css'
+
+import Back from '@components/Icons/Back'
+import styles from '../styles.module.css'
+import local from './styles.module.css'
+import Footer from '../Footer'
+import BackToTop from '../Top'
+import { format } from 'date-fns'
+
+const meta = {
+  root: 'https://harshsingh.xyz',
+  type: 'website',
+}
+
+const { frontmatter, url } = Astro.props
+---
+
+<html lang='en'>
+  <head>
+    <title>{frontmatter.title}</title>
+    <meta charset='utf-8' />
+    <link
+      rel='apple-touch-icon'
+      sizes='180x180'
+      href='/favicons/apple-touch-icon.png'
+    />
+    <link rel='alternate icon' type='image/png' href='/favicons/favicon.png' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='robots' content='follow, index' />
+    <meta content={frontmatter.description} name='description' />
+    <meta property='og:url' content={`${meta.root}${url}`} />
+    <link rel='canonical' href={`${meta.root}${url}`} />
+    <meta property='og:type' content={meta.type} />
+    <meta property='og:site_name' content='Harsh Singh' />
+    <meta property='og:description' content={frontmatter.description} />
+    <meta property='og:title' content={frontmatter.title} />
+    <meta
+      property='og:image'
+      content={`https://api.hxrsh.in/api/image?title=${encodeURI(
+        frontmatter.title
+      )}`}
+    />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:site' content='@harshhhdev' />
+    <meta name='theme-color' content='#e5e5e5' />
+    <meta name='twitter:title' content={frontmatter.title} />
+    <meta name='twitter:description' content={frontmatter.description} />
+    <meta
+      name='twitter:image'
+      content={`https://api.hxrsh.in/api/image?title=${encodeURI(
+        frontmatter.title
+      )}`}
+    />
+    <link
+      rel='preload'
+      href='/fonts/inter.woff2'
+      as='font'
+      type='font/woff2'
+      crossorigin='anonymous'
+    /><link
+      rel='preload'
+      href='/fonts/sohne.woff2'
+      as='font'
+      type='font/woff2'
+      crossorigin='anonymous'
+    /><link
+      rel='preload'
+      href='/fonts/fira_code.woff2'
+      as='font'
+      type='font/woff2'
+      crossorigin='anonymous'
+    />
+  </head>
+  <body>
+    <div class={styles.wrapper}>
+      <div class={styles.inner}>
+        <header class={local.header}>
+          <a href='/blog' class={styles.index}>
+            <Back />
+            Writing</a
+          >
+          <div class={local.info}>
+            <p>{format(new Date(frontmatter.published), 'dd/MM')}</p>
+            <p>
+              {Math.round(frontmatter.minutesRead.minutes)} minutes{' '}
+              <span class={local.sep}>•</span>
+              {frontmatter.minutesRead.words} words
+            </p>
+          </div>
+          <h1 class={local.title}>{frontmatter.title}</h1>
+          <hr class={local.hr} />
+        </header>
+        <main>
+          <article class='blog'>
+            <slot />
+          </article>
+        </main>
+      </div>
+      <Footer client:idle />
+      <BackToTop client:idle />
+    </div>
+  </body>
+</html>
