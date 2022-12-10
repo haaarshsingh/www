@@ -50,6 +50,7 @@
   border-radius: 5px 5px 0px 0px;
   border: 1px solid var(--grey8);
   border-bottom-width: 0px;
+  margin-top: 15px;
 }
 
 code[class*='language-'],

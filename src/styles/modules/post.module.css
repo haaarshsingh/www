@@ -1,7 +1,7 @@
 .index {
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
   margin-left: -150px;
   text-decoration: none;
   color: var(--grey0);
