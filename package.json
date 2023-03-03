@@ -1,38 +1,22 @@
 {
-  "name": "@example/minimal",
-  "type": "module",
-  "version": "0.0.1",
+  "name": "www",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.11.5",
-    "@astrojs/react": "^1.2.2",
-    "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/vercel": "^2.3.3",
-    "astro": "^1.6.0",
-    "astro-m2dx": "^0.7.7",
-    "clsx": "^1.2.1",
-    "date-fns": "^2.29.3",
-    "mdast-util-to-string": "^3.1.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-icons": "^4.6.0",
-    "reading-time": "^1.5.0",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-code-titles": "^1.1.0",
-    "rehype-prism-plus": "^1.5.0",
-    "rehype-slug": "^5.1.0",
-    "remark-gfm": "^3.0.1",
-    "remark-sectionize": "^1.1.1"
-  },
-  "devDependencies": {
-    "@types/react": "18.0.0",
-    "@types/react-dom": "18.0.0"
+    "@types/node": "18.14.5",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.35.0",
+    "eslint-config-next": "13.2.3",
+    "next": "13.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.5"
   }
 }
