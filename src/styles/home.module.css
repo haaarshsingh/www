@@ -1,0 +1,71 @@
+.headshot {
+  border: 5px solid #121212;
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 15px;
+  position: relative;
+}
+
+.headshot img {
+  object-fit: cover;
+}
+
+.pronounce {
+  display: inline-flex;
+  align-items: center;
+}
+
+.wave {
+  color: var(--grey4);
+  margin: 20px 0;
+}
+
+.play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0px;
+  margin-left: 5px;
+}
+
+.gallery {
+  display: flex;
+  margin-top: 75px;
+}
+
+.gallery > a {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 265px;
+  height: 325px;
+  margin-left: -20px;
+}
+
+.socials {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.social > svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  color: var(--grey4);
+  transition: 0.1s linear;
+}
+
+.social {
+  animation: var(--fade);
+}
+
+.social:hover svg {
+  color: var(--grey3);
+}

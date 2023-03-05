@@ -1,0 +1,147 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+}
+
+.content {
+  width: var(--wrapper);
+}
+
+.content h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.content p {
+  width: 600px;
+  margin: 5px 0px;
+}
+
+.content p > a {
+  color: var(--grey0);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 250px;
+}
+
+.hr {
+  width: 100%;
+  border: 1px solid var(--grey8);
+}
+
+.date {
+  font-size: 14px;
+  color: var(--grey4);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: var(--wrapper);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.socials > a:hover {
+  color: var(--grey2);
+}
+
+.socials svg {
+  font-size: 16px;
+}
+
+.location {
+  text-decoration: none;
+}
+
+.location:hover {
+  color: white;
+}
+
+.separator {
+  margin: 0px 5px;
+}
+
+.indicator {
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.indicator > a {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.line {
+  width: 3px;
+  height: 3px;
+  margin-right: 3px;
+  background: #fc3c44;
+  border-radius: 1.5px;
+}
+
+.line1 {
+  animation: playing 0.85s infinite ease;
+}
+
+.line2 {
+  animation: playing 1.26s infinite ease;
+}
+
+.line3 {
+  animation: playing 0.62s infinite ease;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  bottom: 25px;
+  right: 25px;
+  font-size: 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  background-color: rgba(229, 229, 229, 0.25);
+  position: fixed;
+  color: var(--grey0);
+  border: none;
+  transition: 0.1s linear;
+}
+
+.top:hover {
+  background-color: rgba(229, 229, 229, 0.5);
+}
+
+@keyframes playing {
+  0% {
+    height: 3px;
+  }
+  50% {
+    height: 12px;
+  }
+  to {
+    height: 3px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .date:nth-child(1) {
+    display: none;
+  }
+}
