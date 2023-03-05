@@ -5,6 +5,8 @@ import Nav from '@components/Nav'
 import Fonts from '@components/other/fonts'
 import Footer from '@components/Footer'
 import BackToTop from '@/components/BackToTop'
+import { ReactNode } from 'react'
+import Layout from '@/components/Layout'
 
 export const metadata: Metadata = {
   title: { default: 'Harsh Singh', template: '%s — Harsh Singh' },
@@ -89,13 +91,13 @@ export const metadata: Metadata = {
   category: 'technology',
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang='en'>
       <Fonts />
       <body>
         <Nav />
-        <main>{children}</main>
+        <Layout>{children}</Layout>
         <BackToTop />
         <Footer />
         <AnalyticsWrapper />
