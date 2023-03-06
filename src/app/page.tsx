@@ -1,17 +1,13 @@
-import Photos from '@/components/Home/Photos'
+import { Layout } from '@components/Layout'
 import Home from '@components/Home'
-import styles from '@css/common.module.css'
-import { NextPage } from 'next'
+import Photos from '@components/Home/Photos'
+import type { NextPage } from 'next'
 
-const Page: NextPage = () => {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.content}>
-        <Home />
-        <Photos />
-      </div>
-    </div>
-  )
-}
+const Page: NextPage = () => (
+  <Layout>
+    <Home />
+    <Photos />
+  </Layout>
+)
 
 export default Page
