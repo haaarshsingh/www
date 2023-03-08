@@ -6,3 +6,9 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => (
     <div className={styles.content}>{children}</div>
   </div>
 )
+
+export const BlogLayout: FC<{ children: ReactNode }> = ({ children }) => (
+  <div className={styles.wrapper}>
+    <div className={styles.blog}>{children}</div>
+  </div>
+)

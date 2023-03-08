@@ -18,13 +18,14 @@ const computedFields: ComputedFields = {
   },
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ''),
+    resolve: (doc) =>
+      `/writing/${doc._raw.sourceFileName.replace(/\.mdx$/, '')}`,
   },
 }
 
-const Blog = defineDocumentType(() => ({
-  name: 'Blog',
-  filePathPattern: 'blog/*.mdx',
+const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: '**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -34,33 +35,16 @@ const Blog = defineDocumentType(() => ({
   computedFields,
 }))
 
-const Random = defineDocumentType(() => ({
-  name: 'Info',
-  filePathPattern: '*.mdx',
-  contentType: 'mdx',
-  fields: {
-    title: { type: 'string', required: true },
-  },
-  computedFields,
-}))
-
 export default makeSource({
-  contentDirPath: 'content',
-  documentTypes: [Random, Blog],
+  contentDirPath: 'posts',
+  documentTypes: [Post],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,
       rehypePrism,
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ['anchor'],
-          },
-        },
-      ],
+      [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }],
     ],
   },
 })

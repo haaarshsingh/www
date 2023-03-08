@@ -4,7 +4,8 @@
   margin-top: 75px;
 }
 
-.content {
+.content,
+.blog {
   width: var(--wrapper);
 }
 
@@ -13,12 +14,17 @@
   margin-bottom: 30px;
 }
 
+.blog h1 {
+  font-size: 24px;
+}
+
 .content p {
   width: 600px;
   margin: 5px 0px;
 }
 
-.content p > a {
+.content p > a,
+.blog p > a {
   color: var(--grey0);
 }
 

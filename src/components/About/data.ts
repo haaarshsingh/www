@@ -14,7 +14,7 @@ export const about: Content[] = [
   {
     title: 'Now',
     content:
-      'Student looking for part.full-time internship opportunities or junior positions to work with startups on developing and creating web applications.',
+      'Student looking for part/full-time internship opportunities or junior positions to work with startups on developing and designing web applications.',
   },
 ]
 

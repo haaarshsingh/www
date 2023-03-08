@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import localFont from '@next/font/local'
+import localFont from 'next/font/local'
 
 const inter = localFont({
   src: '../../../public/fonts/inter.woff2',

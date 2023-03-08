@@ -1,11 +1,12 @@
-import styles from '@css/home.module.css'
-import { NextPage } from 'next'
+import { BlogLayout } from '@components/Layout'
+import Writing from '@components/Writing'
+import type { NextPage } from 'next'
 
 const Page: NextPage = () => {
   return (
-    <div className={styles.wrapper}>
-      <h1>Harsh Singh</h1>
-    </div>
+    <BlogLayout>
+      <Writing />
+    </BlogLayout>
   )
 }
 

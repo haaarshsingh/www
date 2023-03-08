@@ -1,7 +1,7 @@
-const { withContentlayer } = require('next-contentlayer')
+import { withContentlayer } from 'next-contentlayer'
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+export default withContentlayer({
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -9,17 +9,8 @@ const nextConfig = {
     ],
   },
   experimental: { appDir: true },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(png|svg|jpg|jpeg|gif|ogg|mp3|wav)$/i,
-      type: 'asset/resource',
-      use: [{ loader: 'file-loader' }],
-    })
-
-    return config
-  },
   headers: () => [{ source: '/(.*)', headers: securityHeaders }],
-}
+})
 
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
@@ -49,5 +40,3 @@ const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
 ]
-
-module.exports = withContentlayer(nextConfig)

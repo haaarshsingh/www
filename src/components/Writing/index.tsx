@@ -1,79 +1,77 @@
+'use client'
+
 import { FC, useEffect, useState } from 'react'
-import styles from './styles.module.css'
 import { format } from 'date-fns'
-import { Search, filter } from './Search'
+import styles from '@css/writing.module.css'
+import { allPosts, Post } from 'contentlayer/generated'
+import { FiEye, FiUser } from 'react-icons/fi'
+allPosts.sort((a, b) => (a.published < b.published ? 1 : -1))
 
-type PostProps = any
-
-const Post: FC<PostProps> = (blog) => {
+const Posts: FC = () => {
   return (
-    <a
-      href={blog.url}
-      className={styles.post}
-      onMouseOver={blog.onHover}
-      onMouseLeave={blog.onLeave}
-    >
-      <p>{blog.frontmatter.title}</p>
-      <div className={styles.info}>
-        <p className={styles.content}>
-          {Math.round(blog.frontmatter.minutesRead.minutes)} minutes
-          <span className={styles.separator}>•</span>
-          {format(new Date(blog.frontmatter.published), 'dd/MM')}
-        </p>
-        <p className={styles.date}>
-          {format(new Date(blog.frontmatter.published), 'dd/MM/yy')}
-        </p>
-      </div>
-    </a>
-  )
-}
-
-const Posts: FC<{ posts: MDXInstance<Record<string, any>>[] | undefined }> = ({
-  posts,
-}) => {
-  const [hover, setHover] = useState(false)
-  const [active, setActive] = useState(0)
-
-  return (
-    <div className={styles.container}>
-      <div
-        className={styles.highlighter}
-        style={{
-          top: active * 60 - 58,
-          opacity: hover ? 1 : 0,
-        }}
-        aria-hidden
-      />
-      {posts?.map((blog, index) => (
-        <Post
-          key={index}
-          onHover={() => {
-            setActive(index + 1)
-            setHover(true)
-          }}
-          onLeave={() => {
-            setHover(false)
-          }}
-          {...blog}
-        />
+    <div className={styles.posts}>
+      {allPosts.map((post, index) => (
+        <Post {...post} key={index} />
       ))}
     </div>
   )
 }
 
-const Blog: FC<{ posts: MDXInstance<Record<string, any>>[] }> = ({ posts }) => {
-  const [filteredPosts, setFilteredPosts] = useState<
-    MDXInstance<Record<string, any>>[] | undefined
-  >(posts)
-  const [input, setInput] = useState('')
-  useEffect(() => setFilteredPosts(filter(posts, input)), [input, setInput])
-
+const Post: FC<Post> = (props) => {
   return (
-    <>
-      <Search setInput={setInput} />
-      <Posts posts={filteredPosts} />
-    </>
+    <a className={styles.post} href={props.slug}>
+      <h2>{props.title}</h2>
+      <p>{format(new Date(props.published), 'dd/MM')}</p>
+    </a>
   )
 }
 
-export default Blog
+const Writing: FC = () => {
+  const [data, setData] = useState<{
+    followers: string
+    views: string
+  } | null>(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://api.hxrsh.in/api/dev')
+      setData(await response.json())
+    }
+
+    fetchData()
+
+    window.addEventListener('keypress', focus)
+    return () => window.removeEventListener('keypress', focus)
+  }, [])
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.writing}>
+        <h1>Writing</h1>
+        <p>Learning things, and then teaching others.</p>
+        {data ? (
+          <div className={styles.info}>
+            <div className={styles.box}>
+              <FiEye />
+              <p>{data.views.toLocaleString()} views</p>
+            </div>
+            <div className={styles.box}>
+              <FiUser />
+              <p>{data.followers.toLocaleString()} subscribers</p>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.loading} aria-busy='true' aria-live='polite' />
+        )}
+        <form className={styles.form}>
+          <input placeholder='hi.harsh@proton.me' />
+          <button>Subscribe</button>
+          <p>Be notified of new posts. No spam.</p>
+        </form>
+      </div>
+      <Posts />
+    </div>
+  )
+}
+
+export default Writing
