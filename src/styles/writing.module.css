@@ -30,7 +30,7 @@
 }
 
 .writing > p {
-  margin: 10px 0px 25px 0px;
+  margin: 10px 0px 10px 0px;
 }
 
 .loading {
@@ -77,6 +77,43 @@
   background-color: var(--grey8);
   border-radius: 5px;
   animation: load 1.5s linear infinite;
+}
+
+.form {
+  margin-top: 30px;
+  font-family: var(--font-sans);
+}
+
+.form input {
+  outline: none;
+  border: 1px solid var(--grey6);
+  padding: 12px 16px;
+  background-color: var(--grey8);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: 0.1s linear;
+}
+
+.form input:hover {
+  border: 1px solid var(--grey5);
+}
+
+.form input:focus {
+  border: 1px solid var(--grey4);
+}
+
+.form button {
+  background-color: var(--grey0);
+  color: var(--grey9);
+  border: none;
+  padding: 12px 16px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.form button:target {
+  outline: 1px solid var(--grey0);
 }
 
 @keyframes load {

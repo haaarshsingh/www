@@ -64,7 +64,11 @@ const Writing: FC = () => {
           <div className={styles.loading} aria-busy='true' aria-live='polite' />
         )}
         <form className={styles.form}>
-          <input placeholder='hi.harsh@proton.me' />
+          <input
+            placeholder='hi.harsh@proton.me'
+            type='email'
+            spellCheck={false}
+          />
           <button>Subscribe</button>
           <p>Be notified of new posts. No spam.</p>
         </form>
