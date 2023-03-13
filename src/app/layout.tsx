@@ -1,10 +1,11 @@
 import '@css/globals.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 import type { Metadata } from 'next'
 import AnalyticsWrapper from '@components/other/analytics'
 import Nav from '@components/Nav'
 import Fonts from '@components/other/fonts'
 import Footer from '@components/Footer'
-import BackToTop from '@/components/BackToTop'
+import BackToTop from '@components/BackToTop'
 
 export const metadata: Metadata = {
   title: { default: 'Harsh Singh', template: '%s — Harsh Singh' },

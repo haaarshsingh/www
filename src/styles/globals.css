@@ -15,6 +15,7 @@
   --wrapper: 950px;
   --blog-wrapper: 750px;
   --bar-padding: 40px;
+  --about-padding: 50px;
 
   --font-fallback: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -114,4 +115,14 @@ body {
 ::placeholder {
   color: var(--grey5);
   user-select: none;
+}
+
+.mapboxgl-canvas {
+  pointer-events: none;
+  touch-action: none;
+}
+
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-bottom-right {
+  display: none !important;
 }

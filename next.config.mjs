@@ -10,6 +10,9 @@ export default withContentlayer({
   },
   experimental: { appDir: true },
   headers: () => [{ source: '/(.*)', headers: securityHeaders }],
+  rewrites: () => [
+    { source: '/api/:path*', destination: 'https://api.hxrsh.in/api/:path*' },
+  ],
 })
 
 const ContentSecurityPolicy = `
@@ -18,6 +21,7 @@ const ContentSecurityPolicy = `
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src 'none';
+    worker-src 'self' blob: ;
     connect-src *;
     font-src 'self';
 `
@@ -26,6 +30,10 @@ const securityHeaders = [
   {
     key: 'Content-Security-Policy',
     value: ContentSecurityPolicy.replace(/\n/g, ''),
+  },
+  {
+    key: 'Access-Control-Allow-Origin',
+    value: 'https://api.hxrsh.in',
   },
   {
     key: 'Strict-Transport-Security',

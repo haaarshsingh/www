@@ -1,12 +1,16 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from '@css/about.module.css'
-import { FiMapPin } from 'react-icons/fi'
+import { FiMapPin, FiMinus, FiPlus } from 'react-icons/fi'
 import Image from 'next/image'
 import Section from './Section'
 import * as data from './data'
+import mapboxgl from 'mapbox-gl'
+
+mapboxgl.accessToken =
+  'pk.eyJ1IjoiaGFyc2hoaGRldiIsImEiOiJjbGY1M3ZoczEwM3lnM3ZwZG90Y2Jxcm9hIn0.4ZfuJo8WNw2Wn6dxsud2JA'
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -17,9 +21,26 @@ const container = {
   },
 }
 
+// Not my actual location, obviously
+const center: mapboxgl.LngLatLike = [-96.438055, 32.782434]
+
 const About: FC = () => {
+  const [zoom, setZoom] = useState(11)
+  const [map, setMap] = useState<mapboxgl.Map | null>(null)
+
+  useEffect(() => {
+    setMap(
+      new mapboxgl.Map({
+        container: 'mapbox',
+        style: 'mapbox://styles/harshhhdev/clf6is4qj000501mn4j04t7l3',
+        center: center,
+        zoom: 11,
+      })
+    )
+  }, [])
+
   return (
-    <div>
+    <div className={styles.box}>
       <motion.div
         variants={container}
         initial='hidden'
@@ -71,13 +92,32 @@ const About: FC = () => {
         <h2>Where</h2>
         <div className={styles.map_container}>
           <div className={styles.map}>
-            <Image
-              src='/map.jpg'
-              alt='A map with a blue dot near Forney, Texas'
-              fill={true}
-              draggable={false}
-              loading='lazy'
-            />
+            <div className={styles.marker} />
+            <div className={styles.buttons}>
+              <motion.button
+                onClick={() => {
+                  map?.flyTo({ zoom: zoom === 11 ? 7 : 4 })
+                  setZoom((z) => z - 4)
+                }}
+                aria-label='zoom out'
+                initial={{ scale: 0 }}
+                animate={{ scale: zoom === 3 ? 0 : 1 }}
+              >
+                <FiMinus />
+              </motion.button>
+              <motion.button
+                onClick={() => {
+                  map?.flyTo({ zoom: zoom === 7 ? 11 : 7 })
+                  setZoom((z) => z + 4)
+                }}
+                aria-label='zoom in'
+                initial={{ scale: 0 }}
+                animate={{ scale: zoom === 11 ? 0 : 1 }}
+              >
+                <FiPlus />
+              </motion.button>
+            </div>
+            <div id='mapbox' className='light' />
           </div>
           <p className={styles.town}>
             <FiMapPin />

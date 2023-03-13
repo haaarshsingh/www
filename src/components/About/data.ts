@@ -4,7 +4,7 @@ export const about: Content[] = [
   {
     title: 'Background',
     content:
-      "Born and raised in Delhi, India, before moving to the United States with my family. I've been into coding from a young age, and I'm passionate about many creative pursuits, including photography, design, and coding. This combination of interests is what led me to develop skills through guiltlessly exploring my passions and interests. I center my work on teaching/writing to empower, educate and elevate people.",
+      "Born and raised in New Delhi, India. I've been into coding from a young age, and I'm passionate about many creative pursuits, including photography, design, and coding. This combination of interests is what led me to develop skills through guiltlessly exploring my passions and interests. I center my work on teaching/writing to empower, educate and elevate people.",
   },
   {
     title: 'Skills',
@@ -22,7 +22,7 @@ export const work: Content[] = [
   {
     title: 'kmenu',
     content:
-      'An accessible and animated command menu for a refined navigation experience.',
+      'An accessible and animated React command menu interface for a refined navigation experience.',
     href: 'https://kmenu.hxrsh.in',
     newTab: true,
   },

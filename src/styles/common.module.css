@@ -18,11 +18,6 @@
   font-size: 24px;
 }
 
-.content p {
-  width: 600px;
-  margin: 5px 0px;
-}
-
 .content p > a,
 .blog p > a {
   color: var(--grey0);

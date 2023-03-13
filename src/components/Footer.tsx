@@ -1,17 +1,41 @@
 'use client'
 
-import { format } from 'date-fns'
 import { FC, useEffect, useState } from 'react'
 import styles from '@css/common.module.css'
 import clsx from 'clsx'
+import useSWR, { SWRConfiguration, Fetcher } from 'swr'
+
+type Root = {
+  song: Song
+}
+
+type Song = {
+  title: string
+  link: string
+}
+
+const config: SWRConfiguration = {
+  fallbackData: {
+    song: {
+      title: 'Fetching Music...',
+      link: '#',
+    },
+  },
+  revalidateOnMount: false,
+}
+
+const fetcher: Fetcher<Root> = (input: RequestInfo | URL) =>
+  fetch(input).then((res) => res.json())
 
 const Footer: FC = () => {
   const [time, setTime] = useState<Date>(new Date())
   const [mounted, setMounted] = useState(false)
+  const { data, error } = useSWR<Root>('/api/music', fetcher, config)
 
   useEffect(() => {
     setMounted(true)
     setInterval(() => setTime(new Date()), 1000)
+    console.log(error)
   }, [])
 
   if (!mounted) return null
@@ -44,12 +68,8 @@ const Footer: FC = () => {
             <div className={clsx(styles.line, styles.line1)} />
             <div className={clsx(styles.line, styles.line2)} />
             <div className={clsx(styles.line, styles.line3)} />
-            <a
-              href='https://music.apple.com/in/album/heartless-feat-mustard-single/1480603540'
-              target='_blank'
-              rel='noreferrer'
-            >
-              Heartless (feat. Mustard)
+            <a href={data.song.link} target='_blank' rel='noreferrer'>
+              {data.song.title}
             </a>
           </div>
         </div>

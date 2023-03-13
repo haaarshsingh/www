@@ -1,8 +1,15 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
+  width: var(--wrapper);
 }
 
 .image {
@@ -12,16 +19,28 @@
 
 .section {
   display: flex;
-  justify-content: space-between;
   margin-top: 75px;
+  width: 750px;
 }
 
 .title {
   font-size: 16px !important;
 }
 
+.content {
+  margin-left: var(--about-padding);
+  width: 100%;
+}
+
+.section h1,
+.section h2 {
+  width: 140px;
+  color: var(--grey5);
+}
+
 .section p {
   margin-top: 10px;
+  width: 100%;
 }
 
 .section a {
@@ -59,6 +78,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: var(--about-padding);
+  width: 100%;
 }
 
 .map {
@@ -67,11 +88,48 @@
   height: 350px;
   border-radius: 20px;
   overflow: hidden;
-  margin-left: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.map img {
-  object-fit: cover;
+.map > div:last-child {
+  width: 100%;
+  height: 100%;
+}
+
+.marker {
+  width: 30px;
+  height: 30px;
+  background-color: #3579f6;
+  z-index: 1;
+  position: absolute;
+  border-radius: 999px;
+  border: 3px solid var(--grey0);
+}
+
+.buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.buttons > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  font-size: 16px;
+  background: var(--grey1);
+  color: var(--grey9);
+  cursor: pointer;
 }
 
 .town {

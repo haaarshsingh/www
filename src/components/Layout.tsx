@@ -1,4 +1,7 @@
+'use client'
+
 import type { FC, ReactNode } from 'react'
+import Loader from '@components/Loader'
 import styles from '@css/common.module.css'
 
 export const Layout: FC<{ children: ReactNode }> = ({ children }) => (
