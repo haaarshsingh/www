@@ -1,9 +1,9 @@
 import '@css/globals.css'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import type { Metadata } from 'next'
-import AnalyticsWrapper from '@components/other/analytics'
+import AnalyticsWrapper from '@/components/.../analytics'
 import Nav from '@components/Nav'
-import Fonts from '@components/other/fonts'
+import Fonts from '@/components/.../fonts'
 import Footer from '@components/Footer'
 import BackToTop from '@components/BackToTop'
 

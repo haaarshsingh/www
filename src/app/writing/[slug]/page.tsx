@@ -3,6 +3,7 @@ import { metadata as defaultMetadata } from '@app/layout'
 import { notFound } from 'next/navigation'
 import { allPosts } from 'contentlayer/generated'
 import Balancer from 'react-wrap-balancer'
+import MDX from '@components/.../MDX'
 
 type Params = { slug: string }
 type GenerateMetadata = (params: Params) => Metadata
@@ -51,9 +52,8 @@ const Page: NextPage<Params> = ({ slug }) => {
       </h1>
       <div>
         <div>{post.published}</div>
-        <div />
       </div>
-      <Mdx code={post.body.code} />
+      <MDX code={post.body.code} />
     </section>
   )
 }
