@@ -10,8 +10,7 @@ import * as data from './data'
 import mapboxgl from 'mapbox-gl'
 import { rgbDataURL } from '../MDX'
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoiaGFyc2hoaGRldiIsImEiOiJjbGY1M3ZoczEwM3lnM3ZwZG90Y2Jxcm9hIn0.4ZfuJo8WNw2Wn6dxsud2JA'
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_GL_ACCESS_TOKEN
 
 // Not my actual location, obviously
 const center: mapboxgl.LngLatLike = [-96.438055, 32.782434]

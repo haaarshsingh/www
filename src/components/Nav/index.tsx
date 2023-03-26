@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import styles from './styles.module.css'
+import styles from '@css/common.module.css'
 
 type Items = { [index: string]: Item }
 
@@ -27,7 +27,7 @@ const Nav: FC = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.blur} />
-      <div className={styles.wrapper}>
+      <div className={styles.box}>
         {Object.entries(items).map(([path, { name, w }]) => (
           <Link key={path} href={path} className={styles.link}>
             {name}

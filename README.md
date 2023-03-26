@@ -29,7 +29,7 @@ git clone https://github.com/harshhhdev/harshhhdev.github.io.git
 ```bash
 cd harshhhdev.github.io
 
-# Install deps
+# Install dependencies
 pnpm install
 ```
 

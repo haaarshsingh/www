@@ -1,5 +1,4 @@
 import '@css/globals.css'
-import 'mapbox-gl/dist/mapbox-gl.css'
 import type { Metadata } from 'next'
 import { Root } from '@components/Layout'
 import AnalyticsWrapper from '@components/.../analytics'

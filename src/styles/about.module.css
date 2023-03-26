@@ -10,7 +10,7 @@
   align-items: center;
   width: var(--wrapper);
 }
-
+/* 
 .image:first-of-type {
   transform: rotateZ(-3deg);
   z-index: 1;
@@ -18,7 +18,7 @@
 
 .image:last-of-type {
   transform: rotateZ(3deg);
-}
+} */
 
 .image {
   border-radius: 20px;
