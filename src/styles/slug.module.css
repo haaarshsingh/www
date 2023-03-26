@@ -71,14 +71,14 @@
 
 .toc {
   position: sticky;
-  top: 100px;
+  top: 80px;
   height: 100%;
   margin-left: 10px;
   width: 30%;
 }
 
 .toc h2 {
-  margin-bottom: 10px;
+  margin: 20px 0px 10px 0px;
 }
 
 .toc h2,

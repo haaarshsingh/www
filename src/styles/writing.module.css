@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .post {
@@ -31,6 +32,12 @@
 .post h2 {
   font-family: var(--font-sans);
   margin-right: 100px;
+}
+
+.writing {
+  align-self: flex-start;
+  position: sticky;
+  top: 100px;
 }
 
 .writing > p {

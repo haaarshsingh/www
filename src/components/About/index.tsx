@@ -13,15 +13,6 @@ import { rgbDataURL } from '../MDX'
 mapboxgl.accessToken =
   'pk.eyJ1IjoiaGFyc2hoaGRldiIsImEiOiJjbGY1M3ZoczEwM3lnM3ZwZG90Y2Jxcm9hIn0.4ZfuJo8WNw2Wn6dxsud2JA'
 
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { delayChildren: 0.3, staggerChildren: 0.2 },
-  },
-}
-
 // Not my actual location, obviously
 const center: mapboxgl.LngLatLike = [-96.438055, 32.782434]
 
@@ -47,8 +38,8 @@ const About: FC = () => {
           <Image
             src='/headshot-crop.jpg'
             alt='My face'
-            width={298.24}
-            height={470.72}
+            width={300.54}
+            height={471}
             draggable={false}
             placeholder='blur'
             blurDataURL={rgbDataURL(204, 136, 105)}
@@ -59,7 +50,7 @@ const About: FC = () => {
             src='/dallas.jpg'
             alt='Skyshot of Dallas, Texas'
             width={510}
-            height={391}
+            height={347.56}
             draggable={false}
             placeholder='blur'
             blurDataURL={rgbDataURL(156, 188, 201)}

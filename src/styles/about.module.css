@@ -8,7 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
   width: var(--wrapper);
 }
 
@@ -35,6 +34,7 @@
 .title {
   font-size: 16px !important;
   margin-bottom: 5px;
+  color: var(--gray0);
 }
 
 .content {
@@ -42,8 +42,8 @@
   width: 100%;
 }
 
-.section h1,
-.section h2 {
+.section > h1,
+.section > h2 {
   width: 140px;
   color: var(--gray5);
 }

@@ -46,13 +46,17 @@ const Section: FC<{
 
 const Content: FC<Content> = ({ title, href, content }) => (
   <div className={clsx(!href && styles.extra_margin, styles.wrapper)}>
-    <a
-      href={href}
-      target={href?.startsWith('/') ? '_self' : '_blank'}
-      rel='noreferrer'
-    >
-      <h3 className={styles.title}>{title}</h3>
-    </a>
+    {href ? (
+      <a
+        href={href}
+        target={href?.startsWith('/') ? '_self' : '_blank'}
+        rel='noreferrer'
+      >
+        <h2 className={styles.title}>{title}</h2>
+      </a>
+    ) : (
+      <h2 className={styles.title}>{title}</h2>
+    )}
     <p>{content}</p>
   </div>
 )
