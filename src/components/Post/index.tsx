@@ -6,9 +6,11 @@ import Header from './Header'
 import TOC from './TOC'
 import MDX from '@components/MDX'
 import { Post } from 'contentlayer/generated'
+import { Monospace } from '@components/.../fonts'
 
 const Post: FC<Post & { index: number }> = (post) => (
   <Layout>
+    <Monospace />
     <div className={styles.box}>
       <article className={styles.section}>
         <Header {...post} />

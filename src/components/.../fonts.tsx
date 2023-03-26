@@ -27,8 +27,15 @@ const fira = localFont({
 const Fonts: FC = () => (
   <style jsx global>{`
     :root {
-      --font-display: ${inter.style.fontFamily}, var(--font-fallback);
-      --font-sans: ${sohne.style.fontFamily}, var(--font-fallback);
+      --font-display: ${inter.style.fontFamily};
+      --font-sans: ${sohne.style.fontFamily};
+    }
+  `}</style>
+)
+
+export const Monospace: FC = () => (
+  <style jsx global>{`
+    :root {
       --font-mono: ${fira.style.fontFamily}, monospace;
     }
   `}</style>

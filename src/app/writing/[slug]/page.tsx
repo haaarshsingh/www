@@ -8,13 +8,13 @@ allPosts.sort((a, b) => (a.published < b.published ? 1 : -1))
 
 export type TOC = { toc: { value: string; url: string; depth: number }[] }
 type Params = { params: { slug: string } }
-type GenerateMetadata = (params: Params) => Metadata
+type GenerateMetadata = (params: any) => Metadata
 
 export const generateStaticParams = () =>
   allPosts.map((post) => ({ slug: post.slug.substring(9) }))
 
 export const generateMetadata: GenerateMetadata = ({ params }) => {
-  const post = allPosts.find((post) => post.slug === params.slug)
+  const post = allPosts.find((post) => post.slug.substring(9) === params.slug)
   if (!post) return defaultMetadata
 
   const { title, published: publishedTime, description, slug } = post
@@ -28,7 +28,7 @@ export const generateMetadata: GenerateMetadata = ({ params }) => {
       description,
       type: 'article',
       publishedTime,
-      url: `https://harshsingh.xyz/blog/${slug}`,
+      url: `https://harshsingh.xyz/writing/${slug}`,
       images: [{ url: image }],
     },
     twitter: {

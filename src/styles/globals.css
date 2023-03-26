@@ -29,6 +29,8 @@
   padding: 0px;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 *:focus-visible {
