@@ -20,16 +20,18 @@ const About: FC = () => {
   const [zoom, setZoom] = useState(11)
   const [map, setMap] = useState<mapboxgl.Map | null>(null)
 
-  useEffect(() => {
-    setMap(
-      new mapboxgl.Map({
-        container: 'mapbox',
-        style: 'mapbox://styles/harshhhdev/clf6is4qj000501mn4j04t7l3',
-        center: center,
-        zoom: 11,
-      })
-    )
-  }, [])
+  useEffect(
+    () =>
+      setMap(
+        new mapboxgl.Map({
+          container: 'mapbox',
+          style: 'mapbox://styles/harshhhdev/clf6is4qj000501mn4j04t7l3',
+          center: center,
+          zoom: 11,
+        })
+      ),
+    []
+  )
 
   return (
     <div className={styles.box}>
@@ -43,6 +45,7 @@ const About: FC = () => {
             draggable={false}
             placeholder='blur'
             blurDataURL={rgbDataURL(204, 136, 105)}
+            priority
           />
         </div>
         <div className={styles.image}>
@@ -54,6 +57,7 @@ const About: FC = () => {
             draggable={false}
             placeholder='blur'
             blurDataURL={rgbDataURL(156, 188, 201)}
+            priority
           />
         </div>
       </div>
