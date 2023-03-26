@@ -121,6 +121,7 @@
   padding: 12px 16px;
   border-radius: 5px;
   margin-left: 10px;
+  transition: 0.1s linear background;
   cursor: pointer;
 }
 

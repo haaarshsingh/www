@@ -1,5 +1,3 @@
-'use client'
-
 import { FC, ReactNode } from 'react'
 import styles from '@css/common.module.css'
 
