@@ -4,9 +4,24 @@ import type { Metadata } from 'next'
 import { Root } from '@components/Layout'
 import AnalyticsWrapper from '@components/.../analytics'
 import Nav from '@components/Nav'
-import Fonts from '@components/.../fonts'
 import Footer from '@components/Footer'
 import BackToTop from '@components/BackToTop'
+import localFont from 'next/font/local'
+import clsx from 'clsx'
+
+const inter = localFont({
+  src: './fonts/inter.woff2',
+  weight: '700',
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const sohne = localFont({
+  src: './fonts/sohne.woff2',
+  weight: '400',
+  variable: '--font-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: { default: 'Harsh Singh', template: '%s — Harsh Singh' },
@@ -92,8 +107,7 @@ export const metadata: Metadata = {
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang='en'>
-    <Fonts />
+  <html lang='en' className={clsx(inter.variable, sohne.variable)}>
     <body>
       <Nav />
       <Root>{children}</Root>

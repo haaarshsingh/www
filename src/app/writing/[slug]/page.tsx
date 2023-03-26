@@ -4,7 +4,15 @@ import { metadata as defaultMetadata } from '@app/layout'
 import { notFound } from 'next/navigation'
 import { allPosts } from 'contentlayer/generated'
 import Post from '@components/Post'
+import localFont from 'next/font/local'
 allPosts.sort((a, b) => (a.published < b.published ? 1 : -1))
+
+const fira = localFont({
+  src: '../../fonts/fira.woff2',
+  weight: '400',
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export type TOC = { toc: { value: string; url: string; depth: number }[] }
 type Params = { params: { slug: string } }
@@ -46,10 +54,11 @@ const Page: NextPage<Params> = ({ params }) => {
   if (!post) notFound()
   return (
     <Post
-      {...post}
+      className={fira.variable}
       index={allPosts.findIndex(
         (post) => post.slug.substring(9) === params.slug
       )}
+      {...post}
     />
   )
 }

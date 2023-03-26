@@ -6,12 +6,11 @@ import Header from './Header'
 import TOC from './TOC'
 import MDX from '@components/MDX'
 import { Post } from 'contentlayer/generated'
-import { Monospace } from '@components/.../fonts'
+import clsx from 'clsx'
 
-const Post: FC<Post & { index: number }> = (post) => (
+const Post: FC<{ index: number; className: string } & Post> = (post) => (
   <Layout>
-    <Monospace />
-    <div className={styles.box}>
+    <div className={clsx(styles.box, post.className)}>
       <article className={styles.section}>
         <Header {...post} />
         <div className={styles.blog}>

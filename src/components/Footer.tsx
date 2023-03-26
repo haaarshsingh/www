@@ -27,12 +27,11 @@ const fetcher: Fetcher<Root> = (input: RequestInfo | URL) =>
 const Footer: FC = () => {
   const [time, setTime] = useState<Date>(new Date())
   const [mounted, setMounted] = useState(false)
-  const { data, error } = useSWR<Root>('/api/music', fetcher, config)
+  const { data } = useSWR<Root>('/api/music', fetcher, config)
 
   useEffect(() => {
     setMounted(true)
     setInterval(() => setTime(new Date()), 1000)
-    console.log(error)
   }, [])
 
   if (!mounted) return null
