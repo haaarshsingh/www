@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useState } from 'react'
+import type { FC } from 'react'
 import { format } from 'date-fns'
 import styles from '@css/writing.module.css'
 import { allPosts, Post } from 'contentlayer/generated'
@@ -8,11 +8,7 @@ import useSWR, { SWRConfiguration, Fetcher } from 'swr'
 import { FiEye, FiUser } from 'react-icons/fi'
 allPosts.sort((a, b) => (a.published < b.published ? 1 : -1))
 
-type Dev = {
-  followers: number
-  views: number
-}
-
+type Dev = { followers: number; views: number }
 const config: SWRConfiguration = {
   fallbackData: { followers: 1386, views: 121340 },
   revalidateOnMount: false,
@@ -37,7 +33,7 @@ const Post: FC<Post> = (props) => (
 )
 
 const Writing: FC = () => {
-  const { data, error } = useSWR<Dev>('/api/dev', fetcher, config)
+  const { data } = useSWR<Dev>('/api/dev', fetcher, config)
 
   return (
     <div className={styles.container}>

@@ -36,9 +36,9 @@ So, to understand why [Vitess] is unable to support referential integrity, we ha
 
 Now, you must be wondering what those terms are. Let me break them down for you: ACID is an acronym of Atomicity, Consistency, Isolation and Durability.
 
-Here, atomicity refers to an action either completing or failing entirely - no partial completion of a transaction. Consistency refers to the transaction leaving the database in a valid state. Isolation simply means that two transactions are executed without any interference with each other, and durability means the changes of the transaction are saved. For distributed databases, something like this is important because of it's architecture revolving around globally distributed nodes, leading to them providing you with the highest level of isolation called serialisable isolation.
+Here, atomicity refers to an action either completing or failing entirely — no partial completion of a transaction. Consistency refers to the transaction leaving the database in a valid state. Isolation simply means that two transactions are executed without any interference with each other, and durability means the changes of the transaction are saved. For distributed databases, something like this is important because of it's architecture revolving around globally distributed nodes, leading to them providing you with the highest level of isolation called serialisable isolation.
 
-At a particular scale, this isolation _might_ have some problems that create hot-spots in your database where rows/pages are heavily contended, however these databases have been used in scale at places such as [DoorDash](https://www.prnewswire.com/news-releases/introducing-cockroachdb-21-1-the-worlds-most-powerful-global-database-is-now-also-the-easiest-301293675.html) and they're able to handle an enormous amount of scale. These hot spots will create problems at any isolation level, but it is more pronounced at higher isolation levels like serialisable. Anyhow, the
+At a particular scale, this isolation _might_ have some problems that create hot-spots in your database where rows/pages are heavily contended, however these databases have been used in scale at places such as [DoorDash](https://www.prnewswire.com/news-releases/introducing-cockroachdb-21-1-the-worlds-most-powerful-global-database-is-now-also-the-easiest-301293675.html) and they're able to handle an enormous amount of scale. These hot spots will create problems at any isolation level, but it's more pronounced at higher isolation levels like serialisable.
 
 A shard is a horizontal partition of data in a database, and each shard is held on a separate database server instance to spread the load. So when we refer to a database which is sharded, we're talking about something like this. Now as I said earlier, Vitess is a sharded non-ACID SQL database, which basically means that it DOES NOT guarantee ACID properties of transactions.
 
@@ -46,7 +46,7 @@ A shard is a horizontal partition of data in a database, and each shard is held 
 
 Well, the problem starts when you have a MySQL database with a well-defined schema, and your service becomes popular with the problem of too many reads hitting the database. What most people do here is they start caching frequently executed queries, but the reads are no longer ACID-ic.
 
-Along with too many reads, having an excess amount of writes to your database is a serious problem which many might face. Let's say we're ready to set fire to our pockets - we can vertically scale, adding more RAM, a 16-core processor and loads of really fast solid-state drives.
+Along with too many reads, having an excess amount of writes to your database is a serious problem which many might face. Let's say we're ready to set fire to our pockets — we can vertically scale, adding more RAM, a 16-core processor and loads of really fast solid-state drives.
 
 We of course still have the problem of SQL table joins increasing in complexity, so you start denormalising to avoid joins between tables.
 
@@ -56,7 +56,7 @@ But denormalisation is basically the process where you add redundant data to tab
 
 Nevertheless, despite all of this, our database is still slow, so we move database computations onto the client, for instance generating a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) or assigning a date.
 
-Even after all of this, queries will still be slow - so we keep the result of the most queried data ready in a process known as database materialisation. Now reads might be faster, but writes are getting slower by the day. The only logical situation now is to drop secondary indexes.
+Even after all of this, queries will still be slow — so we keep the result of the most queried data ready in a process known as database materialisation. Now reads might be faster, but writes are getting slower by the day. The only logical situation now is to drop secondary indexes.
 
 So at this point, our database has
 
@@ -80,9 +80,9 @@ ACID isolation refers to the database transactions being ACIDic, which is import
 
 ## Conclusion
 
-Concluding everything I've said in this article, technology is all about sacrifices. Some technologies do some things better than others. Even though Vitess doesn't have ACID transactions, it is far more battle tested than most other distributed databases as companies have simply been using it for a longer time. Distributed databases on the other hand have the advantage of providing you with the best of both words: scalability and features of normal relational databases. In the end, it is your choice to go with whatever best suits you and your application.
+Concluding everything I've said in this article, technology is all about sacrifices. Some technologies do some things better than others. Even though Vitess doesn't have ACID transactions, it's far more battle tested than most other distributed databases as companies have simply been using it for a longer time. Distributed databases on the other hand have the advantage of providing you with the best of both words: scalability and features of normal relational databases. In the end, it's your choice to go with whatever best suits you and your application.
 
-That's all I have for today. Have a wonderful day 👋.
+That's all I have for today. Have a wonderful day 👋
 
 [planetscale]: https://planetscale.com
 [mysql]: https://www.mysql.com/

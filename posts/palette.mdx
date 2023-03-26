@@ -4,9 +4,16 @@ published: '2022-01-22'
 description: 'Build an animated and accessible command palette in React'
 ---
 
+> Note: this post is outdated. Check out my new post, ['Creating an Accessible Command Menu in React'](/writing/cmdk), for an updated version of this command menu.
+
 ## What We'll Be Making Today
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5mypz69jp0mbuedusxx2.gif)
+<BlogImage
+  alt='Demo of the command palette'
+  src='https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5mypz69jp0mbuedusxx2.gif'
+  width={1260}
+  height={708}
+/>
 
 [Live Demo](https://4zsur.sse.codesandbox.io/)
 
@@ -14,7 +21,7 @@ description: 'Build an animated and accessible command palette in React'
 
 [Visual Studio Code](https://code.visualstudio.com/) has an amazing feature called the command palette, which gives you access to the entire application's functionality. It's a productivity hack and saves us a lot of tension.
 
-Similar to [VSC](https://code.visualstudio.com/), [MonkeyType](https://monkeytype.com) is an open-source, minimalistic, and customisable typing test. It's designed to be accessed from just your keyboard, eliminating the need to switch back and forth with your mouse.
+Similar to VSC, [MonkeyType](https://monkeytype.com) is an open-source, minimalistic, and customisable typing test. It's designed to be accessed from just your keyboard, eliminating the need to switch back and forth with your mouse.
 
 I really love the command palette feature on their website too, which allows you to tweak settings easily. Today, we're going to be making something similar to that in Next.js/React.
 
@@ -24,7 +31,7 @@ Looks cool right? Let's get into the tutorial.
 
 The boring part of setting up a [Next.js project](https://nextjs.org/docs/getting-started) which you probably know how to do.
 
-Feel free to skip to [Creating Our Command Palette](#building-the-palette)
+Feel free to skip to ['Creating Our Command Palette'](#building-the-palette)
 
 Using [npx](https://www.npmjs.com/package/npx) or [yarn](https://yarnpkg.com/), create a new [Next.js] or [React] project
 
@@ -35,14 +42,14 @@ npx create-next-app@latest palette --ts
 # ...using yarn
 yarn create next-app palette --typescript
 
-# ...or Create React App (flags for TypeScript are optional)
+# ...or CRA (flags for TypeScript are optional)
 
 npx create-react-app palette --template typescript
 # ...using yarn
 yarn create react-app palette --template typescript
 ```
 
-Since I'm in love with it, I'll be doing this project in [Next.js] with [TypeScript] - however, the procedure for implementing this in other [React] frameworks shouldn't be too different.
+Since I'm in love with it, I'll be doing this project in [Next.js] with [TypeScript] — however, the procedure for implementing this in other [React] frameworks shouldn't be too different.
 
 Now let's go to our terminal and run `yarn dev`. Our development server should be started on [localhost:3000](http://localhost:3000). Nice.
 
@@ -106,7 +113,12 @@ const Home: NextPage = () => {
 
 Our page should now look somewhat like this:
 
-![image](https://user-images.githubusercontent.com/69592270/150664950-a78c6034-8144-4903-8605-15c72aadd5ae.png)
+<BlogImage
+  alt='Page saying press space for a command palette'
+  src='https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5mypz69jp0mbuedusxx2.gif'
+  width={1260}
+  height={661}
+/>
 
 ## Building the Palette
 
@@ -314,7 +326,12 @@ Under `div.options`, let's map the array onto an option element
 
 ...and with that, woo-hoo. Our command line's visual aspect is finished, and it should look something like this
 
-![image](https://user-images.githubusercontent.com/69592270/150659528-0b5acc35-925a-4f3f-8d9f-9d58a2e89fd9.png)
+<BlogImage
+  alt='The command menu open with a searchbar and three options: portfolio, GitHub, and Twitter.'
+  src='https://user-images.githubusercontent.com/69592270/150659528-0b5acc35-925a-4f3f-8d9f-9d58a2e89fd9.png'
+  width={1260}
+  height={708}
+/>
 
 ## Searching
 

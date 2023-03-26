@@ -1,16 +1,18 @@
 :root {
   color-scheme: dark;
 
-  --grey0: #e5e5e5;
-  --grey1: #dbdbdb;
-  --grey2: #b3b3b3;
-  --grey3: #acacac;
-  --grey4: #9c9c9c;
-  --grey5: #6d6d6d;
-  --grey6: #2c2c2c;
-  --grey7: #3d3d3d;
-  --grey8: #232323;
-  --grey9: #161616;
+  --gray0: #e5e5e5;
+  --gray1: #dbdbdb;
+  --gray2: #b3b3b3;
+  --gray3: #acacac;
+  --gray4: #9c9c9c;
+  --gray5: #6d6d6d;
+  --gray6: #2c2c2c;
+  --gray7: #3d3d3d;
+  --gray8: #232323;
+  --gray9: #161616;
+
+  --focus-color: var(--gray7);
 
   --wrapper: 950px;
   --blog-wrapper: 750px;
@@ -29,9 +31,13 @@
   scroll-behavior: smooth;
 }
 
+*:focus-visible {
+  outline: 2px solid var(--focus-color);
+}
+
 html,
 body {
-  background-color: var(--grey9);
+  background-color: var(--gray9);
 }
 
 h1,
@@ -47,7 +53,7 @@ h6 {
 p {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: var(--grey4);
+  color: var(--gray4);
 }
 
 a {
@@ -72,13 +78,13 @@ img {
 
 a:not(a.exclude) {
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--grey4);
+  text-decoration-color: var(--gray4);
   transition: 0.1s linear;
   font-family: var(--font-sans);
 }
 
 a:not(a.exclude):hover {
-  text-decoration-color: var(--grey5);
+  text-decoration-color: var(--gray5);
 }
 
 body {
@@ -91,20 +97,26 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--grey9);
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--grey7);
-  border-radius: 10px;
+  min-height: 44px;
+  min-width: 44px;
+  background-color: var(--gray7);
+  border-radius: 44px;
+  border: 5px solid var(--bg);
+  background-clip: padding-box;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--grey5);
+::-webkit-scrollbar-track {
+  background: var(--gray9);
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+  display: none;
 }
 
 ::-moz-selection {
@@ -113,7 +125,7 @@ body {
 }
 
 ::placeholder {
-  color: var(--grey5);
+  color: var(--gray5);
   user-select: none;
 }
 
@@ -125,4 +137,12 @@ body {
 .mapboxgl-ctrl-logo,
 .mapboxgl-ctrl-bottom-right {
   display: none !important;
+}
+
+.rehype-code-title {
+  font-family: var(--font-mono);
+  border: solid 1px var(--gray8);
+  font-size: 12px;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 0px 10px 15px;
 }

@@ -17,9 +17,9 @@ Well, let me break it down for you: here's a list of things which separate Cockr
 2.  You're not wasting a penny
     - [CockroachDB's pricing](https://www.cockroachlabs.com/pricing/) is simple, and to the point. You get 5GB storage for free, which is plenty, along with $1 for every extra gigabyte of storage you use. Along with this, you get 250M request units monthly, and pay just $1 for every 10M extra request units. If this isn't a steal, I don't know what is.
 3.  Avoid downtime
-    - Behind the scenes, your data is replicated _at least_ 3 times - meaning that you won't face downtime for things like availability zone outages, database upgrades, and security patches. Even schema changes are online.
+    - Behind the scenes, your data is replicated _at least_ 3 times — meaning that you won't face downtime for things like availability zone outages, database upgrades, and security patches. Even schema changes are online.
 
-For the name, well... I really like it. It's memorable - we forget names such as [Hasura](https://hasura.io/) and [Aurora](https://aws.amazon.com/rds/aurora/) rather quickly, but this one will for sure stick to the back of your mind for being unique.
+For the name, well... I really like it. It's memorable — we forget names such as [Hasura](https://hasura.io/) and [Aurora](https://aws.amazon.com/rds/aurora/) rather quickly, but this one will for sure stick to the back of your mind for being unique.
 
 ...and as a side-note: no, this isn't sponsored by CockroachDB. Although I will not turn down any sponsorships.
 
@@ -47,6 +47,8 @@ yarn dev
 ```
 
 Your server should be running on [localhost](http://localhost:3000)
+
+### Configuring NextAuth
 
 I want to first start off by configuring [NextAuth], which helps us add authentication to our serverless application. We'll be setting up a "Login with GitHub" feature on our website, for which we'll need to create a new [GitHub OAuth Application](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
@@ -109,6 +111,8 @@ namespace NodeJS {
 Speaking of environment variables, don't forget to create a `.env` file and populate it with your variables.
 
 For `SECRET`, you can run `openssl -rand hex 32` to generate a random string, or find a generator to do so online. `NEXTAUTH_URL` can be set to `http://localhost:3000` for our development environment. Also plug in the rest of the `GITHUB` fields with information obtained from the GitHub OAuth Application you created earlier.
+
+### Getting Started With Prisma and CockroachDB
 
 Let's now begin to write our [Prisma] data schema, and connect it with [CockroachDB].
 
@@ -206,7 +210,9 @@ model Post {
 }
 ```
 
-Previously, [Prisma] did not support the migrate feature for [CockroachDB] however that has changed after [v3.11.0](https://github.com/prisma/prisma/releases) 🥳.
+Previously, [Prisma] didn't support the migrate feature for [CockroachDB] however that has changed after [v3.11.0](https://github.com/prisma/prisma/releases) 🥳.
+
+### Connecting Our Database
 
 Now, let's create a [CockroachDB] database. Sign in, and hit "create cluster" on the clusters dashboard. Choose the "serverless" plan, with the region and provider of your choice, and name your cluster.
 
@@ -244,7 +250,9 @@ This instantiates a single instance PrismaClient and saves it on the global obje
 
 For more details, [see this link](https://www.prisma.io/docs/support/help-articles/nextjs-prisma-client-dev-practices)
 
-Cool. Now that we have our database setup, it's time to switch gears for a bit and add styling to our application using [TailwindCSS]. Following the documentation on their website, we need to do the following:
+### Styling
+
+Cool. Now that we have our database setup, it's time to switch gears for a bit and add styling to our application using [Tailwind CSS]. Following the documentation on their website, we need to do the following:
 
 ```bash:terminal
 # Install needed development dependencies
@@ -380,6 +388,8 @@ export default class GuestbookDocument extends Document {
 }
 ```
 
+### Adding Components
+
 Let's switch gears from styling, and go into our `index.tsx` to edit some things.
 
 We'll remove the basic content, along with removing the imports up top for `next/image` and `next/head`.
@@ -460,6 +470,8 @@ const Header: FC = () => {
 }
 ```
 
+### Building API Routes
+
 Superb. Let's now work on setting up our API routes. Create a new file under the directory `pages/api/new.ts` and inside of here let's setup some basic logic for creating a new post.
 
 ```ts:pages/api/new.ts
@@ -528,6 +540,8 @@ const Form: FC = () => {
 export default Form
 ```
 
+### Creating Posts
+
 Alright, so we've now setup basic code regarding our structure for this component. Let's dive deeper into the functions and set the up now.
 
 We'll be using 3 hooks, `useSession` from [NextAuth] along with `useSWRConfig` from [Vercel's SWR](https://swr.vercel.app/) to manage different things in our component. Let's create them now.
@@ -582,6 +596,8 @@ That's a big method. Let's break it down. It first prevents the form from reload
 
 Whew. That was long. Try to create a post now, it should work. But we're not done yet, lots more to do.
 
+### Seeding The Database
+
 Let's create another file to seed our database.
 
 Confused what that is? Seeding simply refers to populating our database with an initial set of data.
@@ -623,6 +639,8 @@ main()
   })
 ```
 
+#### Setting up TS Node
+
 Awesome. Although if we try to run this method, it'll result in an error. We need to setup `ts-node` for this in our [Next.js] environment.
 
 Let's start by installing `ts-node` as a development dependency.
@@ -641,6 +659,8 @@ Now, in our `package.json`, let's do:
 
 Awesome. We can now run `yarn prisma db seed` to populate our database with initial values for posts.
 
+### Fetching Posts
+
 Let's now go back to our main file, and strap everything together. We need to create a `getServerSideProps` function which which runs on the server side at request time. Here, we'll call the `findMany` method in [Prisma] to find all of our posts, and sort them by when they were created. We'll also include the user relation to be returned from this function, so we have access to it.
 
 ```ts:pages/index.tsx
@@ -657,6 +677,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 ```
+
+#### JSON Serialization Errors
 
 Beware. You might run into a JSON serialising problem. To fix this, simply install the following packages:
 
@@ -687,6 +709,8 @@ const postWithUser = Prisma.validator<Prisma.PostArgs>()({
 })
 export type PostWithUser = Prisma.PostGetPayload<typeof postWithUser>
 ```
+
+### Fetching/Viewing Posts
 
 Cool. Now that we have that, let's import it into `pages/index.tsx` and use it inside props.
 
@@ -786,6 +810,8 @@ This basically takes in an array of posts as props as a fallback, and then waits
 
 Awesome. Go back to the `index.tsx` file and add in this component, passing the data returned from `getServerSideProps` as props.
 
+## Conclusion
+
 ...and we're finished. If you made it down here, good work. I'd love to hear your thoughts in the comments below. We should now have a fully functioning, 100% serverless application powered by [CockroachDB].
 
 This post took me a long time to write and create. If you enjoyed it, please be sure to give it a like and follow me for similar posts.
@@ -794,12 +820,12 @@ I will be live with @aydrian on Twitch explaining how to migrate this exact appl
 
 With that being said, I'll conclude this by saying that serverless computing is amazing, and has a lot of potential. I'm planning to write another post sometime soon on when you should or shouldn't use a serverless database, so stay tuned and follow for more.
 
-Enjoy your day, goodbye 👋.
+Enjoy your day, goodbye 👋
 
 [next.js]: https://nextjs.org
 [vercel]: https://vercel.com
 [cockroachdb]: https://cockroachlabs.com/serverless
 [prisma]: https://prisma.io
-[tailwindcss]: https://tailwindcss.com/
+[tailwind css]: https://https://tailwindcss.com
 [nextauth]: https://next-auth.js.org/
 [github]: https://github.com

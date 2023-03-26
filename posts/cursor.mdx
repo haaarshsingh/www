@@ -4,9 +4,11 @@ published: '2021-12-22'
 description: 'Add interactive custom cursors on your websites'
 ---
 
-<img
-  alt='demo'
+<BlogImage
+  alt='Animated cursor moving around the screen'
   src='https://user-images.githubusercontent.com/69592270/145694947-ee595f08-42bd-42e7-b3e1-b2183c835953.gif'
+  width={1260}
+  height={660}
 />
 
 I've come across many design studio websites with a neat custom cursor in place of your default computer one. Might not be the most accessible thing in the world, but it looks cool. Recently, I added one to my [website](https://harshsingh.xyz) as well.
@@ -19,7 +21,7 @@ This library supports [TypeScript](https://typescriptlang.org), along with serve
 
 Want a demo? I setup a quick [demo website](https://harshsingh.xyz/custom-pointer-react/) to for you to tweak and experiment with the library.
 
-# Setup
+## Setup
 
 To download the library, head over to your terminal:
 
@@ -43,11 +45,13 @@ const Cursor = () => {
 export default App
 ```
 
+## Parameters
+
 All parameters are optional, and here's a list of the different parameters which you can customise:
 
 | Parameter  | Description                                         | Default |
 | ---------- | --------------------------------------------------- | ------- |
-| color      | The background colour of the cursor                 | #000000 |
+| color      | The background color of the cursor                  | #000000 |
 | showRing   | Controls whether to show the ring around the cursor | true    |
 | ringSize   | Controls the size of the ring around the cursor     | 50px    |
 | cursorSize | Controls the size of the cursor                     | 10px    |
@@ -71,4 +75,8 @@ ReactDOM.render(
 
 Your custom cursor should be good to go.
 
-I hope this helped you out, I'm interested to see what you make with the library. Enjoy the rest of your day.
+## Conclusion
+
+I hope this helped you out, I'm interested to see what you make with the library. I'd love if you dropped a star over at [harshhhdev/custom-pointer-react](https://github.com/harshhhdev/custom-pointer-react).
+
+Enjoy the rest of your day. Until next time 👋

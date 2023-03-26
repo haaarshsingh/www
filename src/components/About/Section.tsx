@@ -26,23 +26,7 @@ const Section: FC<{
       {children}
       <div className={styles.content}>
         {content.map((item, index) => (
-          <div
-            key={index}
-            className={clsx(!item.href && styles.extra_margin, styles.wrapper)}
-          >
-            {item.href ? (
-              <a
-                href={item.href}
-                target={item.newTab ? '_blank' : '_self'}
-                rel='noreferrer'
-              >
-                {item.title}
-              </a>
-            ) : (
-              <h3>{item.title}</h3>
-            )}
-            <p>{item.content}</p>
-          </div>
+          <Content {...item} key={index} />
         ))}
         {extend && (
           <a
@@ -59,5 +43,18 @@ const Section: FC<{
     </section>
   )
 }
+
+const Content: FC<Content> = ({ title, href, content }) => (
+  <div className={clsx(!href && styles.extra_margin, styles.wrapper)}>
+    <a
+      href={href}
+      target={href?.startsWith('/') ? '_self' : '_blank'}
+      rel='noreferrer'
+    >
+      <h3 className={styles.title}>{title}</h3>
+    </a>
+    <p>{content}</p>
+  </div>
+)
 
 export default Section

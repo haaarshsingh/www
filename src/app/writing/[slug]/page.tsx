@@ -1,24 +1,24 @@
+import '@css/syntax.css'
 import type { Metadata, NextPage } from 'next'
 import { metadata as defaultMetadata } from '@app/layout'
 import { notFound } from 'next/navigation'
 import { allPosts } from 'contentlayer/generated'
-import Balancer from 'react-wrap-balancer'
-import MDX from '@components/.../MDX'
+import Post from '@components/Post'
+allPosts.sort((a, b) => (a.published < b.published ? 1 : -1))
 
-type Params = { slug: string }
+export type TOC = { toc: { value: string; url: string; depth: number }[] }
+type Params = { params: { slug: string } }
 type GenerateMetadata = (params: Params) => Metadata
 
 export const generateStaticParams = () =>
-  allPosts.map((post) => ({
-    slug: post.slug,
-  }))
+  allPosts.map((post) => ({ slug: post.slug.substring(9) }))
 
-export const generateMetadata: GenerateMetadata = (params) => {
+export const generateMetadata: GenerateMetadata = ({ params }) => {
   const post = allPosts.find((post) => post.slug === params.slug)
   if (!post) return defaultMetadata
 
   const { title, published: publishedTime, description, slug } = post
-  const image = `https://leerob.io/api/og?title=${title}`
+  const image = `https://api.hxrsh.in/api/image?title=${encodeURI(title)}`
 
   return {
     title,
@@ -28,7 +28,7 @@ export const generateMetadata: GenerateMetadata = (params) => {
       description,
       type: 'article',
       publishedTime,
-      url: `https://leerob.io/blog/${slug}`,
+      url: `https://harshsingh.xyz/blog/${slug}`,
       images: [{ url: image }],
     },
     twitter: {
@@ -40,21 +40,17 @@ export const generateMetadata: GenerateMetadata = (params) => {
   }
 }
 
-const Page: NextPage<Params> = ({ slug }) => {
-  const post = allPosts.find((post) => post.slug === slug)
+const Page: NextPage<Params> = ({ params }) => {
+  const post = allPosts.find((post) => post.slug.substring(9) === params.slug)
 
   if (!post) notFound()
-
   return (
-    <section>
-      <h1>
-        <Balancer>{post.title}</Balancer>
-      </h1>
-      <div>
-        <div>{post.published}</div>
-      </div>
-      <MDX code={post.body.code} />
-    </section>
+    <Post
+      {...post}
+      index={allPosts.findIndex(
+        (post) => post.slug.substring(9) === params.slug
+      )}
+    />
   )
 }
 

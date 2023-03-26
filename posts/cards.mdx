@@ -4,11 +4,11 @@ published: '2020-10-23'
 description: 'Introduce yourself in the terminal, a NPX command all about you'
 ---
 
-I was looking around GitHub the other day, and I found this awesome idea by [Anmol Singh] on creating a npx card to introduce themselves. I thought it was a cool idea, so I made one for [myself] too.
+I was looking around GitHub the other day, and I found this awesome idea by [Anmol Singh] on creating a NPX card to introduce himself. I thought it was a cool idea, so I made one for [myself] too.
 
 I really liked the idea, and I wanted to share it with y'all too.
 
-# Getting Started
+## Getting Started
 
 Let's create a new project. Skip ahead if you're familiar with this.
 
@@ -37,7 +37,7 @@ Let's go to the scripts section in our `package.json` and setup [nodemon]
 }
 ```
 
-# Building our card
+## Building our card
 
 Start by running the development server
 
@@ -56,6 +56,8 @@ const open = require('open')
 
 clear()
 ```
+
+### Creating the Prompt
 
 Let's create a new prompt using [Inquirer](https://github.com/SBoudrias/Inquirer.js#readme) along with an array of objects which contain our questions.
 
@@ -88,6 +90,8 @@ const questions = [
   },
 ]
 ```
+
+### Adding Data
 
 Let's create a new object, this time with data about us. I had to play around with this for a little bit to get the spacing right, having properly centred the fields.
 
@@ -153,7 +157,7 @@ Let's make sure that we handle the prompt properly.
 prompt(questions).then((answer) => answer.action())
 ```
 
-# Publishing
+### Publishing
 
 Start by creating an account on [NPM](https://npmjs.com/) and connect your user account.
 
@@ -181,7 +185,11 @@ If that worked, try to executing it using [npx](https://www.npmjs.com/package/np
 npx your-pkg
 ```
 
-That's it, hopefully you enjoyed this cool little idea. Enjoy your day.
+## Conclusion
+
+That's it, hopefully you enjoyed this cool little idea. If you end up making a card, I'd love to see it. Reach out at [@harshhhdev](https://twitter.com/harshhhdev).
+
+Enjoy your day — until next time 👋
 
 [anmol singh]: https://github.com/anmol098
 [anmol's card]: https://github.com/anmol098/npx_card

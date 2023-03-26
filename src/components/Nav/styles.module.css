@@ -9,8 +9,8 @@
 }
 
 .wrapper {
-  border: 2px solid var(--grey8);
-  background-color: var(--grey9);
+  border: 2px solid var(--gray8);
+  background-color: var(--gray9);
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -39,19 +39,19 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   opacity: 0.95;
-  -webkit-mask-image: linear-gradient(to bottom, var(--grey9) 10%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, var(--gray9) 10%, transparent);
 }
 
 .blur:after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, var(--grey9), transparent);
+  background: linear-gradient(to bottom, var(--gray9), transparent);
 }
 
 .bar {
   position: absolute;
-  background: var(--grey7);
+  background: var(--gray7);
   height: 34px;
   z-index: -1;
   border-radius: 999px;
@@ -71,5 +71,5 @@
 }
 
 .link:hover {
-  color: var(--grey2);
+  color: var(--gray2);
 }

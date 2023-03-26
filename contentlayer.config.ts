@@ -3,19 +3,17 @@ import {
   defineDocumentType,
   makeSource,
 } from 'contentlayer/source-files'
-import readingTime from 'reading-time'
 import remarkGfm from 'remark-gfm'
+import remarkSectionize from 'remark-sectionize'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypePrism from 'rehype-prism-plus'
+import rehypePresetMinify from 'rehype-preset-minify'
+import { extractTocHeadings } from './src/lib/mdx'
 
 const computedFields: ComputedFields = {
-  readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
-  wordCount: {
-    type: 'number',
-    resolve: (doc) => doc.body.raw.split(/\s+/gu).length,
-  },
+  toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
   slug: {
     type: 'string',
     resolve: (doc) =>
@@ -39,11 +37,12 @@ export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkSectionize],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,
       rehypePrism,
+      rehypePresetMinify,
       [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }],
     ],
   },

@@ -16,10 +16,7 @@ type Song = {
 
 const config: SWRConfiguration = {
   fallbackData: {
-    song: {
-      title: 'Fetching Music...',
-      link: '#',
-    },
+    song: { title: 'Offline', link: '#' },
   },
   revalidateOnMount: false,
 }
@@ -64,13 +61,34 @@ const Footer: FC = () => {
           })}
         </p>
         <div>
-          <div className={styles.indicator}>
-            <div className={clsx(styles.line, styles.line1)} />
-            <div className={clsx(styles.line, styles.line2)} />
-            <div className={clsx(styles.line, styles.line3)} />
-            <a href={data.song.link} target='_blank' rel='noreferrer'>
-              {data.song.title}
-            </a>
+          <div className={styles.music}>
+            <div
+              className={clsx(
+                styles.line,
+                styles.line1,
+                data?.song.link === '#' && styles.offline
+              )}
+            />
+            <div
+              className={clsx(
+                styles.line,
+                styles.line2,
+                data?.song.link === '#' && styles.offline
+              )}
+            />
+            <div
+              className={clsx(
+                styles.line,
+                styles.line3,
+                data?.song.link === '#' && styles.offline
+              )}
+            />
+            <p>
+              {data?.song.link !== '#' && "Jammin' Now — "}
+              <a href={data?.song.link} target='_blank' rel='noreferrer'>
+                {data?.song.title}
+              </a>
+            </p>
           </div>
         </div>
       </div>

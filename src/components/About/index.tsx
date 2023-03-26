@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Section from './Section'
 import * as data from './data'
 import mapboxgl from 'mapbox-gl'
+import { rgbDataURL } from '../MDX'
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiaGFyc2hoaGRldiIsImEiOiJjbGY1M3ZoczEwM3lnM3ZwZG90Y2Jxcm9hIn0.4ZfuJo8WNw2Wn6dxsud2JA'
@@ -41,50 +42,30 @@ const About: FC = () => {
 
   return (
     <div className={styles.box}>
-      <motion.div
-        variants={container}
-        initial='hidden'
-        animate='visible'
-        className={styles.container}
-      >
-        <motion.div
-          className={styles.image}
-          variants={{
-            hidden: { y: -50, opacity: 0, rotateZ: 0 },
-            visible: {
-              y: 0,
-              opacity: 1,
-              rotateZ: -3,
-              zIndex: 1,
-            },
-          }}
-        >
+      <div className={styles.container}>
+        <div className={styles.image}>
           <Image
             src='/headshot-crop.jpg'
             alt='My face'
             width={298.24}
             height={470.72}
+            draggable={false}
+            placeholder='blur'
+            blurDataURL={rgbDataURL(204, 136, 105)}
           />
-        </motion.div>
-        <motion.div
-          className={styles.image}
-          variants={{
-            hidden: { y: 50, opacity: 0, rotateZ: 0 },
-            visible: {
-              y: 0,
-              opacity: 1,
-              rotateZ: 3,
-            },
-          }}
-        >
+        </div>
+        <div className={styles.image}>
           <Image
             src='/dallas.jpg'
             alt='Skyshot of Dallas, Texas'
             width={510}
             height={391}
+            draggable={false}
+            placeholder='blur'
+            blurDataURL={rgbDataURL(156, 188, 201)}
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
       <Section content={data.about}>
         <h1 className={styles.title}>About</h1>
       </Section>

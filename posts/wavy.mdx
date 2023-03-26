@@ -4,9 +4,9 @@ published: '2022-05-05'
 description: 'Build a fluid and interactive text animation'
 ---
 
-Hey y'all, it's been a while and I've been inconsistent with my writing schedule. Now that my [AP Computer Science](https://apstudents.collegeboard.org/courses/ap-computer-science-a) exams are over, and summer is almost here, I will hopefully have more time on my hands to devote to projects and writing.
+Hey y'all, it's been a while and I've been inconsistent with my writing schedule. Now that my exams are over, and summer is almost here, I'll hopefully have more time on my hands to devote to projects and writing.
 
-In our blog post today, we'll be looking at how we can create a satisfying wavy text animation using [Framer Motion](https://www.framer.com/motion/), [React](https://reactjs.org) and [TypeScript](https://typescriptlang.org).
+In our post today, we'll be looking at how we can create a satisfying wavy text animation using [Framer Motion](https://www.framer.com/motion/), [React](https://reactjs.org) and [TypeScript](https://typescriptlang.org).
 
 Here's a demo of the project in [CodeSandbox](https://j69kkr.csb.app/).
 
@@ -130,7 +130,7 @@ return (
 
 Our animation functionality basically works now... there's just a slight problem. The animation looks terrible. Luckily, we can use [Variants](https://www.framer.com/docs/animation/) in [Framer Motion](https://framer.com/motion) to solve our problem.
 
-Outside (or inside - we can even declare them in a new file and import them in) our `WavyText` component, we can create two different animations for both the container and the child.
+Outside (or inside — we can even declare them in a new file and import them in) our `WavyText` component, we can create two different animations for both the container and the child.
 
 ```tsx:src/WavyText.tsx
 const container: Variants = {
@@ -183,7 +183,7 @@ Now that we have that done, we can set the `variants` in our components to the a
 <motion.span key={index} variants={child}>
 ```
 
-Cheers - our animation now works. We just need to import it into our `src/App.tsx` file and configure it properly.
+Cheers — our animation now works. We just need to import it into our `src/App.tsx` file and configure it properly.
 
 Open up the `src/App.tsx` file now. Start by importing your component, and then delete the `<h1></h1>` element, and replace it with:
 
@@ -200,7 +200,7 @@ Wonderful. Our animation should now be working as we expected. On my example, I'
 
 That's all I have for you. Hopefully you learned something new, and you use later end up using this animation to liven up your own websites. I'm also currently using this animation on [my website](https://harshsingh.xyz/) :)
 
-If you'd like to see more design, a11y and related articles on my blog - do let me know. I'm eager to hear your feedback.
+If you'd like to see more design, a11y and related articles on my blog — do let me know. I'm eager to hear your feedback.
 
 Enjoy the rest of your day 👋
 

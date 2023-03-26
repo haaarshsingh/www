@@ -18,7 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@app*": ["./src/app/*"],
+      "@app/*": ["./src/app/*"],
+      "@lib/*": ["./src/lib/*"],
       "@css/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]

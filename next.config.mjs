@@ -6,6 +6,16 @@ export default withContentlayer({
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: 'pbs.twimg.com', pathname: '/**' },
+      {
+        protocol: 'https',
+        hostname: 'dev-to-uploads.s3.amazonaws.com',
+        pathname: '/uploads/articles/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'user-images.githubusercontent.com',
+        pathname: '/**',
+      },
     ],
   },
   experimental: { appDir: true },
@@ -13,6 +23,10 @@ export default withContentlayer({
   rewrites: () => [
     { source: '/api/:path*', destination: 'https://api.hxrsh.in/api/:path*' },
   ],
+  webpack: (config) => {
+    config.infrastructureLogging = { level: 'error' }
+    return config
+  },
 })
 
 const ContentSecurityPolicy = `

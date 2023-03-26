@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import type { FC } from 'react'
 import localFont from 'next/font/local'
 
 const inter = localFont({
@@ -24,16 +24,14 @@ const fira = localFont({
   display: 'swap',
 })
 
-const Fonts: FC = () => {
-  return (
-    <style jsx global>{`
-      :root {
-        --font-display: ${inter.style.fontFamily}, var(--font-fallback);
-        --font-sans: ${sohne.style.fontFamily}, var(--font-fallback);
-        --font-mono: ${fira.style.fontFamily}, monospace;
-      }
-    `}</style>
-  )
-}
+const Fonts: FC = () => (
+  <style jsx global>{`
+    :root {
+      --font-display: ${inter.style.fontFamily}, var(--font-fallback);
+      --font-sans: ${sohne.style.fontFamily}, var(--font-fallback);
+      --font-mono: ${fira.style.fontFamily}, monospace;
+    }
+  `}</style>
+)
 
 export default Fonts

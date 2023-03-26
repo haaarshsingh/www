@@ -1,9 +1,10 @@
 import '@css/globals.css'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import type { Metadata } from 'next'
-import AnalyticsWrapper from '@/components/.../analytics'
+import { Root } from '@components/Layout'
+import AnalyticsWrapper from '@components/.../analytics'
 import Nav from '@components/Nav'
-import Fonts from '@/components/.../fonts'
+import Fonts from '@components/.../fonts'
 import Footer from '@components/Footer'
 import BackToTop from '@components/BackToTop'
 
@@ -90,19 +91,17 @@ export const metadata: Metadata = {
   category: 'technology',
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <html lang='en'>
-      <Fonts />
-      <body>
-        <Nav />
-        <main>{children}</main>
-        <BackToTop />
-        <Footer />
-        <AnalyticsWrapper />
-      </body>
-    </html>
-  )
-}
+const RootLayout = ({ children }: { children: React.ReactNode }) => (
+  <html lang='en'>
+    <Fonts />
+    <body>
+      <Nav />
+      <Root>{children}</Root>
+      <BackToTop />
+      <Footer />
+      <AnalyticsWrapper />
+    </body>
+  </html>
+)
 
 export default RootLayout

@@ -12,12 +12,16 @@
 }
 
 .post:not(:last-child) {
-  border-bottom: 1px solid var(--grey6);
+  border-bottom: 1px solid var(--gray6);
 }
 
 .post {
   opacity: 1;
   transition: opacity 100ms ease;
+}
+
+.posts {
+  margin-left: 50px;
 }
 
 .posts:hover .post:not(:hover) {
@@ -36,7 +40,7 @@
 .loading {
   width: 275px;
   height: 30px;
-  background-color: var(--grey8);
+  background-color: var(--gray8);
   border-radius: 5px;
   animation: load 1.5s linear infinite;
 }
@@ -44,7 +48,7 @@
 .box {
   display: flex;
   align-items: center;
-  color: var(--grey4);
+  color: var(--gray4);
   margin-right: 15px;
 }
 
@@ -75,7 +79,7 @@
 .loading {
   width: 275px;
   height: 30px;
-  background-color: var(--grey8);
+  background-color: var(--gray8);
   border-radius: 5px;
   animation: load 1.5s linear infinite;
 }
@@ -87,25 +91,25 @@
 
 .form input {
   outline: none;
-  border: 1px solid var(--grey6);
+  border: 1px solid var(--gray6);
   padding: 12px 16px;
-  background-color: var(--grey8);
+  background-color: var(--gray8);
   border-radius: 5px;
   margin-bottom: 5px;
   transition: 0.1s linear;
 }
 
 .form input:hover {
-  border: 1px solid var(--grey5);
+  border: 1px solid var(--gray7);
 }
 
 .form input:focus {
-  border: 1px solid var(--grey4);
+  border: 1px solid var(--gray5);
 }
 
 .form button {
-  background-color: var(--grey0);
-  color: var(--grey9);
+  background-color: var(--gray0);
+  color: var(--gray9);
   border: none;
   padding: 12px 16px;
   border-radius: 5px;
@@ -113,8 +117,16 @@
   cursor: pointer;
 }
 
+.form button:hover {
+  background-color: var(--gray2);
+}
+
+.form button:active {
+  background-color: var(--gray4);
+}
+
 .form button:target {
-  outline: 1px solid var(--grey0);
+  outline: 1px solid var(--gray0);
 }
 
 @keyframes load {

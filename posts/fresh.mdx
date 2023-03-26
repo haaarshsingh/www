@@ -4,9 +4,14 @@ published: '2022-07-04'
 description: "An introduction into Deno's 'fresh' new framework"
 ---
 
-![Fresh Homepage](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6dre0h7reim1xq9eg87b.gif)
+<BlogImage
+  alt='Fresh Homepage'
+  src='https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6dre0h7reim1xq9eg87b.gif'
+  width={600}
+  height={346}
+/>
 
-Three days ago, [Deno] announced their new full stack web framework called [Fresh]. The framework looks great. It has a shiny new home page with clean colours and a cool animation, and it uses [Preact](https://preactjs.com/). The web framework has zero runtime overhead and ships no JavaScript to the browser by default, it has no build step, supports [TypeScript] out of the box, and uses island based client hydration.
+Three days ago, [Deno] announced their new full stack web framework called [Fresh]. The framework looks great. It has a shiny new home page with clean colors and a cool animation, and it uses [Preact](https://preactjs.com/). The web framework has zero runtime overhead and ships no JavaScript to the browser by default, it has no build step, supports [TypeScript] out of the box, and uses island based client hydration.
 
 In this article, we'll be talking about everything Fresh. The features it has to offer, breaking down those features, comparing it with other frameworks and perhaps most importantly determining if it's something worth your time and energy.
 
@@ -36,7 +41,7 @@ Let's get into the main problem that Fresh aims to solve. For this, let's take a
 
 > Some newer frameworks also have support for server side rendering. This helps reduce page load times by pre-rendering on the server. But most current implementations still ship the entire rendering infrastructure for the full application to every client so the page can be fully re-rendered on the client.
 
-> This is a bad development - client-side JavaScript is really expensive: it slows down the user experience, drastically increases power consumption on mobile devices, and is often not very robust.
+> This is a bad development — client-side JavaScript is really expensive: it slows down the user experience, drastically increases power consumption on mobile devices, and is often not very robust.
 
 How exactly does this work differently than other JavaScript frameworks like [Next.js] or [Remix]? Well, let's take the example of Next.js. It pre-renders every page, essentially meaning it generates the HTML for the page in-advance, instead of having the client do it. This results in better performance and SEO as bots are able to 'crawl' through your content more effectively. Basically, when a page is loaded by the browser, its JavaScript code runs and makes the page fully interactive through a process called hydration.
 
@@ -48,7 +53,12 @@ With that being said, most of us need interactivity, and just static HTML won't 
 
 Just like all other JavaScript frameworks, Fresh has a cool new feature set which it uses to attract developers. Let's talk about what those features actually are, and what they do.
 
-![Fresh's stand out features](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9drbw4m6mj92e8bj5ltg.png)
+<BlogImage
+  alt='Section titled "next-gen web framework", below are bullet points with the main features of the framework including JIT rendering, island based client hydration, zero runtime overhead, no build step, no configuration necessary, and TypeScript support out of the box.'
+  src='https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9drbw4m6mj92e8bj5ltg.png'
+  width={731}
+  height={540}
+/>
 
 ### Just-in-time rendering on the edge
 
@@ -60,7 +70,12 @@ Essentially, the island based client hydration model works with small portions o
 
 Attached below is an image comparing the islands architecture to SSR and progressive hydration from [patterns.dev](https://www.patterns.dev/). Other frameworks such as [Astro](https://astro.build) adopt this approach with [server-side rendering](https://astro.build/blog/experimental-server-side-rendering/).
 
-![SSR vs progressive hydration vs islands architecture](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4ew4boqch6xn41cvudun.png)
+<BlogImage
+  alt='Titled SSR vs Progressive Hydration vs Islands Architecture. SSR renders all components together and hydrates them. Progressive hydration renders all components, hydrates key components first and progressively hydrates others. In the islands architecture, static components are server rendered HTML and script is required only for interactive components.'
+  src='https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4ew4boqch6xn41cvudun.png'
+  width={1260}
+  height={523}
+/>
 
 ### Zero runtime overhead
 
@@ -86,7 +101,7 @@ I believe, in particular, JavaScript web frameworks are a place which could grea
 
 Anyways, that wraps it up for the article. In this article, we discussed everything about Fresh. From getting a brief background of Deno and Fresh to actually breaking down how it works under the hood and understanding what it has to offer in-terms of technology. I hope this article helped you get some foundational knowledge of what exactly Fresh is, and if it makes a worthy candidate for you to start using in your applications.
 
-Until next time 👋.
+Until next time 👋
 
 _Thanks to the author of Fresh, [Luca Casonato](https://twitter.com/lcasdev) for reviewing an early draft of this article._
 

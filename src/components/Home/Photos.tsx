@@ -3,16 +3,6 @@
 import Image from 'next/image'
 import { FC } from 'react'
 import styles from '@css/home.module.css'
-import { motion } from 'framer-motion'
-
-const gallery = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { delayChildren: 0.3, staggerChildren: 0.2 },
-  },
-}
 
 const images = [
   {
@@ -35,27 +25,13 @@ const images = [
 
 const Photos: FC = () => {
   return (
-    <motion.div
-      variants={gallery}
-      initial='hidden'
-      animate='visible'
-      className={styles.gallery}
-    >
+    <div className={styles.gallery}>
       {images.map((image, index) => (
-        <motion.a
+        <a
           href={image.link}
           target='_blank'
           rel='noreferrer'
           key={index}
-          variants={{
-            hidden: { x: -50, opacity: 0, rotateZ: 0 },
-            visible: {
-              x: 0,
-              opacity: 1,
-              rotateZ: index % 2 === 0 ? -3 : 3,
-            },
-          }}
-          whileHover={{ y: -20 }}
           style={{ zIndex: index, marginTop: index % 2 === 0 ? -10 : 10 }}
           className='exclude'
         >
@@ -66,9 +42,9 @@ const Photos: FC = () => {
             alt={image.alt}
             draggable={false}
           />
-        </motion.a>
+        </a>
       ))}
-    </motion.div>
+    </div>
   )
 }
 

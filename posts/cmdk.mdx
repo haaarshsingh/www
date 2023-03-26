@@ -26,7 +26,7 @@ As said above, in this post, we'll be focusing on building our own command menu 
 
 ## Getting Started
 
-Since we'll be using [Tailwind CSS](https://tailwindcss.com/), I suggest you start by installing and configuring that. Skip over this if your project already uses Tailwind.
+Since we'll be using [Tailwind CSS](https://tailwindcss.com), I suggest you start by installing and configuring that. Skip over this if your project already uses Tailwind.
 
 ```bash:terminal
 # Install Tailwind with peer dependencies
@@ -35,7 +35,7 @@ yarn add tailwindcss postcss autoprefixer -D
 yarn tailwindcss init -p
 ```
 
-Next, open up your `tailwind.config.js` and add in your code directories under `content`. This varies depending upon whether or not you're using something like [Create React App](https://tailwindcss.com/docs/guides/create-react-app) or [Next.js](https://tailwindcss.com/docs/guides/nextjs).
+Next, open up your `tailwind.config.js` and add in your code directories under `content`. This varies depending upon whether or not you're using something like [Create React App](https://tailwindcss.comdocs/guides/create-react-app) or [Next.js](https://tailwindcss.comdocs/guides/nextjs).
 
 This is also the time to import in any fonts. For my project, I'm going to use [Albert Sans](https://github.com/usted/Albert-Sans), the [brand new font on Google Fonts](https://twitter.com/googlefonts/status/1552983139219378176).
 
@@ -87,9 +87,9 @@ export const commands: Command[] = [
     perform: () => window.open('https://framer.com/motion', '_blank'),
   },
   {
-    icon: <SiTailwindcss />,
-    text: 'TailwindCSS',
-    perform: () => window.open('https://tailwindcss.com', '_blank'),
+    icon: <SiTailwind CSS />,
+    text: 'Tailwind CSS',
+    perform: () => window.open('tailwindcss.com', '_blank'),
   },
   {
     icon: <SiApple />,
@@ -760,7 +760,7 @@ Additionally, make sure to actually assign it to your dialog component:
 >
 ```
 
-We just built our own command menu. As a side note, you can also change the placeholder colour inside our input to match your needs:
+We just built our own command menu. As a side note, you can also change the placeholder color inside our input to match your needs:
 
 ```css:styles/global.css
 input::placeholder {
@@ -776,7 +776,7 @@ I'm curious to see what you make with this command menu. I think a good step for
 
 Do remember to give [kmenu] a glance if you're interested in it, it's packed with awesome features and functionality.
 
-That's all for today, until next time 👋.
+That's all for today, until next time 👋
 
 [kmenu]: https://github.com/harshhhdev/kmenu
 [codesandbox]: https://gvlfsb.sse.codesandbox.io/
