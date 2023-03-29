@@ -2,7 +2,6 @@
 
 import { FC } from 'react'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import styles from '@css/common.module.css'
 
@@ -29,7 +28,7 @@ const Nav: FC = () => {
       <div className={styles.blur} />
       <div className={styles.box}>
         {Object.entries(items).map(([path, { name, w }]) => (
-          <Link key={path} href={path} className={styles.link}>
+          <a key={path} href={path} className={styles.link}>
             {name}
             {items[pathname].name === name && (
               <motion.div
@@ -40,7 +39,7 @@ const Nav: FC = () => {
                 style={{ width: w }}
               />
             )}
-          </Link>
+          </a>
         ))}
       </div>
     </nav>
