@@ -16,7 +16,7 @@ My initial question was why it says that it's impossible to scale a [PlanetScale
 
 This led me to think: do `FOREIGN KEY` constraints affect scalability in general? and if so, how?
 
-I do think it's important to realise that SQL table joins are pretty costly, but to my knowledge it wasn't affected much by referential integrity? Now, if we're doing something like data analysis, obviously we don't have a need for referential integrity as we'd just want to dump our data into a single table, but [PlanetScale] and [Vitess] boast about being used by big web applications such as [YouTube](https://vitess.io/docs/13.0/overview/history/).
+I do think it's important to realize that SQL table joins are pretty costly, but to my knowledge it wasn't affected much by referential integrity? Now, if we're doing something like data analysis, obviously we don't have a need for referential integrity as we'd just want to dump our data into a single table, but [PlanetScale] and [Vitess] boast about being used by big web applications such as [YouTube](https://vitess.io/docs/13.0/overview/history/).
 
 This led me to be confused as to why they'd drop the `FOREIGN KEY` constraint as databases such as [CockroachDB] and [Spanner] still maintain referential integrity along with being scalable.
 
@@ -52,7 +52,7 @@ We of course still have the problem of SQL table joins increasing in complexity,
 
 I gave a talk at the [Prisma Meetup](https://www.prisma.io/events) a while ago, where I explained the [fundamentals of designing a relational database](https://youtu.be/PUfqXnWhwLk). A topic I covered here was denormalisation, if you're interested, be sure to check this out.
 
-But denormalisation is basically the process where you add redundant data to tables in your database, which improves performance on the cost of disk space as you're no longer using CPU power for joins. While denormalisation improves the speed of reads, it's important to realise that it does make writes slower.
+But denormalisation is basically the process where you add redundant data to tables in your database, which improves performance on the cost of disk space as you're no longer using CPU power for joins. While denormalisation improves the speed of reads, it's important to realize that it does make writes slower.
 
 Nevertheless, despite all of this, our database is still slow, so we move database computations onto the client, for instance generating a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) or assigning a date.
 
@@ -61,7 +61,7 @@ Even after all of this, queries will still be slow — so we keep the result of 
 So at this point, our database has
 
 - No ACID properties because of caching
-- No normalised schema
+- No normalized schema
 - No triggers
 - No database computations
 - No secondary indexes

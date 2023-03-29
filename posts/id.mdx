@@ -32,7 +32,7 @@ Don't we all love clean and short URLs? Nobody likes seeing a bunch of digits an
 
 > It may seem minor, but to build a product that developers love to use, we need to care about details like these.
 
-Which is true. If we look into the history of UUID, we realise that it wasn't ever really made to be used in web applications. If we have a website such as, say, [HasteBin](https://www.toptal.com/developers/hastebin/), which depends upon generating these short, three letter IDs to easily share with people, this causes a problem.
+Which is true. If we look into the history of UUID, we realize that it wasn't ever really made to be used in web applications. If we have a website such as, say, [HasteBin](https://www.toptal.com/developers/hastebin/), which depends upon generating these short, three letter IDs to easily share with people, this causes a problem.
 
 ## CUID
 
@@ -50,9 +50,9 @@ Since the talk I gave about was related to [Prisma ORM](https://prisma.io/), the
 
 As a bonus, we'll being going over [NanoID]. It's said to be a tiny (only 130 bytes minified and gzipped), fast (x2 faster than UUID), safe, short, and portable.
 
-[NanoID's website](https://zelark.github.io/nano-id-cc/) has a cool visualiser tool in it, where we can calculate the chances of a collision. With an ID length of 15 characters (pretty short and sweet), and a generation of 1,000 IDs every second, it'll take a mind boggling 569 thousand years for it to have a _1%_ probability of a _single_ collision. Now if we switch that to 1000 IDs being generated _every single second_, it'd still take around 158 for it to have a 1% probability of at least a single collision. That's longer than me or you will probably live.
+[NanoID's website](https://zelark.github.io/nano-id-cc/) has a cool visualizer tool in it, where we can calculate the chances of a collision. With an ID length of 15 characters (pretty short and sweet), and a generation of 1,000 IDs every second, it'll take a mind boggling 569 thousand years for it to have a _1%_ probability of a _single_ collision. Now if we switch that to 1000 IDs being generated _every single second_, it'd still take around 158 for it to have a 1% probability of at least a single collision. That's longer than me or you will probably live.
 
-To visualise that, let's see:
+To visualize that, let's see:
 
 - Human lifespan: 79 years.
 - Life on Earth will be impossible in ~1.1 billion years.
