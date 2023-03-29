@@ -22,7 +22,7 @@ const config: SWRConfiguration = {
 }
 
 const fetcher: Fetcher<Root> = (input: RequestInfo | URL) =>
-  fetch(input).then((res) => res.json())
+  fetch(input, { next: { revalidate: 300 } }).then((res) => res.json())
 
 const Footer: FC = () => {
   const [time, setTime] = useState<Date>(new Date())
