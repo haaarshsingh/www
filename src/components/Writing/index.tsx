@@ -6,6 +6,7 @@ import styles from '@css/writing.module.css'
 import { allPosts, Post } from 'contentlayer/generated'
 import useSWR, { SWRConfiguration, Fetcher } from 'swr'
 import { FiEye, FiUser } from 'react-icons/fi'
+import Link from 'next/link'
 allPosts.sort((a, b) => (a.published < b.published ? 1 : -1))
 
 type Dev = { followers: number; views: number }
@@ -26,10 +27,10 @@ const Posts: FC = () => (
 )
 
 const Post: FC<Post> = (props) => (
-  <a className={styles.post} href={props.slug}>
+  <Link className={styles.post} href={props.slug} prefetch={false}>
     <h2>{props.title}</h2>
     <p>{format(new Date(props.published), 'dd/MM')}</p>
-  </a>
+  </Link>
 )
 
 const Writing: FC = () => {
@@ -38,29 +39,37 @@ const Writing: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.writing}>
-        <h1>Writing</h1>
-        <p>Learning things, and then teaching others.</p>
-        {data ? (
-          <div className={styles.info}>
-            <div className={styles.box}>
-              <FiEye />
-              <p>{data.views.toLocaleString()} views</p>
+        <div>
+          <h1>Writing</h1>
+          <p>Learning things, and then teaching others.</p>
+          {data ? (
+            <div className={styles.info}>
+              <div className={styles.box}>
+                <FiEye />
+                <p>{data.views.toLocaleString()} views</p>
+              </div>
+              <div className={styles.box}>
+                <FiUser />
+                <p>{data.followers.toLocaleString()} subscribers</p>
+              </div>
             </div>
-            <div className={styles.box}>
-              <FiUser />
-              <p>{data.followers.toLocaleString()} subscribers</p>
-            </div>
-          </div>
-        ) : (
-          <div className={styles.loading} aria-busy='true' aria-live='polite' />
-        )}
+          ) : (
+            <div
+              className={styles.loading}
+              aria-busy='true'
+              aria-live='polite'
+            />
+          )}
+        </div>
         <form className={styles.form}>
-          <input
-            placeholder='hi.harsh@proton.me'
-            type='email'
-            spellCheck={false}
-          />
-          <button>Subscribe</button>
+          <div>
+            <input
+              placeholder='hi.harsh@proton.me'
+              type='email'
+              spellCheck={false}
+            />
+            <button>Subscribe</button>
+          </div>
           <p>Be notified of new posts. No spam.</p>
         </form>
       </div>

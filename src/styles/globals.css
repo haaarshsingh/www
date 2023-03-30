@@ -15,8 +15,6 @@
   --focus-color: var(--gray7);
 
   --wrapper: 950px;
-  --blog-wrapper: 750px;
-  --bar-padding: 40px;
   --about-padding: 50px;
 
   --font-fallback: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
@@ -147,4 +145,24 @@ body {
   font-size: 12px;
   border-radius: 10px 10px 0 0;
   padding: 10px 0px 10px 15px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --wrapper: 700px;
+    --about-padding: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --wrapper: 420px;
+    --about-padding: 0px;
+  }
+}
+
+@media (max-width: 424px) {
+  :root {
+    --wrapper: 97vw;
+  }
 }

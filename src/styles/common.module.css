@@ -131,6 +131,7 @@
   color: var(--gray0);
   border: none;
   transition: 0.1s linear;
+  backdrop-filter: blur(5px);
 }
 
 .top:hover {
@@ -225,8 +226,22 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-  .date:nth-child(1) {
-    display: none;
+@media (max-width: 767px) {
+  .container {
+    padding: 20px;
+  }
+
+  .music > p {
+    margin-left: 5px;
+  }
+
+  .blog h1 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer p {
+    font-size: 12px;
   }
 }

@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react'
 import styles from '@css/common.module.css'
 import clsx from 'clsx'
 import useSWR, { SWRConfiguration, Fetcher } from 'swr'
+import useWindowSize, { Size } from '@lib/hooks/useWindowSize'
 
 type Root = {
   song: Song
@@ -25,6 +26,8 @@ const fetcher: Fetcher<Root> = (input: RequestInfo | URL) =>
   fetch(input, { next: { revalidate: 300 } }).then((res) => res.json())
 
 const Footer: FC = () => {
+  const size: Size = useWindowSize()
+
   const [time, setTime] = useState<Date>(new Date())
   const [mounted, setMounted] = useState(false)
   const { data } = useSWR<Root>('/api/music', fetcher, config)
@@ -47,17 +50,38 @@ const Footer: FC = () => {
             rel='noreferrer'
             className={styles.location}
           >
-            Dallas, TX
+            {typeof size.width !== 'undefined'
+              ? size.width > 767
+                ? 'Dallas, TX'
+                : 'DTX'
+              : 'Dallas, Texas'}
           </a>
           <span className={styles.separator}>•</span>
-          {time.toLocaleString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-            day: 'numeric',
-            month: 'short',
-            timeZone: 'America/Chicago',
-          })}
+          {typeof size.width !== 'undefined'
+            ? size.width > 767
+              ? time.toLocaleString('en-US', {
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  second: 'numeric',
+                  day: 'numeric',
+                  month: 'short',
+                  timeZone: 'America/Chicago',
+                })
+              : time.toLocaleString('en-US', {
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  day: 'numeric',
+                  month: 'numeric',
+                  timeZone: 'America/Chicago',
+                })
+            : time.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                day: 'numeric',
+                month: 'short',
+                timeZone: 'America/Chicago',
+              })}
         </p>
         <div>
           <div className={styles.music}>
@@ -83,7 +107,11 @@ const Footer: FC = () => {
               )}
             />
             <p>
-              {data?.song.link !== '#' && "Jammin' Now — "}
+              {data?.song.link !== '#' && typeof size.width !== 'undefined'
+                ? size.width > 767
+                  ? "Jammin' Now — "
+                  : ''
+                : ''}
               <a href={data?.song.link} target='_blank' rel='noreferrer'>
                 {data?.song.title}
               </a>

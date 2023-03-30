@@ -59,7 +59,7 @@
 }
 
 .section {
-  width: 70%;
+  width: 80%;
   border-right: 1px solid var(--gray8);
   padding-right: 30px;
 }
@@ -74,7 +74,7 @@
   top: 80px;
   height: 100%;
   margin-left: 10px;
-  width: 30%;
+  width: 20%;
 }
 
 .toc h2 {
@@ -90,18 +90,21 @@
   margin: 7px 0;
 }
 
-.toc a {
+.toc a,
+.accordion a {
   text-decoration: none;
   font-size: 14px;
   color: var(--gray3);
   transition: 0.1s linear color;
 }
 
-.toc a:hover {
+.toc a:hover,
+.accordion a:hover {
   color: var(--gray0);
 }
 
-.toc ol {
+.toc ol,
+.accordion ol {
   list-style: none;
 }
 
@@ -150,6 +153,7 @@
 .blog ol {
   font-family: var(--font-sans);
   color: var(--gray4);
+  margin-left: 20px !important;
 }
 
 .blog ol > li > ul {
@@ -261,4 +265,65 @@
   width: fit-content;
   padding: 10px 10px 10px 15px;
   font-size: 14px;
+}
+
+.accordion {
+  background-color: var(--gray6);
+  width: 90%;
+  padding: 0px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.accordion button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.accordion svg {
+  transition: 0.1s linear transform;
+}
+
+.accordion li {
+  margin: 0px !important;
+  padding: 3px 0px;
+}
+
+.accordion li:last-of-type {
+  padding-bottom: 15px;
+}
+
+.accordion h2 {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .box {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .section {
+    width: 90%;
+    border: none;
+    padding-right: 0px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .controls a > p:last-of-type {
+    max-width: 150px;
+  }
 }

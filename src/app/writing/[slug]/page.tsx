@@ -50,8 +50,8 @@ export const generateMetadata: GenerateMetadata = ({ params }) => {
 
 const Page: NextPage<Params> = ({ params }) => {
   const post = allPosts.find((post) => post.slug.substring(9) === params.slug)
-
   if (!post) notFound()
+
   return (
     <Post
       className={fira.variable}

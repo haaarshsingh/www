@@ -14,21 +14,19 @@ const BackToTop: FC = () => {
   }, [])
 
   return (
-    <>
-      <button
-        className={styles.top}
-        onClick={() =>
-          window.scrollTo({
-            top: showButton ? 0 : document.body.scrollHeight,
-            behavior: 'smooth',
-          })
-        }
-        style={{ transform: showButton ? 'rotate(0deg)' : 'rotate(180deg)' }}
-        aria-label='Back to top'
-      >
-        <IoArrowUp size={24} />
-      </button>
-    </>
+    <button
+      className={styles.top}
+      onClick={() =>
+        window.scrollTo({
+          top: showButton ? 0 : document.body.scrollHeight,
+          behavior: 'smooth',
+        })
+      }
+      style={{ transform: showButton ? 'rotate(0deg)' : 'rotate(180deg)' }}
+      aria-label='Back to top'
+    >
+      <IoArrowUp size={24} />
+    </button>
   )
 }
 
