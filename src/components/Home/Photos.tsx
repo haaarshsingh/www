@@ -116,10 +116,18 @@ export const Gallery: FC = () => {
           loading='eager'
         />
       </AnimatePresence>
-      <button className={styles.next} onClick={() => paginate(1)}>
+      <button
+        className={styles.next}
+        onClick={() => paginate(1)}
+        aria-label='Next'
+      >
         <FiChevronRight />
       </button>
-      <button className={styles.prev} onClick={() => paginate(-1)}>
+      <button
+        className={styles.prev}
+        onClick={() => paginate(-1)}
+        aria-label='Back'
+      >
         <FiChevronRight />
       </button>
     </div>
