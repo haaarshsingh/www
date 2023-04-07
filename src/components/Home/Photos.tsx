@@ -113,6 +113,7 @@ export const Gallery: FC = () => {
             if (swipe < -swipeConfidenceThreshold) paginate(1)
             else if (swipe > swipeConfidenceThreshold) paginate(-1)
           }}
+          loading='eager'
         />
       </AnimatePresence>
       <button className={styles.next} onClick={() => paginate(1)}>
