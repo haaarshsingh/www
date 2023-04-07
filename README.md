@@ -9,11 +9,9 @@
 <p align="center">
   <a href="https://harshsingh.xyz">Home</a>
     ·
-  <a href="https://harshsingh.xyz/uses">Uses</a>
+  <a href="https://harshsingh.xyz/about">About</a>
     ·
-  <a href="https://harshsingh.xyz/music">Music</a>
-    ·
-  <a href="https://harshsingh.xyz/blog">Writing</a>
+  <a href="https://harshsingh.xyz/blog">Blog</a>
 </p>
 
 ## Quickstart
@@ -43,4 +41,4 @@ Server should now be running on [localhost](https://localhost:3000)
 
 ## Forking
 
-This project is licensed with the '[Do What The F*ck You Want To Public License (wtfpl)](https://choosealicense.com/licenses/wtfpl/)' license, and the permissions/limitations are rather self-explanatory. Attribution isn't required, but I'd appreciate it.
+This project is licensed with the "[Do What The F*ck You Want To Public License (wtfpl)](https://choosealicense.com/licenses/wtfpl/)" license, and the permissions/limitations are rather self-explanatory. Attribution isn't required, but I'd appreciate it.

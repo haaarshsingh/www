@@ -23,6 +23,7 @@ const items: Items = {
 const Nav: FC = () => {
   let pathname = usePathname() || '/'
   if (pathname.includes('/writing/')) pathname = '/writing'
+  else pathname = '/'
 
   return (
     <nav className={styles.nav}>
