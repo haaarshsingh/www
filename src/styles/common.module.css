@@ -1,0 +1,282 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+}
+
+.content,
+.blog {
+  width: var(--wrapper);
+}
+
+.blog {
+  display: flex;
+}
+
+.blog h1 {
+  font-size: 24px;
+}
+
+.content p > a,
+.blog p > a {
+  color: var(--gray0);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 250px;
+}
+
+.hr {
+  width: 100%;
+  border: 1px solid var(--gray8);
+}
+
+.date {
+  font-size: 14px;
+  color: var(--gray4);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: var(--wrapper);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.error_wrapper {
+  display: flex;
+  justify-content: center;
+  height: 77vh;
+}
+
+.error_wrapper > div {
+  width: 600px;
+}
+
+.paragraph:first-of-type {
+  margin: 10px 0px 50px 0px;
+}
+
+.paragraph:last-of-type {
+  margin: 5px 0px 50px 0px;
+}
+
+.image {
+  width: 100%;
+  height: 330px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 15px;
+  position: relative;
+}
+
+.image img {
+  object-fit: cover;
+}
+
+.socials > a:hover {
+  color: var(--gray2);
+}
+
+.socials svg {
+  font-size: 16px;
+}
+
+.location {
+  text-decoration: none;
+}
+
+.location:hover {
+  color: white;
+}
+
+.separator {
+  margin: 0px 5px;
+}
+
+.music {
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.music * {
+  font-size: inherit;
+}
+
+.music a {
+  color: var(--gray0);
+  text-decoration: none;
+}
+
+.music > p {
+  margin-left: 10px;
+}
+
+.line {
+  width: 3px;
+  height: 3px;
+  margin-right: 3px;
+  background: #fc3c44;
+  border-radius: 1.5px;
+}
+
+.line1 {
+  animation: playing 0.85s infinite ease;
+}
+
+.line2 {
+  animation: playing 1.26s infinite ease;
+}
+
+.line3 {
+  animation: playing 0.62s infinite ease;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  bottom: 25px;
+  right: 25px;
+  font-size: 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  background-color: rgba(109, 109, 109, 0.25);
+  position: fixed;
+  color: var(--gray0);
+  border: none;
+  transition: 0.1s linear;
+  backdrop-filter: blur(5px);
+}
+
+.top:hover {
+  background-color: rgba(109, 109, 109, 0.5);
+}
+
+.offline {
+  background: var(--gray5);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 30px;
+  z-index: 999;
+}
+
+.box {
+  border: 2px solid var(--gray8);
+  background-color: var(--gray9);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  position: relative;
+  padding: 5px;
+  z-index: 999;
+}
+
+.blur {
+  top: 0;
+  width: 100vw;
+  position: fixed !important;
+  z-index: 999;
+  user-select: none;
+  pointer-events: none;
+  position: sticky;
+  width: 100vw;
+  height: 100px;
+  z-index: 1;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0.95;
+  -webkit-mask-image: linear-gradient(to bottom, var(--gray9) 10%, transparent);
+}
+
+.blur:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--gray9), transparent);
+}
+
+.bar {
+  position: absolute;
+  background: var(--gray7);
+  height: 34px;
+  z-index: -1;
+  border-radius: 999px;
+  top: 0;
+  margin-top: 5px;
+  opacity: 1;
+  margin-left: -20px;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 14px;
+  margin: 8px 20px;
+  transition: 0.1s linear;
+  user-select: none;
+  z-index: 2;
+}
+
+.link:hover {
+  color: var(--gray2);
+}
+
+@keyframes playing {
+  0% {
+    height: 3px;
+  }
+  50% {
+    height: 12px;
+  }
+  to {
+    height: 3px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 20px;
+  }
+
+  .music > p {
+    margin-left: 5px;
+  }
+
+  .blog h1 {
+    font-size: 16px;
+  }
+
+  .error_wrapper > div {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer p {
+    font-size: 12px;
+  }
+}

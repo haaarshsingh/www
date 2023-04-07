@@ -2,14 +2,18 @@ import type { FC } from 'react'
 import {
   FiDribbble,
   FiGithub,
+  FiInstagram,
   FiLinkedin,
   FiTwitter,
+  FiYoutube,
 } from 'react-icons/fi/index'
-import s from '@css/modules/home.module.css'
+import { RiSnapchatLine } from 'react-icons/ri'
+import { RxDiscordLogo } from 'react-icons/rx'
+import styles from '@css/home.module.css'
 
 export const Socials: FC = () => {
   return (
-    <div className={s.socials}>
+    <div className={styles.socials}>
       {[
         {
           aria: 'GitHub',
@@ -31,12 +35,32 @@ export const Socials: FC = () => {
           icon: FiLinkedin,
           href: 'https://linkedin.com/in/harshhhdev',
         },
+        {
+          aria: 'YouTube',
+          icon: FiYoutube,
+          href: 'https://www.youtube.com/@harshhhdev',
+        },
+        {
+          aria: 'Instagram',
+          icon: FiInstagram,
+          href: 'https://www.instagram.com/haaarshsingh',
+        },
+        {
+          aria: 'Discord',
+          icon: RxDiscordLogo,
+          href: 'https://discord.com/users/518432133111611397',
+        },
+        {
+          aria: 'Snapchat',
+          icon: RiSnapchatLine,
+          href: 'https://snapchat.com/add/harshhhhsingh',
+        },
       ].map((link, index) => (
         <a
           href={link.href}
           target='_blank'
           rel='noreferrer'
-          className={s.social}
+          className={styles.social}
           key={index}
           aria-label={link.aria}
         >

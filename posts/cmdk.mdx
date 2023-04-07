@@ -1,0 +1,782 @@
+---
+title: 'Creating an Accessible Command Menu in React'
+published: '2022-09-10'
+description: 'All about building custom accessible command menus'
+---
+
+Over the past few months, I've been building my very own [command menu component](https://capiche.com/e/consumer-dev-tools-command-palette) for [React](https://reactjs.org) called [kmenu]. In this post, I want to go over how you can also create your own command menu.
+
+I originally gave this talk at about building a command menu at [React JAX](https://www.meetup.com/react-jax/) which you can watch on [YouTube](https://youtu.be/2DL4QC0QrOg). In the meanwhile, you can follow this tutorial or the [CodeSandbox].
+
+Before we begin, do feel free to take a peek at [kmenu.hxrsh.in](https://kmenu.hxrsh.in) if you're interested in having a more sophisticated menu.
+
+## Background
+
+Command menus have an interesting history, and the idea stemmed from basically having a simple and easy way to navigate through an application. The first example of this could be found in [Sublime Text](https://www.sublimetext.com/blog/articles/sublime-text-2-beta), as they announced the beta of Sublime Text 2. Pulled from their blog:
+
+> The Command Palette provides a quick way to access commands that don't warrant a key binding, and would usually be hidden away in a menu. For example, turning Word Wrap on or off, or changing the syntax highlighting mode of the current file. It uses the same fuzzy matching as Goto Anything does, meaning most commands are accessible with just a few key presses.
+
+This worked like a power tool, and led to more exploration and higher feature discoverability leading to it being adopted by code editors like [Visual Studio Code](https://code.visualstudio.com/docs/getstarted/userinterface). It wasn't long until these command palettes made their way onto web applications.
+
+Companies such as [Vercel](https://vercel.com), [GitHub](https://docs.github.com/en/get-started/using-github/github-command-palette), [Sentry](https://sentry.io/), [Linear](https://linear.app), [Railway](https://railway.app/), [Raycast](https://www.raycast.com/) and several other web applications ended up adding a command menu to their websites as well. Even desktop applications such as [Discord](https://discord.com/), [Figma](https://figma.com) or [Slack](https://slack.com) feature a command menu to help users navigate their complex interfaces with ease.
+
+With that, there are a few different approaches for adding a command menu to your website: you can use an open source library (like [kmenu], [cmdk](https://cmdk.paco.me/), or [kbar](https://kbar.vercel.app/)), use a proprietary tool such as [CommandBar](commandbar.com), or build your own. This tutorial focuses on building your own implementation, however you may not need to depending on whether or not you're satisfied with the other options available.
+
+As said above, in this post, we'll be focusing on building our own command menu implementation. Our menu will be accessible, fully animated, and you can customise it to your needs.
+
+## Getting Started
+
+Since we'll be using [Tailwind CSS](https://tailwindcss.com), I suggest you start by installing and configuring that. Skip over this if your project already uses Tailwind.
+
+```bash:terminal
+# Install Tailwind with peer dependencies
+yarn add tailwindcss postcss autoprefixer -D
+# Generate the Tailwind and PostCSS configuration
+yarn tailwindcss init -p
+```
+
+Next, open up your `tailwind.config.js` and add in your code directories under `content`. This varies depending upon whether or not you're using something like [Create React App](https://tailwindcss.comdocs/guides/create-react-app) or [Next.js](https://tailwindcss.comdocs/guides/nextjs).
+
+This is also the time to import in any fonts. For my project, I'm going to use [Albert Sans](https://github.com/usted/Albert-Sans), the [brand new font on Google Fonts](https://twitter.com/googlefonts/status/1552983139219378176).
+
+As a side note: I personally believe that [Tailwind is an anti-pattern](https://javascript.plainenglish.io/tailwind-is-an-anti-pattern-ed3f64f565f0), but I've only used it for the purposes of building this command menu quicker. If your website doesn't already include Tailwind, I heavily advocate that you use a regular CSS approach as opposed to this.
+
+Make sure you also install [Framer Motion](https://framer.com/motion), a production-ready motion library for React. It'll help us in adding awesome motion animations to our command menu.
+
+### Adding Commands
+
+First, we'll create a `commands.tsx` file at `components/Menu`, which will store all of our commands. I'm using [react-icons](https://react-icons.github.io/react-icons/), which essentially just bundles together all popular icon packs for easy use.
+
+Anyways, let's begin by creating a `Command` type before we create our array of objects:
+
+```ts:components/Menu/commands.tsx
+import { ReactElement } from 'react'
+
+export type Command = {
+  icon: ReactElement
+  text: string
+  perform: () => void
+}
+```
+
+It's super simple: just an icon, some text, and a perform event which happens on click.
+
+Next, we'll create our command. Create an array of objects of type `Command`, and add in your commands:
+
+```tsx:components/Menu/commands.tsx
+// ...
+import {
+  SiFramer,
+  SiTailwindcss,
+  SiApple,
+  SiVercel,
+  SiTwitter,
+  SiTesla,
+  SiArchlinux,
+  SiDeno,
+  SiFlutter,
+  SiGithub,
+  SiNike,
+  SiDiscord,
+} from 'react-icons/si'
+
+export const commands: Command[] = [
+  {
+    icon: <SiFramer />,
+    text: 'Framer Motion',
+    perform: () => window.open('https://framer.com/motion', '_blank'),
+  },
+  {
+    icon: <SiTailwind CSS />,
+    text: 'Tailwind CSS',
+    perform: () => window.open('tailwindcss.com', '_blank'),
+  },
+  {
+    icon: <SiApple />,
+    text: 'Apple',
+    perform: () => window.open('https://apple.com', '_blank'),
+  },
+  {
+    icon: <SiArchlinux />,
+    text: 'Arch Linux',
+    perform: () => window.open('https://apple.com', '_blank'),
+  },
+  {
+    icon: <SiVercel />,
+    text: 'Vercel',
+    perform: () => window.open('https://vercel.com', '_blank'),
+  },
+  {
+    icon: <SiTesla />,
+    text: 'Tesla',
+    perform: () => window.open('https://tesla.com', '_blank'),
+  },
+  {
+    icon: <SiDeno />,
+    text: 'Deno',
+    perform: () => window.open('https://deno.land', '_blank'),
+  },
+  {
+    icon: <SiDiscord />,
+    text: 'Discord',
+    perform: () => window.open('https://discord.com', '_blank'),
+  },
+  {
+    icon: <SiFlutter />,
+    text: 'Flutter',
+    perform: () => window.open('https://flutter.dev/', '_blank'),
+  },
+  {
+    icon: <SiGithub />,
+    text: 'GitHub',
+    perform: () => window.open('https://github.com/', '_blank'),
+  },
+  {
+    icon: <SiNike />,
+    text: 'Nike',
+    perform: () => window.open('https://nike.com/', '_blank'),
+  },
+  {
+    icon: <SiTwitter />,
+    text: 'Twitter',
+    perform: () => window.open('https://twitter.com', '_blank'),
+  },
+]
+```
+
+### Building Our Menu
+
+Now that we finished adding commands, let's get started building our menu. Start by creating the skeleton, which we'll gradually add features to.
+
+```tsx:components/Menu/Menu.tsx
+const CommandMenu: FC = () => {
+  return (
+    <motion.div
+      className='flex items-center justify-center overflow-hidden fixed w-screen h-screen select-none bg-[#e7e7e7e5]'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        className='w-[640px] will-change-auto relative bg-white rounded-lg shadow-2xl'
+        role='dialog'
+        aria-modal='true'
+      >
+        <div className='flex items-center h-16 text-xl pointer-events-none'>
+          <FiSearch className='ml-4' />
+          <input
+            placeholder='Search for anything...'
+            type='text'
+            autoCapitalize='false'
+            autoComplete='false'
+            spellCheck='false'
+            autoFocus
+            className='ml-4 outline-none w-full pointer-events-none'
+          />
+        </div>
+        <motion.ul
+          className='flex overflow-y-auto overflow-x-hidden flex-col w-full transition-all will-change-auto max-h-[320px]'
+          role='listbox'
+        >
+          {commands.map((command, index) => (
+            // ...our command component, which we'll create later
+          ))}
+        </motion.ul>
+      </motion.div>
+    </motion.div>
+  )
+}
+```
+
+### Creating The Command Component
+
+Awesome, now that we have our skeleton, let's create our command component. This will be the thing that we map onto our command menu.
+
+```tsx:components/Menu/Menu.tsx
+const Command: FC<{
+  command: Command
+}> = ({ command }) => {
+  return (
+    <li>
+      <a
+        href='#'
+        className='flex relative text-lg items-center h-16 cursor-pointer'
+        onClick={command.perform}
+      >
+        <div className='flex items-center relative w-full h-full ml-5'>
+          {command.icon}
+          <p className='max-w-[90%] w-fit m-0 overflow-hidden text-ellipsis text-lg text-black ml-2'>
+            {command.text}
+          </p>
+        </div>
+      </a>
+      <div aria-hidden='true' ref={bottomRef} />
+    </li>
+  )
+}
+```
+
+Awesome. Now, let's head back onto our main component make sure map the command component.
+
+```tsx:components/Menu/Menu.tsx
+{
+  commands.map((command, index) => <Command key={index} command={command} />)
+}
+```
+
+Cool. We should now see all of our commands on our screen. They may not look very pretty, but at least they work.
+
+### Implementing Search
+
+So, as you may have seen, this command menu has a search bar which you can use to search the commands.
+
+For this, we'll simply use two hook which contains an array of objects called `results` and another hook for the current query:
+
+```tsx:components/Menu/Menu.tsx
+import type { Command } from './commands.tsx'
+// ...
+const [query, setQuery] = useState('')
+const [results, setResults] = useState<Command[] | null>(null)
+```
+
+Next, we'll create a filter function to filter our commands based upon a string.
+
+```ts:components/Menu/Menu.tsx
+const filter = (query: string): Command[] =>
+  commands.filter((command) =>
+    command.text.toLowerCase().includes(query.toLowerCase())
+  )
+```
+
+Next, we'll use a `useEffect` hook to update the results every time the user types something onto the search bar.
+
+```tsx:components/Menu/Menu.tsx
+useEffect(
+  () => (query ? setResults(filter(query)) : setResults(null)),
+  [query, setQuery]
+)
+```
+
+Awesome. Now, let's go inside our `input` component and make sure we update our `setQuery` hook on change.
+
+```tsx:components/Menu/Menu.tsx
+<input
+  placeholder='Search for anything...'
+  type='text'
+  autoCapitalize='false'
+  autoComplete='false'
+  spellCheck='false'
+  autoFocus
+  className='ml-4 outline-none w-full pointer-events-none'
+  onChange={(event) => setQuery(event.currentTarget.value)}
+/>
+```
+
+Next, we need to make sure that we map our results instead of the original commands. Head back into your map function and substitute `commands` for `results`.
+
+```tsx:components/Menu/Menu.tsx
+{
+  results?.map((command, index) => <Command key={index} command={command} />)
+}
+```
+
+Awesome. Type something into your search bar, it should work.
+
+### Handling Selection States
+
+Onto the next step: handling which command is currently selected. As you may have seen on the demo, each command could be selected with the keyboard, or if you hovered your mouse over it.
+
+In [kmenu], I used a [Reducer](https://reactjs.org/docs/hooks-reference.html#usereducer) for this, which is what I suggest you do if you're planning on expanding the features of this menu later on.
+
+However, for this, we'll just use a simple `useState` hook:
+
+```tsx:components/Menu/Menu.tsx
+const [selected, setSelected] = useState(0)
+```
+
+Firstly, let's go inside our `useEffect` for updating our results and make sure we reset the state inside of there every time we search.
+
+```tsx:components/Menu/Menu.tsx
+useEffect(() => {
+  setSelected(0)
+  return query ? setResults(filter(query)) : setResults(null)
+}, [query, setQuery])
+```
+
+Awesome. Let's create a `navigation` function which we'll wrap around a `useCallback`, which will contain logic for changing the selection with our keyboard.
+
+This checks for things like whether or not we're at the start or end of our command menu, and also works with using the tab keys.
+
+```tsx:components/Menu/Menu.tsx
+const navigation = useCallback(
+  (event: KeyboardEvent) => {
+    if (results !== null) {
+      const length = results.length - 1
+
+      if (event.key === 'ArrowUp' || (event.key === 'Tab' && event.shiftKey)) {
+        event.preventDefault()
+        setSelected(() => (selected === 0 ? 0 : selected - 1))
+      } else if (event.key === 'ArrowDown' || event.key === 'Tab') {
+        event.preventDefault()
+        setSelected(selected === length ? length : selected + 1)
+      }
+    }
+  },
+  [results, selected]
+)
+```
+
+Make sure you create a new `useEffect` hook for adding and removing event listeners.
+
+```tsx:components/Menu/Menu.tsx
+useEffect(() => {
+  window.addEventListener('keydown', navigation)
+  return () => window.removeEventListener('keydown', navigation)
+}, [navigation])
+```
+
+Cool. Let's now go into our `Command` component and add in props to handle selection.
+
+```tsx:components/Menu/Menu.tsx
+const Command: FC<{
+  command: Command
+  onMouseMove: () => void
+  selected: boolean
+}> = ({ command, onMouseMove, selected }) => {
+```
+
+...and since we've done that, we need to change our map accordingly.
+
+```tsx:components/Menu/Menu.tsx
+{
+  results?.map((command, index) => (
+    <Command
+      key={index}
+      onMouseMove={() => setSelected(index)}
+      selected={selected === index}
+      command={command}
+    />
+  ))
+}
+```
+
+Next, we'll create a `perform` function which would be inside a `useCallback` hook, essentially checking whether or not the user has pressed the enter key and if the command is currently selected. If it is, then just run the perform function.
+
+```tsx:components/Menu/Menu.tsx
+const perform = useCallback(
+  (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && selected) return command.perform()
+  },
+  [command, selected]
+)
+
+useEffect(() => {
+  window.addEventListener('keydown', perform)
+  return () => window.removeEventListener('keydown', perform)
+})
+```
+
+Let's also make sure we select a command when we hover over it. For this, we'll pass in our `onMouseMove` prop onto our element:
+
+```tsx:components/Menu/Menu.tsx
+<a
+  href='#'
+  className='flex relative text-lg items-center h-16 cursor-pointer'
+  onMouseMove={onMouseMove}
+  onClick={command.perform}
+>
+```
+
+We should now be able to navigate through our command menu with our arrow keys and enter, but we have no indication of which component we're currently on. To do so, let's add a bar which smoothly animates over onto our component when we select it.
+
+```tsx:components/Menu/Menu.tsx
+{
+  selected && (
+    <motion.div
+      layoutId='box'
+      className='bg-[#00000010] absolute w-full h-16'
+      initial={false}
+      aria-hidden='true'
+      transition={{
+        type: 'spring',
+        stiffness: 1000,
+        damping: 70,
+      }}
+    />
+  )
+}
+```
+
+We're making some awesome progress, and our command menu should now be navigable with our arrow keys or hovering over options.
+
+### Toggling The Menu
+
+Let's move onto another important toggling our command menu. We'll also be using a hook for this:
+
+```tsx:components/Menu/Menu.tsx
+const [open, setOpen] = useState(false)
+```
+
+Awesome. Let's create a function called `toggle`, in which we handle the state of the bar for both computers and mobile phones.
+
+```tsx:components/Menu/Menu.tsx
+const toggle = (event: KeyboardEvent) => {
+  if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+    event.preventDefault()
+    setOpen((open) => !open)
+    setQuery('')
+    setResults(null)
+  }
+
+  if (event.key === 'Escape') {
+    setOpen(false)
+    setQuery('')
+    setResults(null)
+  }
+}
+
+const mobileToggle = (event: TouchEvent) => {
+  if (event.touches.length >= 2) {
+    event.preventDefault()
+    setOpen((open) => !open)
+  }
+}
+```
+
+Here, it checks if we've pressed cmd+k on our keyboard (if we're on PC) to toggle our menu. If instead we've pressed `Escape`, it closes our menu. For mobile phones, it just checks if the user has double tapped on their screen to close the menu. We will also work on toggling the menu if the user clicks outside later.
+
+Anyways, add more event listeners for these commands:
+
+```tsx:components/Menu/Menu.tsx
+useEffect(() => {
+  window.addEventListener('keydown', toggle)
+  window.addEventListener('touchstart', mobileToggle)
+  return () => {
+    window.removeEventListener('keydown', toggle)
+    window.removeEventListener('touchstart', mobileToggle)
+  }
+}, [])
+```
+
+Let's also go inside our navigation command and check if our bar is actually open so we don't disable tab functionality.
+
+Just add a simple check at the top of the if-statement, and also add it to the dependency array:
+
+```tsx:components/Menu/Menu.tsx
+const navigation = useCallback(
+  (event: KeyboardEvent) => {
+    if (results !== null && open) {
+      const length = results.length - 1
+
+      if (event.key === 'ArrowUp' || (event.key === 'Tab' && event.shiftKey)) {
+        event.preventDefault()
+        setSelected(() => (selected === 0 ? 0 : selected - 1))
+      } else if (event.key === 'ArrowDown' || event.key === 'Tab') {
+        event.preventDefault()
+        setSelected(selected === length ? length : selected + 1)
+      }
+    }
+  },
+  [results, selected, open]
+)
+```
+
+After we've done that, we also need to make that our bar actually closes after we run a command. For this, we need to pass it in as a prop on the component:
+
+```tsx:components/Menu/Menu.tsx
+const Command: FC<{
+  command: Command
+  onMouseMove: () => void
+  selected: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+}> = ({ command, onMouseMove, selected, setOpen }) => {
+```
+
+...and after we've done that, let's just update our map function:
+
+```tsx:components/Menu/Menu.tsx
+{
+  results?.map((command, index) => (
+    <Command
+      key={index}
+      onMouseMove={() => setSelected(index)}
+      selected={selected === index}
+      command={command}
+      setOpen={setOpen}
+    />
+  ))
+}
+```
+
+Now, inside of our `perform` function, just close the menu and add the hook to the dependency array.
+
+```tsx:components/Menu/Menu.tsx
+const perform = useCallback(
+  (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && selected) {
+      setOpen(false)
+      return command.perform()
+    }
+  },
+  [command, selected, setOpen]
+)
+```
+
+Let's finish this off by actually creating a toggle state for the bar and toggling its appearance, we'll be using [AnimatePresence](https://www.framer.com/docs/animate-presence/) to animate components as they're removed from the React tree.
+
+Let's move our entire component inside of this:
+
+```tsx:components/Menu/Menu.tsx
+import { AnimatePresence } from 'framer-motion'
+// ...
+return (
+  <AnimatePresence>
+    {open && (
+      <motion.div
+        className='flex items-center justify-center overflow-hidden fixed w-screen h-screen select-none bg-[#e7e7e7e5]'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.div
+          className='w-[640px] will-change-auto relative bg-white rounded-lg shadow-2xl'
+          role='dialog'
+          aria-modal='true'
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40 }}
+        >
+          <div className='flex items-center h-16 text-xl pointer-events-none'>
+            <FiSearch className='ml-4' />
+            <input
+              placeholder='Search for anything...'
+              type='text'
+              autoCapitalize='false'
+              autoComplete='false'
+              spellCheck='false'
+              autoFocus
+              className='ml-4 outline-none w-full pointer-events-none'
+              onChange={(event) => setQuery(event.currentTarget.value)}
+            />
+          </div>
+          <motion.ul
+            className='flex overflow-y-auto overflow-x-hidden flex-col w-full transition-all will-change-auto max-h-[320px]'
+            role='listbox'
+          >
+            {results?.map((command, index) => (
+              <Command
+                key={index}
+                onMouseMove={() => setSelected(index)}
+                selected={selected === index}
+                command={command}
+                setOpen={setOpen}
+              />
+            ))}
+          </motion.ul>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+)
+```
+
+### Dynamically Setting Menu Height
+
+If you saw the bar at the beginning, you have noticed that it expanded and shrunk based upon the amount of results. To do this, we can simply toggle the style prop of our listbox element containing our commands.
+
+Since each command is `64px` in height (you can check this through inspect element), we need to multiply our result length by 64 and set our `max-height` to a multiple of 64, depending on how many components we want on there at max. We also need to toggle overflow depending on this same parameter.
+
+```tsx:components/Menu/Menu.tsx
+<motion.ul
+  className='flex overflow-y-auto overflow-x-hidden flex-col w-full transition-all will-change-auto max-h-[320px]'
+  role='listbox'
+  style={{
+    height: results !== null ? results!.length * 64 : 0,
+    overflowY:
+      results !== null && results.length >= 5 ? 'scroll' : 'hidden',
+  }}
+>
+```
+
+Awesome. Our menu should be resizing smoothly too, as we have a transition property on there.
+
+### Scrolling Our Menu
+
+We're almost done, but we still have something crucial left: scrolling our menu if we navigate it with our keyboard.
+
+Thankfully, we have an awesome [Element.scrollTo() function](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) for this purpose. We'll also be using the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to observe changes in the intersection of our listbox and command.
+
+For this, we'll begin by creating a custom React hook called `useInView`, simply taking in a ref and telling us if it's visible within the parent.
+
+```tsx:hooks/useInView.ts
+import { RefObject, useEffect, useState } from 'react'
+
+const useInView = (ref: RefObject<HTMLDivElement>) => {
+  const [intersecting, setIntersecting] = useState(false)
+  const observer = new IntersectionObserver(([entry]) =>
+    setIntersecting(entry.isIntersecting)
+  )
+
+  useEffect(() => {
+    observer.observe(ref.current!)
+    return () => observer.disconnect()
+  }, [ref])
+
+  return intersecting
+}
+
+export default useInView
+```
+
+Great. We now need _two_ refs and _two_ hooks to detect if it's in view at the top or the bottom, and scrolling based upon that. This might be a bit of a hacky/duct-tape solution, but it works.
+
+If you're unsatisfied with this approach, it may be worth checking out the [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer) package.
+
+```tsx:hooks/useInView.ts
+const topRef = useRef<HTMLDivElement>(null)
+const bottomRef = useRef<HTMLDivElement>(null)
+
+const inViewTop = useInView(topRef)
+const inViewBottom = useInView(bottomRef)
+```
+
+Let's create two divs, and since they're non-interactive, we'll pass in `aria-hidden` to hide it from the accessibility API.
+
+```tsx:components/Menu/Menu.tsx
+const Command: FC<{
+  command: Command
+  onMouseMove: () => void
+  selected: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+}> = ({ command, onMouseMove, selected, setOpen }) => {
+  const topRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+  // ...
+  return (
+    <li>
+      <div aria-hidden='true' ref={topRef} />
+      <a
+        href='#'
+        className='flex relative text-lg items-center h-16 cursor-pointer'
+        onMouseMove={onMouseMove}
+        onClick={command.perform}
+      >
+        {selected && (
+          <motion.div
+            layoutId='box'
+            className='bg-[#00000010] absolute w-full h-16'
+            initial={false}
+            aria-hidden='true'
+            transition={{
+              type: 'spring',
+              stiffness: 1000,
+              damping: 70,
+            }}
+          />
+        )}
+        <div className='flex items-center relative w-full h-full ml-5'>
+          {command.icon}
+          <p className='max-w-[90%] w-fit m-0 overflow-hidden text-ellipsis text-lg text-black ml-2'>
+            {command.text}
+          </p>
+        </div>
+      </a>
+      <div aria-hidden='true' ref={bottomRef} />
+    </li>
+  )
+}
+```
+
+Great. Now that we have that, let's create a `useEffect` hook which takes care of scrolling our menu. We'll just check if the component is selected, and if it's viewable or not. If it isn't, then we'll just simply scroll to the element.
+
+```tsx:components/Menu/Menu.tsx
+useEffect(() => {
+  if (selected && (!inViewTop || !inViewBottom))
+    bottomRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    })
+}, [inViewTop, inViewBottom, selected])
+```
+
+Awesome, and that's all. Our listbox should now be automatically scrollable if we navigate it with our arrow keys.
+
+### Final Touches
+
+We're almost done with our menu, and the functionality is nearly complete! Before we finish, we have to check if the user has clicked outside our menu, and close it accordingly.
+
+For this, we'll create a custom hook which takes in a `ref` and a `handler`. We'll use event listeners for mobile and mouse to detect if the click or touch was inside our ref and close our menu accordingly.
+
+```ts:hooks/useClickOutside.ts
+import { RefObject, useEffect } from 'react'
+
+const useClickOutside = (
+  ref: RefObject<HTMLDivElement>,
+  handler: () => void
+) => {
+  useEffect(() => {
+    const listener = (event: MouseEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) return
+      handler()
+    }
+
+    const mobileListener = (event: TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) return
+      handler()
+    }
+
+    document.addEventListener('mousedown', listener)
+    document.addEventListener('touchstart', mobileListener)
+    return () => {
+      document.removeEventListener('mousedown', listener)
+      document.removeEventListener('mousedown', listener)
+    }
+  }, [handler, ref])
+}
+
+export default useClickOutside
+```
+
+Inside our main component, let's just import it in and create a new ref for our menu.
+
+```tsx:components/Menu/Menu.tsx
+import useClickOutside from '@hooks/useClickOutside'
+// ...
+const menuRef = useRef<HTMLDivElement>(null)
+useClickOutside(menuRef, () => setOpen(false))
+```
+
+Additionally, make sure to actually assign it to your dialog component:
+
+```tsx:components/Menu/Menu.tsx
+<motion.div
+  className='w-[640px] will-change-auto relative bg-white rounded-lg shadow-2xl'
+  role='dialog'
+  aria-modal='true'
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: 40 }}
+  ref={menuRef}
+>
+```
+
+We just built our own command menu. As a side note, you can also change the placeholder color inside our input to match your needs:
+
+```css:styles/global.css
+input::placeholder {
+  @apply text-[#adb5bd];
+}
+```
+
+## Conclusion
+
+Anyways, with that, we're finished. If you have any errors setting up your command menu, feel free to comment down below or check out the [CodeSandbox] for reference.
+
+I'm curious to see what you make with this command menu. I think a good step forward to scaling this menu would be adding things like keywords, categories, or nested commands. Feel free to share some cool things you've made with it.
+
+Do remember to give [kmenu] a glance if you're interested in it, it's packed with awesome features and functionality.
+
+That's all for today, until next time 👋
+
+[kmenu]: https://github.com/harshhhdev/kmenu
+[codesandbox]: https://gvlfsb.sse.codesandbox.io/

@@ -1,0 +1,81 @@
+---
+title: 'Migrating From Heroku PostgreSQL to CockroachDB'
+published: '2022-09-02'
+description: 'A guide on migrating from Heroku to CockroachDB'
+---
+
+After almost a decade, [Heroku announced that they will eliminate all of their free tier services](https://techcrunch.com/2022/08/25/heroku-announces-plans-to-eliminate-free-plans-blaming-fraud-and-abuse/). They'll also delete inactive accounts and associated storage with those accounts that have been inactive for over a year. In their [blog post](https://blog.heroku.com/next-chapter), they blamed 'abuse' for their demise of free services.
+
+Quoted from the [TechCrunch article](https://techcrunch.com/2022/08/25/heroku-announces-plans-to-eliminate-free-plans-blaming-fraud-and-abuse/),
+
+> In a blog post, Bob Wise, Heroku general manager and Salesforce EVP, blamed 'abuse' on the demise of the free services, which span the free plans for Heroku Dynos and Heroku Postgres as well as the free plan for Heroku Data for Redis. 'Our product, engineering, and security teams are spending an extraordinary amount of effort to manage fraud and abuse of the Heroku free product plans,' Wise said. 'We will continue to provide low-cost solutions for compute and data resources.'
+
+> Wise went on to note that Heroku will be announcing a student program at Salesforce’s upcoming Dreamforce conference in September, but the details remain a mystery at this point.
+
+This is big news: [Heroku](https://heroku.com) used to be one of the easiest ways for you to get a free server, [PostgreSQL](https://postgresql.org/) database, and a [Redis cache](https://redis.com/), all in a single location and all for free.
+
+However, starting from 28 November this year, all of those free services are going away.
+
+What does this mean? Well, with my cursory knowledge of startups, free tiers mostly only exist to encourage growth, and if the platform isn't growing, then there simply isn't much point in having a free tier as companies would just lose money from them.
+
+With that being said, this forces us developers to migrate from Heroku or [pay a _minimum_ of $25 a month](https://www.heroku.com/pricing). Even worse, if you want to run PostgreSQL, you'll have to pay $50 every single month.
+
+## Migrating Away From Heroku
+
+I don't know about you, but I don't have that much money to throw around. However, if you use Heroku, don't worry. Plenty of platforms still have free tiers. For instance, you can use [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/) for free hosting and awesome edge functions, [Upstash](https://upstash.com/) for serverless Redis, and [CockroachDB](https://www.cockroachlabs.com/) for a serverless and distributed PostgreSQL database.
+
+CockroachDB is compatible with the PostgreSQL ecosystem, meaning that migrating won't be hard at all. Although, it does have features for importing MySQL dump files, if you're looking to switch over from other platforms. Behind the scenes, your data is replicated at least 3 times — and you won't face downtime for things like zone outages, database upgrades, and security patches. Even schema changes are online. Also, CockroachDB is a distributed database, where you can store data closest to your users. Combine this with [Vercel](https://vercel.com/edge)/[Deno](https://deno.com)/[Netlify](https://netlify.app/products/edge/) edge functions, and you get really fast and reliable database access at the edge.
+
+It's not just amazing, it's cheap too. It has a _very_ generous free tier where you get over 5GB storage and over 250M request units per month — an absolute steal. If you need to scale further, it's only $1 for every additional GB of storage you use, and only $1 for 10M request units. You can even set 'spend limits' which is used to regulate your use of request units and storage.
+
+### Migrating Your Database From Heroku PostgreSQL
+
+Let's move onto actually migrating our database away from PostgreSQL and onto CockroachDB.
+
+There's a utility in PostgreSQL called [pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html), which is used for creating a backup of the database. This only backs up a single database, and you can use [pg_dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html) to back up global objects that are common to all databases in a cluster (such as roles and tablespaces).
+
+So, let's go into our terminal and run a command. I'm using [Arch Linux](https://archlinux.org/), which has an awesome [PostgreSQL package](https://wiki.archlinux.org/title/PostgreSQL), however if you're on Windows you may run into some errors trying to run this command. In case you have a similar issue, I suggest you refer to this [Stack Overflow question](https://stackoverflow.com/questions/45375689/pg-dump-windows-command-prompt-invalid-command).
+
+Anyways, if you've installed and configured PostgreSQL already, you can just run:
+
+```bash:terminal
+pg_dump --host=host.ec2.compute-1.amazonaws.com --port=5432 --username=your_username --password --dbname=database_name > db.sql
+```
+
+It'll prompt you for your password, just enter that in, and you should have a `db.sql` file with generated tables — awesome.
+
+### Import Onto CockroachDB
+
+Now that we have a backup, let's import it onto CockroachDB.
+
+If you haven't already, you can sign up for a free CockroachDB serverless account at [cockroachlabs.cloud](https://cockroachlabs.cloud/). No credit card required.
+
+After that, you can just create a new cluster and configure it to your needs. I'd suggest keeping AWS as the cloud provider, and picking the region geographically closest to you or the majority of your users. I'll also change my cluster name to something I like.
+
+A new cluster will be created within ~5 seconds, and then you'll have to create a new SQL user with a password. Afterwards, it'll give you instructions on how to connect to it as well. You'll have to begin by downloading the CA certificate, and after that your database should be good to go.
+
+As for importing our data onto CockroachDB, we have two options: we can either use the `IMPORT PGDUMP` statement ([documentation](https://www.cockroachlabs.com/docs/stable/migrate-from-postgres.html)), or we could use the [IMPORT statement](https://www.cockroachlabs.com/docs/stable/import.html) which allows us to migrate local PostgreSQL and MySQL dump files onto CockroachDB.
+
+We'll be going with the latter, as the `IMPORT PGDUMP` statement requires you to add a billing method, and it's primarily for databases hosted on the cloud.
+
+Copy paste your connection string from the modal, and run the following function:
+
+```bash:terminal
+cockroach import db pgdump db.sql --url "postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]" --ignore-unsupported-statements
+```
+
+Make sure to pass in the `ignore-unsupported-statements` flag at the end as it ignores SQL statements in the dump file that are unsupported by CockroachDB.
+
+You can also pass in an extra parameter, `log_ignored_statements`, for logging unsupported statements when using `ignore_unsupported_statements` to a specified destination. You may also need to remove certain statements in your dump file if you're having issues.
+
+Anyways, with that, you should get the message '`successfully imported pgdump file db.sql`'.
+
+Awesome, we've done it — you can simply substitute in your Heroku Database URL with the new one from CockroachDB, and everything should work as expected.
+
+## Conclusion
+
+...and that's it. We migrated our entire database from Heroku's PostgreSQL onto CockroachDB serverless. We've not only migrated our database, but upgraded it as well :P — there's simply no comparison between the two.
+
+Anyways, that wraps up today's article. Several people are devastated hearing the news of Heroku ending their free plan, and as a former Heroku user I was disappointed too. I wanted to put out this article helping you all navigate through migrating your PostgreSQL databases from Heroku onto CockroachDB, as the process might get complicated at times. I hope this saved you some time and effort.
+
+That's all for today, until next time 👋

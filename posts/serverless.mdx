@@ -1,0 +1,831 @@
+---
+title: 'Serverless With Next.js and CockroachDB'
+published: '2022-03-13'
+description: 'Build a serverless application with a modern stack'
+---
+
+Hey there, hope you're having a wonderful day or night. Today, we'll be building a simple [Next.js] serverless application deployed on [Vercel], which uses [CockroachDB] for the backend serverless database.
+
+Curious what we'll be building? Check it out live demo at [guestbook.hxrsh.in](https://guestbook.hxrsh.in), and the code at [harshhhdev/guestbook](https://github.com/harshhhdev/guestbook).
+
+Now, before we start, I'd like to answer the main question: out of all databases in the world, why are we using one named after a pest?
+
+Well, let me break it down for you: here's a list of things which separate CockroachDB from other serverless databases and relational database providers:
+
+1.  Compatible with PostgreSQL ecosystem
+    - [CockroachDB] uses Postgres-compatible SQL, meaning that for many developers like me, we can use tools directly from the PostgreSQL ecosystem, and migrating isn't a pain.
+2.  You're not wasting a penny
+    - [CockroachDB's pricing](https://www.cockroachlabs.com/pricing/) is simple, and to the point. You get 5GB storage for free, which is plenty, along with $1 for every extra gigabyte of storage you use. Along with this, you get 250M request units monthly, and pay just $1 for every 10M extra request units. If this isn't a steal, I don't know what is.
+3.  Avoid downtime
+    - Behind the scenes, your data is replicated _at least_ 3 times — meaning that you won't face downtime for things like availability zone outages, database upgrades, and security patches. Even schema changes are online.
+
+For the name, well... I really like it. It's memorable — we forget names such as [Hasura](https://hasura.io/) and [Aurora](https://aws.amazon.com/rds/aurora/) rather quickly, but this one will for sure stick to the back of your mind for being unique.
+
+...and as a side-note: no, this isn't sponsored by CockroachDB. Although I will not turn down any sponsorships.
+
+## Introduction
+
+Now that you know why I love CockroachDB, let's get into building our actual app.
+
+A simple, clean and dark web app deployed to [Vercel]. It's inspired by [leerob's guestbook](https://leerob.io/guestbook), as I believe that was a perfect example of an app we could use to demonstrate this.
+
+## Getting Started
+
+Let's kickstart our [Next.js] and [TypeScript](https://typescriptlang.org) project.
+
+```bash:terminal
+npx create-next-app@latest --ts
+# or
+yarn create next-app --typescript
+```
+
+Let's start the server now.
+
+```bash:terminal
+cd guestbook
+yarn dev
+```
+
+Your server should be running on [localhost](http://localhost:3000)
+
+### Configuring NextAuth
+
+I want to first start off by configuring [NextAuth], which helps us add authentication to our serverless application. We'll be setting up a "Login with GitHub" feature on our website, for which we'll need to create a new [GitHub OAuth Application](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
+
+Let's download some important packages first. We need to install the base package along with the [Prisma] adapter, which helps us keep track of accounts, users, sessions, etc. in our database.
+
+```bash:terminal
+yarn add next-auth @next-auth/prisma-adapter
+```
+
+To do this, first go to [GitHub], navigate over to settings > developer settings > OAuth Apps and click "Create New OAuth App". Enter in the required information, and for callback URL input in `http://localhost:3000/api/auth/callback/github`.
+
+Awesome. Now let's go back to our project and create a new file at `pages/api/auth/[...nextauth].ts` which will contain our configuration.
+
+```ts:pages/api/[...nextauth].ts
+import NextAuth from 'next-auth'
+import GitHub from 'next-auth/providers/github'
+
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import prisma from '@lib/prisma'
+
+export default NextAuth({
+  adapter: PrismaAdapter(prisma),
+  providers: [
+    GitHub({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+  ],
+  secret: process.env.SECRET,
+  session: { strategy: 'jwt' },
+  jwt: { secret: process.env.SECRET },
+  pages: { signIn: '/' },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.id = token.sub
+
+      return session
+    },
+  },
+  debug: false,
+})
+```
+
+I've setup a custom callback for session, as we'll be needing that later on.
+
+As you may have noticed, we're facing some errors regarding our environment variables we use. Not to worry, we can simply define them in an external file. Create a new file at `typings/env.d.ts` and populate it with the values in your `.env`.
+
+```ts:typings/env.d.ts
+namespace NodeJS {
+  interface ProcessEnv extends NodeJS.ProcessEnv {
+    NEXTAUTH_URL: string
+    GITHUB_ID: string
+    GITHUB_SECRET: string
+    DATABASE_URL: string
+    SECRET: string
+  }
+}
+```
+
+Speaking of environment variables, don't forget to create a `.env` file and populate it with your variables.
+
+For `SECRET`, you can run `openssl -rand hex 32` to generate a random string, or find a generator to do so online. `NEXTAUTH_URL` can be set to `http://localhost:3000` for our development environment. Also plug in the rest of the `GITHUB` fields with information obtained from the GitHub OAuth Application you created earlier.
+
+### Getting Started With Prisma and CockroachDB
+
+Let's now begin to write our [Prisma] data schema, and connect it with [CockroachDB].
+
+Start by installing `prisma` and `@prisma/client`
+
+```bash:terminal
+# Installs both as as development dependencies
+yarn add prisma @prisma/client -D
+```
+
+Now, let's create a new file at `prisma/schema.prisma` and open it up.
+
+Inside here, let's configure our datasource and client.
+
+```:prisma/schema.prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["cockroachdb"]
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+```
+
+As a side note, I apologise for the non-syntax highlighted files. Currently, [prism's codeblock highlighter](https://prismjs.com/) doesn't have support for [Prisma], so you'll be looking at large text blocks.
+
+Since [CockroachDB] is just a preview feature as of now, we'll have to put it under "preview features". Check the [Prisma list of supported databases](https://www.prisma.io/docs/reference/database-reference/supported-databases) if you're reading this post after a while, just to double-check if it's still in preview.
+
+Since we're using [NextAuth], we'll be adding tables in our database to properly support it. According to the documentation, we need to add in the following tables:
+
+```:prisma/schema.prisma
+model Account {
+    id                       String   @id @default(cuid())
+    createdAt                DateTime @default(now())
+    updatedAt                DateTime @updatedAt
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String?
+    refresh_token_expires_in Int?
+    access_token             String?
+    expires_at               Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String?
+    session_state            String?
+    oauth_token_secret       String?
+    oauth_token              String?
+    user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+    id            String    @id @default(cuid())
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
+    isAdmin       Boolean   @default(false)
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    accounts      Account[]
+    sessions      Session[]
+    posts         Post[]
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+    @@unique([identifier, token])
+}
+```
+
+Cool. Now we need to setup our `Post` model. We'll give it a many-to-one relationship with user, as a single user can create an infinite amount of posts.
+
+```:prisma/schema.prisma
+model Post {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    content   String   @db.VarChar(100)
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+```
+
+Previously, [Prisma] didn't support the migrate feature for [CockroachDB] however that has changed after [v3.11.0](https://github.com/prisma/prisma/releases) 🥳.
+
+### Connecting Our Database
+
+Now, let's create a [CockroachDB] database. Sign in, and hit "create cluster" on the clusters dashboard. Choose the "serverless" plan, with the region and provider of your choice, and name your cluster.
+
+Inside your cluster, we'll start by creating a SQL user. Hit "add user", name your user and generate the password. Store the password somewhere safe, as you'll need it later on.
+
+At top, hit "connection string" and copy the connection string provided.
+
+Let's go back into our `.env` file and fill in our `DATABASE_URL`.
+
+Inside here, create a field called `DATABASE_URL` and add in the URL you just copied.
+
+Now that we have that done, let's run `yarn prisma generate` to generate the [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client).
+
+Awesome. Now, let's run `yarn prisma migrate dev` to sync [CockroachDB] with our database schema.
+
+Now, we have one final step before we can start using [Prisma] inside of our [Next.js] application.
+
+Create a new file, `lib/prisma.ts`. Inside of this, we'll include a global way of accessing [Prisma] throughout our application.
+
+```ts:lib/prisma.ts
+import { PrismaClient } from '@prisma/client'
+
+declare global {
+  var prisma: PrismaClient | undefined
+}
+
+const prisma = global.prisma || new PrismaClient()
+
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma
+
+export default prisma
+```
+
+This instantiates a single instance PrismaClient and saves it on the global object. Then we keep a check to only instantiate PrismaClient if it's not on the global object otherwise use the same instance again if already present to prevent instantiating extra PrismaClient instances. This is because of the fact that `next dev` clears Node cache on run, so we'll get an error for too many [Prisma] instances running.
+
+For more details, [see this link](https://www.prisma.io/docs/support/help-articles/nextjs-prisma-client-dev-practices)
+
+### Styling
+
+Cool. Now that we have our database setup, it's time to switch gears for a bit and add styling to our application using [Tailwind CSS]. Following the documentation on their website, we need to do the following:
+
+```bash:terminal
+# Install needed development dependencies
+yarn add tailwindcss postcss autoprefixer
+
+# Initialise a Tailwind configuration file
+npx tailwindcss init -p
+```
+
+Awesome. We can now started customising our file. Let's just add in our content paths, along with some other stuff.
+
+```js:tailwind.config.js
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['IBM Plex Sans'],
+      },
+      colors: {
+        gray: {
+          0: '#fff',
+          100: '#fafafa',
+          200: '#eaeaea',
+          300: '#999999',
+          400: '#888888',
+          500: '#666666',
+          600: '#444444',
+          700: '#333333',
+          800: '#222222',
+          900: '#111111',
+        },
+      },
+      maxWidth: {
+        30: '30vw',
+        60: '60vw',
+        95: '95vw',
+      },
+      minWidth: {
+        500: '500px',
+        iphone: '320px',
+      },
+    },
+  },
+  plugins: [],
+}
+```
+
+Cool. We can now move onto styling our application. Delete all content inside your `styles/global.css`, and add in these basic styles.
+
+```css:styles/global.css
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  @apply bg-gray-900 font-sans;
+}
+
+h1 {
+  @apply text-white font-bold text-4xl;
+}
+
+h3 {
+  @apply text-white font-bold text-2xl;
+}
+
+::selection {
+  @apply bg-white;
+  @apply text-gray-900;
+}
+
+button {
+  user-select: none;
+  cursor: pointer;
+  @apply font-sans;
+}
+
+a {
+  @apply text-gray-400 underline-offset-4;
+  text-decoration: none;
+}
+
+a:hover {
+  @apply text-white;
+}
+
+p {
+  @apply text-gray-400 text-base;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600;
+}
+```
+
+Since we're using a custom font, we need to create a new file under `pages` called `_document.tsx`, where we import the font.
+
+```tsx:pages/_document.tsx
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+export default class GuestbookDocument extends Document {
+  render() {
+    return (
+      <Html lang='en'>
+        <Head>
+          <link
+            href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap'
+            rel='stylesheet'
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+### Adding Components
+
+Let's switch gears from styling, and go into our `index.tsx` to edit some things.
+
+We'll remove the basic content, along with removing the imports up top for `next/image` and `next/head`.
+
+```tsx:pages/index.tsx
+import type { NextPage } from 'next'
+import styles from '../styles/Home.module.css'
+
+const Home: NextPage = () => {
+  return (
+    <div className='flex flex-col items-center mt-10'>
+      <div className='max-w-95 lg:max-w-60 xl:max-w-30'></div>
+    </div>
+  )
+}
+
+export default Home
+```
+
+Awesome. Now let's first work on a `Header` component which will help us login with [GitHub] into our application. Create a new file at `components/Header.tsx`.
+
+Inside here, create a component called `Login`. This will be our Login button, and we'll do conditional rendering to render either a "Login" or "Logout" button depending upon the user being authenticated or not.
+
+```tsx:components/Login.tsx
+const Login: FC = () => {
+  const { data: session, status } = useSession()
+
+  if (session)
+    return (
+      <div className='flex items-center'>
+        <Image
+          src={session?.user?.image!}
+          alt='Profile'
+          className='rounded-full'
+          width={48}
+          height={48}
+        />
+        <a href='#' className='text-xl ml-5' onClick={() => signOut()}>
+          Logout
+        </a>
+      </div>
+    )
+  else
+    return (
+      <a href='#' className='text-xl' onClick={() => signIn('github')}>
+        Login With GitHub
+      </a>
+    )
+}
+```
+
+Awesome. Let's create another component, which will be our default export from this file. We'll add some basic text and headings here, explaining to users what this application is about. We'll also bring in our `Login` component here.
+
+```tsx:components/Header.tsx
+const Header: FC = () => {
+  return (
+    <div className='flex flex-col'>
+      <Login />
+      <h1 className='mt-16 mb-5'>Harsh&apos;s Guestbook</h1>
+      <p>
+        Welcome to Harsh&apos;s Guestbook. This a rebuild of{' '}
+        <a
+          href='https://leerob.io/guestbook'
+          target='_blank'
+          rel='noreferrer'
+          className='underline'
+        >
+          @leerob&apos;s guestbook
+        </a>{' '}
+        using{' '}
+        <a href='https://youtube.com' className='underline'>
+          serverless technologies
+        </a>
+        . Leave a comment below, it can be totally random 👇
+      </p>
+    </div>
+  )
+}
+```
+
+### Building API Routes
+
+Superb. Let's now work on setting up our API routes. Create a new file under the directory `pages/api/new.ts` and inside of here let's setup some basic logic for creating a new post.
+
+```ts:pages/api/new.ts
+import { NextApiRequest, NextApiResponse } from 'next'
+import { getSession } from 'next-auth/react'
+import prisma from '@lib/prisma'
+
+const newPost = async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = await getSession({ req })
+  const { content } = req.body
+
+  if (typeof session?.id === 'string') {
+    try {
+      const post = await prisma.post.create({
+        data: {
+          content: content,
+          user: { connect: { id: session.id } },
+        },
+      })
+
+      return res.status(200).json({ post })
+    } catch (err) {
+      console.error(err)
+      return res.status(509).json({ error: err })
+    }
+  }
+}
+
+export default newPost
+```
+
+Awesome. While we're at this, let's create the Form component which calls this API route.
+
+```tsx:components/Form.tsx
+import { FC, FormEvent, useRef, useState } from 'react'
+
+const Form: FC = () => {
+  const createPost = async (e: FormEvent<HTMLFormElement>) => {
+    // ...implement create logic
+  }
+
+  return (
+    <div>
+      <form className='w-full mb-16' onSubmit={(e) => createPost(e)}>
+        <textarea
+          placeholder='Go ahead, say what you like.'
+          maxLength={100}
+          className='w-full mt-8 bg-gray-800 rounded-md border-gray-700 border-2 p-5 resize-y font-sans text-base text-white box-border'
+        />
+        <p className='my-8'>
+          Keep it family friendly, don&apos;t be a doofus. The only information
+          displayed on this site will be the name on your account, and when you
+          create this post.
+        </p>
+        <button
+          className='text-gray-900 bg-white px-8 py-3 text-lg rounded border-2 border-solid border-white hover:bg-gray-900 hover:text-white duration-200'
+          type='submit'
+        >
+          Sign
+        </button>
+      </form>
+    </div>
+  )
+}
+
+export default Form
+```
+
+### Creating Posts
+
+Alright, so we've now setup basic code regarding our structure for this component. Let's dive deeper into the functions and set the up now.
+
+We'll be using 3 hooks, `useSession` from [NextAuth] along with `useSWRConfig` from [Vercel's SWR](https://swr.vercel.app/) to manage different things in our component. Let's create them now.
+
+Before we begin, let's ensure we have [SWR](https://swr.vercel.app/) installed.
+
+Also, to purify the content inside of our input fields, let's use [dompurify](https://www.npmjs.com/package/dompurify).
+
+```bash:terminal
+yarn add swr dompurify
+```
+
+Now that we have those installed, we can work on our method.
+
+```tsx:components/Form.tsx
+const { data: session, status } = useSession()
+const { mutate } = useSWRConfig()
+const content = useRef<HTMLTextAreaElement>(null)
+const [visible, setVisible] = useState(false)
+const [error, setError] = useState(false)
+
+const createPost = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+
+  const headers = new Headers()
+  headers.append('Content-Type', 'application/json')
+
+  const raw = JSON.stringify({
+    content: dompurify.sanitize(content.current?.value!),
+  })
+
+  const requestOptions: RequestInit = {
+    method: 'POST',
+    headers: headers,
+    body: raw,
+  }
+
+  try {
+    await fetch('/api/new', requestOptions)
+
+    setVisible(true)
+    content!.current!.value = ''
+    mutate('/api/posts')
+  } catch (err) {
+    setError(true)
+    console.error(err)
+  }
+}
+```
+
+That's a big method. Let's break it down. It first prevents the form from reloading by doing `e.preventDefault()`. Then, it creates some new headers and adds a `Content-Type` of `application/json` to tell the route that our body is in JSON. Next is the `raw` object which sanitises the value of our input (which we get through `useRef`), before wrapping our fetch method in a `trycatch`. Inside the `trycatch`, we use set our successs hook to true, clear our textarea and mutate which lets us change the cached data for a given route, which in our case is `/api/posts`. In case this fails, we set our error hook to true and log the error.
+
+Whew. That was long. Try to create a post now, it should work. But we're not done yet, lots more to do.
+
+### Seeding The Database
+
+Let's create another file to seed our database.
+
+Confused what that is? Seeding simply refers to populating our database with an initial set of data.
+
+Create a file at `prisma/seed.ts`. Inside here, we'll create an array and map it, creating a new post for each element in the array. Make sure to populate the `id` field with the ID of an existing user to connect the posts to their account.
+
+Then, we'll call the method and handle exceptions.
+
+```ts:prisma/seed.ts
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+
+const main = async () => {
+  const posts = [
+    'I am such a dark mode addict',
+    'I should really try out Remix sometime soon',
+    'I cannot imagine life without Vercel sometimes',
+    'Prisma is love, Prisma is life',
+    'Once I started using TypeScript, JavaScript just feels weird',
+  ].map(
+    async (content) =>
+      await prisma.post.create({
+        data: {
+          content: content,
+          user: { connect: { id: '' } },
+        },
+      })
+  )
+
+  console.log(`🌱 Created ${posts.length} records `)
+}
+
+main()
+  .catch((err) => {
+    console.error(err)
+  })
+  .finally(async () => {
+    await prisma.$disconnect
+  })
+```
+
+#### Setting up TS Node
+
+Awesome. Although if we try to run this method, it'll result in an error. We need to setup `ts-node` for this in our [Next.js] environment.
+
+Let's start by installing `ts-node` as a development dependency.
+
+```bash:terminal
+yarn add ts-node -D
+```
+
+Now, in our `package.json`, let's do:
+
+```json:package.json
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+```
+
+Awesome. We can now run `yarn prisma db seed` to populate our database with initial values for posts.
+
+### Fetching Posts
+
+Let's now go back to our main file, and strap everything together. We need to create a `getServerSideProps` function which which runs on the server side at request time. Here, we'll call the `findMany` method in [Prisma] to find all of our posts, and sort them by when they were created. We'll also include the user relation to be returned from this function, so we have access to it.
+
+```ts:pages/index.tsx
+export const getServerSideProps: GetServerSideProps = async () => {
+  const posts = await prisma.post.findMany({
+    include: { user: true },
+    orderBy: { createdAt: 'desc' },
+  })
+
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+```
+
+#### JSON Serialization Errors
+
+Beware. You might run into a JSON serialising problem. To fix this, simply install the following packages:
+
+```bash:terminal
+yarn add superjson babel-plugin-superjson-next
+```
+
+Now, create a new file `.babelrc` and configure it for [superjson](https://github.com/blitz-js/babel-plugin-superjson-next):
+
+```json:.babelrc
+{
+  "presets": ["next/babel"],
+  "plugins": ["superjson-next"]
+}
+```
+
+Spectacular. Now that we have that going, we'll have to create a new type for this value of posts that we're returning, as we're unable to use the default type generated by [Prisma].
+
+If you're following along in JavaScript, feel free to skip this. But for [TypeScript] users, create a new file at `typings/index.ts`.
+
+Inside here, we can define our `postWithUser` type using `Prisma.validator` and `Prisma.PostGetPayload`.
+
+```ts:typings/index.ts
+import { Prisma } from '@prisma/client'
+
+const postWithUser = Prisma.validator<Prisma.PostArgs>()({
+  include: { user: true },
+})
+export type PostWithUser = Prisma.PostGetPayload<typeof postWithUser>
+```
+
+### Fetching/Viewing Posts
+
+Cool. Now that we have that, let's import it into `pages/index.tsx` and use it inside props.
+
+```tsx:pages/index.tsx
+// ...
+import { PostWithUser } from '@typings/index'
+
+const Home: NextPage<{ posts: PostWithUser[] }> = ({ posts }) => {
+  return (
+    <div className='flex flex-col items-center mt-10'>
+      <div className='max-w-95 lg:max-w-60 xl:max-w-30'>
+        <Header />
+        <Form />
+      </div>
+    </div>
+  )
+}
+```
+
+Good work. Let's now move over to create an API route for posts to fetch them as they're updated. Create a file at `pages/api/posts.ts` and run `findMany` to get all posts from [Prisma] and sort them out. We'll then return a code of 200, and map the posts onto a JSON format.
+
+```ts:pages/api/posts.ts
+import { NextApiRequest, NextApiResponse } from 'next'
+import prisma from '@lib/prisma'
+
+const fetchPosts = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const posts = await prisma.post.findMany({
+      orderBy: { createdAt: 'desc' },
+      include: { user: true },
+    })
+
+    return res.status(200).json(
+      posts.map((post) => ({
+        id: post.id,
+        createdAt: post.createdAt,
+        content: post.content,
+        user: post.user,
+      }))
+    )
+  } catch (err) {
+    console.error(err)
+    return res.status(509).json({ error: err })
+  }
+}
+
+export default fetchPosts
+```
+
+Now that we have that going, let's create a new file to map out the posts at `components/Posts.tsx`. We'll be using the same [SWR](https://swr.vercel.app/) tools we did earlier to fetch data as it's updated.
+
+This time, we need to create a fetcher component which which returns `PostWithUser` as a promise.
+
+```ts:lib/fetcher.ts
+import { PostWithUser } from '@typings/index'
+
+export default async function fetcher(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<PostWithUser[]> {
+  const res = await fetch(input, init)
+  return res.json()
+}
+```
+
+...let's import that into our file and set it up.
+
+```tsx:components/Posts.tsx
+import { FC } from 'react'
+import { format } from 'date-fns'
+import useSWR from 'swr'
+import fetcher from '@lib/fetcher'
+import { PostWithUser } from '@typings/index'
+
+const Posts: FC<{ fallback: PostWithUser[] }> = ({ fallback }) => {
+  const { data: posts } = useSWR('/api/posts', fetcher, { fallback })
+
+  return (
+    <div className='mb-32'>
+      {posts?.map((post, index) => (
+        <div key={index}>
+          <h3>{post.content}</h3>
+          <p>
+            Written by {post.user.name} · Posted on{' '}
+            {format(new Date(post.createdAt), "d MMM yyyy 'at' h:mm bb")}
+          </p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default Posts
+```
+
+This basically takes in an array of posts as props as a fallback, and then waits for a response from the API. This uses a library called [date-fns](https://date-fns.org/) to format the time.
+
+Awesome. Go back to the `index.tsx` file and add in this component, passing the data returned from `getServerSideProps` as props.
+
+## Conclusion
+
+...and we're finished. If you made it down here, good work. I'd love to hear your thoughts in the comments below. We should now have a fully functioning, 100% serverless application powered by [CockroachDB].
+
+This post took me a long time to write and create. If you enjoyed it, please be sure to give it a like and follow me for similar posts.
+
+I will be live with @aydrian on Twitch explaining how to migrate this exact application written in [PostgreSQL](https://www.postgresql.org/) onto [CockroachDB] with zero application downtime, so stay tuned for that.
+
+With that being said, I'll conclude this by saying that serverless computing is amazing, and has a lot of potential. I'm planning to write another post sometime soon on when you should or shouldn't use a serverless database, so stay tuned and follow for more.
+
+Enjoy your day, goodbye 👋
+
+[next.js]: https://nextjs.org
+[vercel]: https://vercel.com
+[cockroachdb]: https://cockroachlabs.com/serverless
+[prisma]: https://prisma.io
+[tailwind css]: https://https://tailwindcss.com
+[nextauth]: https://next-auth.js.org/
+[github]: https://github.com

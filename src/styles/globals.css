@@ -1,93 +1,43 @@
 :root {
   color-scheme: dark;
 
-  --grey0: #e5e5e5;
-  --grey1: #dbdbdb;
-  --grey2: #b3b3b3;
-  --grey3: #acacac;
-  --grey4: #9c9c9c;
-  --grey5: #6d6d6d;
-  --grey6: #2c2c2c;
-  --grey7: #3d3d3d;
-  --grey8: #232323;
-  --grey9: #161616;
+  --gray0: #e5e5e5;
+  --gray1: #dbdbdb;
+  --gray2: #b3b3b3;
+  --gray3: #acacac;
+  --gray4: #9c9c9c;
+  --gray5: #6d6d6d;
+  --gray6: #2c2c2c;
+  --gray7: #3d3d3d;
+  --gray8: #232323;
+  --gray9: #161616;
 
-  --delay0: 50ms;
-  --delay1: 100ms;
-  --delay2: 150ms;
-  --delay3: 200ms;
-  --delay4: 250ms;
-  --delay5: 300ms;
-  --delay6: 350ms;
-  --delay7: 400ms;
-  --delay8: 450ms;
-  --delay9: 500ms;
-  --delay10: 550ms;
-  --delay11: 600ms;
-  --delay12: 650ms;
-  --delay13: 700ms;
-  --delay14: 750ms;
-  --delay15: 800ms;
-  --delay16: 850ms;
-  --delay17: 900ms;
-  --delay18: 950ms;
-  --delay19: 1000ms;
+  --focus-color: var(--gray7);
 
-  --fade: enter 0.6s both;
-
-  --wrapper: 675px;
-  --bar-padding: 40px;
+  --wrapper: 950px;
+  --about-padding: 50px;
 
   --font-fallback: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-
-  --font-display: 'Inter', var(--font-fallback);
-  --font-sans: 'Sohne', var(--font-fallback);
-  --font-mono: 'Fira', monospace;
-}
-
-@font-face {
-  font-family: Inter;
-  font-display: block;
-  src: url(/fonts/inter.woff2) format('woff2');
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: Fira;
-  font-display: block;
-  src: url(/fonts/fira_code.woff2) format('woff2');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: Sohne;
-  font-display: block;
-  src: url(/fonts/sohne.woff2) format('woff2');
-  font-weight: 400;
 }
 
 * {
-  padding: 0;
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body,
-html {
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: greyscale;
-  touch-action: manipulation;
 }
 
+*:focus-visible {
+  outline: 2px solid var(--focus-color);
+}
+
+html,
 body {
-  color: var(--grey0);
-  background-color: var(--grey9);
+  background-color: var(--gray9);
 }
 
 h1,
@@ -103,7 +53,7 @@ h6 {
 p {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: var(--grey4);
+  color: var(--gray4);
 }
 
 a {
@@ -128,53 +78,17 @@ img {
 
 a:not(a.exclude) {
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--grey4);
+  text-decoration-color: var(--gray4);
   transition: 0.1s linear;
   font-family: var(--font-sans);
 }
 
 a:not(a.exclude):hover {
-  text-decoration-color: var(--grey5);
+  text-decoration-color: var(--gray5);
 }
 
-header p {
-  margin: 5px 0;
-}
-
-header a {
-  color: var(--grey0);
-}
-
-ul,
-li {
-  color: var(--grey4);
-  font-family: var(--font-sans);
-  margin-left: 20px;
-}
-
-.not_found {
-  margin-top: 50px;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--grey9);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--grey7);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--grey5);
-}
-
-::-moz-selection {
-  color: #e5e5e5;
-  background: #3c3c3c;
+body {
+  min-height: 100vh;
 }
 
 ::selection {
@@ -182,25 +96,73 @@ li {
   background: #3c3c3c;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 44px;
+  min-width: 44px;
+  background-color: var(--gray7);
+  border-radius: 44px;
+  border: 5px solid var(--bg);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray9);
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+::-moz-selection {
+  color: #e5e5e5;
+  background: #3c3c3c;
+}
+
 ::placeholder {
+  color: var(--gray5);
   user-select: none;
-  color: var(--grey4);
 }
 
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+.mapboxgl-canvas {
+  pointer-events: none;
+  touch-action: none;
 }
 
-@media screen and (max-width: 1024px) {
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.rehype-code-title {
+  font-family: var(--font-mono);
+  border: solid 1px var(--gray8);
+  font-size: 12px;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 0px 10px 15px;
+}
+
+@media (max-width: 1024px) {
   :root {
-    --wrapper: 90vw;
-    --bar-padding: 2vw;
+    --wrapper: 700px;
+    --about-padding: 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --wrapper: 420px;
+    --about-padding: 0px;
+  }
+}
+
+@media (max-width: 424px) {
+  :root {
+    --wrapper: 97vw;
   }
 }
