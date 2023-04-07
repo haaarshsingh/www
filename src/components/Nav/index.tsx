@@ -29,7 +29,7 @@ const Nav: FC = () => {
       <div className={styles.blur} />
       <div className={styles.box}>
         {Object.entries(items).map(([path, { name, w }]) => (
-          <Link key={path} href={path} className={styles.link} prefetch={false}>
+          <Link key={path} href={path} className={styles.link}>
             {name}
             {items[pathname].name === name && (
               <motion.div

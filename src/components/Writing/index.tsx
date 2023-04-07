@@ -27,7 +27,7 @@ const Posts: FC = () => (
 )
 
 const Post: FC<Post> = (props) => (
-  <Link className={styles.post} href={props.slug} prefetch={false}>
+  <Link className={styles.post} href={props.slug}>
     <h2>{props.title}</h2>
     <p>{format(new Date(props.published), 'dd/MM')}</p>
   </Link>
