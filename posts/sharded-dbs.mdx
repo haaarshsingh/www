@@ -20,17 +20,17 @@ I do think it's important to realize that SQL table joins are pretty costly, but
 
 This led me to be confused as to why they'd drop the `FOREIGN KEY` constraint as databases such as [CockroachDB] and [Spanner] still maintain referential integrity along with being scalable.
 
-## What is referential integrity?
+## What is Referential Integrity?
 
 Let's start with the basics, in case you're new. I'm guessing most people reading this post have a fair idea of what they're talking about, but I'll explain as a formality. In simple words, a `FOREIGN KEY` constraint is a database key which we can use to create relations between two different tables by referencing a column, or a set of columns. Referential integrity simply refers to the state of the database in which all values of all keys are valid.
 
-### Why is it important?
+### Why is it Important?
 
 Now that we have a bit of an idea on what they are, let's skip to the second part: why are they important?
 
 Referential integrity is important as it keeps you from introducing new errors into your database. It is a feature often provided by relational databases preventing users or applications from entering inconsistent data into the database. This leads to improved data quality, faster development, much fewer bugs, and consistency across your application.
 
-## Why doesn't Vitess have it?
+## Why Doesn't Vitess Have it?
 
 So, to understand why [Vitess] is unable to support referential integrity, we have to take a dive into the architecture of the database. Vitess is a sharded non-ACID SQL database, not a distributed ACID SQL database like the examples given above. Is this a bad thing? Not exactly. They each come with their own upsides and downsides, however a downside of this sharded structure is that they're unable to support referential integrity.
 
@@ -42,7 +42,7 @@ At a particular scale, this isolation _might_ have some problems that create hot
 
 A shard is a horizontal partition of data in a database, and each shard is held on a separate database server instance to spread the load. So when we refer to a database which is sharded, we're talking about something like this. Now as I said earlier, Vitess is a sharded non-ACID SQL database, which basically means that it DOES NOT guarantee ACID properties of transactions.
 
-### Why drop it?
+### Why Drop It?
 
 Well, the problem starts when you have a MySQL database with a well-defined schema, and your service becomes popular with the problem of too many reads hitting the database. What most people do here is they start caching frequently executed queries, but the reads are no longer ACID-ic.
 
@@ -50,9 +50,9 @@ Along with too many reads, having an excess amount of writes to your database is
 
 We of course still have the problem of SQL table joins increasing in complexity, so you start denormalising to avoid joins between tables.
 
-I gave a talk at the [Prisma Meetup](https://www.prisma.io/events) a while ago, where I explained the [fundamentals of designing a relational database](https://youtu.be/PUfqXnWhwLk). A topic I covered here was denormalisation, if you're interested, be sure to check this out.
+I gave a talk at the [Prisma Meetup](https://www.prisma.io/events) a while ago, where I explained the [fundamentals of designing a relational database](https://youtu.be/PUfqXnWhwLk). A topic I covered here was denormalization, if you're interested, be sure to check this out.
 
-But denormalisation is basically the process where you add redundant data to tables in your database, which improves performance on the cost of disk space as you're no longer using CPU power for joins. While denormalisation improves the speed of reads, it's important to realize that it does make writes slower.
+But denormalization is basically the process where you add redundant data to tables in your database, which improves performance on the cost of disk space as you're no longer using CPU power for joins. While denormalization improves the speed of reads, it's important to realize that it does make writes slower.
 
 Nevertheless, despite all of this, our database is still slow, so we move database computations onto the client, for instance generating a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) or assigning a date.
 
