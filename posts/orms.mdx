@@ -16,11 +16,11 @@ The standard way for communication to your database is [SQL](https://www.sqlcour
 
 So, ORMs are basically an abstraction on-top of standard SQL to make interacting with your database even simpler. With that being said, there are some consequences (positive and negative) of this abstraction that we'll talk about in this post.
 
-## The problem with ORMs
+## The Problem With ORMs
 
 Now that you have an idea of what exactly an ORM is, let's get into potential problems we can run into while using them.
 
-### A sub-standard abstraction for relational databases
+### A Bad Abstraction for Relational Data
 
 In my opinion, there are a lot of use cases where an ORM could become an [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern). The fundamental problem is that an ORM tries to abstract away the underlying database, and reduces the feature set to the 'lowest common denominator' -- essentially meaning that they try to plaster a fits-all API over different database management systems.
 
@@ -32,7 +32,7 @@ I think it's completely appropriate to bring in other arguments here as well. Wh
 
 So, essentially, this means that generally abstractions are oftentimes necessary for us as developers, which I totally agree with. Now, the problem here is that not all abstractions are good, which segues onto my next point about how ORMs abstract away features of relational databases.
 
-### Abstracting away features of databases
+### Abstracting Away Features of Databases
 
 When talking in the context of relational databases, the primary point is that they're not arbitrarily interchangeable. Every database is unique, and has it's fair share of strengths and weaknesses.
 
@@ -42,13 +42,13 @@ Please don't pretend here that all relational databases are just columns and row
 
 ORMs are decent for regular CRUD operations, but in-reality those operations don't even represent the majority of database interactions for large-scale products that have any level of complexity. Thinking about it, these operations are _really_ simple to do in SQL itself. If your application primarily just uses simple CRUD queries, is there a point in having an extra layer of abstraction unless you're at a crucial time constraint?
 
-### Simplicity isn't always good
+### Simplicity Ain't Always Good
 
 A common reply people gave me is that ORMs help smaller-scale startups ship things. Of course, with large companies such as Meta they'd want to spend time and energy into having their engineers optimize a custom low-level solution. In fact, since we're talking about Meta, I know someone who works at Meta that has told me that they use stored procedures for just about everything, which is the other end of the extreme.
 
 But anyways, back to the topic -- for the average startup, ORMs can help them ship their product more easily, which is something I totally agree with. HOWEVER, I also believe that this 'development time' argument is primarily used by short-sighted managers in these startups who ignore the long-term costs of their decisions. Unless you plan on throwing out your startup and your company in a few months, the time you save now will be paid tenfold in maintenance over the years as your startup grows. There's a reason that companies hire [DBAs (database administrators)](https://www.techtarget.com/searchdatamanagement/definition/database-administrator).
 
-### Issues with performance
+### Issues With Performance
 
 As mentioned above, the fact that ORMs don't give you complete control over the queries you run in your database might cause you to overcomplicate simple queries.
 
@@ -70,7 +70,7 @@ Ultimately, the only way that can be as efficient as SQL is if SQL could be redu
 
 At a foundational level, the problem is in the name. Object-relational mapping. [Relational databases aren't about objects](https://softwareengineering.stackexchange.com/questions/178119/why-arent-object-oriented-databases-used-as-much-as-relational-databases). Treating them as such you might as well use a simple key/value store instead (and that itself is a disingenuous statement as different K/V stores have different trade-offs).
 
-### Obscurity with ORMs
+### Obscurity With ORMs
 
 ORMs tend to just obscure what is going on. If I know SQL and [PostgreSQL](https://postgresql.org/), I can essentially understand just about ANY project that uses them, without having to learn the specifics of one of two dozen ORMs with its own idiosyncrasies. If you are a startup that uses an ORM, then essentially the developers working on your product will always interact with the database through an ORM preventing them from developing any understanding of how the underlying database technology works. Due to the nature of different databases, you will have use cases where powerful database features might come into use. The fact that an ORM gives you an advantage in migrating to other database easily is something which simply isn't that common in reality. If a company does end up doing that however, it isn't that hard to incorporate those change into your SQL. As I've mentioned countless times above, for any non-trivial use case, you will need to use SQL.
 
@@ -78,11 +78,11 @@ Now another argument that people bring up here is that ORMs generally ship with 
 
 My response here is while you can absolutely use an ORM with raw, you can just as easily NOT use an ORM in applications that you plan to scale 😛.
 
-## The advantages of using an ORM
+## The Advantages of Using an ORM
 
 I think we've discussed the downsides of using an ORM enough now. Let's talk about the upsides. A big one is that it speeds up development.
 
-### ORMs save development time
+### ORMs Save Development Time
 
 If you look into the fun projects I've built during hackathons or other events on my [GitHub](https://github.com/harshhhdev), you will see that most (if not all) projects use the [Prisma](https://prisma.io) ORM for [TypeScript](https://typescriptlang.org).
 
@@ -92,7 +92,7 @@ As mentioned above, ORMs probably aren't a great long-term decision, but they co
 
 However, as I've mentioned above, if you're a startup then this should not be a sacrifice you're willing to make unless you plan on throwing out your project within a two weeks. The time you save during development now is what you'll be paying in tenfold in maintenance as your startup scales.
 
-### ORMs make SQL simpler
+### ORMs Make SQL simpler
 
 Unfortunately, most beginners aren't very eager to learn another language just to communicate with their database. This leads to beginners either using [NoSQL databases](https://en.wikipedia.org/wiki/NoSQL) or using an ORM to connect with their database. Considering the simplicity applications that most beginners write, it will not matter much if they decide to use an ORM or not. In fact, if a beginner doesn't properly validate values received from their web forms or cookies before passing them onto SQL queries executed by the database server, they're at a risk for a [SQL injection attack](https://portswigger.net/web-security/sql-injection).
 
