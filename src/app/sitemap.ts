@@ -2,7 +2,7 @@ import { allPosts } from 'contentlayer/generated';
 
 const Sitemap = () => {
   const posts = allPosts.map((post) => ({
-    url: `https://harshsingh.xyz/writing/${post.slug}`,
+    url: `https://harshsingh.xyz${post.slug}`,
     lastModified: post.published,
   }));
 
