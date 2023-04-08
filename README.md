@@ -1,4 +1,4 @@
-![image](https://harshsingh.xyz/banner.png)
+![image](https://harshsingh.xyz/og.png)
 
 <p align="center">
   <a href="https://harshsingh.xyz/">
