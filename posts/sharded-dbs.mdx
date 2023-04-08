@@ -56,7 +56,7 @@ But denormalization is basically the process where you add redundant data to tab
 
 Nevertheless, despite all of this, our database is still slow, so we move database computations onto the client, for instance generating a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) or assigning a date.
 
-Even after all of this, queries will still be slow — so we keep the result of the most queried data ready in a process known as database materialisation. Now reads might be faster, but writes are getting slower by the day. The only logical situation now is to drop secondary indexes.
+Even after all of this, queries will still be slow — so we keep the result of the most queried data ready in a process known as database materialization. Now reads might be faster, but writes are getting slower by the day. The only logical situation now is to drop secondary indexes.
 
 So at this point, our database has
 
