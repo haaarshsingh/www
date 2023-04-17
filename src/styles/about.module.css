@@ -103,19 +103,93 @@
   justify-content: center;
 }
 
+.graphics {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.cloud {
+  position: absolute;
+  opacity: 0.2;
+  filter: blur(4px) brightness(0.5);
+  animation: cloud 120s linear infinite;
+}
+
+.plane,
+.plane_shadow {
+  position: absolute;
+  animation-delay: 5s;
+}
+
+.plane {
+  animation: plane 30s linear infinite;
+}
+
+.plane_shadow {
+  animation: plane_shadow 30s linear infinite;
+}
+
 .map > div:last-child {
   width: 100%;
   height: 100%;
 }
 
 .marker {
-  width: 30px;
-  height: 30px;
-  background-color: #3579f6;
+  width: 28px;
+  height: 28px;
+  opacity: 1;
+  pointer-events: auto;
   z-index: 1;
   position: absolute;
+}
+
+.marker > div {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.shadow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   border-radius: 999px;
-  border: 3px solid var(--gray0);
+  background: #679bff;
+  opacity: 0.2;
+  animation: pulse 4s ease-out infinite;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.dot {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background-color: white;
+  box-shadow: 0 16px 31px rgb(0 0 0 / 13%),
+    0 10.3704px 18.1551px rgb(0 0 0 / 10%),
+    0 6.16296px 9.87407px rgb(0 0 0 / 8%), 0 3.2px 5.0375px rgb(0 0 0 / 7%),
+    0 1.3037px 2.52593px rgb(0 0 0 / 5%), 0 0.296296px 1.21991px rgb(0 0 0 / 3%);
+}
+
+.dot > div {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  border-radius: 999px;
+  background-color: #679bff;
 }
 
 .buttons {
@@ -190,6 +264,63 @@
   padding: 0px 7px;
 }
 
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+@keyframes cloud {
+  0% {
+    transform: translate(-350px, -350px);
+  }
+  25% {
+    transform: translate(350px, 350px);
+  }
+  50% {
+    transform: translate(600px, -350px);
+  }
+  75% {
+    transform: translate(-400px, 350px);
+  }
+  100% {
+    transform: translate(-350px, -350px);
+  }
+}
+
+@keyframes plane {
+  0% {
+    transform: translate(50px, 350px) rotate(30deg);
+  }
+  40% {
+    transform: translate(286.71px, -60px) rotate(30deg);
+  }
+  100% {
+    transform: translate(286.71px, -60px) rotate(30deg);
+  }
+}
+
+@keyframes plane_shadow {
+  0% {
+    transform: translate(50px, 410px) rotate(30deg);
+  }
+  40% {
+    transform: translate(286.71px, 0px) rotate(30deg);
+  }
+  100% {
+    transform: translate(286.71px, 0px) rotate(30deg);
+  }
+}
+
 @media (max-width: 1024px) {
   .section h1,
   .section h2,
@@ -224,13 +355,6 @@
   }
 
   .marker {
-    width: 20px;
-    height: 20px;
-    background-color: #3579f6;
-    z-index: 1;
-    position: absolute;
-    border-radius: 999px;
-    border: 3px solid var(--gray0);
   }
 
   .extend {

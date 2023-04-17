@@ -17,12 +17,13 @@ type Extend = {
 }
 
 const Section: FC<{
+  id: string
   children: ReactNode
   content: Array<Content>
   extend?: Extend
-}> = ({ children, content, extend }) => {
+}> = ({ id, children, content, extend }) => {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id={id}>
       {children}
       <div className={styles.content}>
         {content.map((item, index) => (
