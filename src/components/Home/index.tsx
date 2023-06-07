@@ -19,7 +19,7 @@ const Home: FC = () => {
         <div className={styles.info}>
           <div className={styles.headshot}>
             <Image
-              src='https://pbs.twimg.com/profile_images/1631883722982146049/iFYmrtUf_400x400.jpg'
+              src='https://avatars.githubusercontent.com/u/69592270?v=4'
               alt='My face'
               fill={true}
             />
