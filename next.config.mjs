@@ -6,6 +6,7 @@ export default withContentlayer({
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: 'pbs.twimg.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com', pathname: '/**' },
       {
         protocol: 'https',
         hostname: 'dev-to-uploads.s3.amazonaws.com',
