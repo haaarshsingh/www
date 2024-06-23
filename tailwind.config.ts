@@ -1,20 +1,61 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      width: {
+        content: '560px',
+      },
+      animation: {
+        img: 'img 1s ease-in-out',
+        intro: 'intro 0.3s forwards ease-in-out',
+        marker: 'marker 4s ease-out infinite',
+      },
+      keyframes: {
+        img: {
+          from: { transform: 'scale(2)', filter: 'blur(10px)' },
+          to: { transform: 'scale(1)', filter: 'blur(0px)' },
+        },
+        marker: {
+          '0%': {
+            transform: 'translate(-50%, -50%) scale(1)',
+            opacity: '1',
+          },
+          '35%': {
+            transform: 'translate(-50%, -50%) scale(6)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translate(-50%, -50%) scale(6)',
+            opacity: '0',
+          },
+        },
+        intro: {
+          '0%': {
+            transform: 'translateY(10px)',
+            opacity: '0',
+            filter: 'blur(5px)',
+          },
+          '95%': {
+            transform: 'translateY(-1px)',
+            opacity: '1',
+            filter: 'blur(0px)',
+          },
+          '100%': {
+            transform: 'translateY(0px)',
+            opacity: '1',
+            filter: 'blur(0px)',
+          },
+        },
       },
     },
   },
   plugins: [],
-};
-export default config;
+}
+export default config
