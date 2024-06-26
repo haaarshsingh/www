@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Nav from '@/components/Nav'
+import { FC, ReactNode } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -81,18 +83,13 @@ export const metadata: Metadata = {
   category: 'technology',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <html lang='en'>
-      <body className={inter.className}>
-        <div className='flex justify-center'>
-          <div className='w-content my-24'>{children}</div>
-        </div>
-      </body>
-    </html>
-  )
-}
+export default (({ children }) => (
+  <html lang='en'>
+    <body className={inter.className}>
+      <div className='flex justify-center'>
+        <div className='w-content mt-16 mb-36'>{children}</div>
+      </div>
+      <Nav />
+    </body>
+  </html>
+)) as FC<{ children: ReactNode }>

@@ -42,7 +42,7 @@ export default () => {
             Software and design consultant
           </h2>
         </div>
-        <div className='flex items-center gap-x-1'>
+        <div className='flex items-center gap-x-1 animate-intro opacity-0 [animation-delay:100ms]'>
           {socials.map(({ icon, label, href }, index) => (
             <a
               href={href}

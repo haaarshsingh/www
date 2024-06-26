@@ -12,6 +12,11 @@ const config: Config = {
       width: {
         content: '560px',
       },
+      boxShadow: {
+        menu: '0 24px 14px #00000020, 0 0 0 1px #000000bb, 0 4px 10px #00000040',
+        selector: '',
+        button: '0 10px 5px -2.5px #00000020,inset 0 4px 16px #FFFFFF50',
+      },
       animation: {
         img: 'img 1s ease-in-out',
         intro: 'intro 0.3s forwards ease-in-out',
