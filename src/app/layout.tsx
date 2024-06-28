@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+import { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Nav from '@/components/Nav'

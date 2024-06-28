@@ -57,21 +57,7 @@ export default () => {
           ))}
         </div>
       </div>
-      <hr className='my-6 border-neutral-200' />
-      <p className='tracking-tight leading-snug animate-intro opacity-0 [animation-delay:300ms]'>
-        Have you ever had that one website that you kept coming back to
-        &apos;cause everything just clicked perfectly? I&apos;m all about
-        crafting those kinda polished interfaces and delightful user
-        interactions.
-      </p>
-      <p className='tracking-tight mt-3 leading-snug animate-intro opacity-0 [animation-delay:400ms]'>
-        Reach out to{' '}
-        <a href='mailto:hi.harsh@pm.me?subject=Project%20Inquiry'>
-          hi.harsh@pm.me
-        </a>{' '}
-        or <a href='https://x.com/harshhhdev'>@harshhhdev</a> and let&apos;s
-        work together.
-      </p>
+      <hr className='my-6 border-neutral-200 animate-intro opacity-0 [animation-delay:150ms]' />
     </header>
   )
 }

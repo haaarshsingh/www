@@ -51,16 +51,16 @@ export default () => {
   return (
     <main>
       <section className='mt-8'>
-        <h2 className='tracking-tight mb-2 animate-intro opacity-0 [animation-delay:500ms] font-medium'>
+        <h2 className='tracking-tight mb-2 animate-intro opacity-0 [animation-delay:200ms] font-medium'>
           Projects
         </h2>
         <Projects {...css.tabProps} />
       </section>
       <section className='mt-12'>
-        <h2 className='tracking-tight mb-4 animate-intro opacity-0 [animation-delay:900ms] font-medium'>
+        <h2 className='tracking-tight mb-4 animate-intro opacity-0 [animation-delay:550ms] font-medium'>
           Where
         </h2>
-        <div className='animate-intro opacity-0 [animation-delay:1000ms]'>
+        <div className='animate-intro opacity-0 [animation-delay:600ms]'>
           <div className='overflow-hidden rounded-lg relative'>
             <Image
               src='/map.webp'
@@ -152,7 +152,7 @@ export const Projects: FC<Props> = ({ tabs }) => {
             rel='noreferrer'
             key={index}
             className={clsx(
-              'animate-intro opacity-0 p-3.5 exclude w-fit first:[animation-delay:600ms] [&:nth-child(2)]:[animation-delay:650ms] [&:nth-child(3)]:[animation-delay:700ms] [&:nth-child(4)]:[animation-delay:750ms] [&:nth-child(5)]:[animation-delay:800ms]'
+              'animate-intro opacity-0 p-3.5 exclude w-fit first:[animation-delay:250ms] [&:nth-child(2)]:[animation-delay:300ms] [&:nth-child(3)]:[animation-delay:350ms] [&:nth-child(4)]:[animation-delay:400ms] [&:nth-child(5)]:[animation-delay:450ms]'
             )}
             onPointerEnter={(e) => onEnterTab(e, index)}
             onFocus={(e) => onEnterTab(e, index)}
