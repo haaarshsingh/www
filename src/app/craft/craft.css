@@ -1,5 +1,37 @@
-.island {
-  transform-origin: 50% 50% 0px;
+.line {
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(#9a14df, #ffffff80);
+  border-radius: 1.5px;
+  transition: 10s ease-out;
+}
+
+.line0 {
+  animation: playing 0.52s infinite ease;
+}
+
+.line1 {
+  animation: playing 0.85s infinite ease;
+}
+
+.line2 {
+  animation: playing 1.26s infinite ease;
+}
+
+.line3 {
+  animation: playing 0.92s infinite ease;
+}
+
+.line4 {
+  animation: playing 0.71s infinite ease;
+}
+
+.line5 {
+  animation: playing 1.42s infinite ease;
+}
+
+.pause {
+  animation: pause 0.2s forwards ease-out;
 }
 
 .slide-in-up {
@@ -16,6 +48,27 @@
 
 .slide-out-down {
   animation: slideOutDown 0.3s forwards;
+}
+
+@keyframes playing {
+  0% {
+    height: 3px;
+  }
+  50% {
+    height: 16px;
+  }
+  to {
+    height: 3px;
+  }
+}
+
+@keyframes pause {
+  from {
+    height: 16px;
+  }
+  to {
+    height: 3px;
+  }
 }
 
 @keyframes slideInUp {

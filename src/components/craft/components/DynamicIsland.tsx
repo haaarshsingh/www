@@ -1,60 +1,38 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { BsRewindFill, BsPlayFill, BsFastForwardFill } from 'react-icons/bs'
+import { SiAirplayaudio } from 'react-icons/si'
 import Post from '../Post'
+import Image from 'next/image'
+import { PiStarFill } from 'react-icons/pi'
+import clsx from 'clsx'
 
 export default () => {
   const ref = useRef<HTMLDivElement>(null)
   const [state, setState] = useState(0)
 
-  const select = (i: number) => {
-    console.log(buttons[i].dimensions?.h)
-
-    // if (ref.current) {
-    //   const keyframes = [
-    //     {
-    //       height: `${buttons[state].dimensions?.h}px`,
-    //       width: `${buttons[state].dimensions?.w}px`,
-    //     },
-    //     {
-    //       height: `${buttons[i].dimensions?.h}px`,
-    //       width: `${buttons[i].dimensions?.w}px`,
-    //     },
-    //   ]
-
-    //   const options: KeyframeAnimationOptions = {
-    //     duration: 100,
-    //     easing: 'ease-in-out',
-    //     fill: 'forwards',
-    //   }
-
-    //   ref.current.animate(keyframes, options)
-    // }
-
-    setState(i)
-  }
-
   const buttons = [
     {
       label: 'Idle',
-      onClick: () => select(0),
-      dimensions: { w: 96, h: 28 },
+      onClick: () => setState(0),
+      dimensions: { w: 100, h: 28, r: 28 },
     },
     {
       label: 'Face ID',
-      onClick: () => select(1),
-      dimensions: { w: 96, h: 96 },
+      onClick: () => setState(1),
+      dimensions: { w: 96, h: 96, r: 28 },
     },
     {
       label: 'Call',
       onClick: () => setState(2),
-      dimensions: { w: 96, h: 96 },
+      dimensions: { w: 284, h: 56, r: 99 },
     },
     {
       label: 'Music',
       onClick: () => setState(3),
-      dimensions: { w: 96, h: 96 },
+      dimensions: { w: 324, h: 144, r: 32 },
     },
   ]
 
@@ -70,11 +48,21 @@ export default () => {
         animate={{
           width: buttons[state].dimensions.w,
           height: buttons[state].dimensions.h,
+          borderRadius: buttons[state].dimensions.r,
         }}
-        className='absolute mt-6 top-0 flex items-center justify-center rounded-[28px] bg-black mb-36'
+        transition={{
+          type: 'spring',
+          bounce: 0.3,
+          ease: 'linear',
+        }}
+        className='absolute mt-6 top-0 flex items-center justify-center bg-black mb-36 select-none'
         ref={ref}
       >
-        {state === 1 && <FaceId />}
+        <AnimatePresence>
+          {state === 1 && <FaceId />}
+          {state === 2 && <Call />}
+          {state === 3 && <Music />}
+        </AnimatePresence>
       </motion.div>
       <div className='absolute bottom-0 gap-x-2 w-full border-t border-t-neutral-200 bg-neutral-100 py-3 flex items-center justify-center'>
         {buttons.map((button, index) => (
@@ -92,7 +80,10 @@ export default () => {
 }
 
 const FaceId = () => (
-  <svg
+  <motion.svg
+    initial={{ opacity: 0, filter: 'blur(4px)', y: -5 }}
+    animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+    exit={{ opacity: 0, filter: 'blur(4px)', y: 5 }}
     width='50'
     height='50'
     viewBox='0 0 50 50'
@@ -155,5 +146,202 @@ const FaceId = () => (
       stroke-linecap='round'
       stroke-linejoin='round'
     />
-  </svg>
+  </motion.svg>
 )
+
+const Call = () => (
+  <motion.div
+    className='mx-3 w-full flex items-center justify-between'
+    initial={{ opacity: 0, filter: 'blur(4px)', y: -5 }}
+    animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+    exit={{ opacity: 0, filter: 'blur(4px)', y: 5 }}
+  >
+    <div className='flex items-center'>
+      <Image
+        src='/craft/example.webp'
+        width={36}
+        height={36}
+        alt='That Mexican OT'
+      />
+      <div className='flex flex-col ml-2 w-20'>
+        <span className='text-xs text-neutral-500'>mobile</span>
+        <span className='text-xs text-neutral-100 whitespace-nowrap'>
+          That Mexican OT
+        </span>
+      </div>
+    </div>
+    <div className='flex items-center gap-x-2'>
+      <button className='bg-[#F35143] rotate-[135deg] rounded-full p-2'>
+        <svg
+          width='16'
+          height='16'
+          viewBox='0 0 44 44'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M36.031 44C36.015 44 35.999 44 35.984 44C28.467 43.755 19.663 36.47 13.596 30.4C7.52397 24.329 0.238974 15.521 0.00197393 8.03804C-0.0820261 5.41304 6.36097 0.746036 6.42597 0.701036C8.09697 -0.464964 9.95297 -0.0519642 10.715 1.00304C11.23 1.71704 16.112 9.11904 16.643 9.95804C17.195 10.827 17.114 12.124 16.425 13.427C16.048 14.147 14.789 16.36 14.2 17.392C14.834 18.298 16.52 20.519 19.998 23.996C23.475 27.473 25.695 29.16 26.604 29.797C27.636 29.208 29.848 27.949 30.57 27.569C31.85 26.89 33.141 26.806 34.021 27.344C34.917 27.893 42.296 32.799 42.976 33.275C43.548 33.675 43.916 34.364 43.987 35.165C44.058 35.974 43.81 36.829 43.288 37.574C43.245 37.638 38.633 44 36.031 44Z'
+            fill='white'
+          />
+        </svg>
+      </button>
+      <button className='bg-[#57D76B] rounded-full p-2'>
+        <svg
+          width='16'
+          height='16'
+          viewBox='0 0 44 44'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M36.031 44C36.015 44 35.999 44 35.984 44C28.467 43.755 19.663 36.47 13.596 30.4C7.52397 24.329 0.238974 15.521 0.00197393 8.03804C-0.0820261 5.41304 6.36097 0.746036 6.42597 0.701036C8.09697 -0.464964 9.95297 -0.0519642 10.715 1.00304C11.23 1.71704 16.112 9.11904 16.643 9.95804C17.195 10.827 17.114 12.124 16.425 13.427C16.048 14.147 14.789 16.36 14.2 17.392C14.834 18.298 16.52 20.519 19.998 23.996C23.475 27.473 25.695 29.16 26.604 29.797C27.636 29.208 29.848 27.949 30.57 27.569C31.85 26.89 33.141 26.806 34.021 27.344C34.917 27.893 42.296 32.799 42.976 33.275C43.548 33.675 43.916 34.364 43.987 35.165C44.058 35.974 43.81 36.829 43.288 37.574C43.245 37.638 38.633 44 36.031 44Z'
+            fill='white'
+          />
+        </svg>
+      </button>
+    </div>
+  </motion.div>
+)
+
+const Music = () => {
+  const totalTime = 2 * 60 + 21
+  const [timeElapsed, setTimeElapsed] = useState(0)
+  const [active, setActive] = useState(true)
+
+  useEffect(() => {
+    let timerId: NodeJS.Timeout
+
+    if (active && timeElapsed < totalTime) {
+      timerId = setInterval(() => {
+        setTimeElapsed((prevTime) => prevTime + 1)
+      }, 1000)
+    }
+    return () => clearInterval(timerId)
+  }, [active, timeElapsed])
+
+  const minutes = Math.floor(timeElapsed / 60)
+  const seconds = timeElapsed % 60
+
+  const progressPercentage = (timeElapsed / totalTime) * 100
+
+  return (
+    <motion.div
+      className='mx-4 w-full flex flex-col'
+      initial={{ opacity: 0, filter: 'blur(4px)', y: -5 }}
+      animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+      exit={{ opacity: 0, filter: 'blur(4px)', y: 5 }}
+    >
+      <div className='flex items-center justify-between'>
+        <div className='flex items-center'>
+          <Image
+            src='/craft/album.webp'
+            width={48}
+            height={48}
+            alt='Lonestar Luchador album art'
+            className='rounded-md'
+          />
+          <div className='flex flex-col ml-2'>
+            <span className='text-xs text-neutral-100 flex items-center font-medium'>
+              Lonestar Lucahdor
+              <svg
+                width='10'
+                height='10'
+                viewBox='0 0 36 36'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                className='ml-1'
+              >
+                <rect width='36' height='36' rx='6' fill='white' />
+                <path
+                  d='M12 27V9H23.9653V12.1377H15.7543V16.4268H23.3497V19.5645H15.7543V23.8623H24V27H12Z'
+                  fill='black'
+                />
+              </svg>
+            </span>
+            <span className='text-xs text-neutral-500 mt-0.5'>
+              That Mexican OT
+            </span>
+          </div>
+        </div>
+        <div className='flex items-center gap-x-0.5'>
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <div
+              className={clsx(`line line${i}`, !active && 'pause')}
+              key={i}
+            />
+          ))}
+        </div>
+      </div>
+      <div className='flex items-center justify-center gap-x-2 mt-2 mb-4'>
+        <span className='text-neutral-400 text-xs w-6'>
+          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+        </span>
+        <div className='w-[224px] h-1 bg-neutral-700 rounded-full overflow-hidden'>
+          <div
+            className='h-1 bg-neutral-50 rounded-full'
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
+        <span className='text-neutral-400 text-xs w-6'>-2:21</span>
+      </div>
+      <div className='flex items-center justify-between gap-x-2'>
+        <button className='text-neutral-500 text-xl'>
+          <PiStarFill />
+        </button>
+        <div className='flex items-center gap-x-3'>
+          <button className='text-neutral-100 text-xl'>
+            <BsRewindFill />
+          </button>
+          <button
+            className='text-neutral-100 text-4xl'
+            onClick={() => setActive((a) => !a)}
+          >
+            <AnimatePresence>
+              {active ? (
+                <motion.svg
+                  width='16'
+                  height='18.74'
+                  viewBox='0 0 68 91'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <rect width='28' height='91' rx='5' fill='white' />
+                  <rect x='40' width='28' height='91' rx='5' fill='white' />
+                </motion.svg>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <svg
+                    width='16'
+                    height='18.87'
+                    viewBox='0 0 73 84'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='translate-x-0.5'
+                  >
+                    <path
+                      d='M69.2366 36.8318L9.04791 1.33595C5.04817 -1.02288 -9.8854e-08 1.86065 -5.048e-07 6.50414L-6.71109e-06 77.4959C-7.11704e-06 82.1393 5.04816 85.0229 9.0479 82.6641L69.2365 47.1682C73.1727 44.8469 73.1727 39.1531 69.2366 36.8318Z'
+                      fill='white'
+                    />
+                  </svg>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+          <button className='text-neutral-100 text-xl'>
+            <BsFastForwardFill />
+          </button>
+        </div>
+        <button className='text-neutral-500 text-lg'>
+          <SiAirplayaudio />
+        </button>
+      </div>
+    </motion.div>
+  )
+}

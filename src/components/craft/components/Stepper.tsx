@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { FiMinus, FiPlus } from 'react-icons/fi'
-import { AnimatePresence, motion } from 'framer-motion'
 import Post from '../Post'
 import clsx from 'clsx'
 
