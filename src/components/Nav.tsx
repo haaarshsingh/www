@@ -48,14 +48,14 @@ export default () => {
   }, [pathname])
 
   return (
-    <div className='fixed bottom-0 pt-2 pb-2.5 px-3.5 shadow-menu left-1/2 -translate-x-1/2 mb-8 flex items-center bg-black/75 border-2 border-neutral-600 rounded-full backdrop-blur-sm text-neutral-50'>
+    <div className='fixed bottom-0 z-50 pt-2 pb-2.5 px-3.5 shadow-menu left-1/2 -translate-x-1/2 mb-8 flex items-center bg-black/75 border-2 border-neutral-600 rounded-full backdrop-blur-sm text-neutral-50'>
       <Links {...css.tabProps} selectedTabIndex={selected} />
       <div className='w-0.5 h-0.5 rounded-full bg-neutral-400 mx-3' />
       <a
         href='mailto:hi.harsh@pm.me?subject=Project%20Inquiry'
         rel='noreferrer'
         target='_blank'
-        className='exclude text-sm bg-neutral-50/25 rounded-full px-3.5 py-1.5 shadow-button'
+        className='exclude text-sm bg-neutral-50/25 hover:bg-neutral-50/30 active:bg-neutral-50/40 transition-colors rounded-full px-3.5 py-1.5 shadow-button'
       >
         Contact
       </a>
@@ -84,11 +84,9 @@ export const Links: FC<Props> = ({ tabs, selectedTabIndex }) => {
   const rect = ref.current?.getBoundingClientRect()
   const selectedRect = buttonRefs[selectedTabIndex]?.getBoundingClientRect()
 
-  const [isInitialHoveredElement, setIsInitialHoveredElement] = useState(true)
   const isInitialRender = useRef(true)
 
   const onLeaveTabs = () => {
-    setIsInitialHoveredElement(true)
     setHoveredTabIndex(null)
   }
 
@@ -98,11 +96,7 @@ export const Links: FC<Props> = ({ tabs, selectedTabIndex }) => {
   ) => {
     if (!e.target || !(e.target instanceof HTMLAnchorElement)) return
 
-    setHoveredTabIndex((prev) => {
-      if (prev != null && prev !== i) setIsInitialHoveredElement(false)
-
-      return i
-    })
+    setHoveredTabIndex(i)
     setHoveredRect(e.target.getBoundingClientRect())
   }
 
@@ -139,7 +133,7 @@ export const Links: FC<Props> = ({ tabs, selectedTabIndex }) => {
 
   return (
     <nav
-      className='flex items-center relative'
+      className='flex items-center relative z-50'
       ref={ref}
       onPointerLeave={onLeaveTabs}
     >

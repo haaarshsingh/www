@@ -12,7 +12,7 @@ export default () => (
         Writing
       </h1>
       <h2 className='tracking-tight animate-intro opacity-0 [animation-delay:100ms]'>
-        Infrequent posts about design and tech.
+        Infrequent posts about design and tech
       </h2>
     </div>
     <hr className='my-6 border-neutral-200' />

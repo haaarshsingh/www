@@ -44,7 +44,7 @@ export default () => {
       className='relative overflow-hidden'
     >
       <motion.div
-        initial={{ width: 100, height: 28 }}
+        initial={{ width: 100, height: 28, borderRadius: 28 }}
         animate={{
           width: buttons[state].dimensions.w,
           height: buttons[state].dimensions.h,
@@ -273,7 +273,7 @@ const Music = () => {
         </div>
       </div>
       <div className='flex items-center justify-center gap-x-2 mt-2 mb-4'>
-        <span className='text-neutral-400 text-xs w-6'>
+        <span className='text-neutral-400 text-[10px] w-6'>
           {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </span>
         <div className='w-[224px] h-1 bg-neutral-700 rounded-full overflow-hidden'>
@@ -282,7 +282,7 @@ const Music = () => {
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
-        <span className='text-neutral-400 text-xs w-6'>-2:21</span>
+        <span className='text-neutral-400 text-[10px] w-6'>-2:21</span>
       </div>
       <div className='flex items-center justify-between gap-x-2'>
         <button className='text-neutral-500 text-xl'>
