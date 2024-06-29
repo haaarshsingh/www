@@ -55,7 +55,7 @@ export default () => {
           bounce: 0.3,
           ease: 'linear',
         }}
-        className='absolute mt-6 top-0 flex items-center justify-center bg-black mb-36 select-none'
+        className='absolute mt-6 top-0 flex items-center justify-center bg-black overflow-hidden mb-36 select-none'
         ref={ref}
       >
         <AnimatePresence>
