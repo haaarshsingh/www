@@ -11,8 +11,12 @@ export default () => {
   const onSelectTab = (i: number) => {
     if (ref.current) {
       const keyframes = [
-        { clipPath: tabs[active]?.clip },
-        { clipPath: tabs[i]?.clip },
+        {
+          clipPath: `inset(4px calc(100% - (${tabs[active].clip.offset}px + ${tabs[active].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[active].clip.offset}px round 20px)`,
+        },
+        {
+          clipPath: `inset(4px calc(100% - (${tabs[i].clip.offset}px + ${tabs[i].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[i].clip.offset}px round 20px)`,
+        },
       ]
 
       const options: KeyframeAnimationOptions = {
@@ -31,27 +35,27 @@ export default () => {
     {
       label: 'Overview',
       onClick: () => setActive(0),
-      clip: 'inset(4px calc(100% - (3.5px + 69px)) calc(100% - (0px + 32px)) 3.5px round 20px)',
+      clip: { w: 86.5, offset: 3.5 },
     },
     {
       label: 'Integrations',
       onClick: () => setActive(1),
-      clip: 'inset(4px calc(100% - (72.5px + 76px)) calc(100% - (0px + 32px)) 72.5px round 20px)',
+      clip: { w: 103, offset: 90 },
     },
     {
       label: 'Activity',
       onClick: () => setActive(2),
-      clip: 'inset(4px calc(100% - (148.5px + 117px)) calc(100% - (0px + 32px)) 148.5px round 20px)',
+      clip: { w: 73.7, offset: 193 },
     },
     {
       label: 'Domains',
       onClick: () => setActive(3),
-      clip: 'inset(4px calc(100% - (265.5px + 69px)) calc(100% - (0px + 32px)) 265.5px round 20px)',
+      clip: { w: 81.3, offset: 266.7 },
     },
     {
       label: 'Usage',
       onClick: () => setActive(4),
-      clip: 'inset(4px calc(100% - (265.5px + 69px)) calc(100% - (0px + 32px)) 265.5px round 20px)',
+      clip: { w: 66.3, offset: 348 },
     },
   ]
 
@@ -82,9 +86,11 @@ export default () => {
       </div>
       <div
         className={clsx(
-          '[will-change: clip-path] pointer-events-none absolute left-0 top-0 z-20 flex w-fit items-center bg-neutral-950 p-1'
+          '[will-change: clip-path] pointer-events-none absolute left-1/2 -translate-x-1/2 z-20 flex w-fit items-center bg-neutral-950 p-1'
         )}
-        style={{ clipPath: tabs[0]?.clip }}
+        style={{
+          clipPath: `inset(4px calc(100% - (${tabs[0].clip.offset}px + ${tabs[0].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[0].clip.offset}px round 20px)`,
+        }}
         ref={ref}
         aria-hidden
       >
