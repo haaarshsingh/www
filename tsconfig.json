@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/writing/2024-redesign/page.mdx"
+    "src/app/writing/2024-redesign/page.mdx",
+    "src/app/writing/simple-page-blur/page.mdx"
   ],
   "exclude": ["node_modules"]
 }

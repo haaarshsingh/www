@@ -1,0 +1,42 @@
+---
+title: "Simple Page Blur"
+publishedAt: "2024-02-22"
+summary: "Add smooth blur-fading on your websites."
+---
+
+If you carefully look at the bottom and top of my website, you'll observe that it's kinda blurred/faded at the ends. It's a very small detail, but it's these small details that come together to deliver a robust experience.
+
+This is a neat and subtle detail that I first saw this on [Paco Coursey](https://paco.me/)'s site and wanted to add it onto mines.
+
+## Bottom Blur
+
+We'll just use a simple `div` and add some styling to it:
+
+```html
+<div class="blur" aria-hidden="true"></div>
+```
+
+```css
+.blur {
+  position: fixed;
+  bottom: -10px;
+  z-index: 1;
+  height: 40px;
+  width: 100vw;
+  opacity: 0.95;
+  filter: blur(8px);
+  backdrop-filter: blur(16px);
+}
+```
+
+## Top Blur
+
+To blur the top, just switch the `bottom` value on the CSS to `top` and keep the same value:
+
+```css
+.blur {
+  top: -10px;
+}
+```
+
+That's all. If you're using Tailwind CSS like me, just inspect element and copy the last two elements inside of the `body` tag.
