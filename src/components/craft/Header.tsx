@@ -1,20 +1,20 @@
-import { RiPencilRuler2Fill } from 'react-icons/ri'
+import { RiPencilRuler2Fill } from "react-icons/ri";
 
 export default () => (
   <header>
-    <div className='h-8 w-8 rounded-full overflow-hidden'>
-      <div className='flex items-center rounded-full h-full w-full animate-img justify-center bg-neutral-200 text-neutral-500 border border-neutral-300'>
-        <RiPencilRuler2Fill className='h-4 w-4' />
+    <div className="h-8 w-8 overflow-hidden rounded-full">
+      <div className="flex h-full w-full animate-img items-center justify-center rounded-full border border-neutral-300 bg-neutral-200 text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800">
+        <RiPencilRuler2Fill className="h-4 w-4" />
       </div>
     </div>
-    <div className='mt-6'>
-      <h1 className='font-medium tracking-tight animate-intro opacity-0'>
+    <div className="mt-6">
+      <h1 className="animate-intro font-medium tracking-tight opacity-0">
         Craft
       </h1>
-      <h2 className='tracking-tight animate-intro opacity-0 [animation-delay:100ms]'>
+      <h2 className="animate-intro tracking-tight opacity-0 [animation-delay:100ms]">
         Experimental laboratory of user interactions
       </h2>
     </div>
-    <hr className='my-6 border-neutral-200' />
+    <hr className="my-6 animate-intro border-neutral-200 opacity-0 [animation-delay:150ms] dark:border-neutral-800" />
   </header>
-)
+);

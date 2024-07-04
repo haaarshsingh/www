@@ -64,10 +64,10 @@ export default () => {
           {state === 3 && <Music />}
         </AnimatePresence>
       </motion.div>
-      <div className="absolute bottom-0 flex w-full items-center justify-center gap-x-2 border-t border-t-neutral-200 bg-neutral-100 py-3">
+      <div className="absolute bottom-0 flex w-full items-center justify-center gap-x-2 border-t border-t-neutral-200 bg-neutral-100 py-3 dark:border-t-neutral-700 dark:bg-neutral-800">
         {buttons.map((button, index) => (
           <button
-            className="rounded border border-neutral-400/50 bg-neutral-50 px-3 py-1 text-sm"
+            className="rounded border border-neutral-400/50 bg-neutral-50 px-3 py-1 text-sm dark:border-neutral-600 dark:bg-neutral-700"
             onClick={button.onClick}
             key={index}
           >

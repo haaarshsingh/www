@@ -14,8 +14,11 @@ import {
 import { HiLocationMarker } from "react-icons/hi";
 import { HiOutlineArrowUpRight } from "react-icons/hi2";
 import { clsx } from "clsx";
+import useTheme from "@/hooks/useTheme";
 
 export default () => {
+  const theme = useTheme();
+
   const [tabs] = useState({
     tabs: [
       {
@@ -51,19 +54,25 @@ export default () => {
   return (
     <main>
       <section className="mt-8">
-        <h2 className="mb-2 animate-intro font-medium tracking-tight opacity-0 [animation-delay:200ms]">
+        <h2
+          className="mb-2 animate-intro font-medium tracking-tight opacity-0 [animation-delay:200ms]"
+          id="projects"
+        >
           Projects
         </h2>
         <Projects {...css.tabProps} />
       </section>
       <section className="mt-12">
-        <h2 className="mb-4 animate-intro font-medium tracking-tight opacity-0 [animation-delay:550ms]">
+        <h2
+          className="mb-4 animate-intro font-medium tracking-tight opacity-0 [animation-delay:550ms]"
+          id="where"
+        >
           Where
         </h2>
         <div className="animate-intro opacity-0 [animation-delay:600ms]">
           <div className="relative overflow-hidden rounded-lg">
             <Image
-              src="/map.webp"
+              src={theme === "dark" ? "/map-dark.webp" : "/map.webp"}
               width={560}
               height={325}
               alt="Map with a marker over the state of Texas"
@@ -152,7 +161,7 @@ export const Projects: FC<Props> = ({ tabs }) => {
             rel="noreferrer"
             key={index}
             className={clsx(
-              "exclude w-fit animate-intro p-3.5 opacity-0 first:[animation-delay:250ms] [&:nth-child(2)]:[animation-delay:300ms] [&:nth-child(3)]:[animation-delay:350ms] [&:nth-child(4)]:[animation-delay:400ms] [&:nth-child(5)]:[animation-delay:450ms]",
+              "exclude animate-children w-fit animate-intro p-3.5 opacity-0",
             )}
             onPointerEnter={(e) => onEnterTab(e, index)}
             onFocus={(e) => onEnterTab(e, index)}
@@ -174,7 +183,7 @@ export const Projects: FC<Props> = ({ tabs }) => {
           </Link>
         ))}
         <div
-          className="absolute left-0 top-0 -z-10 rounded-lg bg-neutral-950/5 p-3.5 dark:bg-neutral-600"
+          className="absolute left-0 top-0 -z-10 rounded-lg bg-neutral-950/5 p-3.5 dark:bg-neutral-50/5"
           style={hoverStyles}
         />
       </div>

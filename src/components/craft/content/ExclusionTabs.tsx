@@ -86,7 +86,7 @@ export default () => {
       </div>
       <div
         className={clsx(
-          "[will-change: clip-path] pointer-events-none absolute left-1/2 z-20 flex w-fit -translate-x-1/2 items-center bg-neutral-950 p-1",
+          "[will-change: clip-path] pointer-events-none absolute left-1/2 z-20 flex w-fit -translate-x-1/2 items-center bg-neutral-950 p-1 dark:bg-neutral-50",
         )}
         style={{
           clipPath: `inset(4px calc(100% - (${tabs[0].clip.offset}px + ${tabs[0].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[0].clip.offset}px round 20px)`,
@@ -98,7 +98,7 @@ export default () => {
           <span
             key={i}
             className={clsx(
-              "z-20 rounded-full px-3 py-1 text-sm text-neutral-50 transition-colors",
+              "z-20 rounded-full px-3 py-1 text-sm text-neutral-50 transition-colors dark:text-neutral-950",
             )}
             aria-hidden
           >

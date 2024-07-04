@@ -19,7 +19,7 @@ export default (({ title, description, tags, children, className }) => {
       </p>
       <div
         className={clsx(
-          "my-4 flex min-h-96 w-full items-center justify-center rounded-xl border border-neutral-200 bg-neutral-100/25",
+          "my-4 flex min-h-96 w-full items-center justify-center rounded-xl border border-neutral-200 bg-neutral-100/25 dark:border-neutral-700/50 dark:bg-neutral-900",
           className,
         )}
       >
@@ -30,7 +30,7 @@ export default (({ title, description, tags, children, className }) => {
           {tags.map((tag, index) => (
             <div
               key={index}
-              className="cursor-default rounded bg-neutral-200 px-2 py-1 text-xs tracking-tight text-neutral-600"
+              className="cursor-default rounded bg-neutral-200 px-2 py-1 text-xs tracking-tight text-neutral-600 dark:bg-neutral-800 dark:text-neutral-500"
             >
               {tag}
             </div>

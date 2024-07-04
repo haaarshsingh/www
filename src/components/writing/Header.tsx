@@ -3,7 +3,7 @@ import { PiBooksFill } from "react-icons/pi";
 export default () => (
   <header>
     <div className="h-8 w-8 overflow-hidden rounded-full">
-      <div className="flex h-full w-full animate-img items-center justify-center rounded-full border border-neutral-300 bg-neutral-200 text-neutral-500">
+      <div className="flex h-full w-full animate-img items-center justify-center rounded-full border border-neutral-300 bg-neutral-200 text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800">
         <PiBooksFill className="h-4 w-4" />
       </div>
     </div>

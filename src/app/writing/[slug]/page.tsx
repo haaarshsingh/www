@@ -80,14 +80,14 @@ export default (({ params }) => {
         className="exclude flex h-8 items-center text-neutral-500"
       >
         <FiCornerUpLeft className="h-4 w-4" />
-        <span className="ml-1 text-sm">Writing</span>
+        <span className="ml-1.5 text-sm">Writing</span>
       </Link>
       <Header
         title={post.metadata.title}
         date={format(post.metadata.publishedAt)}
         slug={params.slug}
       />
-      <article className="prose">
+      <article className="prose animate-children">
         <MDX source={post.content} />
       </article>
     </section>

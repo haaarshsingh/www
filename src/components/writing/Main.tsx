@@ -10,7 +10,7 @@ export default () => {
   const posts = getPosts();
 
   return (
-    <main className="flex flex-col gap-y-4">
+    <main className="animate-children flex flex-col gap-y-4">
       {posts
         .sort((a, b) => {
           if (

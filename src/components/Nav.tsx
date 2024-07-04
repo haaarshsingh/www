@@ -48,7 +48,7 @@ export default () => {
   }, [pathname]);
 
   return (
-    <div className="fixed bottom-0 left-1/2 z-50 mb-8 flex -translate-x-1/2 items-center rounded-full border-2 border-neutral-600 bg-black/75 px-3.5 pb-2.5 pt-2 text-neutral-50 shadow-menu backdrop-blur-sm">
+    <div className="fixed bottom-0 left-1/2 z-50 mb-8 flex -translate-x-1/2 items-center rounded-full border-2 border-neutral-600 bg-black/75 px-3.5 pb-2.5 pt-2 text-neutral-50 shadow-menu backdrop-blur-sm dark:bg-neutral-800/75">
       <Links {...css.tabProps} selectedTabIndex={selected} />
       <div className="mx-3 h-0.5 w-0.5 rounded-full bg-neutral-400" />
       <a

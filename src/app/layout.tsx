@@ -91,11 +91,11 @@ export default (({ children }) => (
       </div>
       <Nav />
       <div
-        className="fixed top-[-10px] z-40 h-10 w-screen opacity-95 blur backdrop-blur-lg"
+        className="fixed top-[-10px] z-40 h-10 w-screen bg-white opacity-90 blur backdrop-blur-lg dark:bg-neutral-900"
         aria-hidden
       />
       <div
-        className="fixed bottom-[-10px] z-40 h-10 w-screen opacity-95 blur backdrop-blur-lg"
+        className="fixed bottom-[-10px] z-40 h-10 w-screen bg-white opacity-90 blur backdrop-blur-lg dark:bottom-[-20px] dark:bg-neutral-900"
         aria-hidden
       />
     </body>

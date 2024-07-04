@@ -1,0 +1,49 @@
+---
+title: "Toggling Images with React Theme Hook"
+publishedAt: "2024-07-04"
+summary: "Switch your images between light and dark mode."
+---
+
+A small thing I came across while building this website: I wanted to switch the map on my ["where"](/#where) section without using [next-themes](https://github.com/pacocoursey/next-themes).
+
+So, I wrote this small hook in TypeScript that handles this for me:
+
+```ts
+import { useState, useEffect } from "react";
+
+export default () => {
+  const [theme, setTheme] = useState(
+    window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      setTheme(e.matches ? "dark" : "light");
+    };
+
+    mediaQuery.addEventListener("change", handleThemeChange);
+    return () => mediaQuery.removeEventListener("change", handleThemeChange);
+  }, []);
+
+  return theme;
+};
+```
+
+## Usage
+
+In your React component:
+
+```tsx
+import useTheme from "./useTheme";
+
+export default () => {
+  const theme = useTheme();
+  const src = theme === "dark" ? "img-dark.webp" : "img.webp";
+
+  return <img src={src} />;
+};
+```

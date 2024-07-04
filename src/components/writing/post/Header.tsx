@@ -46,7 +46,7 @@ export default (({ title, date, slug }) => {
             )}
           </AnimatePresence>
           <button
-            className="cursor-copy rounded-full bg-neutral-200 p-2.5 text-sm transition-colors hover:bg-neutral-300/75 active:bg-neutral-300"
+            className="animate-intro cursor-copy rounded-full bg-neutral-200 p-2.5 text-sm opacity-0 transition-colors [animation-delay:100ms] hover:bg-neutral-300/75 active:bg-neutral-300"
             onPointerEnter={() => setHover(true)}
             onPointerLeave={() => setHover(false)}
             onClick={onClick}
@@ -55,7 +55,7 @@ export default (({ title, date, slug }) => {
           </button>
         </div>
       </div>
-      <hr className="my-6 border-neutral-200" />
+      <hr className="my-6 animate-intro border-neutral-200 opacity-0 [animation-delay:150ms] dark:border-neutral-800" />
     </header>
   );
 }) as FC<{ title: string; date: string; slug: string }>;
