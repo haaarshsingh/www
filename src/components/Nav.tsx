@@ -48,14 +48,14 @@ export default () => {
   }, [pathname]);
 
   return (
-    <div className="fixed bottom-0 left-1/2 z-50 mb-8 flex -translate-x-1/2 items-center rounded-full border-2 border-neutral-600 bg-black/75 px-3.5 pb-2.5 pt-2 text-neutral-50 shadow-menu backdrop-blur-sm dark:bg-neutral-800/75">
+    <div className="dark:shadow-menu-dark fixed bottom-0 left-1/2 z-50 mb-8 flex -translate-x-1/2 items-center rounded-full border-2 border-neutral-600 bg-black/75 px-3.5 pb-2.5 pt-2 text-neutral-50 shadow-menu backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/75">
       <Links {...css.tabProps} selectedTabIndex={selected} />
       <div className="mx-3 h-0.5 w-0.5 rounded-full bg-neutral-400" />
       <a
         href="mailto:hi.harsh@pm.me?subject=Project%20Inquiry"
         rel="noreferrer"
         target="_blank"
-        className="exclude rounded-full bg-neutral-50/25 px-3.5 py-1.5 text-sm shadow-button transition-colors hover:bg-neutral-50/30 active:bg-neutral-50/40"
+        className="exclude dark:shadow-button-dark rounded-full bg-neutral-50/25 px-3.5 py-1.5 text-sm shadow-button transition-colors hover:bg-neutral-50/30 active:bg-neutral-50/40 dark:bg-neutral-700"
       >
         Contact
       </a>
@@ -155,7 +155,7 @@ export const Links: FC<Props> = ({ tabs, selectedTabIndex }) => {
         </Link>
       ))}
       <div
-        className="pointer-events-none absolute left-0 top-0 rounded-full bg-neutral-50/25"
+        className="pointer-events-none absolute left-0 top-0 rounded-full bg-neutral-50/25 dark:bg-neutral-50/10"
         style={hoverStyles}
       />
       <div

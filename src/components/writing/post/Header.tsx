@@ -10,7 +10,7 @@ export default (({ title, date, slug }) => {
   const [hover, setHover] = useState(false);
 
   const onClick = () => {
-    navigator.clipboard.writeText(slug);
+    navigator.clipboard.writeText(`https://harshsingh.xyz/writing/${slug}`);
     setCopy(true);
   };
 
@@ -39,14 +39,14 @@ export default (({ title, date, slug }) => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 10, opacity: 0 }}
-                className="absolute top-0 -mt-8 whitespace-nowrap rounded border border-neutral-200 bg-neutral-100 px-2 py-1 text-xs"
+                className="absolute top-0 -mt-8 whitespace-nowrap rounded border border-neutral-200 bg-neutral-100 px-2 py-1 text-xs dark:border-neutral-800 dark:bg-neutral-900"
               >
                 {copy ? "Copied" : "Copy URL"}
               </motion.div>
             )}
           </AnimatePresence>
           <button
-            className="animate-intro cursor-copy rounded-full bg-neutral-200 p-2.5 text-sm opacity-0 transition-colors [animation-delay:100ms] hover:bg-neutral-300/75 active:bg-neutral-300"
+            className="animate-intro cursor-copy rounded-full bg-neutral-200 p-2.5 text-sm opacity-0 transition-colors [animation-delay:100ms] hover:bg-neutral-300/75 active:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:active:bg-neutral-700/50"
             onPointerEnter={() => setHover(true)}
             onPointerLeave={() => setHover(false)}
             onClick={onClick}

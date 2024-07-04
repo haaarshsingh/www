@@ -15,6 +15,6 @@ export default () => (
         Infrequent posts about design and tech
       </h2>
     </div>
-    <hr className="my-6 border-neutral-200" />
+    <hr className="my-6 animate-intro border-neutral-200 opacity-0 [animation-delay:150ms] dark:border-neutral-800" />
   </header>
 );

@@ -14,8 +14,11 @@ const config: Config = {
       },
       boxShadow: {
         menu: "0 24px 14px #00000020, 0 0 0 1px #000000bb, 0 4px 10px #00000040",
-        selector: "",
-        button: "0 10px 5px -2.5px #00000020,inset 0 4px 16px #FFFFFF50",
+        "menu-dark":
+          "0 24px 14px #00000020, 0 0 0 1px rgb(38 38 38 / 0.75), 0 4px 10px #00000040",
+        button: "0 10px 5px -2.5px #00000020, inset 0 4px 16px #FFFFFF50",
+        "button-dark":
+          "0 10px 5px -2.5px #00000020, inset 0 4px 16px rgb(150 150 150 / 0.5)",
       },
       animation: {
         img: "img 1s ease-in-out",
