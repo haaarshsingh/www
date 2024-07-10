@@ -40,7 +40,7 @@ export default () => {
     {
       label: "Integrations",
       onClick: () => setActive(1),
-      clip: { w: 99, offset: 87 },
+      clip: { w: 99, offset: 86 },
     },
     {
       label: "Activity",
@@ -98,7 +98,7 @@ export default () => {
           <span
             key={i}
             className={clsx(
-              "z-20 rounded-full px-3 py-1 text-sm text-neutral-50 transition-colors dark:text-neutral-950",
+              "z-20 rounded-full px-3 py-1 text-sm tracking-tight text-neutral-50 transition-colors dark:text-neutral-950",
             )}
             aria-hidden
           >
