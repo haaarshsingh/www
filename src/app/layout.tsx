@@ -1,10 +1,23 @@
 import { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { FC, ReactNode } from "react";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = localFont({
+  src: [
+    {
+      path: "./fonts/inter-medium.woff2",
+      weight: "500",
+      style: "medium",
+    },
+    {
+      path: "./fonts/inter-regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -21,22 +34,16 @@ export const metadata: Metadata = {
   title: { default: "Harsh Singh", template: "%s — Harsh Singh" },
   creator: "Harsh Singh",
   publisher: "Harsh Singh",
-  description: "Building tools and polished user interactions.",
+  description: "Software and design consultant.",
   keywords: ["Harsh Singh", "harshhhdev"],
   authors: [{ name: "Harsh Singh", url: "https://harshsingh.xyz" }],
   openGraph: {
     title: "Harsh Singh",
-    description: "Building tools and polished user interactions.",
+    description: "Software and design consultant.",
     url: "https://harshsingh.xyz",
     siteName: "Harsh Singh",
     images: [
       { url: "https://harshsingh.xyz/og.png", width: 1200, height: 630 },
-      {
-        url: "https://harshsingh.xyz/og-alt.png",
-        width: 1200,
-        height: 630,
-        alt: 'A white background with the text "Harsh Singh" in the center',
-      },
     ],
     locale: "en-US",
     type: "website",
@@ -60,7 +67,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Harsh Singh",
-    description: "Building tools and polished user interactions.",
+    description: "Software and design consultant.",
     siteId: "harshhhdev",
     creator: "@harshhhdev",
     creatorId: "harshhhdev",
@@ -87,7 +94,7 @@ export default (({ children }) => (
   <html lang="en">
     <body className={inter.className}>
       <div className="flex justify-center">
-        <div className="mb-36 mt-16 w-content">{children}</div>
+        <div className="sm:w-content-lg mb-36 mt-16 w-content">{children}</div>
       </div>
       <Nav />
       <div

@@ -2,14 +2,12 @@ import "./post.css";
 
 import { FC } from "react";
 import { notFound } from "next/navigation";
-import allPosts from "../posts";
 import { format } from "@/components/writing/Main";
 import MDX from "@/components/writing/post/MDX";
-import { FiArrowLeft, FiCornerUpLeft } from "react-icons/fi";
+import { FiCornerUpLeft } from "react-icons/fi";
 import Link from "next/link";
-import { RiLinksFill } from "react-icons/ri";
-import { AnimatePresence } from "framer-motion";
 import Header from "@/components/writing/post/Header";
+import allPosts from "../posts";
 
 export const generateStaticParams = async () => {
   const posts = allPosts();

@@ -56,6 +56,7 @@ export default () => {
       label: "Usage",
       onClick: () => setActive(4),
       clip: { w: 65, offset: 336 },
+      hide: true,
     },
   ];
 
@@ -74,6 +75,7 @@ export default () => {
             key={i}
             className={clsx(
               "z-10 rounded-full px-3 py-1 text-sm tracking-tight text-neutral-900 transition-colors hover:text-neutral-500 dark:text-neutral-600",
+              item.hide && "hidden sm:block",
             )}
             onClick={() => {
               onSelectTab(i);
@@ -99,6 +101,7 @@ export default () => {
             key={i}
             className={clsx(
               "z-20 rounded-full px-3 py-1 text-sm tracking-tight text-neutral-50 transition-colors dark:text-neutral-950",
+              item.hide && "hidden sm:block",
             )}
             aria-hidden
           >

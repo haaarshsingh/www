@@ -23,7 +23,7 @@ const socials = [
     href: "https://linkedin.com/in/harshhhdev",
   },
   {
-    icon: <BiLogoDiscordAlt />,
+    icon: <BiLogoDiscordAlt className="mt-0.5" />,
     label: "Discord",
     href: "https://discord.com/users/518432133111611397",
   },
@@ -35,9 +35,7 @@ export default () => {
       <Headshot />
       <div className="mt-6 flex items-end justify-between">
         <div>
-          <h1 className="animate-intro font-medium tracking-tight opacity-0">
-            Harsh Singh
-          </h1>
+          <h1 className="animate-intro font-medium opacity-0">Harsh Singh</h1>
           <h2 className="animate-intro tracking-tight opacity-0 [animation-delay:100ms]">
             Software and design consultant
           </h2>
@@ -50,7 +48,7 @@ export default () => {
               rel="noreferrer"
               key={index}
               aria-label={label}
-              className="text-xl text-neutral-500 transition-colors hover:text-neutral-500/75 active:text-neutral-500/50 dark:hover:text-neutral-400"
+              className="flex items-center justify-center text-xl text-neutral-500 transition-colors hover:text-neutral-500/75 active:text-neutral-500/50 dark:hover:text-neutral-400"
             >
               {icon}
             </a>

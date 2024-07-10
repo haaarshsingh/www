@@ -10,7 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       width: {
-        content: "560px",
+        "content-lg": "560px",
+        content: "90vw",
+      },
+      media: {
+        xs: "430px",
+        xxs: "375px",
       },
       boxShadow: {
         menu: "0 24px 14px #00000020, 0 0 0 1px #000000bb, 0 4px 10px #00000040",

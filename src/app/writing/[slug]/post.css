@@ -31,11 +31,11 @@
 .prose h2,
 .prose h3,
 .prose h4 {
-  @apply mb-6 font-semibold;
+  @apply mb-6 font-medium;
 }
 
 .prose .anchor {
-  @apply invisible absolute -ml-5 w-content cursor-pointer no-underline;
+  @apply sm:w-content-lg invisible absolute -ml-5 w-content cursor-pointer no-underline;
 }
 
 .prose .anchor:hover {
