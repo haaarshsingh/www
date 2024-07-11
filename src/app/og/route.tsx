@@ -9,8 +9,8 @@ export const GET = async (req: NextRequest) => {
   const title = searchParams.get("title");
   const description = searchParams.get("description");
 
-  const regular = fetch(
-    new URL("../fonts/inter/og/regular.ttf", import.meta.url),
+  const font = fetch(
+    new URL("../fonts/inter/og/medium.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
@@ -18,14 +18,14 @@ export const GET = async (req: NextRequest) => {
       <div tw="h-full w-full flex items-end text-2xl justify-start bg-[url(https://harshsingh.xyz/og-bg.png)]">
         <div tw="ml-[185px] mb-[85px] flex flex-col">
           <div
-            tw="tracking-tight z-10 text-neutral-50"
+            tw="tracking-tight text-3xl z-10 text-neutral-50"
             style={{ fontFamily: "Inter Medium" }}
           >
             {title}
           </div>
           <div
-            tw="tracking-tight z-10 text-neutral-50"
-            style={{ fontFamily: "Inter Regular" }}
+            tw="tracking-tight z-10 text-lg text-neutral-50"
+            style={{ fontFamily: "Inter Medium" }}
           >
             {description}
           </div>
@@ -37,8 +37,8 @@ export const GET = async (req: NextRequest) => {
       height: 630,
       fonts: [
         {
-          name: "Inter Regular",
-          data: await regular,
+          name: "Inter Medium",
+          data: await font,
           style: "normal",
           weight: 400,
         },

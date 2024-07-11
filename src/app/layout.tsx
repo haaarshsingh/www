@@ -14,7 +14,7 @@ const inter = localFont({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 2,
   userScalable: true,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#121212" },
