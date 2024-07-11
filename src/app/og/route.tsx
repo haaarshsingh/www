@@ -37,12 +37,6 @@ export const GET = async (req: NextRequest) => {
       height: 630,
       fonts: [
         {
-          name: "Inter Medium",
-          data: await medium,
-          style: "normal",
-          weight: 500,
-        },
-        {
           name: "Inter Regular",
           data: await regular,
           style: "normal",
