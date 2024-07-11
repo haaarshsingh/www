@@ -9,17 +9,13 @@ export const GET = async (req: NextRequest) => {
   const title = searchParams.get("title");
   const description = searchParams.get("description");
 
-  const medium = fetch(
-    new URL("../fonts/inter/og/medium.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
-
   const regular = fetch(
     new URL("../fonts/inter/og/regular.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
-      <div tw="h-full w-full flex items-end text-2xl justify-start">
+      <div tw="h-full w-full flex items-end text-2xl justify-start bg-[url(https://harshsingh.xyz/og-bg.png)]">
         <div tw="ml-[185px] mb-[85px] flex flex-col">
           <div
             tw="tracking-tight z-10 text-neutral-50"
