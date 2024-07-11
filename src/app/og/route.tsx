@@ -19,7 +19,7 @@ export const GET = async (req: NextRequest) => {
 
   return new ImageResponse(
     (
-      <div tw="h-full w-full flex items-end text-2xl justify-start bg-[url(https://harshsingh.xyz/og-bg.png)]">
+      <div tw="h-full w-full flex items-end text-2xl justify-start">
         <div tw="ml-[185px] mb-[85px] flex flex-col">
           <div
             tw="tracking-tight z-10 text-neutral-50"
