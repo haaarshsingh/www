@@ -157,10 +157,12 @@ export const Links: FC<Props> = ({ tabs, selectedTabIndex }) => {
       <div
         className="pointer-events-none absolute left-0 top-0 rounded-full bg-neutral-50/25 dark:bg-neutral-50/10"
         style={hoverStyles}
+        aria-hidden
       />
       <div
         className="pointer-events-none absolute bottom-0 left-0 -mb-1.5 flex justify-center rounded-full"
         style={selectStyles}
+        aria-hidden
       >
         <div className="h-0.5 w-0.5 rounded-full bg-neutral-50" />
       </div>

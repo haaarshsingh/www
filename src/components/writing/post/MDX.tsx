@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image, { ImageProps } from "next/image";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
+import { slugify } from "@/components/craft/Post";
 
 const CustomLink = ((props) => {
   if (props.href?.startsWith("/"))
@@ -32,16 +33,6 @@ const Code = (({ children, ...props }) => {
   const codeHTML = highlight(children as string);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }) as FC<{ children: ReactNode }>;
-
-const slugify = (s: string) =>
-  s
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/&/g, "-and-")
-    .replace(/[^\w\-]+/g, "")
-    .replace(/\-\-+/g, "-");
 
 const createHeading = (level: number) => {
   const Heading = ({ children }: { children: ReactNode }) => {

@@ -1,70 +1,62 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Post from "../Post";
 import clsx from "clsx";
+import { motion } from "framer-motion";
+
+type Path = { w: number; offset: number }[];
 
 export default () => {
-  const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [clipPaths, setClipPaths] = useState<Path>([]);
+  const tabRefs = useRef<HTMLButtonElement[]>([]);
 
-  const onSelectTab = (i: number) => {
-    if (ref.current) {
-      const keyframes = [
-        {
-          clipPath: `inset(4px calc(100% - (${tabs[active].clip.offset}px + ${tabs[active].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[active].clip.offset}px round 20px)`,
-        },
-        {
-          clipPath: `inset(4px calc(100% - (${tabs[i].clip.offset}px + ${tabs[i].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[i].clip.offset}px round 20px)`,
-        },
-      ];
+  const tabs = useMemo(
+    () => [
+      {
+        label: "Overview",
+      },
+      {
+        label: "Integrations",
+      },
+      {
+        label: "Activity",
+      },
+      {
+        label: "Domains",
+      },
+      {
+        label: "Usage",
+        hide: true,
+      },
+    ],
+    [],
+  );
 
-      const options: KeyframeAnimationOptions = {
-        duration: 200,
-        easing: "ease-in-out",
-        fill: "forwards",
+  useEffect(() => {
+    const newClipPaths = tabs.map((_, i) => {
+      const rect = tabRefs.current[i].getBoundingClientRect();
+      return {
+        w: rect.width,
+        offset: rect.left - tabRefs.current[0].getBoundingClientRect().left,
       };
+    });
 
-      ref.current.animate(keyframes, options);
-    }
+    setClipPaths(newClipPaths);
+  }, [tabs]);
 
-    setActive(i);
+  const getClipPath = (i: number) => {
+    if (clipPaths.length === 0) return "";
+    const { offset, w } = clipPaths[i];
+    return `inset(4px calc(100% - (${offset + 3.5}px + ${w}px)) calc(100% - (0px + 32px)) ${offset + 3.5}px round 20px)`;
   };
-
-  const tabs = [
-    {
-      label: "Overview",
-      onClick: () => setActive(0),
-      clip: { w: 83.5, offset: 3.5 },
-    },
-    {
-      label: "Integrations",
-      onClick: () => setActive(1),
-      clip: { w: 99, offset: 86 },
-    },
-    {
-      label: "Activity",
-      onClick: () => setActive(2),
-      clip: { w: 71, offset: 186 },
-    },
-    {
-      label: "Domains",
-      onClick: () => setActive(3),
-      clip: { w: 79, offset: 257 },
-    },
-    {
-      label: "Usage",
-      onClick: () => setActive(4),
-      clip: { w: 65, offset: 336 },
-      hide: true,
-    },
-  ];
 
   return (
     <Post
       title="Exclusion Tabs"
       description="Tabs that use clipping to blend between inactive and active."
-      tags={["react", "tailwindcss", "waapi"]}
+      tags={["react", "tailwindcss", "framer motion"]}
       className="relative"
     >
       <div
@@ -73,27 +65,26 @@ export default () => {
         {tabs.map((item, i) => (
           <button
             key={i}
+            ref={(el) => {
+              tabRefs.current[i] = el!;
+            }}
             className={clsx(
               "z-10 rounded-full px-3 py-1 text-sm tracking-tight text-neutral-900 transition-colors hover:text-neutral-500 dark:text-neutral-600",
               item.hide && "hidden sm:block",
             )}
-            onClick={() => {
-              onSelectTab(i);
-              item.onClick();
-            }}
+            onClick={() => setActive(i)}
           >
             {item.label}
           </button>
         ))}
       </div>
-      <div
+      <motion.div
+        style={{ clipPath: getClipPath(active) }}
+        animate={{ clipPath: getClipPath(active) }}
+        transition={{ type: "spring", stiffness: 300, damping: 29 }}
         className={clsx(
           "[will-change: clip-path] pointer-events-none absolute left-1/2 z-20 flex w-fit -translate-x-1/2 items-center bg-neutral-950 p-1 dark:bg-neutral-50",
         )}
-        style={{
-          clipPath: `inset(4px calc(100% - (${tabs[0].clip.offset}px + ${tabs[0].clip.w}px)) calc(100% - (0px + 32px)) ${tabs[0].clip.offset}px round 20px)`,
-        }}
-        ref={ref}
         aria-hidden
       >
         {tabs.map((item, i) => (
@@ -108,7 +99,7 @@ export default () => {
             {item.label}
           </span>
         ))}
-      </div>
+      </motion.div>
     </Post>
   );
 };
