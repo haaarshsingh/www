@@ -34,7 +34,7 @@ export default () => {
       tags={["react", "tailwindcss", "framer motion"]}
     >
       <motion.div
-        className="flex h-9 select-none items-center justify-between gap-x-2 rounded-[10px] bg-neutral-800 px-3"
+        className="flex h-9 select-none items-center justify-between gap-x-2 rounded-[10px] bg-neutral-200 px-3 dark:bg-neutral-800"
         animate={{ scale: isClicked ? 0.98 : 1 }}
         transition={{ duration: 0.2 }}
       >
@@ -73,7 +73,9 @@ const Volume = () => {
     <button
       className={clsx(
         "mx-1 rounded p-1 transition-all hover:bg-neutral-50/10",
-        mute ? "text-neutral-500" : "text-neutral-300",
+        mute
+          ? "text-neutral-400 dark:text-neutral-500"
+          : "text-neutral-700 dark:text-neutral-300",
       )}
       onClick={() => setMute((mute) => !mute)}
     >
@@ -99,7 +101,7 @@ const Volume = () => {
           strokeLinecap="round"
           strokeLinejoin="round"
           animate={{ x: mute ? -4 : 0, opacity: mute ? 0 : 1 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.05 }}
         />
         <motion.path
           d="M13.5586 14.0457C14.5009 12.6008 15.0663 11.1738 15.0663 9.01994C15.0663 6.86607 14.5009 5.47047 13.5586 3.99414"
@@ -108,7 +110,7 @@ const Volume = () => {
           strokeLinecap="round"
           strokeLinejoin="round"
           animate={{ x: mute ? -4 : 0, opacity: mute ? 0 : 1 }}
-          transition={{ delay: 0.05 }}
+          transition={{ delay: 0.1 }}
         />
         <motion.path
           d="M10.5381 11.0304C10.844 10.4217 11.0407 9.74757 11.0407 9.02008C11.0407 8.28255 10.8522 7.6248 10.5381 7.00977"
