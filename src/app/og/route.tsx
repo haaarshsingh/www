@@ -24,13 +24,13 @@ export const GET = async (req: NextRequest) => {
         <div tw="ml-[185px] mb-[85px] flex flex-col">
           <div
             tw="tracking-tight text-3xl z-10 text-neutral-50"
-            style={{ fontFamily: "Inter Medium" }}
+            style={{ fontFamily: "Inter" }}
           >
             {title}
           </div>
           <div
             tw="tracking-tight z-10 text-lg text-neutral-50"
-            style={{ fontFamily: "Inter Medium" }}
+            style={{ fontFamily: "Inter" }}
           >
             {description}
           </div>
@@ -42,7 +42,7 @@ export const GET = async (req: NextRequest) => {
       height: 630,
       fonts: [
         {
-          name: "Inter Medium",
+          name: "Inter",
           data: await font,
           style: "normal",
           weight: 400,
