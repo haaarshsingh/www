@@ -1,6 +1,7 @@
 import "./post.css";
 
 import { FC } from "react";
+import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import { format } from "@/components/writing/Main";
 import MDX from "@/components/writing/post/MDX";
@@ -8,6 +9,11 @@ import { FiCornerUpLeft } from "react-icons/fi";
 import Link from "next/link";
 import Header from "@/components/writing/post/Header";
 import allPosts from "../posts";
+
+const fira = localFont({
+  src: [{ path: "../../fonts/fira/regular.woff2", weight: "400" }],
+  variable: "--font-mono",
+});
 
 export const generateStaticParams = async () => {
   const posts = allPosts();
@@ -26,7 +32,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   } = post.metadata;
   const ogImage = image
     ? image
-    : `https://harshsingh.xyz/og?title=${encodeURIComponent(title)}`;
+    : `https://harshsingh.xyz/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(publishedTime)}`;
 
   return {
     title,
@@ -36,8 +42,9 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
       description,
       type: "article",
       publishedTime,
-      url: `https://harshsingh.xyz/blog/${post.slug}`,
+      url: `https://harshsingh.xyz/writing/${post.slug}`,
       images: [{ url: ogImage }],
+      author: "Harsh Singh",
     },
     twitter: {
       card: "summary_large_image",
@@ -53,7 +60,7 @@ export default (({ params }) => {
   if (!post) notFound();
 
   return (
-    <section>
+    <section className={fira.variable}>
       <script
         type="application/ld+json"
         suppressHydrationWarning

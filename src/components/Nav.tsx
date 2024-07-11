@@ -48,14 +48,14 @@ export default () => {
   }, [pathname]);
 
   return (
-    <div className="dark:shadow-menu-dark fixed bottom-0 left-1/2 z-50 mb-8 flex -translate-x-1/2 items-center rounded-full border-2 border-neutral-600 bg-black/75 px-3.5 pb-2.5 pt-2 text-neutral-50 shadow-menu backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/75">
+    <div className="fixed bottom-0 left-1/2 z-50 mb-8 flex -translate-x-1/2 items-center rounded-full border-2 border-neutral-600 bg-black/75 px-3.5 pb-2.5 pt-2 text-neutral-50 shadow-[0_24px_14px_#00000020,0_0_0_1px_#000000bb,0_4px_10px_#00000040] backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/75 dark:shadow-[0_24px_14px_#00000020,0_0_0_1px_rgba(38,38,38,0.75),0_4px_10px_#00000040]">
       <Links {...css.tabProps} selectedTabIndex={selected} />
       <div className="mx-3 h-0.5 w-0.5 rounded-full bg-neutral-400" />
       <a
         href="mailto:hi.harsh@pm.me?subject=Project%20Inquiry"
         rel="noreferrer"
         target="_blank"
-        className="exclude dark:shadow-button-dark rounded-full bg-neutral-50/25 px-3.5 py-1.5 text-sm shadow-button transition-colors hover:bg-neutral-50/30 active:bg-neutral-50/40 dark:bg-neutral-700"
+        className="exclude rounded-full bg-neutral-50/25 px-3.5 py-1.5 text-sm shadow-[0_10px_5px_-2.5px_#00000020,inset_0_4px_16px_#FFFFFF50] transition-colors hover:bg-neutral-50/30 active:bg-neutral-50/40 dark:bg-neutral-700 dark:shadow-[0_10px_5px_-2.5px_#00000020,inset_0_4px_16px_rgba(150,150,150,0.5)]"
       >
         Contact
       </a>

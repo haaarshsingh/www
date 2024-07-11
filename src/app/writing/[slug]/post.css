@@ -57,7 +57,8 @@
 }
 
 .prose code {
-  @apply text-xs leading-snug;
+  @apply text-xs;
+  font-family: var(--font-mono);
 }
 
 .prose p > code {

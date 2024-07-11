@@ -29,36 +29,34 @@ const socials = [
   },
 ];
 
-export default () => {
-  return (
-    <header>
-      <Headshot />
-      <div className="mt-6 flex items-end justify-between">
-        <div>
-          <h1 className="animate-intro font-medium opacity-0">Harsh Singh</h1>
-          <h2 className="animate-intro tracking-tight opacity-0 [animation-delay:100ms]">
-            Software and design consultant
-          </h2>
-        </div>
-        <div className="flex animate-intro items-center gap-x-1 opacity-0 [animation-delay:100ms]">
-          {socials.map(({ icon, label, href }, index) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              key={index}
-              aria-label={label}
-              className="flex items-center justify-center text-xl text-neutral-500 transition-colors hover:text-neutral-500/75 active:text-neutral-500/50 dark:hover:text-neutral-400"
-            >
-              {icon}
-            </a>
-          ))}
-        </div>
+export default () => (
+  <header>
+    <Headshot />
+    <div className="mt-6 flex items-end justify-between">
+      <div>
+        <h1 className="animate-intro font-medium opacity-0">Harsh Singh</h1>
+        <h2 className="animate-intro tracking-tight opacity-0 [animation-delay:100ms]">
+          Software and design consultant
+        </h2>
       </div>
-      <hr className="my-6 animate-intro border-neutral-200 opacity-0 [animation-delay:150ms] dark:border-neutral-800" />
-    </header>
-  );
-};
+      <div className="flex animate-intro items-center gap-x-1 opacity-0 [animation-delay:100ms]">
+        {socials.map(({ icon, label, href }, index) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            key={index}
+            aria-label={label}
+            className="flex items-center justify-center text-xl text-neutral-500 transition-colors hover:text-neutral-500/75 active:text-neutral-500/50 dark:hover:text-neutral-400"
+          >
+            {icon}
+          </a>
+        ))}
+      </div>
+    </div>
+    <hr className="my-6 animate-intro border-neutral-200 opacity-0 [animation-delay:150ms] dark:border-neutral-800" />
+  </header>
+);
 
 const Headshot = () => {
   return (

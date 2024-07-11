@@ -6,16 +6,8 @@ import localFont from "next/font/local";
 
 const inter = localFont({
   src: [
-    {
-      path: "./fonts/inter-medium.woff2",
-      weight: "500",
-      style: "medium",
-    },
-    {
-      path: "./fonts/inter-regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
+    { path: "./fonts/inter/medium.woff2", weight: "500" },
+    { path: "./fonts/inter/regular.woff2", weight: "400" },
   ],
 });
 
@@ -23,10 +15,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
+  userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#E5E5E5" },
-    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+    { media: "(prefers-color-scheme: light)", color: "#121212" },
+    { media: "(prefers-color-scheme: dark)", color: "#E5E5E5" },
   ],
 };
 
@@ -43,7 +35,12 @@ export const metadata: Metadata = {
     url: "https://harshsingh.xyz",
     siteName: "Harsh Singh",
     images: [
-      { url: "https://harshsingh.xyz/og.png", width: 1200, height: 630 },
+      {
+        url: "https://harshsingh.xyz/og?title=Harsh%20Singh&description=Software%20and%20design%20consultant",
+        width: 1200,
+        height: 630,
+        alt: "",
+      },
     ],
     locale: "en-US",
     type: "website",
@@ -72,8 +69,8 @@ export const metadata: Metadata = {
     creator: "@harshhhdev",
     creatorId: "harshhhdev",
     images: {
-      url: "https://harshsingh.xyz/og.png",
-      alt: 'A black background with noise and "Harsh Singh" written across the center',
+      url: "https://harshsingh.xyz/og?title=Harsh%20Singh&description=Software%20and%20design%20consultant",
+      alt: "",
     },
   },
   verification: {
@@ -84,7 +81,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://harshsingh.xyz",
-    types: { "application/rss+xml": "https://harshsingh.xyz/rss.xml" },
+    types: { "application/rss": "https://harshsingh.xyz/rss" },
   },
   assets: ["https://harshsingh.xyz/assets.zip"],
   category: "technology",
