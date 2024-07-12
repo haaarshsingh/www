@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Harsh Singh",
     images: [
       {
-        url: "https://harshsingh.xyz/og?title=Harsh%20Singh&description=Software%20and%20design%20consultant",
+        url: "https://harshsingh.xyz/og.png",
         width: 1200,
         height: 630,
         alt: "",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     creator: "@harshhhdev",
     creatorId: "harshhhdev",
     images: {
-      url: "https://harshsingh.xyz/og?title=Harsh%20Singh&description=Software%20and%20design%20consultant",
+      url: "https://harshsingh.xyz/og.png",
       alt: "",
     },
   },
