@@ -28,13 +28,13 @@ git clone https://github.com/harshhhdev/harshhhdev.github.io.git
 cd www
 
 # Install dependencies
-npm install
+bun install
 ```
 
 ### Starting server
 
 ```bash
-npm dev
+bun dev
 ```
 
 Server should now be running on [localhost](https://localhost:3000).
