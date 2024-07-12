@@ -7,33 +7,32 @@ export const GET = async (req: NextRequest) => {
   const { searchParams } = req.nextUrl;
 
   const title = searchParams.get("title");
-  const description = searchParams.get("description");
 
   const font = fetch(
-    new URL("../fonts/inter/og/medium.ttf", import.meta.url),
+    new URL("../fonts/inter/og/semibold.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
       <div
-        tw="h-full w-full flex items-end text-2xl justify-start"
         style={{
           backgroundImage: "url(https://harshsingh.xyz/og-bg.png)",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <div tw="ml-[185px] mb-[85px] flex flex-col">
-          <div
-            tw="tracking-tight text-3xl z-10 text-neutral-50"
-            style={{ fontFamily: "Inter" }}
-          >
-            {title}
-          </div>
-          <div
-            tw="tracking-tight z-10 text-lg text-neutral-50"
-            style={{ fontFamily: "Inter" }}
-          >
-            {description}
-          </div>
+        <div
+          style={{
+            fontFamily: "Inter",
+            fontSize: 24,
+            color: "black",
+            letterSpacing: -0.5,
+            marginLeft: 30,
+          }}
+        >
+          {title}
         </div>
       </div>
     ),

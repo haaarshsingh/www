@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: "Infrequent posts about design and tech",
     images: [
       {
-        url: "https://harshsingh.xyz/og?title=Writing&description=Infrequent%20posts%20about%20design%20and%20tech",
+        url: "https://harshsingh.xyz/og?title=Writing",
         width: 1200,
         height: 630,
         alt: "",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Infrequent posts about design and tech",
     images: [
       {
-        url: "https://harshsingh.xyz/og?title=Writing&description=Infrequent%20posts%20about%20design%20and%20tech",
+        url: "https://harshsingh.xyz/og?title=Writing",
         width: 1200,
         height: 630,
         alt: "",

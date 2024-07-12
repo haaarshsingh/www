@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "Experimental laboratory of user interactions",
     images: [
       {
-        url: "https://harshsingh.xyz/og?title=Craft&description=Experimental%20laboratory%20of%20user%20interactions",
+        url: "https://harshsingh.xyz/og?title=Craft",
         width: 1200,
         height: 630,
         alt: "",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "Experimental laboratory of user interactions",
     images: [
       {
-        url: "https://harshsingh.xyz/og?title=Craft&description=Experimental%20laboratory%20of%20user%20interactions",
+        url: "https://harshsingh.xyz/og?title=Craft",
         width: 1200,
         height: 630,
         alt: "",

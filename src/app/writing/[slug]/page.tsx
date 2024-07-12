@@ -32,7 +32,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   } = post.metadata;
   const ogImage = image
     ? image
-    : `https://harshsingh.xyz/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(publishedTime)}`;
+    : `https://harshsingh.xyz/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
