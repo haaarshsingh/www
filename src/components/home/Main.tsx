@@ -34,7 +34,7 @@ export default () => {
       {
         title: "React Pointers",
         description: "2021 · Lightweight custom cursors for React.",
-        href: "https://kmenu.hxrsh.in",
+        href: "https://pointers.hxrsh.in",
       },
       {
         title: "snip",
@@ -44,7 +44,7 @@ export default () => {
       {
         title: "dots",
         description: "2020 · Pastel-themed i3wm and Arch Linux rice.",
-        href: "https://snip.place",
+        href: "https://github.com/harshhhdev/dots",
       },
     ],
   });

@@ -53,7 +53,7 @@ export default (({ title, description, tags, children, className }) => (
       </div>
       <a
         className="flex items-center text-sm tracking-tight"
-        href={`https://github.com/harshhhdev/www`}
+        href={`https://github.com/harshhhdev/www/blob/master/src/components/craft/content/${title.replace(/\s+/g, "")}.tsx`}
       >
         View Source
         <HiOutlineArrowUpRight className="ml-1 mt-[1px] text-xs text-neutral-500" />
