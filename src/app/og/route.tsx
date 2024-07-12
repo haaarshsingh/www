@@ -18,6 +18,7 @@ export const GET = async (req: NextRequest) => {
         style={{
           backgroundImage: "url(https://harshsingh.xyz/og-bg.png)",
           height: "100%",
+          width: "100%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
