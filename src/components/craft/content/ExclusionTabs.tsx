@@ -3,14 +3,13 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import Post from "../Post";
 import clsx from "clsx";
-import { motion } from "framer-motion";
-import { FiRotateCw } from "react-icons/fi";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Path = { w: number; offset: number }[];
 
 export default () => {
-  const [reset, setReset] = useState(false);
-  const [duration, setDuration] = useState(0.1);
+  const [slow, setSlow] = useState(false);
+  const [clip, setClip] = useState(true);
 
   const [active, setActive] = useState(0);
   const [clipPaths, setClipPaths] = useState<Path>([]);
@@ -50,13 +49,6 @@ export default () => {
     setClipPaths(newClipPaths);
   }, [tabs]);
 
-  useEffect(() => {
-    if (reset) {
-      setDuration(0.1);
-      setTimeout(() => setReset(false), 200);
-    }
-  }, [reset]);
-
   const getClipPath = (i: number) => {
     if (clipPaths.length === 0) return "";
     const { offset, w } = clipPaths[i];
@@ -67,7 +59,7 @@ export default () => {
     <Post
       title="Exclusion Tabs"
       description="Tabs that use clipping to blend between inactive and active."
-      tags={["react", "tailwindcss", "framer motion"]}
+      tags={["tailwindcss", "framer motion"]}
       className="relative overflow-hidden"
     >
       <div
@@ -90,13 +82,13 @@ export default () => {
         ))}
       </div>
       <motion.div
-        style={{ clipPath: getClipPath(active) }}
-        animate={{ clipPath: getClipPath(active) }}
+        style={{ clipPath: clip ? getClipPath(active) : "unset" }}
+        animate={{ clipPath: clip ? getClipPath(active) : "unset" }}
         transition={{
-          type: duration === 0.1 ? "spring" : "tween",
+          type: slow ? "tween" : "spring",
           stiffness: 300,
           damping: 29,
-          duration: duration,
+          duration: slow ? 2 : 0.1,
         }}
         className={clsx(
           "[will-change: clip-path] pointer-events-none absolute left-1/2 z-20 flex w-fit -translate-x-1/2 items-center bg-neutral-950 p-1 dark:bg-neutral-50",
@@ -116,27 +108,64 @@ export default () => {
           </span>
         ))}
       </motion.div>
-      <div className="absolute bottom-0 flex w-full items-center justify-center gap-x-2 border-t border-t-neutral-200 bg-neutral-100 px-8 py-4 dark:border-t-neutral-700/50 dark:bg-neutral-800">
-        <input
-          min={0}
-          max={2}
-          type="range"
-          value={duration}
-          step={0.1}
-          className="h-1 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 dark:bg-neutral-700"
-          onChange={(e) => setDuration(parseFloat(e.currentTarget.value))}
-        />
+      <div className="absolute right-0 top-0 flex items-center gap-x-1 p-4">
         <motion.button
-          aria-label="reset"
-          className="ml-8"
-          onClick={() => setReset(true)}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1, rotate: reset ? 180 : 0 }}
-          exit={{ scale: 0, opacity: 0 }}
-          transition={{ type: "spring" }}
+          className="relative flex h-6 items-center justify-center rounded-full bg-neutral-200/50 text-xs text-neutral-500 transition-all duration-200 hover:bg-neutral-200 dark:bg-neutral-50/5 dark:hover:bg-neutral-50/10"
+          onClick={() => setClip((clip) => !clip)}
+          style={{ width: clip ? 108 : 118 }}
         >
-          <FiRotateCw />
+          <span className="absolute left-0 ml-2">clip-path:</span>{" "}
+          {clip ? (
+            <motion.span
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              key={0}
+              className="absolute right-0 mr-2"
+            >
+              active
+            </motion.span>
+          ) : (
+            <motion.span
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              key={1}
+              className="absolute right-0 mr-2"
+            >
+              inactive
+            </motion.span>
+          )}
         </motion.button>
+        <button
+          className="flex h-6 items-center justify-center overflow-hidden rounded-full bg-neutral-200 bg-neutral-200/50 text-xs text-neutral-500 transition-all duration-200 hover:bg-neutral-200 dark:bg-neutral-50/5 dark:hover:bg-neutral-50/10"
+          onClick={() => setSlow((slow) => !slow)}
+          style={{ width: slow ? 48 : 32 }}
+        >
+          <AnimatePresence>
+            {slow ? (
+              <motion.span
+                initial={{ x: 10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -10, opacity: 0 }}
+                key={0}
+                className="absolute"
+              >
+                0.25x
+              </motion.span>
+            ) : (
+              <motion.span
+                initial={{ x: 10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -10, opacity: 0 }}
+                key={1}
+                className="absolute"
+              >
+                1x
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </button>
       </div>
     </Post>
   );

@@ -6,7 +6,7 @@ export default () => {
     lastModified: post.metadata.publishedAt,
   }));
 
-  const routes = ["", "/blog"].map((route) => ({
+  const routes = ["", "/craft", "/writing"].map((route) => ({
     url: `https://harshsingh.xyz${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));

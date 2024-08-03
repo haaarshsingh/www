@@ -52,6 +52,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
       description,
       images: [ogImage],
     },
+    alternates: { canonical: `https://harshsingh.xyz/writing/${post.slug}` },
   };
 };
 

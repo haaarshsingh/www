@@ -35,9 +35,20 @@ a:not(.exclude) {
   @apply rounded-full bg-neutral-500 dark:bg-neutral-700;
 }
 
-::-moz-range-thumb,
+::-moz-range-thumb {
+  @apply h-4 w-4 rounded-full border-none bg-neutral-600 dark:bg-neutral-50;
+}
+
 ::-webkit-slider-thumb {
-  @apply rounded-full border-none bg-neutral-600 dark:bg-neutral-50;
+  @apply h-4 w-4 appearance-none rounded-full border-none bg-neutral-600 dark:bg-neutral-50;
+}
+
+::-moz-range-track {
+  @apply rounded-full bg-white;
+}
+
+::-webkit-slider-runnable-track {
+  @apply bg-white;
 }
 
 .animate-children > * {

@@ -31,7 +31,7 @@ export default () => {
     <Post
       title="Arc Tabs"
       description="Arc Browser tabs with SVG animations."
-      tags={["react", "tailwindcss", "framer motion"]}
+      tags={["tailwindcss", "framer motion"]}
     >
       <motion.div
         className="flex h-9 select-none items-center justify-between gap-x-2 rounded-[10px] bg-neutral-200 px-3 dark:bg-neutral-800"

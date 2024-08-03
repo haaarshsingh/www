@@ -31,6 +31,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: { canonical: "https://harshsingh.xyz/craft" },
 };
 
 export default () => (

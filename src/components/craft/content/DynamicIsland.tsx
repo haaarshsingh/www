@@ -40,7 +40,7 @@ export default () => {
     <Post
       title="Dynamic Island"
       description="Recreation of Apple's dynamic island for the web."
-      tags={["react", "tailwindcss", "framer motion"]}
+      tags={["tailwindcss", "framer motion"]}
       className="relative overflow-hidden"
     >
       <motion.div

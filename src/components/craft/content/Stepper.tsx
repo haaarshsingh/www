@@ -105,7 +105,7 @@ export default () => {
     <Post
       title="Stepper"
       description="Animated stepper component using smooth transitions and blur."
-      tags={["react", "tailwindcss"]}
+      tags={["tailwindcss"]}
     >
       <div className="flex items-center gap-x-2.5 overflow-hidden rounded-full border border-neutral-300 bg-neutral-200/50 px-1 dark:border-neutral-700 dark:bg-neutral-800">
         <button

@@ -29,6 +29,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: { canonical: "https://harshsingh.xyz/writing" },
 };
 
 export default () => (
