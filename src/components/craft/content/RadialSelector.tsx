@@ -129,7 +129,7 @@ export default () => {
           <motion.button
             key={i}
             className={clsx(
-              "absolute h-20 w-20 overflow-hidden rounded-lg border-4 border-neutral-50 shadow-lg",
+              "absolute h-20 w-20 overflow-hidden rounded-lg border-4 border-neutral-900 shadow-lg dark:border-neutral-50",
               active === i ? "left-1/2 top-1/2" : getPosition(i),
             )}
             draggable={false}
@@ -154,7 +154,7 @@ export default () => {
             />
             <AnimatePresence>
               {active === i && (
-                <div className="absolute right-0 top-0 z-10 m-1 rounded-full bg-neutral-50/50 p-0.5 text-[8px] text-xs text-neutral-600 shadow-lg backdrop-blur">
+                <div className="absolute right-0 top-0 z-10 m-1 rounded-full bg-neutral-900/25 p-0.5 text-[8px] text-neutral-50 shadow-lg backdrop-blur dark:bg-neutral-50/50 dark:text-neutral-600">
                   <TbX />
                 </div>
               )}
