@@ -196,7 +196,7 @@ export default () => {
         </button>
         <hr className="w-full border-neutral-300 dark:border-neutral-600" />
         <button
-          className="group relative flex h-7 w-full select-none items-center justify-end overflow-hidden rounded px-2 text-xs text-red-400 hover:bg-red-500/5 dark:hover:bg-red-500/20"
+          className="group relative flex h-7 w-full items-center justify-end overflow-hidden rounded px-2 text-xs text-red-400 hover:bg-red-500/5 dark:hover:bg-red-500/20"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
@@ -208,13 +208,13 @@ export default () => {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 10, opacity: 0 }}
                 key={0}
-                className="absolute left-0 ml-2"
+                className="absolute left-0 ml-2 select-none"
               >
                 Hold to Confirm
               </motion.span>
             ) : (
               <motion.span
-                className="absolute left-0 ml-2"
+                className="absolute left-0 ml-2 select-none"
                 initial={{ y: -10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 10, opacity: 0 }}
