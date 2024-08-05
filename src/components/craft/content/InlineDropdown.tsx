@@ -12,7 +12,6 @@ import {
   TbCopyPlus,
   TbPencil,
   TbSettings,
-  TbStarFilled,
   TbTrash,
   TbX,
 } from "react-icons/tb";
