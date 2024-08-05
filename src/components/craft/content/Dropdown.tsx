@@ -46,13 +46,16 @@ export default () => {
   };
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: NodeJS.Timeout | undefined;
 
-    if (holding)
+    if (holding) {
       timer = setInterval(() => {
         setElapsedTime((prev) => Math.min(prev + 100, maxTime));
       }, 100);
-    else if (!holding && elapsedTime > 0) clearInterval(timer);
+    } else if (!holding && elapsedTime > 0) {
+      clearInterval(timer);
+    }
+
     return () => clearInterval(timer);
   }, [holding, elapsedTime]);
 
