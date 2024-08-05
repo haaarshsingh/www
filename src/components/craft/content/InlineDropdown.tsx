@@ -1,6 +1,5 @@
 "use client";
 
-import { FiStar, FiTrash2 } from "react-icons/fi";
 import Post from "../Post";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -36,11 +35,11 @@ export default () => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const maxTime = 1000;
 
-  const handleMouseDown = () => {
+  const handleStart = () => {
     setHolding(true);
   };
 
-  const handleMouseUp = () => {
+  const handleEnd = () => {
     setHolding(false);
     setElapsedTime(0);
   };
@@ -197,9 +196,11 @@ export default () => {
         <hr className="w-full border-neutral-300 dark:border-neutral-600" />
         <button
           className="group relative flex h-7 w-full items-center justify-end overflow-hidden rounded px-2 text-xs text-red-400 hover:bg-red-500/5 dark:hover:bg-red-500/20"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onMouseDown={handleStart}
+          onMouseUp={handleEnd}
+          onMouseLeave={handleEnd}
+          onTouchStart={handleStart}
+          onTouchEnd={handleEnd}
         >
           <AnimatePresence>
             {holding ? (
