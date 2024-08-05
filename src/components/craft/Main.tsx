@@ -3,12 +3,14 @@ import ExclusionTabs from "./content/ExclusionTabs";
 import Stepper from "./content/Stepper";
 import ArcTabs from "./content/ArcTabs";
 import RadialSelector from "./content/RadialSelector";
+import Dropdown from "./content/Dropdown";
 
 export default () => (
   <main className="animate-children flex flex-col gap-y-12">
     <DynamicIsland />
-    <RadialSelector />
+    <Dropdown />
     <ExclusionTabs />
+    <RadialSelector />
     <Stepper />
     <ArcTabs />
   </main>

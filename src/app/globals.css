@@ -15,6 +15,11 @@ a:not(.exclude) {
   @apply underline decoration-neutral-300 transition-colors hover:decoration-neutral-600 dark:decoration-neutral-600 dark:hover:decoration-neutral-500;
 }
 
+img,
+button {
+  @apply select-none;
+}
+
 ::selection {
   @apply bg-neutral-950 text-neutral-50 dark:bg-neutral-50/10 dark:text-current;
 }
