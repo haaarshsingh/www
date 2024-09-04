@@ -15,8 +15,12 @@ import Footer from "../components/Footer.astro";
     <title>Harsh Singh</title>
   </head>
   <body>
-    <Header />
-    <Main />
-    <Footer client:idle />
+    <div class="flex w-screen justify-center">
+      <div class="mt-16 w-[500px]">
+        <Header />
+        <Main />
+        <Footer client:idle />
+      </div>
+    </div>
   </body>
 </html>
