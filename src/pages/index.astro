@@ -1,17 +1,20 @@
 ---
-		import '../global.css';
+import "../global.css";
+
+import Header from "../components/Header.astro";
+import Main from "../components/Main.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-					<meta name="generator" content={Astro.generator} />
-		<title>Harsh Singh</title>
-	</head>
-	<body>
-		<h1>Harsh Singh</h1>
-				<p>I'm a software and design consultant. This is my lil corner of the web where I share my work with y'all. <a href="mailto:hi.harsh@pm.me">Let's work together</a></p>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Harsh Singh</title>
+  </head>
+  <body>
+    <Header />
+    <Main />
+  </body>
 </html>

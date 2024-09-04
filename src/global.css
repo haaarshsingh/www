@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,6 +9,10 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Inter",
+    sans-serif;
   letter-spacing: -2%;
 }
