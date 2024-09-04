@@ -17,11 +17,15 @@ body {
   letter-spacing: -2%;
 }
 
+a {
+  @apply underline decoration-neutral-400;
+}
+
 .clock {
   --seconds-deg: calc((var(--now-s) / 60) * 360);
   --minutes-deg: calc(((var(--now-m) / 60) * 360) + ((var(--now-s) / 60) * 6));
   --hours-deg: calc(((var(--now-h) / 12) * 360) + ((var(--now-m) / 60) * 30));
-  @apply relative m-0 flex h-5 w-5 rotate-180 items-center justify-center rounded-full border border-neutral-300;
+  @apply relative m-0 flex h-5 w-5 rotate-180 items-center justify-center rounded-full border border-neutral-400;
 }
 
 .clock > * {

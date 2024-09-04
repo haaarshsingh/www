@@ -55,8 +55,8 @@ const socials = [
 ---
 
 <main>
-  <section>
-    <h2 class="font-medium">Where</h2>
+  <section class="mt-12">
+    <h2 class="mb-3 font-medium">Where</h2>
     <div class="relative h-fit w-fit overflow-hidden">
       <img
         src="/cloud.webp"
@@ -64,7 +64,7 @@ const socials = [
         height="347"
         alt=""
         draggable="false"
-        class="animate-cloud absolute opacity-75 blur-sm"
+        class="absolute animate-cloud opacity-75 blur-sm"
       />
       <img
         src="/plane.webp"
@@ -72,7 +72,7 @@ const socials = [
         height="56"
         alt=""
         draggable="false"
-        class="animate-plane absolute -translate-x-96 [animation-delay:5s]"
+        class="absolute -translate-x-96 animate-plane [animation-delay:5s]"
       />
       <img
         src="/plane-shadow.webp"
@@ -80,7 +80,7 @@ const socials = [
         height="24"
         alt=""
         draggable="false"
-        class="animate-plane-shadow absolute -translate-x-96 [animation-delay:5s]"
+        class="absolute -translate-x-96 animate-plane-shadow [animation-delay:5s]"
       />
       <img
         width="500"
@@ -101,19 +101,19 @@ const socials = [
       >
       <div aria-hidden>
         <div
-          class="animate-marker absolute left-2/3 top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500"
+          class="absolute left-2/3 top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-marker rounded-full bg-blue-500"
         >
         </div>
         <div
-          class="shadow-marker absolute left-2/3 top-1/2 z-10 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-neutral-50 bg-blue-500"
+          class="absolute left-2/3 top-1/2 z-10 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-neutral-50 bg-blue-500 shadow-marker"
         >
         </div>
       </div>
     </div>
   </section>
-  <section>
-    <h2 class="font-medium">Projects</h2>
-    <ul>
+  <section class="mt-12">
+    <h2 class="mb-3 font-medium">Projects</h2>
+    <ul class="flex flex-col gap-y-4">
       {
         projects.map((project) => (
           <li>
@@ -121,20 +121,23 @@ const socials = [
               href={`https://${project.href}`}
               rel="noreferrer"
               target="_blank"
-              class="flex items-center underline"
+              class="flex items-center"
             >
               {project.label}
               <Link />
             </a>
-            <p>{project.description}</p>
+            <p class="mt-1 font-light leading-snug text-neutral-500">
+              {project.description}
+            </p>
             {project.label === "kmenu" && (
-              <div class="flex items-center gap-x-2.5">
+              <div class="mt-3 flex items-center gap-x-2.5">
                 {[1, 2, 3].map((num) => (
                   <img
                     src={`/kmenu/${num}.png`}
                     alt=""
                     width="160"
                     height="160"
+                    draggable="false"
                   />
                 ))}
               </div>
@@ -144,8 +147,8 @@ const socials = [
       }
     </ul>
   </section>
-  <section>
-    <h2 class="font-medium">Connect</h2>
+  <section class="mt-12">
+    <h2 class="mb-3 font-medium">Connect</h2>
     <div class="flex items-center gap-x-3">
       {
         socials.map((social) => (
@@ -153,7 +156,7 @@ const socials = [
             href={social.href}
             target="_blank"
             rel="noreferrer"
-            class="flex items-center underline"
+            class="flex items-center"
           >
             {social.label}
             <Link />
