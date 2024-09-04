@@ -17,6 +17,14 @@ body {
   letter-spacing: -2%;
 }
 
+::selection {
+  @apply bg-neutral-950 text-neutral-50;
+}
+
+img {
+  @apply select-none;
+}
+
 a:not(.exclude) {
   @apply underline decoration-neutral-400;
 }
@@ -33,16 +41,16 @@ a:not(.exclude) {
 }
 
 .seconds {
-  @apply h-2 w-[0.5px];
+  @apply h-2 w-px;
   transform: rotate(calc(var(--seconds-deg) * 1deg));
 }
 
 .minutes {
-  @apply h-2 w-px;
+  @apply h-1.5 w-px;
   transform: rotate(calc(var(--minutes-deg) * 1deg));
 }
 
 .hours {
   transform: rotate(calc(var(--hours-deg) * 1deg));
-  @apply h-1.5 w-px;
+  @apply h-1 w-px;
 }
