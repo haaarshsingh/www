@@ -1,30 +1,165 @@
+---
+import Link from "./icons/Link.astro";
+
+const projects = [
+  {
+    label: "UI",
+    href: "ui.harshsingh.xyz",
+    description: "2024 · Experimental interaction design laboratory.",
+  },
+  {
+    label: "kmenu",
+    href: "kmenu.harshsingh.xyz",
+    description:
+      "2022 · A versatile, accessible and animated ⌘K component for React. Combines elements of the greatest command menu implementations to provide the most intuitive, streamlined, and robust application navigation experience for users.",
+  },
+  {
+    label: "React Pointers",
+    href: "pointers.harshsingh.xyz",
+    description: "2021 · Lightweight custom cursors for React.",
+  },
+  {
+    label: "snip",
+    href: "snip.place",
+    description: "2020 · Modern Pastebin written in Rust.",
+  },
+  {
+    label: "dots",
+    href: "github.com/haaarshsingh/dots",
+    description: "2020 · Pastel-themed i3wm and Arch Linux rice.",
+  },
+];
+
+const socials = [
+  {
+    label: "Email",
+    href: "mailto:hi.harsh@pm.me",
+  },
+  {
+    label: "X",
+    href: "https://x.com/haaarshsingh",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/haaarshsingh",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/haaarshsingh",
+  },
+  {
+    label: "Discord",
+    href: "https://discord.com/users/518432133111611397",
+  },
+];
+---
+
 <main>
-  <h2 class="font-medium">Where</h2>
-  <div class="relative h-fit w-fit overflow-hidden">
-    <img
-      width="500"
-      height="250"
-      src="/map.webp"
-      alt="Map with marker east of Dallas, Texas"
-      loading="eager"
-      class="rounded-xl"
-    />
-    <a
-      href="https://en.wikipedia.org/wiki/Dallas"
-      target="_blank"
-      rel="noreferrer"
-      class="absolute bottom-0 right-0 mb-3 mr-3 rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-xs text-neutral-600"
-      >Dallas, TX</a
-    >
-    <div aria-hidden>
-      <div
-        class="animate-marker absolute left-2/3 top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500"
+  <section>
+    <h2 class="font-medium">Where</h2>
+    <div class="relative h-fit w-fit overflow-hidden">
+      <img
+        src="/cloud.webp"
+        width="390"
+        height="347"
+        alt=""
+        draggable="false"
+        class="animate-cloud absolute opacity-75 blur-sm"
+      />
+      <img
+        src="/plane.webp"
+        width="24"
+        height="56"
+        alt=""
+        draggable="false"
+        class="animate-plane absolute -translate-x-96 [animation-delay:5s]"
+      />
+      <img
+        src="/plane-shadow.webp"
+        width="24"
+        height="24"
+        alt=""
+        draggable="false"
+        class="animate-plane-shadow absolute -translate-x-96 [animation-delay:5s]"
+      />
+      <img
+        width="500"
+        height="250"
+        src="/map.webp"
+        alt="Map with marker east of Dallas, Texas"
+        loading="eager"
+        draggable="false"
+        class="rounded-xl"
+      />
+
+      <a
+        href="https://en.wikipedia.org/wiki/Dallas"
+        target="_blank"
+        rel="noreferrer"
+        class="absolute bottom-0 right-0 mb-3 mr-3 rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-xs text-neutral-600"
+        >Dallas, TX</a
       >
-      </div>
-      <div
-        class="shadow-marker absolute left-2/3 top-1/2 z-10 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-neutral-50 bg-blue-500"
-      >
+      <div aria-hidden>
+        <div
+          class="animate-marker absolute left-2/3 top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500"
+        >
+        </div>
+        <div
+          class="shadow-marker absolute left-2/3 top-1/2 z-10 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-neutral-50 bg-blue-500"
+        >
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+  <section>
+    <h2 class="font-medium">Projects</h2>
+    <ul>
+      {
+        projects.map((project) => (
+          <li>
+            <a
+              href={`https://${project.href}`}
+              rel="noreferrer"
+              target="_blank"
+              class="flex items-center underline"
+            >
+              {project.label}
+              <Link />
+            </a>
+            <p>{project.description}</p>
+            {project.label === "kmenu" && (
+              <div class="flex items-center gap-x-2.5">
+                {[1, 2, 3].map((num) => (
+                  <img
+                    src={`/kmenu/${num}.png`}
+                    alt=""
+                    width="160"
+                    height="160"
+                  />
+                ))}
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section>
+    <h2 class="font-medium">Connect</h2>
+    <div class="flex items-center gap-x-3">
+      {
+        socials.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center underline"
+          >
+            {social.label}
+            <Link />
+          </a>
+        ))
+      }
+    </div>
+  </section>
 </main>

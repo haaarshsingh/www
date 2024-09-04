@@ -1,0 +1,31 @@
+<script>
+  let time = new Date();
+  const clock = document.querySelector(".clock") as HTMLDivElement;
+
+  setInterval(() => {
+    time = new Date();
+    if (!clock) return;
+
+    clock.style.setProperty("--now-s", time.getSeconds().toString());
+    clock.style.setProperty("--now-m", time.getMinutes().toString());
+    clock.style.setProperty("--now-h", time.getHours().toString());
+  }, 1000);
+</script>
+
+<footer class="flex items-center justify-between">
+  <div>
+    <p>
+      Made with <a href="https://astro.build/" target="_blank" rel="noreferrer"
+        >Astro</a
+      >
+    </p>
+    <p>Last visit from San Antonio, Texas</p>
+  </div>
+  <div>
+    <div class="clock" aria-hidden="true">
+      <div class="seconds"></div>
+      <div class="minutes"></div>
+      <div class="hours"></div>
+    </div>
+  </div>
+</footer>

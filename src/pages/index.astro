@@ -3,6 +3,7 @@ import "../global.css";
 
 import Header from "../components/Header.astro";
 import Main from "../components/Main.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="en">
@@ -16,5 +17,6 @@ import Main from "../components/Main.astro";
   <body>
     <Header />
     <Main />
+    <Footer client:idle />
   </body>
 </html>
