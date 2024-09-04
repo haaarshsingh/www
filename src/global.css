@@ -17,7 +17,7 @@ body {
   letter-spacing: -2%;
 }
 
-a {
+a:not(.exclude) {
   @apply underline decoration-neutral-400;
 }
 
