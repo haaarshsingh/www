@@ -1,5 +1,6 @@
 ---
 import "../global.css";
+import Footer from "./Footer.vue";
 ---
 
 <html lang="en">
@@ -14,6 +15,7 @@ import "../global.css";
     <div class="flex w-screen justify-center">
       <div class="xs:w-[500px] mt-16 w-[90vw]">
         <slot />
+        <Footer client:idle />
       </div>
     </div>
   </body>
