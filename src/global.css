@@ -26,7 +26,8 @@ img {
 }
 
 a:not(.exclude) {
-  @apply underline decoration-neutral-400;
+  text-decoration-style: wavy;
+  @apply underline decoration-neutral-300;
 }
 
 .clock {

@@ -1,0 +1,20 @@
+---
+import "../global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Harsh Singh</title>
+  </head>
+  <body>
+    <div class="flex w-screen justify-center">
+      <div class="xs:w-[500px] mt-16 w-[90vw]">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>

@@ -32,11 +32,11 @@ const projects = [
 
 const socials = [
   {
-    label: "Email",
+    label: "hi.harsh@pm.me",
     href: "mailto:hi.harsh@pm.me",
   },
   {
-    label: "X",
+    label: "Tweets",
     href: "https://x.com/haaarshsingh",
   },
   {
@@ -44,20 +44,22 @@ const socials = [
     href: "https://github.com/haaarshsingh",
   },
   {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/haaarshsingh",
-  },
-  {
-    label: "Discord",
-    href: "https://discord.com/users/518432133111611397",
+    label: "Playlists",
+    href: "https://music.apple.com/profile/haaarshsingh",
   },
 ];
 ---
 
 <main>
   <section class="mt-12">
-    <h2 class="mb-3 font-medium">Where</h2>
-    <div class="relative h-fit w-fit overflow-hidden">
+    <h2
+      class="animate-intro mb-3 font-medium opacity-0 [animation-delay:0.35s]"
+    >
+      Where
+    </h2>
+    <div
+      class="animate-intro relative h-fit w-fit overflow-hidden opacity-0 [animation-delay:0.4s]"
+    >
       <img
         src="/cloud.webp"
         width="390"
@@ -112,8 +114,12 @@ const socials = [
     </div>
   </section>
   <section class="mt-12">
-    <h2 class="mb-3 font-medium">Projects</h2>
-    <ul class="flex flex-col gap-y-4">
+    <h2 class="animate-intro mb-3 font-medium opacity-0 [animation-delay:0.4s]">
+      Projects
+    </h2>
+    <ul
+      class="animate-intro flex flex-col gap-y-4 opacity-0 [animation-delay:0.45s]"
+    >
       {
         projects.map((project) => (
           <li>
@@ -121,7 +127,7 @@ const socials = [
               href={`https://${project.href}`}
               rel="noreferrer"
               target="_blank"
-              class="flex items-center"
+              class="flex w-fit items-center"
             >
               {project.label}
               <Link />
@@ -138,6 +144,7 @@ const socials = [
                     width="160"
                     height="160"
                     draggable="false"
+                    class="w-full"
                   />
                 ))}
               </div>
@@ -147,16 +154,16 @@ const socials = [
       }
     </ul>
   </section>
-  <section class="mt-12">
+  <section class="animate-intro mt-12 opacity-0 [animation-delay:0.5s]">
     <h2 class="mb-3 font-medium">Connect</h2>
-    <div class="flex items-center gap-x-3">
+    <div class="flex flex-row flex-wrap items-center gap-x-1 gap-y-2">
       {
         socials.map((social) => (
           <a
             href={social.href}
             target="_blank"
             rel="noreferrer"
-            class="flex items-center"
+            class="exclude flex select-none items-center rounded-full bg-neutral-100 px-3 py-1 text-sm transition-colors hover:bg-neutral-200"
           >
             {social.label}
             <Link />
