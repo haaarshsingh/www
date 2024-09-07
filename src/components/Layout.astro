@@ -13,7 +13,9 @@ import Footer from "./Footer.vue";
   </head>
   <body>
     <div class="flex w-screen justify-center">
-      <div class="xs:w-[500px] mt-16 w-[90vw]">
+      <div
+        class="xs:w-[500px] mt-16 flex min-h-screen w-[90vw] flex-col justify-between"
+      >
         <slot />
         <Footer client:idle />
       </div>
