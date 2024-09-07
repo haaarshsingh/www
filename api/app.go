@@ -5,17 +5,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-
-	routes.InitRedis(os.Getenv("REDIS_API_KEY"))
+	routes.InitRedis(os.Getenv("REDIS_KEY"))
 
 	http.HandleFunc("/api/locate/", routes.IpInfoHandler)
 	http.HandleFunc("/api/last-visitor", routes.LastVisitorHandler)
