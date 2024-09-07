@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
@@ -100,8 +101,10 @@ func ipInfoHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("Failed to store region in Redis: %v", err)
 	}
-
-	err = client.HSet(ctx, ip, "region", ipResponse.RegionCode).Err()
+	err = client.Expire(ctx, ip, 24*time.Hour).Err()
+	if err != nil {
+		log.Printf("Failed to set expiration in Redis: %v", err)
+	}
 
 	apiResponse := ApiResponse{
 		Status: "success",
