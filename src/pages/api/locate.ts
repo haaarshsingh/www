@@ -34,12 +34,5 @@ export const GET: APIRoute = async (props) => {
   const location = await locate(props.clientAddress);
   const status = await setLocation(location as string);
 
-  return new Response(
-    JSON.stringify({
-      status: status,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }),
-  );
+  return new Response(JSON.stringify({ status: status }));
 };
