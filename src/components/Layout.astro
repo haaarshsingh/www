@@ -1,6 +1,6 @@
 ---
 import "../global.css";
-import Footer from "./Footer.vue";
+import Footer from "./Footer.astro";
 ---
 
 <html lang="en">
@@ -14,7 +14,7 @@ import Footer from "./Footer.vue";
   <body>
     <div class="flex w-screen justify-center">
       <div
-        class="xs:w-[500px] mt-16 flex min-h-screen w-[90vw] flex-col justify-between"
+        class="mt-16 flex min-h-screen w-[90vw] flex-col justify-between xs:w-[500px]"
       >
         <slot />
         <Footer client:idle />

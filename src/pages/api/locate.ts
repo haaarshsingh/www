@@ -4,7 +4,7 @@ export const prerender = false;
 
 const locate = async (ip: string) => {
   try {
-    const response = await fetch(`https://ipapi.co/128.210.106.74/json/`);
+    const response = await fetch(`https://ipapi.co/8.8.8.8/json/`);
     const data = await response.json();
 
     return `${data.city}, ${data.region_code}`;
@@ -16,10 +16,10 @@ const locate = async (ip: string) => {
 const setLocation = async (location: string) => {
   try {
     const response = await fetch(
-      `${process.env.UPSTASH_REDIS_REST_URL}/set/visitor/${encodeURI(location)}`,
+      `${import.meta.env.UPSTASH_REDIS_REST_URL}/set/visitor/${encodeURI(location)}`,
       {
         headers: {
-          Authorization: `Basic ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.UPSTASH_REDIS_REST_TOKEN}`,
         },
       },
     );
