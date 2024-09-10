@@ -4,7 +4,7 @@ export const prerender = false;
 
 const locate = async (ip: string) => {
   try {
-    const response = await fetch(`https://ipapi.co/8.8.8.8/json/`);
+    const response = await fetch(`https://ipapi.co/${ip}/json/`);
     const data = await response.json();
 
     return `${data.city}, ${data.region_code}`;
