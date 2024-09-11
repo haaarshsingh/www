@@ -23,7 +23,7 @@ const locate = async (ip: string) => {
   }
 };
 
-export const POST: APIRoute = async (props) => {
+export const GET: APIRoute = async (props) => {
   const status = await locate(props.clientAddress);
 
   return new Response(JSON.stringify({ status: status }));
