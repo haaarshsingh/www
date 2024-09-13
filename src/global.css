@@ -15,6 +15,7 @@ body {
     "Inter",
     sans-serif;
   letter-spacing: -2%;
+  @apply bg-neutral-100;
 }
 
 ::selection {

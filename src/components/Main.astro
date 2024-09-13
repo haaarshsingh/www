@@ -53,12 +53,12 @@ const socials = [
 <main>
   <section class="mt-12">
     <h2
-      class="animate-intro mb-3 font-medium opacity-0 [animation-delay:0.35s]"
+      class="mb-3 animate-intro font-medium opacity-0 [animation-delay:0.35s]"
     >
       Where
     </h2>
     <div
-      class="animate-intro relative h-fit w-fit overflow-hidden opacity-0 [animation-delay:0.4s]"
+      class="relative h-fit w-fit animate-intro overflow-hidden opacity-0 [animation-delay:0.4s]"
     >
       <img
         src="/cloud.webp"
@@ -114,11 +114,11 @@ const socials = [
     </div>
   </section>
   <section class="mt-12">
-    <h2 class="animate-intro mb-3 font-medium opacity-0 [animation-delay:0.4s]">
+    <h2 class="mb-3 animate-intro font-medium opacity-0 [animation-delay:0.4s]">
       Projects
     </h2>
     <ul
-      class="animate-intro flex flex-col gap-y-4 opacity-0 [animation-delay:0.45s]"
+      class="flex animate-intro flex-col gap-y-4 opacity-0 [animation-delay:0.45s]"
     >
       {
         projects.map((project) => (
@@ -154,7 +154,7 @@ const socials = [
       }
     </ul>
   </section>
-  <section class="animate-intro mt-12 opacity-0 [animation-delay:0.5s]">
+  <section class="mt-12 animate-intro opacity-0 [animation-delay:0.5s]">
     <h2 class="mb-3 font-medium">Connect</h2>
     <div class="flex flex-row flex-wrap items-center gap-x-1 gap-y-2">
       {
@@ -163,7 +163,7 @@ const socials = [
             href={social.href}
             target="_blank"
             rel="noreferrer"
-            class="exclude flex select-none items-center rounded-full bg-neutral-100 px-3 py-1 text-sm transition-colors hover:bg-neutral-200"
+            class="exclude flex select-none items-center rounded-full bg-neutral-200 px-3 py-1 text-sm transition-colors hover:bg-neutral-300"
           >
             {social.label}
             <Link />
