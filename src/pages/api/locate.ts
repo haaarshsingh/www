@@ -6,7 +6,7 @@ const locate = async (ip: string) => {
   try {
     const location = await fetch(`https://ipapi.co/${ip}/json/`);
     const data = await location.json();
-    console.log(import.meta.env.UPSTASH_REDIS_REST_URL);
+    console.log(data);
 
     const response = await fetch(
       `${import.meta.env.UPSTASH_REDIS_REST_URL}/set/visitor/${encodeURI(`${data.city}, ${data.region_code}`)}`,
