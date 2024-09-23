@@ -5,8 +5,8 @@ export const prerender = false;
 const locate = async (ip: string) => {
   try {
     const location = await fetch(`https://ipapi.co/${ip}/json/`);
-
     const data = await location.json();
+    console.log(data, ip);
 
     const response = await fetch(
       `${import.meta.env.UPSTASH_REDIS_REST_URL}/set/visitor/${encodeURI(`${data.city}, ${data.region_code}`)}`,
@@ -17,7 +17,7 @@ const locate = async (ip: string) => {
       },
     );
 
-    return response.status;
+    return await response.status;
   } catch (error) {
     return console.error("Error fetching IP details:", error);
   }
@@ -26,5 +26,7 @@ const locate = async (ip: string) => {
 export const GET: APIRoute = async (props) => {
   const status = await locate(props.clientAddress);
 
-  return new Response(JSON.stringify({ status: status }));
+  return new Response(
+    JSON.stringify({ status: status, ip: props.clientAddress }),
+  );
 };
