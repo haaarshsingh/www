@@ -17,7 +17,7 @@ const locate = async (ip: string) => {
       },
     );
 
-    return await response.status;
+    return response.status;
   } catch (error) {
     return console.error("Error fetching IP details:", error);
   }
