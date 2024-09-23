@@ -27,7 +27,7 @@ Server should now be running on [localhost](https://localhost:3000).
 
 ### Database
 
-This website uses [Upstash](upstash.com) to store the location of the last visitor. Sign up for an account, and replace the following API keys in `.env.EXAMPLE` with your own:
+This website uses [Upstash](https://upstash.com) to store the location of the last visitor. Sign up for an account, and replace the following API keys in `.env.EXAMPLE` with your own:
 
 ```
 UPSTASH_REDIS_REST_URL=""

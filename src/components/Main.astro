@@ -118,7 +118,7 @@ const socials = [
       Projects
     </h2>
     <ul
-      class="flex animate-intro flex-col gap-y-4 opacity-0 [animation-delay:0.45s]"
+      class="relative flex animate-intro flex-col gap-y-4 opacity-0 [animation-delay:0.45s]"
     >
       {
         projects.map((project) => (
@@ -136,15 +136,13 @@ const socials = [
               {project.description}
             </p>
             {project.label === "kmenu" && (
-              <div class="mt-3 flex items-center gap-x-2.5">
+              <div class="mt-3 flex w-full items-center justify-between gap-[10px]">
                 {[1, 2, 3].map((num) => (
                   <img
                     src={`/kmenu/${num}.png`}
                     alt=""
-                    width="160"
-                    height="160"
                     draggable="false"
-                    class="w-full"
+                    class="w-[32%] object-contain"
                   />
                 ))}
               </div>
