@@ -1,0 +1,58 @@
+<script>
+  let last;
+
+  fetch("/api/last-visitor")
+    .then((res) => res.json())
+    .then((data) => {
+      last = data.result;
+
+      const lastVisitElement = document.querySelector(".last-visit");
+      if (lastVisitElement) {
+        lastVisitElement.textContent = last;
+        lastVisitElement.classList.remove(
+          "animate-pulse",
+          "bg-neutral-200",
+          "h-4",
+          "w-28",
+          "mt-0.5",
+          "rounded",
+        );
+      }
+    });
+
+  let time = new Date();
+  const clock = document.querySelector(".clock") as HTMLDivElement;
+
+  setInterval(() => {
+    time = new Date();
+    if (!clock) return;
+
+    clock.style.setProperty("--now-s", time.getSeconds().toString());
+    clock.style.setProperty("--now-m", time.getMinutes().toString());
+    clock.style.setProperty("--now-h", time.getHours().toString());
+  }, 1000);
+</script>
+
+<footer
+  class="mb-16 mt-12 flex animate-intro items-center justify-between opacity-0 [animation-delay:0.55s]"
+>
+  <div>
+    <p class="text-sm font-light text-neutral-500">
+      Made with <a href="https://astro.build/" target="_blank" rel="noreferrer"
+        >Astro</a
+      >
+    </p>
+    <p class="flex items-center text-sm font-light text-neutral-500">
+      Last visit from <span
+        class="last-visit ml-1 mt-0.5 inline-block h-4 w-28 animate-pulse rounded bg-neutral-200"
+      ></span>
+    </p>
+  </div>
+  <div>
+    <div class="clock" aria-hidden="true">
+      <div class="seconds"></div>
+      <div class="minutes"></div>
+      <div class="hours"></div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,112 @@
+---
+import "../global.css";
+import Footer from "./Footer.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Harsh Singh</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes"
+    />
+    <meta name="theme-color" content="#E5E5E5" /><meta
+      name="description"
+      content="The website and design portfolio of Harsh Singh."
+    />
+    <link rel="author" href="https://harshsingh.xyz" /><meta
+      name="author"
+      content="Harsh Singh"
+    />
+    <meta
+      name="keywords"
+      content="Harsh Singh,haaarshsingh,Harsh,haaarshsingh"
+    />
+    <meta name="creator" content="Harsh Singh" /><meta
+      name="publisher"
+      content="Harsh Singh"
+    />
+    <meta name="robots" content="index, follow, nocache" /><meta
+      name="googlebot"
+      content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+    />
+    <meta name="category" content="technology" /><link
+      rel="canonical"
+      href="https://harshsingh.xyz"
+    />
+    <meta
+      name="google-site-verification"
+      content="VWhTtgTikPqvWIY4n2rlUj6Fe9YgkfFMEET3TM7Rce0"
+    />
+    <meta name="y_key" content="yahoo" /><meta
+      name="yandex-verification"
+      content="cfc27cbb03eb0a9c"
+    />
+    <meta name="me" content="hi.harsh@pm.me" /><meta
+      property="og:title"
+      content="Harsh Singh"
+    />
+    <meta
+      property="og:description"
+      content="The website and design portfolio of Harsh Singh."
+    />
+    <meta property="og:url" content="https://harshsingh.xyz" /><meta
+      property="og:site_name"
+      content="Harsh Singh"
+    />
+    <meta property="og:locale" content="en-US" /><meta
+      property="og:image"
+      content="https://harshsingh.xyz/og.png"
+    />
+    <meta property="og:image:width" content="1200" /><meta
+      property="og:image:height"
+      content="630"
+    />
+    <meta property="og:type" content="website" /><meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+    <meta name="twitter:site:id" content="haaarshsingh" /><meta
+      name="twitter:creator"
+      content="@haaarshsingh"
+    />
+    <meta name="twitter:creator:id" content="haaarshsingh" /><meta
+      name="twitter:title"
+      content="Harsh Singh"
+    />
+    <meta
+      name="twitter:description"
+      content="The website and design portfolio of Harsh Singh."
+    />
+    <meta name="twitter:image" content="https://harshsingh.xyz/og.png" /><link
+      rel="icon"
+      href="/icons/favicon.ico"
+    />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" /><meta
+      name="next-size-adjust"
+    />
+  </head>
+  <body>
+    <div class="flex w-screen justify-center">
+      <div
+        class="mt-16 flex min-h-screen w-[90vw] flex-col justify-between xs:w-[500px]"
+      >
+        <slot />
+        <Footer />
+      </div>
+    </div>
+    <div
+      class="fixed top-[-10px] z-40 h-10 w-screen bg-neutral-100 opacity-90 blur backdrop-blur-lg"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="fixed bottom-[-10px] z-40 h-10 w-screen bg-neutral-100 opacity-90 blur backdrop-blur-lg dark:bottom-[-20px]"
+      aria-hidden="true"
+    >
+    </div>
+  </body>
+</html>

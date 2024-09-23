@@ -1,0 +1,175 @@
+---
+import Link from "./icons/Link.astro";
+
+const projects = [
+  {
+    label: "UI",
+    href: "ui.harshsingh.xyz",
+    description: "2024 · Experimental interaction design laboratory.",
+  },
+  {
+    label: "kmenu",
+    href: "kmenu.harshsingh.xyz",
+    description:
+      "2022 · A versatile, accessible and animated ⌘K component for React. Combines elements of the greatest command menu implementations to provide the most intuitive, streamlined, and robust application navigation experience for users.",
+  },
+  {
+    label: "React Pointers",
+    href: "pointers.harshsingh.xyz",
+    description: "2021 · Lightweight custom cursors for React.",
+  },
+  {
+    label: "snip",
+    href: "snip.place",
+    description: "2020 · Modern Pastebin written in Rust.",
+  },
+  {
+    label: "dots",
+    href: "github.com/haaarshsingh/dots",
+    description: "2020 · Pastel-themed i3wm and Arch Linux rice.",
+  },
+];
+
+const socials = [
+  {
+    label: "hi.harsh@pm.me",
+    href: "mailto:hi.harsh@pm.me",
+  },
+  {
+    label: "Tweets",
+    href: "https://x.com/haaarshsingh",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/haaarshsingh",
+  },
+  {
+    label: "Playlists",
+    href: "https://music.apple.com/profile/haaarshsingh",
+  },
+];
+---
+
+<main>
+  <section class="mt-12">
+    <h2
+      class="mb-3 animate-intro font-medium opacity-0 [animation-delay:0.35s]"
+    >
+      Where
+    </h2>
+    <div
+      class="relative h-fit w-fit animate-intro overflow-hidden opacity-0 [animation-delay:0.4s]"
+    >
+      <img
+        src="/cloud.webp"
+        width="390"
+        height="347"
+        alt=""
+        draggable="false"
+        class="absolute animate-cloud opacity-75 blur-sm"
+      />
+      <img
+        src="/plane.webp"
+        width="24"
+        height="56"
+        alt=""
+        draggable="false"
+        class="absolute -translate-x-96 animate-plane [animation-delay:5s]"
+      />
+      <img
+        src="/plane-shadow.webp"
+        width="24"
+        height="24"
+        alt=""
+        draggable="false"
+        class="absolute -translate-x-96 animate-plane-shadow [animation-delay:5s]"
+      />
+      <img
+        width="500"
+        height="250"
+        src="/map.webp"
+        alt="Map with marker east of Dallas, Texas"
+        loading="eager"
+        draggable="false"
+        class="rounded-xl"
+      />
+
+      <a
+        href="https://en.wikipedia.org/wiki/Dallas"
+        target="_blank"
+        rel="noreferrer"
+        class="exclude absolute bottom-0 right-0 mb-3 mr-3 select-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1.5 text-xs text-neutral-600"
+        >Dallas, TX</a
+      >
+      <div aria-hidden>
+        <div
+          class="absolute left-2/3 top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-marker rounded-full bg-blue-500"
+        >
+        </div>
+        <div
+          class="absolute left-2/3 top-1/2 z-10 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-neutral-50 bg-blue-500 shadow-marker"
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mt-12">
+    <h2 class="mb-3 animate-intro font-medium opacity-0 [animation-delay:0.4s]">
+      Projects
+    </h2>
+    <ul
+      class="flex animate-intro flex-col gap-y-4 opacity-0 [animation-delay:0.45s]"
+    >
+      {
+        projects.map((project) => (
+          <li>
+            <a
+              href={`https://${project.href}`}
+              rel="noreferrer"
+              target="_blank"
+              class="flex w-fit items-center"
+            >
+              {project.label}
+              <Link />
+            </a>
+            <p class="mt-1 font-light leading-snug text-neutral-500">
+              {project.description}
+            </p>
+            {project.label === "kmenu" && (
+              <div class="mt-3 flex items-center gap-x-2.5">
+                {[1, 2, 3].map((num) => (
+                  <img
+                    src={`/kmenu/${num}.png`}
+                    alt=""
+                    width="160"
+                    height="160"
+                    draggable="false"
+                    class="w-full"
+                  />
+                ))}
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section class="mt-12 animate-intro opacity-0 [animation-delay:0.5s]">
+    <h2 class="mb-3 font-medium">Connect</h2>
+    <div class="flex flex-row flex-wrap items-center gap-x-1 gap-y-2">
+      {
+        socials.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noreferrer"
+            class="exclude flex select-none items-center rounded-full bg-neutral-200 px-3 py-1 text-sm transition-colors hover:bg-neutral-300"
+          >
+            {social.label}
+            <Link />
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</main>
