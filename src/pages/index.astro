@@ -3,11 +3,7 @@ import Header from "../components/Header.astro";
 import Main from "../components/Main.astro";
 import Layout from "../components/Layout.astro";
 
-const url = import.meta.env.DEV
-  ? "http://localhost:4321"
-  : "https://harshsingh.xyz";
-
-await fetch(`${url}/api/locate`, { method: "GET" });
+await fetch(`https://harshsingh.xyz/api/locate`, { method: "GET" });
 ---
 
 <Layout>
