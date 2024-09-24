@@ -2,11 +2,19 @@
 import Header from "../components/Header.astro";
 import Main from "../components/Main.astro";
 import Layout from "../components/Layout.astro";
-
-await fetch(`https://harshsingh.xyz/api/locate`, { method: "GET" });
 ---
 
 <Layout>
   <Header />
   <Main />
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      await fetch(`https://harshsingh.xyz/api/locate`, { method: "GET" });
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    }
+  });
+</script>
