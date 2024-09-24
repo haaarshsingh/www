@@ -4,12 +4,12 @@ export const prerender = false;
 
 const locate = async (ip: string) => {
   try {
-    const location = await fetch(`https://ipapi.co/${ip}/json/`);
+    const location = await fetch(`http://ip-api.com/json/${ip}`);
     const data = await location.json();
     console.log(data);
 
     const response = await fetch(
-      `${import.meta.env.UPSTASH_REDIS_REST_URL}/set/visitor/${encodeURI(`${data.city}, ${data.region_code}`)}`,
+      `${import.meta.env.UPSTASH_REDIS_REST_URL}/set/visitor/${encodeURI(`${data.city}, ${data.region}`)}`,
       {
         headers: {
           Authorization: `Bearer ${import.meta.env.UPSTASH_REDIS_REST_TOKEN}`,
