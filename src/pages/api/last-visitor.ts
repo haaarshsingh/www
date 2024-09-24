@@ -18,7 +18,7 @@ const locate = async () => {
     if (data.result.includes("undefined"))
       return new Response(JSON.stringify({ result: "null" }), { status: 400 });
 
-    return response.json();
+    return await response.json();
   } catch (error) {
     return console.error("Error saving to Upstash:", error);
   }
