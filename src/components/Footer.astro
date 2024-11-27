@@ -19,18 +19,6 @@
         );
       }
     });
-
-  let time = new Date();
-  const clock = document.querySelector(".clock") as HTMLDivElement;
-
-  setInterval(() => {
-    time = new Date();
-    if (!clock) return;
-
-    clock.style.setProperty("--now-s", time.getSeconds().toString());
-    clock.style.setProperty("--now-m", time.getMinutes().toString());
-    clock.style.setProperty("--now-h", time.getHours().toString());
-  }, 1000);
 </script>
 
 <footer
@@ -38,7 +26,7 @@
 >
   <div>
     <p class="text-sm font-light text-neutral-500">
-      Made with <a href="https://astro.build/" target="_blank" rel="noreferrer"
+      Made with <a href="https://astro.build/" target="_blank" rel="noreferrer" class="font-normal"
         >Astro</a
       >
     </p>
@@ -49,10 +37,6 @@
     </p>
   </div>
   <div>
-    <div class="clock" aria-hidden="true">
-      <div class="seconds"></div>
-      <div class="minutes"></div>
-      <div class="hours"></div>
-    </div>
+    <span class="text-sm text-neutral-500 font-light">© 2024 Harsh Singh</span>
   </div>
 </footer>

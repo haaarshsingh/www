@@ -4,7 +4,7 @@ import Link from "./icons/Link.astro";
 const projects = [
   {
     label: "UI",
-    href: "ui.harshsingh.xyz",
+    href: "/ui",
     description: "2024 · Experimental interaction design laboratory.",
   },
   {
@@ -14,13 +14,13 @@ const projects = [
       "2022 · A versatile, accessible and animated ⌘K component for React. Combines elements of the greatest command menu implementations to provide the most intuitive, streamlined, and robust application navigation experience for users.",
   },
   {
-    label: "React Pointers",
-    href: "pointers.harshsingh.xyz",
+    label: "Cursor.js",
+    href: "cursor.js.org",
     description: "2021 · Lightweight custom cursors for React.",
   },
   {
     label: "snip",
-    href: "snip.place",
+    href: "snip.tf",
     description: "2020 · Modern Pastebin written in Rust.",
   },
   {
@@ -130,7 +130,7 @@ const socials = [
               class="flex w-fit items-center"
             >
               {project.label}
-              <Link />
+              {project.label !== "UI" && <Link />}
             </a>
             <p class="mt-1 font-light leading-snug text-neutral-500">
               {project.description}
