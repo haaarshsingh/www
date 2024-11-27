@@ -1,0 +1,19 @@
+---
+import Layout from '../../components/Layout.astro'
+---
+
+<Layout>
+  <header>
+    <h1 class='mb-6 font-semibold'>Playground</h1>
+  </header>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      await fetch(`https://harshsingh.xyz/api/locate`, { method: "GET" });
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    }
+  });
+</script>
