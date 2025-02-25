@@ -7,7 +7,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://harshsingh.xyz",
+  site: "https://harshsingh.me",
   integrations: [tailwind(), sitemap(), react(), mdx()],
   output: "hybrid",
   adapter: vercel(),
