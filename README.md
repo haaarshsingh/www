@@ -1,4 +1,4 @@
-![image](https://harshsingh.xyz/og.png)
+![image](https://harshsingh.me/og.png)
 
 ## Quickstart
 

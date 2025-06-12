@@ -1,14 +1,13 @@
-import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
-import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
-import mdx from "@astrojs/mdx";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://harshsingh.xyz",
-  integrations: [tailwind(), sitemap(), react(), mdx()],
-  output: "hybrid",
+  site: "https://harshsingh.me",
+  integrations: [tailwind(), sitemap(), react()],
+  output: "static",
   adapter: vercel(),
 });

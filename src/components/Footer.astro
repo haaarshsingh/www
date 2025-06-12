@@ -1,42 +1,45 @@
 <script>
-  let last;
+  let last
 
-  fetch("/api/last-visitor")
+  fetch('/api/last-visitor')
     .then((res) => res.json())
     .then((data) => {
-      last = data.result;
+      last = data.result
 
-      const lastVisitElement = document.querySelector(".last-visit");
+      const lastVisitElement = document.querySelector('.last-visit')
       if (lastVisitElement) {
-        lastVisitElement.textContent = last;
+        lastVisitElement.textContent = last
         lastVisitElement.classList.remove(
-          "animate-pulse",
-          "bg-neutral-200",
-          "h-4",
-          "w-28",
-          "mt-0.5",
-          "rounded",
-        );
+          'animate-pulse',
+          'bg-neutral-200',
+          'h-4',
+          'w-28',
+          'mt-0.5',
+          'rounded'
+        )
       }
-    });
+    })
 </script>
 
 <footer
-  class="mb-16 mt-12 flex animate-intro items-center justify-between opacity-0 [animation-delay:0.55s]"
+  class='mb-16 mt-12 flex animate-intro items-center justify-between opacity-0 [animation-delay:0.55s]'
 >
   <div>
-    <p class="text-sm font-light text-neutral-500">
-      Made with <a href="https://astro.build/" target="_blank" rel="noreferrer" class="font-normal"
-        >Astro</a
+    <p class='text-sm font-light text-neutral-500'>
+      Made with <a
+        href='https://astro.build/'
+        target='_blank'
+        rel='noreferrer'
+        class='font-normal'>Astro</a
       >
     </p>
-    <p class="flex items-center text-sm font-light text-neutral-500">
+    <p class='flex items-center text-sm font-light text-neutral-500'>
       Last visit from <span
-        class="last-visit ml-1 mt-0.5 inline-block h-4 w-28 animate-pulse rounded bg-neutral-200"
+        class='last-visit ml-1 mt-0.5 inline-block h-4 w-28 animate-pulse rounded bg-neutral-200'
       ></span>
     </p>
   </div>
   <div>
-    <span class="text-sm text-neutral-500 font-light">© 2024 Harsh Singh</span>
+    <span class='text-sm font-light text-neutral-500'>© 2025 Harsh Singh</span>
   </div>
 </footer>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://harshsingh.xyz/sitemap-index.xml
+Sitemap: https://harshsingh.me/sitemap-index.xml
