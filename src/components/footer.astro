@@ -1,7 +1,4 @@
 ---
-import Sun from "./icons/sun.astro";
-import Moon from "./icons/moon.astro";
-
 const { isHome = false } = Astro.props;
 ---
 
@@ -29,24 +26,10 @@ const { isHome = false } = Astro.props;
     });
 </script>
 
-<script>
-  const handleToggleClick = () => {
-    const element = document.documentElement;
-    element.classList.toggle("dark");
-
-    const isDark = element.classList.contains("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  };
-
-  document
-    .getElementById("themeToggle")
-    ?.addEventListener("click", handleToggleClick);
-</script>
-
 <footer
   class:list={[
     "mt-12 mb-16 flex items-center justify-between",
-    isHome && "animate-intro opacity-0 [animation-delay:0.55s]",
+    isHome && "animate-intro opacity-0 [animation-delay:0.6s]",
   ]}
 >
   <div>
@@ -66,23 +49,4 @@ const { isHome = false } = Astro.props;
       ></span>
     </p>
   </div>
-  <button
-    id="themeToggle"
-    aria-label="Toggle theme"
-    class="flex size-6 items-center justify-center"
-  >
-    <span class="sun block text-neutral-900 dark:hidden">
-      <Sun />
-    </span>
-    <span class="moon hidden text-neutral-100 dark:block">
-      <Moon />
-    </span>
-  </button>
 </footer>
-<style>
-  .sun svg,
-  .moon svg {
-    width: 20px;
-    height: 20px;
-  }
-</style>

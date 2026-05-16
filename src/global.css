@@ -30,19 +30,24 @@
 
   @keyframes cloud {
     0% {
-      transform: translate(-350px, -350px);
+      left: -70%;
+      top: -70%;
     }
     25% {
-      transform: translate(350px, 350px);
+      left: 70%;
+      top: 70%;
     }
     50% {
-      transform: translate(600px, -350px);
+      left: 100%;
+      top: -60%;
     }
     75% {
-      transform: translate(-400px, 350px);
+      left: -80%;
+      top: 70%;
     }
     100% {
-      transform: translate(-350px, -350px);
+      left: -70%;
+      top: -70%;
     }
   }
 
@@ -63,25 +68,31 @@
 
   @keyframes plane {
     0% {
-      transform: translate(50px, 350px) rotate(30deg);
+      left: 10%;
+      top: 110%;
     }
     40% {
-      transform: translate(300px, -60px) rotate(30deg);
+      left: 60%;
+      top: -15%;
     }
     100% {
-      transform: translate(300px, -60px) rotate(30deg);
+      left: 60%;
+      top: -15%;
     }
   }
 
   @keyframes plane-shadow {
     0% {
-      transform: translate(50px, 410px) rotate(30deg);
+      left: 10%;
+      top: 115%;
     }
     40% {
-      transform: translate(300px, -20px) rotate(30deg);
+      left: 60%;
+      top: -5%;
     }
     100% {
-      transform: translate(300px, -20px) rotate(30deg);
+      left: 60%;
+      top: -5%;
     }
   }
 }
@@ -128,11 +139,13 @@
   }
 
   ::selection {
-    @apply bg-neutral-950 text-neutral-50;
+    background-color: #0ab7c7;
+    @apply text-neutral-50;
   }
 
   .dark ::selection {
-    @apply bg-neutral-50 text-neutral-950;
+    background-color: #0ab7c7;
+    @apply text-neutral-50;
   }
 
   img {

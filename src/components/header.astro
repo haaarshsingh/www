@@ -1,37 +1,618 @@
 ---
+import Link from "./icons/link.astro";
+
+const socials = [
+  {
+    label: "h@harshsingh.me",
+    href: "mailto:h@harshsingh.me",
+  },
+  {
+    label: "X",
+    href: "https://x.com/haaarshsingh",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/haaarshsingh",
+  },
+  {
+    label: "Linkedin",
+    href: "https://www.linkedin.com/in/haaarshsingh",
+  },
+];
+
+const githubContributionGrid = [
+  [0, 3, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2],
+  [4, 3, 4, 2, 3, 3, 2, 2, 2, 3, 3, 2],
+  [0, 2, 0, 2, 2, 2, 3, 0, 2, 3, 3, 3],
+  [2, 4, 2, 2, 2, 0, 4, 3, 4, 3, 2, 3],
+  [0, 0, 4, 0, 0, 2, 0, 4, 0, 0, 0, 0],
+];
+
+const getContributionCellClass = (level: number) => {
+  switch (level) {
+    case 4:
+      return "bg-emerald-600 dark:bg-emerald-500";
+    case 3:
+      return "bg-emerald-500 dark:bg-emerald-400";
+    case 2:
+      return "bg-emerald-300 dark:bg-emerald-700";
+    case 1:
+      return "bg-emerald-200 dark:bg-emerald-800";
+    default:
+      return "bg-neutral-200 dark:bg-neutral-800";
+  }
+};
 
 ---
 
 <header>
-  <div class="mb-6 flex animate-intro items-center justify-between">
-    <h1 class="font-semibold">Harsh Singh</h1>
-    <nav class="space-x-3">
-      <a href="/writing" class="exclude text-neutral-500 hover:underline"
-        >Writing</a
+  <div class="mb-6 animate-intro">
+    <h1 class="font-semibold" aria-label="Harsh Singh">
+      <svg
+        width="142"
+        height="95"
+        viewBox="0 0 142 95"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        class="h-auto w-[80px]"
       >
-      <a href="/about" class="exclude text-neutral-500 hover:underline">About</a
-      >
-    </nav>
+        <g clip-path="url(#clip0_686_399)">
+          <path
+            d="M102.998 29.5C102.698 20.1 105.498 2.10041 111.898 0.500414C114.098 -0.0995864 116.298 0.400414 117.598 2.70041C120.298 7.30041 115.098 14.8004 113.698 17.6004C111.398 22.4004 106.198 27.8004 106.198 27.8004L107.698 20.2004C109.798 16.8004 113.998 9.60041 113.798 5.70041C113.698 4.10041 111.798 3.70041 109.498 11.1004C108.098 15.3004 107.499 22.5 107.499 22.5L105.499 27L102.998 29.5Z"
+            fill="url(#paint0_linear_686_399)"
+          />
+          <path
+            d="M16.2985 19.2001C17.1985 15.6001 20.0985 7.50014 14.6985 7.50014C12.4985 7.60014 10.5985 8.80014 9.19853 10.6001C7.69853 12.3001 5.39853 11.0001 5.69853 9.10014C5.99853 7.70014 9.69853 3.90014 13.9985 3.20014C16.3985 2.60014 20.8985 3.00014 21.9985 6.70014C22.9985 9.50014 21.9985 15.0001 21.0985 19.1001H16.2985V19.2001Z"
+            fill="#0C55A3"
+          />
+          <path
+            d="M15.1992 23.1992C13.9992 27.3992 13.7981 30.9008 11.9974 35C11.9942 35 11.4992 40.2992 13.8992 40.0992C15.5992 39.8992 16.2992 38.3992 17.6992 34.0992C18.4992 31.4992 19.7992 27.1992 20.3992 23.2992L15.1992 23.1992Z"
+            fill="#0C55A3"
+          />
+          <path
+            d="M34.9991 18.4997C36.2991 13.9997 38.8991 7.2997 38.8991 5.7997C38.8991 4.3997 36.5991 2.7997 34.8991 5.9997C34.2991 7.4997 31.6991 14.4997 30.3991 18.9997C29.2991 19.0997 24.6991 18.9997 20.9991 19.0997L16.2991 19.1997C14.2991 19.1997 12.1991 18.9997 10.6991 18.6997C9.59914 19.0997 8.39914 22.7997 12.2991 23.1997C15.0991 23.4997 24.4991 23.0997 29.3991 22.8997C28.5991 25.8997 27.7991 30.3997 28.0991 33.9997C28.4991 36.5997 30.0991 38.8997 33.2991 39.2997C37.1991 39.4997 40.0991 38.0997 42.1991 36.1997C43.1991 35.2997 44.6 34.9 45 31.5L43.2991 28.8997C41.2991 31.8997 37.9991 34.6997 34.7991 34.7997C30.6991 34.7997 32.9991 27.5997 34.0991 22.6997L38.8991 22.3997C40.2991 22.3997 40.4991 21.1997 40.3991 20.0997C40.0991 18.7997 38.8991 18.3997 37.6991 18.3997L34.9991 18.4997Z"
+            fill="#0F8DD3"
+          />
+          <path
+            d="M3.8998 32.0011C3.7998 30.6011 0.299801 27.3011 0.699801 33.2011C0.899801 36.6011 2.8998 41.6011 7.5998 42.4011C12.9998 43.1011 15.8998 39.0011 15.9998 38.5011C17.168 36.3105 15.8998 38.2011 15.4998 36.9011L12 35C11.1682 36.0094 8.8998 38.1011 6.8998 37.9011C4.1998 37.6011 3.9998 34.3011 3.8998 32.0011Z"
+            fill="url(#paint1_linear_686_399)"
+          />
+          <path
+            d="M54.8017 18.701C54.0017 17.901 53.3017 17.401 51.6017 17.501C47.9017 17.401 41.7017 22.701 41.0017 30.401C40.9017 32.101 42.1017 38.901 47.4017 38.901C50.3017 39.001 52.4017 37.901 54.2017 36.001L53.1017 28.101C52.3017 30.601 50.7017 34.601 47.5017 34.601C46.7017 34.501 45.6017 32.901 46.0017 30.601C46.7017 26.701 49.6017 21.501 52.7017 21.401C53.4017 21.401 53.6017 20.901 54.6017 20.101L54.8017 18.701Z"
+            fill="#0F8DD3"
+          />
+          <path
+            d="M66.0994 22.1008C64.5994 27.0008 60.8994 34.7008 57.8994 34.6008C54.9994 34.6008 57.0994 25.5008 58.2994 20.8008C58.3994 19.6008 56.5994 17.2008 54.3994 19.0008C53.1994 20.1008 52.1994 30.5008 52.8994 33.8008C53.6994 37.0008 55.3994 38.9008 58.3994 38.8008C62.7905 38.6139 66.5706 36.4194 69.5766 27.8136C70.0174 26.5516 70.2664 25.2309 70.3994 23.9008L70.5 22.5L70.1994 22.2008L67.9994 20.6008L66.0994 22.1008Z"
+            fill="#0FBDD0"
+          />
+          <path
+            d="M70.8 18.8008C70.7 17.2008 69.8 14.3008 66.9 14.3008C64.6 14.3008 63.1 16.2008 63.2 18.1008C63.4 20.8008 66.1 22.7008 67.9 22.8008C70.8 23.1008 72.9 22.6008 74.2 22.2008C73.1 25.8008 71.9 30.6008 72.1 33.1008C72.4 36.4008 74.3 38.9008 77.7 38.9008C80.1 39.1008 82.7 37.6008 84.5 36.2008L83.2 31.0008L82.9 30.6008C82.1 31.9008 79.6 35.1008 77.4 34.7008C74.4 34.2008 77.7 27.4008 78.4 22.4008C78.6 20.6008 78.4 19.4008 78.3 18.6008L74.7 20.1008L70.8 18.8008Z"
+            fill="url(#paint2_linear_686_399)"
+          />
+          <path
+            d="M88.3005 22.5996C87.0005 25.1996 84.2005 28.4996 82.9005 30.4996C82.4005 32.0996 83.2005 34.1996 84.5005 36.1996C86.1005 38.0996 88.1005 39.2996 90.9005 39.2996C93.6005 39.2996 98.5005 37.8996 98.5005 32.8996C96.6005 32.8996 93.4005 35.3996 91.1005 35.3996C89.6005 35.3996 88.1005 34.1996 87.5005 32.8996C89.1005 31.3996 91.4005 27.5996 91.7005 26.2996L88.3005 22.5996Z"
+            fill="#0EB4CA"
+          />
+          <path
+            d="M93.3984 22.6002C94.6984 20.4002 95.3984 19.5002 95.2984 18.8002L94.0984 14.1002L91.8984 13.2002C89.5984 12.9002 86.8984 15.4002 86.8984 18.5002C86.8984 21.9002 88.8984 23.6002 91.3984 26.9002L93.3984 22.6002Z"
+            fill="url(#paint3_linear_686_399)"
+          />
+          <path
+            d="M93.4001 22.6009C92.4001 21.4009 90.9001 19.5009 91.4001 17.5009C91.7001 16.5009 92.6001 14.7009 94.1001 14.1009C94.6001 13.9009 95.6001 15.0009 95.4001 18.1009C95.3001 19.6009 94.1001 21.1009 93.4001 22.6009Z"
+            fill="#09C1CB"
+          />
+          <path
+            d="M93.3984 22.5992C92.3984 21.3992 90.8984 19.4992 91.3984 17.4992C91.6984 16.4992 93 14.7695 94.5 14.1695C93.8 13.4695 93 12.9996 91.3984 13.0992C89.8984 13.0992 86.8984 14.8992 86.8984 18.4992C86.8984 23.0992 91.6984 25.8992 93.5984 29.6992C95.6984 33.3992 92.3984 35.8992 89.6984 35.0992C88.5984 34.6992 88.0984 34.0992 87.4984 32.8992L83.3984 33.5992C83.3984 36.0992 86.3984 39.2992 90.3984 39.2992C94.8984 39.4992 98.5984 36.8992 98.4984 32.0992C98.4984 28.0992 94.8984 24.5992 93.3984 22.5992Z"
+            fill="#0FBDD0"
+          />
+          <path
+            d="M98.5016 32.8996C97 34.5 98.5 35.5 95 38L92.5 39C95.3 38.8 99.5016 37.8996 102.902 35.9996C105.602 34.5996 105.602 32.1996 104.702 30.6996L103.902 28.0996C102.402 30.3996 100.102 32.5996 98.5016 32.8996Z"
+            fill="url(#paint4_linear_686_399)"
+          />
+          <path
+            d="M108.2 27.9997C109.4 25.8997 111.6 21.5997 114.6 21.3997C115.6 21.3997 116.4 22.3997 116.5 23.5997C116.7 26.6997 115.2 31.0997 115.4 33.5997C115.7 36.0997 117.2 38.5997 120.9 38.5997C124.4 38.7997 127.1 36.5997 128.9 34.6997C130.4 32.0997 126.7 29.8997 125.1 31.5997C124.1 32.5997 123.4 34.3997 120.9 34.6997C119.9 34.6997 119.6 33.9997 119.9 32.3997C120.6 28.5997 121.6 24.8997 120.9 21.8997C120.1 18.8997 117.7 17.0997 114.6 17.3997C110.2 17.5997 107.4 21.5997 105 26.8997L108.2 27.9997Z"
+            fill="#269BD8"
+          />
+          <path
+            d="M103.102 35.4004C103.102 30.6004 103.5 28.5 104.702 27.9004L106.702 29.9004L107.202 37.9004C106.602 38.9004 103.202 39.7004 103.102 36.9004V35.4004Z"
+            fill="#0DBDCC"
+          />
+          <path
+            d="M107.2 37.8995C107.8 34.9995 106.5 31.5 108.202 27.9991L105.5 25.8496L103.102 29.2095V35.3991L107.2 37.8995Z"
+            fill="url(#paint5_linear_686_399)"
+          />
+          <path
+            d="M70.1992 18.6994C72.3992 18.8994 74.5992 17.5994 75.6992 17.3994C77.6992 16.6994 78.6992 18.4994 78.3992 19.5994C78.0992 21.3994 74.0992 22.0994 74.0992 22.0994L71.1992 21.8994L70.1992 18.6994Z"
+            fill="#0FBDD0"
+          />
+          <path
+            d="M83.5008 34.0003L87.55 33C86.95 32 85.9002 30.6004 84.4002 30.7004C83.4002 30.9004 83.0002 33.0003 83.5008 34.0003Z"
+            fill="#0FBDD0"
+          />
+          <path
+            d="M34.6651 41.766C38.7651 43.266 40.3651 45.866 40.3651 48.566L36.2656 50.8652C36.4656 49.8652 36.8651 46.566 32.6651 45.566C26.9651 44.466 22.1651 46.366 22.1651 49.466C22.3651 55.866 37.4651 57.366 39.4651 64.966C40.3651 67.966 39.1651 71.466 37.4651 73.566C34.8651 76.766 30.1651 78.466 25.1651 78.466C22.6651 78.366 14.8651 76.466 14.0651 69.466C13.4651 63.266 17.1651 61.266 18.8651 63.266C19.8651 64.566 17.8651 66.866 18.6651 69.066C19.3651 71.366 20.6651 72.966 24.8651 73.366C29.1651 73.566 35.3651 70.966 34.8651 66.366C34.1651 60.966 21.8651 59.766 18.6651 53.866C17.3651 51.466 16.1651 46.566 20.9651 43.266C25.1651 40.366 30.4651 40.266 34.6651 41.766Z"
+            fill="#05B4E6"
+          />
+          <path
+            d="M34.6666 52.7648C33.8666 54.0648 33.6666 56.3648 36.3666 55.7648C38.3666 55.3648 41.1666 51.7648 40.2666 47.9648L38.2745 49.0514C36.7901 49.8611 35.8621 51.5693 34.6666 52.7648Z"
+            fill="#05B4E6"
+          />
+          <path
+            d="M46.4644 57.9644C45.3644 61.2644 42.6644 72.9644 47.2644 75.7644C50.3644 77.4644 54.8644 76.2644 57.1644 73.9644L57.3644 64.2644C56.1644 66.7644 54.3644 70.8644 50.6644 71.7644C47.4644 71.9644 48.2644 64.9644 50.9644 58.2644C51.8644 54.9644 47.4644 53.9644 46.4644 57.9644Z"
+            fill="#08B7C7"
+          />
+          <path
+            d="M61.3645 58.7661C62.8645 56.7661 64.6645 55.266 67.8645 55.366C70.3645 55.466 72.8645 56.8661 73.4645 59.0661C75.1645 63.7661 71.4645 71.9661 74.9645 71.7661C76.6645 71.7661 78.3645 69.366 79.6645 67.466L81.1645 74.2661C79.3645 75.8661 75.8645 77.266 72.1645 75.866C70.4645 74.966 69.1645 72.466 69.3645 69.866C69.6645 64.966 70.8645 61.266 68.6645 59.966C66.6645 58.766 64.3645 61.966 62.8645 65.366C61.9645 67.7661 60.9645 71.7661 60.8645 73.7661C60.3645 77.3661 56.3645 76.7661 56.6645 73.2661L57.3645 64.2661L61.3645 58.7661Z"
+            fill="url(#paint6_linear_686_399)"
+          />
+          <path
+            d="M95.1675 64.0645L94.2675 73.2645L94.6675 72.7645C96.8675 71.4645 99.3675 69.4645 101.367 66.3645L102.367 65.3645L102.667 71.9645C100.667 73.9645 97.1675 76.2645 93.9675 77.9645L89.1675 81.2645C86.3675 82.9645 81.3675 87.7645 82.3675 89.7645C83.3675 91.9645 87.3 89.5 89.5 81L93.9675 77.9645C93.1675 83.7645 90.8675 92.7645 84.4675 94.0645C78.1675 95.2645 75.8675 90.2645 78.9675 85.8645C82.6675 80.7645 87.6675 77.9645 90.3675 76.3645L91.8675 72.7645L95.1675 64.0645Z"
+            fill="url(#paint7_linear_686_399)"
+          />
+          <path
+            d="M111.664 55.7643C114.164 50.9643 116.664 46.4643 116.364 42.7643C115.864 38.0643 111.664 36.8643 108.664 39.0643C104.664 41.7643 101.364 51.4643 101.164 64.4643L101.266 67.3652L103.266 65.8652L106.266 60.3652C106.766 54.9652 109.664 42.0643 111.664 42.2643C114.164 42.7643 111.164 49.7643 108.964 53.9643L106.364 59.7643L111.664 55.7643Z"
+            fill="url(#paint8_linear_686_399)"
+          />
+          <path
+            d="M105.366 60.9657C107.666 58.0657 109.366 55.9657 112.466 55.7657C116.666 54.9657 120.466 57.4657 119.466 63.7657C118.966 66.3657 116.966 71.9657 119.366 71.7657C124.666 71.3657 126.166 63.2657 130.166 60.7657C136.166 57.2657 141.466 60.9657 141.666 67.0657C141.866 70.4657 138.166 70.9657 137.966 67.3657C137.866 64.2657 135.366 61.4657 132.166 64.4657C129.866 66.4657 127.666 75.8657 119.966 76.2657C118.666 76.3657 116.866 76.2657 115.966 75.4657C114.466 74.3657 113.866 72.3657 113.966 69.7657C114.166 65.9657 115.866 62.2657 114.666 60.3657C112.866 58.0657 108.666 60.9657 105.866 73.2657C105.366 76.8657 100.666 77.4657 100.866 73.5657C101.166 69.0657 102.366 64.9657 105.366 60.9657Z"
+            fill="url(#paint9_linear_686_399)"
+          />
+          <path
+            d="M92.6643 56.8652C91.8643 55.9652 90.8643 55.3652 89.6643 55.3652C85.6643 55.3652 80.4643 60.9652 79.6643 65.8652C78.9643 70.7652 79.8643 76.2652 85.6643 76.2652C88.8643 76.2652 91.8643 73.9652 93.3643 71.2652C94.8643 68.7652 96.1643 60.3652 95.8643 57.9652C95.3643 55.8652 93.3643 55.7652 92.6643 56.8652ZM85.8643 71.3652C82.9643 71.9652 83.3643 66.4652 85.8643 62.9652C87.3643 60.9652 90.1643 58.4652 90.8643 59.7652C90.6643 62.7652 89.6643 70.4652 85.8643 71.3652Z"
+            fill="#0B89D3"
+          />
+          <path
+            d="M47.0664 49.966C47.1664 48.266 48.9664 46.866 51.1664 46.966C52.8664 47.066 54.1664 48.266 54.1664 50.366C54.1664 51.966 52.4664 53.466 50.1664 53.366C48.3664 53.366 47.0664 51.766 47.0664 49.966Z"
+            fill="#08B7C7"
+          />
+          <path
+            d="M10.6999 18.7C12.9999 19.4 19.5999 19.1 28.0999 18.8L37.6999 18.5C38.8999 18.5 40.0999 18.7 40.3999 20.1C40.4999 21 40.0999 22.1 38.8999 22.4L34.0999 22.7C28.3999 23 14.5999 23.6 11.8999 23.1C8.3999 22.4 9.1999 18.9 10.6999 18.7Z"
+            fill="url(#paint10_linear_686_399)"
+          />
+          <path
+            d="M58.1641 57.4658C58.6641 54.9658 62.4641 54.4658 62.3641 57.8658L60.8641 73.7658C60.3641 77.3658 56.8641 76.2658 56.6641 73.8658L58.1641 57.4658Z"
+            fill="url(#paint11_linear_686_399)"
+          />
+        </g>
+        <defs>
+          <linearGradient
+            id="paint0_linear_686_399"
+            x1="102.899"
+            y1="15.6104"
+            x2="118.499"
+            y2="15.6104"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#0C55A3" />
+            <stop offset="1" stop-color="#107DC2" />
+          </linearGradient>
+          <linearGradient
+            id="paint1_linear_686_399"
+            x1="0.500002"
+            y1="31.5"
+            x2="12"
+            y2="36"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#0F8DD3" />
+            <stop offset="1" stop-color="#0C55A3" />
+          </linearGradient>
+          <linearGradient
+            id="paint2_linear_686_399"
+            x1="63.21"
+            y1="24.7508"
+            x2="83"
+            y2="32"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#08BEC4" />
+            <stop offset="0.5313" stop-color="#08BEC4" />
+            <stop offset="1" stop-color="#0EB4CA" />
+          </linearGradient>
+          <linearGradient
+            id="paint3_linear_686_399"
+            x1="86.8384"
+            y1="18.7902"
+            x2="95.3984"
+            y2="18.7902"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#08AFBC" />
+            <stop offset="0.4219" stop-color="#08AEB9" />
+            <stop offset="0.659" stop-color="#08A6B1" />
+            <stop offset="0.8518" stop-color="#0899A3" />
+            <stop offset="1" stop-color="#088A93" />
+          </linearGradient>
+          <linearGradient
+            id="paint4_linear_686_399"
+            x1="98.5016"
+            y1="32.8996"
+            x2="108.602"
+            y2="32.8996"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#0FBDD0" />
+            <stop offset="1" stop-color="#08BEC4" />
+          </linearGradient>
+          <linearGradient
+            id="paint5_linear_686_399"
+            x1="107.5"
+            y1="26.5"
+            x2="104"
+            y2="30.5"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0.114786" stop-color="#269BD8" />
+            <stop offset="1" stop-color="#0DBDCC" />
+          </linearGradient>
+          <linearGradient
+            id="paint6_linear_686_399"
+            x1="56.5845"
+            y1="66.2261"
+            x2="81.1745"
+            y2="66.2261"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0.102677" stop-color="#07BBC4" />
+            <stop offset="0.5508" stop-color="#07ABBA" />
+            <stop offset="1" stop-color="#00969D" />
+          </linearGradient>
+          <linearGradient
+            id="paint7_linear_686_399"
+            x1="77.8375"
+            y1="74.7645"
+            x2="103.567"
+            y2="74.7645"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#0F5BA6" />
+            <stop offset="1" stop-color="#1475B7" />
+          </linearGradient>
+          <linearGradient
+            id="paint8_linear_686_399"
+            x1="101.266"
+            y1="64.3652"
+            x2="116.464"
+            y2="55.7743"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#1373B5" />
+            <stop offset="1" stop-color="#1271B6" />
+          </linearGradient>
+          <linearGradient
+            id="paint9_linear_686_399"
+            x1="100.866"
+            y1="66.4757"
+            x2="141.666"
+            y2="66.4757"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#0D7DC2" />
+            <stop offset="1" stop-color="#0F74B9" />
+          </linearGradient>
+          <linearGradient
+            id="paint10_linear_686_399"
+            x1="9.4799"
+            y1="20.99"
+            x2="40.3999"
+            y2="20.99"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#1779BC" />
+            <stop offset="1" stop-color="#0F7DC2" />
+          </linearGradient>
+          <linearGradient
+            id="paint11_linear_686_399"
+            x1="56.6141"
+            y1="65.5058"
+            x2="62.3541"
+            y2="65.5058"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0.3047" stop-color="#08BFC6" />
+            <stop offset="1" stop-color="#06B3C2" />
+          </linearGradient>
+          <clipPath id="clip0_686_399">
+            <rect width="142" height="95" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </h1>
   </div>
   <div class="flex flex-col gap-y-3.5">
     <p
-      class="animate-intro font-light leading-snug opacity-0 [animation-delay:0.2s]"
+      class="animate-intro font-light leading-snug opacity-0 [animation-delay:0.25s]"
     >
-      Currently, I lead engineering at a stealth startup. This is my lil corner
-      of the web where I share my work with y'all.
+      I'm a software engineer based in Texas, and this is my tiny spec on the internet where I share my craft and the products I'm building.
     </p>
-    <div
-      class="flex animate-intro items-center font-light opacity-0 [animation-delay:0.25s]"
-    >
-      <span class="text-neutral-500 dark:text-neutral-400">Availability</span>
-      <span
-        class="ml-1.5 rounded border border-neutral-300 px-2 py-1 text-xs text-neutral-500 dark:border-neutral-700 dark:text-neutral-400"
-        >Limited</span
-      >
-    </div>
     <p class="animate-intro font-light opacity-0 [animation-delay:0.3s]">
-      In my free time, I spend time outdoors, work on open source, and tinker
-      around with all sorts of random computer stuff.
+      I thrive in ambiguity and enjoy owning the full product lifecycle: from infra and backend systems to design and polished user experiences.
     </p>
+    <section class="mt-1 animate-intro opacity-0 [animation-delay:0.35s]">
+      <div class="relative" data-popover-group>
+        <div class="flex flex-row flex-wrap items-center gap-x-1 gap-y-2">
+          {
+            socials.map((social) => {
+              const popoverKey =
+                social.label === "X"
+                  ? "x"
+                  : social.label === "GitHub"
+                    ? "github"
+                    : social.label === "Linkedin"
+                      ? "linkedin"
+                      : null;
+              return (
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-popover-trigger={popoverKey ?? undefined}
+                  class="exclude flex items-center rounded-full bg-neutral-200 px-3 py-1 text-sm transition-colors select-none hover:bg-neutral-300 data-[active=true]:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:data-[active=true]:bg-neutral-700"
+                >
+                  {social.label}
+                  <Link />
+                </a>
+              );
+            })
+          }
+        </div>
+        <div
+          data-popover
+          data-popover-state="closed"
+          class="pointer-events-none absolute top-full left-0 z-30 mt-2 origin-top overflow-hidden rounded-2xl border border-neutral-200 bg-white opacity-0 shadow-[0_16px_40px_rgba(0,0,0,0.14)] [filter:blur(6px)] [transform:translateX(-50%)_translateY(10px)_scale(0.96)] transition-[opacity,transform,filter,left,width,height] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] data-[popover-state=open]:pointer-events-auto data-[popover-state=open]:opacity-100 data-[popover-state=open]:[filter:blur(0px)] data-[popover-state=open]:[transform:translateX(-50%)_translateY(0)_scale(1)] motion-reduce:transition-none motion-reduce:[filter:blur(0px)] motion-reduce:[transform:translateX(-50%)_translateY(0)_scale(1)] dark:border-neutral-700 dark:bg-neutral-900"
+          style="left: 0px; width: 0px; height: 0px;"
+        >
+          <a
+            data-popover-panel="x"
+            data-active="false"
+            href="https://x.com/haaarshsingh"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude absolute top-0 left-1/2 block w-[270px] -translate-x-1/2 p-4 opacity-0 [filter:blur(6px)] transition-[opacity,filter] duration-200 ease-out data-[active=true]:opacity-100 data-[active=true]:[filter:blur(0px)]"
+          >
+            <div class="mb-3 flex items-start justify-between">
+              <img
+                src="https://github.com/haaarshsingh.png"
+                alt="Harsh Singh"
+                width="64"
+                height="64"
+                class="h-16 w-16 rounded-full object-cover"
+                loading="lazy"
+                draggable="false"
+              />
+              <span
+                class="rounded-full bg-black px-4 py-2.5 text-[0.9rem] leading-none font-semibold text-white dark:bg-white dark:text-black"
+              >
+                Follow
+              </span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <p class="text-[1.1em] leading-none font-bold tracking-tight">
+                Harsh
+              </p>
+              <svg
+                viewBox="0 0 22 22"
+                aria-label="Verified account"
+                role="img"
+                class="size-4 text-sky-500"
+                data-testid="icon-verified"
+              >
+                <g>
+                  <path
+                    d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+            <p
+              class="mt-1 text-[0.9rem] leading-none text-neutral-500 dark:text-neutral-400"
+            >
+              @haaarshsingh
+            </p>
+            <p class="mt-4 text-[0.9rem] leading-none">
+              <span class="font-semibold">225</span>
+              <span class="text-neutral-500 dark:text-neutral-400">
+                {" "}Following
+              </span>
+              <span class="ml-2 font-semibold">1,405</span>
+              <span class="text-neutral-500 dark:text-neutral-400">
+                {" "}Followers
+              </span>
+            </p>
+          </a>
+          <a
+            data-popover-panel="github"
+            data-active="false"
+            href="https://github.com/haaarshsingh"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude absolute top-0 left-1/2 block w-[290px] -translate-x-1/2 p-4 opacity-0 [filter:blur(6px)] transition-[opacity,filter] duration-200 ease-out data-[active=true]:opacity-100 data-[active=true]:[filter:blur(0px)]"
+          >
+            <div class="mb-3 flex items-center justify-between text-[0.8rem]">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                aria-hidden="true"
+                class="h-5 w-5 text-neutral-600 dark:text-neutral-300"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9 1.4.3 2.6.4 3.8.4 8.3 0 11.5-6.1 11.5-11.4 0-5.5-.2-19.9-.3-39.1-8.4 1.9-15.9 2.7-22.6 2.7-43.1 0-52.9-33.5-52.9-33.5-10.2-26.5-24.9-33.6-24.9-33.6-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8 11.2 19.6 26.2 25.1 39.6 25.1 10.5 0 20-3.4 25.6-6 2-14.8 7.8-24.9 14.2-30.7-49.7-5.8-102-25.5-102-113.5 0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8 0 0 1.6-.5 5-.5 8.1 0 26.4 3.1 56.6 24.1 17.9-5.1 37-7.6 56.1-7.7 19 .1 38.2 2.6 56.1 7.7 30.2-21 48.5-24.1 56.6-24.1 3.4 0 5 .5 5 .5 12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6 0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5 0 30.7-.3 55.5-.3 63 0 5.4 3.1 11.5 11.4 11.5 1.2 0 2.6-.1 4-.4C415.9 449.2 480 363.1 480 261.7 480 134.9 379.7 32 256 32z"
+                ></path>
+              </svg>
+              <p class="text-neutral-500 dark:text-neutral-400">
+                <span
+                  class="font-semibold text-neutral-800 dark:text-neutral-100"
+                  >1017</span
+                >
+                {" "}contributions in 2025
+              </p>
+            </div>
+            <div class="grid grid-cols-12 gap-[3px]">
+              {
+                githubContributionGrid.map((week) =>
+                  week.map((level) => (
+                    <span
+                      class={`h-[14px] w-[14px] rounded-[3px] ${getContributionCellClass(level)}`}
+                    ></span>
+                  ))
+                )
+              }
+            </div>
+          </a>
+          <a
+            data-popover-panel="linkedin"
+            data-active="false"
+            href="https://www.linkedin.com/in/haaarshsingh"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude absolute top-0 left-1/2 block w-[260px] -translate-x-1/2 p-2 opacity-0 [filter:blur(6px)] transition-[opacity,filter] duration-200 ease-out data-[active=true]:opacity-100 data-[active=true]:[filter:blur(0px)]"
+          >
+            <img
+              src="/meme.gif"
+              alt=""
+              class="block h-auto w-full rounded-xl object-cover"
+              loading="lazy"
+              draggable="false"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
 </header>
+
+<script is:inline>
+  (() => {
+    const group = document.querySelector("[data-popover-group]");
+    if (!group) return;
+    const popover = group.querySelector("[data-popover]");
+    if (!popover) return;
+
+    const panelEls = group.querySelectorAll("[data-popover-panel]");
+    const panels = {};
+    panelEls.forEach((el) => {
+      panels[el.dataset.popoverPanel] = el;
+    });
+
+    const triggers = group.querySelectorAll("[data-popover-trigger]");
+
+    const CLOSE_DELAY = 75;
+    let activeKey = null;
+    let closeTimer = null;
+    let deactivateTimer = null;
+
+    function measure(key, trigger) {
+      const panel = panels[key];
+      if (!panel) return null;
+      const width = panel.offsetWidth;
+      const height = panel.offsetHeight;
+      const groupRect = group.getBoundingClientRect();
+      const triggerRect = trigger.getBoundingClientRect();
+      const centerX =
+        triggerRect.left - groupRect.left + trigger.offsetWidth / 2;
+      return { width, height, centerX };
+    }
+
+    function open(key, trigger) {
+      if (deactivateTimer !== null) {
+        clearTimeout(deactivateTimer);
+        deactivateTimer = null;
+      }
+
+      const dims = measure(key, trigger);
+      if (!dims) return;
+
+      // Morph when previous popover hasn't fully exited (activeKey still set);
+      // snap on a true cold open so the first frame appears at the correct size.
+      const shouldMorph = activeKey !== null;
+      if (!shouldMorph) {
+        popover.style.transition = "none";
+        popover.style.left = dims.centerX + "px";
+        popover.style.width = dims.width + "px";
+        popover.style.height = dims.height + "px";
+        // Force reflow so the no-transition snap takes effect.
+        void popover.offsetHeight;
+        popover.style.transition = "";
+      } else {
+        popover.style.left = dims.centerX + "px";
+        popover.style.width = dims.width + "px";
+        popover.style.height = dims.height + "px";
+      }
+
+      for (const k in panels) {
+        panels[k].dataset.active = k === key ? "true" : "false";
+      }
+
+      triggers.forEach((t) => {
+        t.dataset.active = t.dataset.popoverTrigger === key ? "true" : "false";
+      });
+
+      activeKey = key;
+      popover.dataset.popoverState = "open";
+    }
+
+    function close() {
+      popover.dataset.popoverState = "closed";
+      triggers.forEach((t) => {
+        t.dataset.active = "false";
+      });
+      if (deactivateTimer !== null) clearTimeout(deactivateTimer);
+      deactivateTimer = window.setTimeout(() => {
+        deactivateTimer = null;
+        if (popover.dataset.popoverState !== "closed") return;
+        for (const k in panels) panels[k].dataset.active = "false";
+        activeKey = null;
+      }, 220);
+    }
+
+    function cancelClose() {
+      if (closeTimer !== null) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+    }
+
+    function scheduleClose() {
+      cancelClose();
+      closeTimer = window.setTimeout(() => {
+        closeTimer = null;
+        close();
+      }, CLOSE_DELAY);
+    }
+
+    triggers.forEach((trigger) => {
+      const key = trigger.dataset.popoverTrigger;
+      trigger.addEventListener("mouseenter", () => {
+        cancelClose();
+        open(key, trigger);
+      });
+      trigger.addEventListener("mouseleave", scheduleClose);
+      trigger.addEventListener("focus", () => {
+        cancelClose();
+        open(key, trigger);
+      });
+      trigger.addEventListener("blur", scheduleClose);
+    });
+
+    popover.addEventListener("mouseenter", cancelClose);
+    popover.addEventListener("mouseleave", scheduleClose);
+
+    window.addEventListener("resize", () => {
+      if (popover.dataset.popoverState !== "open" || activeKey === null) return;
+      const trigger = group.querySelector(
+        `[data-popover-trigger="${activeKey}"]`,
+      );
+      if (!trigger) return;
+      const dims = measure(activeKey, trigger);
+      if (!dims) return;
+      popover.style.left = dims.centerX + "px";
+      popover.style.width = dims.width + "px";
+      popover.style.height = dims.height + "px";
+    });
+  })();
+</script>

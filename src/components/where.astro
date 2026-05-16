@@ -1,0 +1,62 @@
+---
+---
+
+<div
+  class="relative aspect-square w-full overflow-hidden rounded-2xl"
+>
+  <img
+    src="/cloud.webp"
+    width="390"
+    height="347"
+    alt=""
+    draggable="false"
+    class="animate-cloud absolute z-10 blur-sm"
+  />
+  <img
+    src="/plane.webp"
+    width="24"
+    height="56"
+    alt=""
+    draggable="false"
+    class="animate-plane absolute z-10 left-[-100%] rotate-[30deg] [animation-delay:5s]"
+  />
+  <img
+    src="/plane-shadow.webp"
+    width="24"
+    height="24"
+    alt=""
+    draggable="false"
+    class="animate-plane-shadow absolute z-10 left-[-100%] rotate-[30deg] [animation-delay:5s]"
+  />
+  <img
+    src="/map.webp"
+    alt="Map with marker east of Austin, TX"
+    loading="eager"
+    draggable="false"
+    class="absolute inset-0 h-full w-full object-cover dark:hidden"
+  />
+  <img
+    src="/map-dark.webp"
+    alt="Map with marker east of Austin, TX"
+    loading="eager"
+    draggable="false"
+    class="absolute inset-0 hidden h-full w-full object-cover dark:block"
+  />
+  <a
+    href="https://en.wikipedia.org/wiki/Austin,_Texas"
+    target="_blank"
+    rel="noreferrer"
+    class="exclude absolute right-0 bottom-0 z-20 mr-2 mb-2 rounded-md border border-neutral-300 bg-neutral-50 px-1.5 py-1 text-[11px] text-neutral-600 select-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+    >Austin, TX</a
+  >
+  <div aria-hidden>
+    <div
+      class="animate-marker absolute top-[60%] left-[53%] h-5 w-5 rounded-full bg-blue-500"
+    >
+    </div>
+    <div
+      class="shadow-marker absolute top-[60%] left-[53%] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-neutral-50 bg-blue-500"
+    >
+    </div>
+  </div>
+</div>
