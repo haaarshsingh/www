@@ -6,7 +6,7 @@ import Music from "./music.astro";
 <main>
   <section class="mt-24">
     <div
-      class="animate-intro relative left-1/2 flex w-[min(1024px,95vw)] -translate-x-1/2 flex-col gap-3 opacity-0 [animation-delay:0.4s]"
+      class="animate-intro relative left-1/2 flex w-[min(1024px,95vw)] -translate-x-1/2 flex-col gap-3 opacity-0 [animation-delay:0.4s] select-none"
     >
       <div class="grid aspect-square grid-cols-4 grid-rows-4 gap-3">
         <div class="col-start-1 row-start-1">
@@ -16,88 +16,155 @@ import Music from "./music.astro";
           <Music />
         </div>
         <div
-          aria-hidden="true"
-          class="col-span-2 col-start-3 row-span-2 row-start-1 aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="relative col-span-2 col-start-3 row-span-2 row-start-1 aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
         >
+          <video
+            src="/bento/kmenu.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
+        </div>
+        <div
+          class="relative col-span-2 col-start-1 row-start-2 overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+        >
+          <video
+            src="/bento/qr.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
         </div>
         <div
           aria-hidden="true"
-          class="col-span-2 col-start-1 row-start-2 rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="col-span-2 col-start-1 row-span-2 row-start-3 flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
+          3
         </div>
         <div
           aria-hidden="true"
-          class="col-span-2 col-start-1 row-span-2 row-start-3 aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="col-start-3 row-start-3 flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
+          4
         </div>
         <div
           aria-hidden="true"
-          class="col-start-3 row-start-3 aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="col-start-3 row-start-4 flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
+          5
         </div>
         <div
           aria-hidden="true"
-          class="col-start-3 row-start-4 aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="col-start-4 row-span-2 row-start-3 flex items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
-        </div>
-        <div
-          aria-hidden="true"
-          class="col-start-4 row-span-2 row-start-3 rounded-2xl bg-neutral-200 dark:bg-neutral-800"
-        >
+          6
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div
           aria-hidden="true"
-          class="aspect-[2/1] rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="flex aspect-[2/1] items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
+          7
         </div>
         <div
           aria-hidden="true"
-          class="aspect-[2/1] rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="flex aspect-[2/1] items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
+          8
         </div>
       </div>
       <div class="grid grid-cols-4 gap-3">
         <div
-          aria-hidden="true"
-          class="aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white pl-1.5 dark:border-neutral-700 dark:bg-neutral-900"
         >
+          <video
+            src="/bento/cmdk.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="h-full w-full object-cover"
+          ></video>
+        </div>
+        <div
+          class="flex aspect-square flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white pb-1 dark:border-neutral-700 dark:bg-neutral-900"
+        >
+          <div class="relative flex-1 overflow-hidden border-b border-b-neutral-200 dark:border-b-neutral-700">
+            <img
+              src="/bento/blog_post_1.webp"
+              alt=""
+              draggable="false"
+              class="h-full w-full object-cover"
+            />
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-neutral-900 dark:via-neutral-900/80"
+            >
+            </div>
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 flex items-baseline justify-between gap-2 px-2 pb-1.5"
+            >
+              <p
+                class="truncate text-xs font-medium text-neutral-900 dark:text-neutral-50"
+              >
+                Best Distros for Ricing
+              </p>
+              <p
+                class="shrink-0 text-xs text-neutral-500 dark:text-neutral-400"
+              >
+                May 2024
+              </p>
+            </div>
+          </div>
+          <a
+            href="/ricing"
+            class="exclude mt-1 flex items-center justify-center rounded-xl bg-neutral-200 px-3 mx-1 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700"
+          >
+            Read Essay
+          </a>
         </div>
         <div
           aria-hidden="true"
-          class="aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+          class="col-span-2 flex items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
         >
-        </div>
-        <div
-          aria-hidden="true"
-          class="col-span-2 rounded-2xl bg-neutral-200 dark:bg-neutral-800"
-        >
+          11
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div class="flex flex-col gap-3">
           <div
             aria-hidden="true"
-            class="aspect-[2/1] rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+            class="flex aspect-[2/1] items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
           >
+            12
           </div>
           <div
             aria-hidden="true"
-            class="aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+            class="flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
           >
+            13
           </div>
         </div>
         <div class="flex flex-col gap-3">
           <div
             aria-hidden="true"
-            class="aspect-square rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+            class="flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
           >
+            14
           </div>
           <div
             aria-hidden="true"
-            class="aspect-[2/1] rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+            class="flex aspect-[2/1] items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
           >
+            15
           </div>
         </div>
       </div>

@@ -1,0 +1,31 @@
+---
+import Layout from "./layout.astro";
+import Index from "./icons/index.astro";
+
+const { frontmatter } = Astro.props;
+const { title, description, date } = frontmatter ?? {};
+---
+
+<Layout title={title} description={description}>
+  <main class="relative">
+    <div class="mb-4 md:absolute md:-ml-36 md:mb-0 md:h-full">
+      <a class="exclude flex items-center md:sticky md:top-8" href="/">
+        <Index />
+        Index
+      </a>
+    </div>
+    <header>
+      <h1 class="font-semibold">{title}</h1>
+      {
+        date && (
+          <p class="mt-2 text-sm font-light text-neutral-500 dark:text-neutral-400">
+            {date}
+          </p>
+        )
+      }
+    </header>
+    <article class="prose dark:prose-invert mt-8 max-w-none">
+      <slot />
+    </article>
+  </main>
+</Layout>

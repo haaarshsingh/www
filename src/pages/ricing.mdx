@@ -1,0 +1,44 @@
+---
+layout: ../components/post-layout.astro
+title: "Best Distro for Ricing"
+description: "After years of distro hopping, here's the one I keep coming back to when I want to rice."
+date: "May 2024"
+---
+
+Ricing is, for the uninitiated, the art of customizing your Linux desktop into something that's equal parts beautiful and personal. It's a hobby, a procrastination strategy, and occasionally a productivity boost. The base distribution you pick matters more than people give it credit for.
+
+After enough years of distro hopping, I keep ending up back on the same one. Here's why.
+
+## Arch, but for the right reasons
+
+Most ricing guides start with "use Arch" and stop there. The actual reasons are worth spelling out:
+
+- **A minimal base.** Nothing gets installed that you didn't ask for. That sounds like an inconvenience until you realize ricing is mostly about _removing_ defaults you didn't want anyway.
+- **The AUR.** Practically every component in the ricing ecosystem ships there first. Bars, compositors, launchers, fonts, themes — you can install them without compiling from source or hunting down PPAs.
+- **A rolling release.** Hyprland, picom-pijulius, swww, eww — these projects move fast. Waiting six months for the next Ubuntu LTS to catch up is a real cost.
+- **Documentation that respects you.** The Arch Wiki assumes you can read. Most of the time, that's a feature.
+
+## The stack I keep landing on
+
+The specific tools change every six months, but the categories don't. A solid ricing setup is, roughly:
+
+1. **A window manager.** Hyprland on Wayland, bspwm on X11. Tiling is non-negotiable for me.
+2. **A bar.** Waybar or eww. Eww if you want to design your own; Waybar if you want it to just work.
+3. **A launcher.** Wofi, rofi, or anyrun. Pick the one whose theming language you tolerate.
+4. **A terminal.** Kitty or wezterm. Both are good. Pick one and move on.
+5. **A wallpaper daemon.** swww. The animated transitions alone are worth it.
+6. **A notification daemon.** mako or dunst. You'll forget it exists, which is the goal.
+
+That's it. Everything else — pywal, hyprlock, swaync, the fifteenth font you installed — is optional.
+
+## The part nobody tells you
+
+The thing that actually makes a rice _good_ isn't the wallpaper or the bar. It's the consistency. Pick a palette. Pick a font. Apply both everywhere — GTK, Qt, terminal, editor, bar, launcher, notifications. The screenshots you see on r/unixporn don't look polished because of the components. They look polished because every pixel is on-palette.
+
+Arch makes that easy because it gets out of your way.
+
+## Where to start
+
+If you've never riced before, don't start with Hyprland. Start with bspwm or i3, get comfortable with config files and reloading sessions, and graduate from there. Ricing is one of those hobbies where the meta-skill — patiently editing dotfiles until things look right — is the actual reward.
+
+Have fun. Don't ship your `~/.config` to me.
