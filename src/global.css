@@ -164,6 +164,36 @@
     opacity: 1 !important;
     transform: none !important;
   }
+
+  /* Easing gradient (easeOutSine) — avoids the visible "edge" you get
+     from a linear alpha fade between two stops. */
+  .fade-to-bottom {
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.83) 8%,
+      rgba(0, 0, 0, 0.76) 22%,
+      rgba(0, 0, 0, 0.55) 41%,
+      rgba(0, 0, 0, 0.3) 59%,
+      rgba(0, 0, 0, 0.12) 77%,
+      rgba(0, 0, 0, 0.03) 92%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .fade-to-bottom-soft {
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.48) 8%,
+      rgba(0, 0, 0, 0.44) 22%,
+      rgba(0, 0, 0, 0.32) 41%,
+      rgba(0, 0, 0, 0.17) 59%,
+      rgba(0, 0, 0, 0.07) 77%,
+      rgba(0, 0, 0, 0.02) 92%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
 }
 
 .prose h2 {

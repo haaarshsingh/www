@@ -4,9 +4,23 @@ import Index from "./icons/index.astro";
 
 const { frontmatter } = Astro.props;
 const { title, description, date } = frontmatter ?? {};
+
+// Frontmatter dates are author-friendly strings like "May 2024". Try to parse
+// to ISO so we can emit a proper article:published_time / datePublished
+// without forcing every post to change frontmatter shape.
+const parsedDate = date ? new Date(date) : null;
+const publishedTime =
+  parsedDate && !isNaN(parsedDate.getTime())
+    ? parsedDate.toISOString()
+    : undefined;
 ---
 
-<Layout title={title} description={description}>
+<Layout
+  title={title}
+  description={description}
+  type="article"
+  publishedTime={publishedTime}
+>
   <main class="relative">
     <div class="mb-4 md:absolute md:-ml-36 md:mb-0 md:h-full">
       <a class="exclude flex items-center md:sticky md:top-8" href="/">
@@ -19,7 +33,7 @@ const { title, description, date } = frontmatter ?? {};
       {
         date && (
           <p class="mt-2 text-sm font-light text-neutral-500 dark:text-neutral-400">
-            {date}
+            {publishedTime ? <time datetime={publishedTime}>{date}</time> : date}
           </p>
         )
       }

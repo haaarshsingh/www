@@ -7,7 +7,7 @@ import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://harshsingh.me",
+  site: "https://www.harshsingh.me",
   integrations: [sitemap(), mdx()],
   vite: {
     plugins: [tailwindcss()],

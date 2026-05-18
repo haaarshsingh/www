@@ -10,7 +10,7 @@
 
   <a
     id="music-track"
-    class="exclude group relative hidden aspect-square overflow-hidden rounded-2xl"
+    class="exclude group relative hidden aspect-square overflow-hidden rounded-2xl border border-neutral-200 transition-colors duration-300 dark:border-neutral-700"
     href="#"
     target="_blank"
     rel="noreferrer"
@@ -45,7 +45,7 @@
           src="/disc.webp"
           alt=""
           draggable="false"
-          class="absolute top-2 -left-6 h-16 w-16 animate-spin [animation-duration:4s] transition-[left] duration-200 ease-out group-hover:-left-8"
+          class="absolute top-2 -left-6 h-16 w-16 animate-spin [animation-duration:4s] transition-[left] duration-200 ease-out group-hover:-left-7"
         />
         <img
           id="music-cover"
@@ -73,7 +73,7 @@
         </p>
         <p
           id="music-artist"
-          class="truncate text-xs text-neutral-300"
+          class="truncate text-sm text-neutral-300"
         >
         </p>
       </div>
@@ -89,6 +89,76 @@
 </div>
 
 <script>
+  // Sample a representative accent color from album art: prefer saturated,
+  // mid-lightness pixels so we get something close to the cover's brand color
+  // rather than a muddy average.
+  const extractAccentColor = (img: HTMLImageElement): string | null => {
+    try {
+      const size = 32;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return null;
+      ctx.drawImage(img, 0, 0, size, size);
+      const { data } = ctx.getImageData(0, 0, size, size);
+
+      let bestR = 0;
+      let bestG = 0;
+      let bestB = 0;
+      let bestScore = -1;
+      let sumR = 0;
+      let sumG = 0;
+      let sumB = 0;
+      let count = 0;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i] ?? 0;
+        const g = data[i + 1] ?? 0;
+        const b = data[i + 2] ?? 0;
+        const a = data[i + 3] ?? 0;
+        if (a < 200) continue;
+        sumR += r;
+        sumG += g;
+        sumB += b;
+        count++;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const lightness = (max + min) / 2 / 255;
+        if (lightness < 0.18 || lightness > 0.82) continue;
+        const saturation = max === 0 ? 0 : (max - min) / max;
+        const score = saturation * 2 + (1 - Math.abs(lightness - 0.5));
+        if (score > bestScore) {
+          bestScore = score;
+          bestR = r;
+          bestG = g;
+          bestB = b;
+        }
+      }
+
+      if (bestScore < 0 && count > 0) {
+        bestR = Math.round(sumR / count);
+        bestG = Math.round(sumG / count);
+        bestB = Math.round(sumB / count);
+      }
+
+      return `rgb(${bestR}, ${bestG}, ${bestB})`;
+    } catch {
+      return null;
+    }
+  };
+
+  const applyAccent = (track: HTMLElement, src: string) => {
+    const probe = new Image();
+    probe.crossOrigin = "anonymous";
+    probe.referrerPolicy = "no-referrer";
+    probe.onload = () => {
+      const color = extractAccentColor(probe);
+      if (color) track.style.borderColor = color;
+    };
+    probe.src = src;
+  };
+
   fetch("/api/lastfm")
     .then((res) => res.json())
     .then((data) => {
@@ -106,6 +176,7 @@
           bg.style.backgroundImage = `url(${data.albumArt})`;
           cover.src = data.albumArt;
           coverWrapper.classList.remove("hidden");
+          applyAccent(track, data.albumArt);
         }
 
         document.getElementById("music-title")!.textContent = data.title;

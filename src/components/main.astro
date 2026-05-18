@@ -15,8 +15,11 @@ import Music from "./music.astro";
         <div class="col-start-2 row-start-1">
           <Music />
         </div>
-        <div
-          class="relative col-span-2 col-start-3 row-span-2 row-start-1 aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+        <a
+          href="https://kmenu.dev"
+          target="_blank"
+          rel="noreferrer"
+          class="exclude relative col-span-2 col-start-3 row-span-2 row-start-1 block aspect-square overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
         >
           <video
             src="/bento/kmenu.mp4"
@@ -27,7 +30,34 @@ import Music from "./music.astro";
             preload="auto"
             class="absolute inset-0 h-full w-full object-cover"
           ></video>
-        </div>
+          <div
+            aria-hidden="true"
+            class="fade-to-bottom-soft pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 mb-3 mx-2 flex items-baseline justify-between gap-2 px-2 text-white"
+          >
+            <span class="flex items-center gap-0.5 text-sm font-medium">
+              kmenu
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="translate-y-px"
+              >
+                <path
+                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span class="shrink-0 text-sm text-neutral-300">2022</span>
+          </div>
+        </a>
         <div
           class="relative col-span-2 col-start-1 row-start-2 overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
         >
@@ -47,24 +77,123 @@ import Music from "./music.astro";
         >
           3
         </div>
-        <div
-          aria-hidden="true"
-          class="col-start-3 row-start-3 flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
+        <a
+          href="https://snip.tf"
+          target="_blank"
+          rel="noreferrer"
+          class="exclude relative col-start-3 row-start-3 block aspect-square overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
         >
-          4
-        </div>
-        <div
-          aria-hidden="true"
-          class="col-start-3 row-start-4 flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
+          <img
+            src="/bento/snip.webp"
+            alt=""
+            draggable="false"
+            loading="lazy"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            aria-hidden="true"
+            class="fade-to-bottom pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 mb-3 mx-2 flex items-baseline justify-between gap-2 px-2 text-white"
+          >
+            <span class="flex items-center gap-0.5 text-sm font-medium">
+              Snip
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="translate-y-px"
+              >
+                <path
+                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span class="shrink-0 text-sm text-neutral-300">2020</span>
+          </div>
+        </a>
+        <a
+          href="https://qursor.harshsingh.me"
+          target="_blank"
+          rel="noreferrer"
+          class="exclude relative col-start-3 row-start-4 block aspect-square overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
         >
-          5
-        </div>
-        <div
-          aria-hidden="true"
-          class="col-start-4 row-span-2 row-start-3 flex items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
+          <video
+            src="/bento/qursor.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 mb-3 mx-2 flex items-baseline justify-between gap-2 px-2 text-white"
+          >
+            <span class="flex items-center gap-0.5 text-sm font-medium">
+              Qursor
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="translate-y-px"
+              >
+                <path
+                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span class="shrink-0 text-sm text-neutral-300">2021</span>
+          </div>
+        </a>
+        <a
+          href="https://dots.harshsingh.me"
+          target="_blank"
+          rel="noreferrer"
+          class="exclude relative col-start-4 row-span-2 row-start-3 block overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
         >
-          6
-        </div>
+          <video
+            src="/bento/arch.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+          >
+            <span class="flex items-center gap-0.5 text-sm font-medium">
+              ~/.dotfiles
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="translate-y-px"
+              >
+                <path
+                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span class="shrink-0 text-sm text-neutral-300">2020</span>
+          </div>
+        </a>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div
@@ -110,17 +239,17 @@ import Music from "./music.astro";
             >
             </div>
             <div
-              class="pointer-events-none absolute inset-x-0 bottom-0 flex items-baseline justify-between gap-2 px-2 pb-1.5"
+              class="pointer-events-none absolute inset-x-0 bottom-0 flex items-baseline justify-between gap-2 px-2.5 pb-2"
             >
               <p
-                class="truncate text-xs font-medium text-neutral-900 dark:text-neutral-50"
+                class="truncate text-sm font-medium text-neutral-900 dark:text-neutral-50"
               >
                 Best Distros for Ricing
               </p>
               <p
-                class="shrink-0 text-xs text-neutral-500 dark:text-neutral-400"
+                class="shrink-0 text-sm text-neutral-500 dark:text-neutral-400"
               >
-                May 2024
+                2024
               </p>
             </div>
           </div>
@@ -141,10 +270,17 @@ import Music from "./music.astro";
       <div class="grid grid-cols-2 gap-3">
         <div class="flex flex-col gap-3">
           <div
-            aria-hidden="true"
-            class="flex aspect-[2/1] items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
+            class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-yellow-600 bg-white dark:border-yellow-600 dark:bg-neutral-900"
           >
-            12
+            <video
+              src="/bento/cards.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              class="absolute inset-0 h-full w-full object-cover object-center"
+            ></video>
           </div>
           <div
             aria-hidden="true"
