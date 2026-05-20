@@ -89,10 +89,12 @@
 </div>
 
 <script>
+  type Rgb = { r: number; g: number; b: number };
+
   // Sample a representative accent color from album art: prefer saturated,
   // mid-lightness pixels so we get something close to the cover's brand color
   // rather than a muddy average.
-  const extractAccentColor = (img: HTMLImageElement): string | null => {
+  const extractAccentColor = (img: HTMLImageElement): Rgb | null => {
     try {
       const size = 32;
       const canvas = document.createElement("canvas");
@@ -142,9 +144,31 @@
         bestB = Math.round(sumB / count);
       }
 
-      return `rgb(${bestR}, ${bestG}, ${bestB})`;
+      return { r: bestR, g: bestG, b: bestB };
     } catch {
       return null;
+    }
+  };
+
+  // Saturated colors on a near-black background read as glaring neon. Mix the
+  // accent toward the dark surface so it reads as a tint, not a glow.
+  const formatAccent = ({ r, g, b }: Rgb): string => {
+    const isDark = document.documentElement.classList.contains("dark");
+    if (!isDark) return `rgb(${r}, ${g}, ${b})`;
+    const mix = 0.45; // weight of accent vs. background
+    const bg = 23; // neutral-900-ish
+    const dr = Math.round(r * mix + bg * (1 - mix));
+    const dg = Math.round(g * mix + bg * (1 - mix));
+    const db = Math.round(b * mix + bg * (1 - mix));
+    return `rgb(${dr}, ${dg}, ${db})`;
+  };
+
+  const setBorderFromDataset = (track: HTMLElement) => {
+    const r = Number(track.dataset.accentR);
+    const g = Number(track.dataset.accentG);
+    const b = Number(track.dataset.accentB);
+    if (Number.isFinite(r) && Number.isFinite(g) && Number.isFinite(b)) {
+      track.style.borderColor = formatAccent({ r, g, b });
     }
   };
 
@@ -153,10 +177,23 @@
     probe.crossOrigin = "anonymous";
     probe.referrerPolicy = "no-referrer";
     probe.onload = () => {
-      const color = extractAccentColor(probe);
-      if (color) track.style.borderColor = color;
+      const accent = extractAccentColor(probe);
+      if (!accent) return;
+      track.dataset.accentR = String(accent.r);
+      track.dataset.accentG = String(accent.g);
+      track.dataset.accentB = String(accent.b);
+      setBorderFromDataset(track);
     };
     probe.src = src;
+  };
+
+  // Re-apply the border whenever the theme toggle flips <html>.dark.
+  const observeThemeChanges = (track: HTMLElement) => {
+    const observer = new MutationObserver(() => setBorderFromDataset(track));
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
   };
 
   fetch("/api/lastfm")
@@ -177,6 +214,7 @@
           cover.src = data.albumArt;
           coverWrapper.classList.remove("hidden");
           applyAccent(track, data.albumArt);
+          observeThemeChanges(track);
         }
 
         document.getElementById("music-title")!.textContent = data.title;

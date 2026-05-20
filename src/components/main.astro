@@ -72,10 +72,17 @@ import Music from "./music.astro";
           ></video>
         </div>
         <div
-          aria-hidden="true"
-          class="col-span-2 col-start-1 row-span-2 row-start-3 flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
+          class="relative col-span-2 col-start-1 row-span-2 row-start-3 aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
         >
-          3
+          <video
+            src="/bento/modal.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
         </div>
         <a
           href="https://snip.tf"
@@ -203,15 +210,22 @@ import Music from "./music.astro";
           7
         </div>
         <div
-          aria-hidden="true"
-          class="flex aspect-[2/1] items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600"
+          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
         >
-          8
+          <video
+            src="/slides.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
         </div>
       </div>
       <div class="grid grid-cols-4 gap-3">
         <div
-          class="aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white pl-1.5 dark:border-neutral-700 dark:bg-neutral-900"
+          class="aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white pl-1.5 dark:border-neutral-700"
         >
           <video
             src="/bento/cmdk.mp4"
