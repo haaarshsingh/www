@@ -3,27 +3,33 @@ const { isHome = false } = Astro.props;
 ---
 
 <script>
-  let last;
+  // Footer is below the fold; defer off the LCP critical chain.
+  const loadLastVisitor = () => {
+    fetch("/api/last-visitor")
+      .then((res) => res.json())
+      .then((data) => {
+        const lastVisitElement = document.querySelector(".last-visit");
+        if (lastVisitElement) {
+          lastVisitElement.textContent = data.result;
+          lastVisitElement.classList.remove(
+            "animate-pulse",
+            "bg-neutral-200",
+            "dark:bg-neutral-700",
+            "h-4",
+            "w-28",
+            "mt-0.5",
+            "rounded",
+          );
+        }
+      })
+      .catch(() => {});
+  };
 
-  fetch("/api/last-visitor")
-    .then((res) => res.json())
-    .then((data) => {
-      last = data.result;
-
-      const lastVisitElement = document.querySelector(".last-visit");
-      if (lastVisitElement) {
-        lastVisitElement.textContent = last;
-        lastVisitElement.classList.remove(
-          "animate-pulse",
-          "bg-neutral-200",
-          "dark:bg-neutral-700",
-          "h-4",
-          "w-28",
-          "mt-0.5",
-          "rounded"
-        );
-      }
-    });
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(loadLastVisitor, { timeout: 3000 });
+  } else {
+    setTimeout(loadLastVisitor, 400);
+  }
 </script>
 
 <script>

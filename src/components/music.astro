@@ -196,44 +196,57 @@
     });
   };
 
-  fetch("/api/lastfm")
-    .then((res) => res.json())
-    .then((data) => {
-      const skeleton = document.getElementById("music-skeleton")!;
-      const track = document.getElementById("music-track")!;
-      const empty = document.getElementById("music-empty")!;
+  const loadMusic = () => {
+    fetch("/api/lastfm")
+      .then((res) => res.json())
+      .then((data) => {
+        const skeleton = document.getElementById("music-skeleton")!;
+        const track = document.getElementById("music-track")!;
+        const empty = document.getElementById("music-empty")!;
 
-      skeleton.classList.add("hidden");
+        skeleton.classList.add("hidden");
 
-      if (data.title) {
-        const bg = document.getElementById("music-bg")!;
-        const cover = document.getElementById("music-cover") as HTMLImageElement;
-        const coverWrapper = document.getElementById("music-cover-wrapper")!;
-        if (data.albumArt) {
-          bg.style.backgroundImage = `url(${data.albumArt})`;
-          cover.src = data.albumArt;
-          coverWrapper.classList.remove("hidden");
-          applyAccent(track, data.albumArt);
-          observeThemeChanges(track);
+        if (data.title) {
+          const bg = document.getElementById("music-bg")!;
+          const cover = document.getElementById(
+            "music-cover",
+          ) as HTMLImageElement;
+          const coverWrapper = document.getElementById("music-cover-wrapper")!;
+          if (data.albumArt) {
+            bg.style.backgroundImage = `url(${data.albumArt})`;
+            cover.src = data.albumArt;
+            coverWrapper.classList.remove("hidden");
+            applyAccent(track, data.albumArt);
+            observeThemeChanges(track);
+          }
+
+          document.getElementById("music-title")!.textContent = data.title;
+          document.getElementById("music-artist")!.textContent = data.artist;
+          (track as HTMLAnchorElement).href = data.url;
+          track.classList.remove("hidden");
+          track.classList.add("block");
+
+          if (data.isPlaying) {
+            document.getElementById("music-status")!.textContent =
+              "Now playing";
+          }
+        } else {
+          empty.classList.remove("hidden");
         }
+      })
+      .catch(() => {
+        document.getElementById("music-skeleton")!.classList.add("hidden");
+        document.getElementById("music-empty")!.classList.remove("hidden");
+      });
+  };
 
-        document.getElementById("music-title")!.textContent = data.title;
-        document.getElementById("music-artist")!.textContent = data.artist;
-        (track as HTMLAnchorElement).href = data.url;
-        track.classList.remove("hidden");
-        track.classList.add("block");
-
-        if (data.isPlaying) {
-          document.getElementById("music-status")!.textContent = "Now playing";
-        }
-      } else {
-        empty.classList.remove("hidden");
-      }
-    })
-    .catch(() => {
-      document.getElementById("music-skeleton")!.classList.add("hidden");
-      document.getElementById("music-empty")!.classList.remove("hidden");
-    });
+  // Defer off the LCP critical chain. The skeleton covers the gap, and idle
+  // callbacks usually fire within ~100ms after the page is interactive.
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(loadMusic, { timeout: 2000 });
+  } else {
+    setTimeout(loadMusic, 200);
+  }
 </script>
 
 <style is:global>

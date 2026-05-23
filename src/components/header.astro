@@ -379,6 +379,7 @@ const getContributionCellClass = (level: number) => {
                 height="64"
                 class="h-16 w-16 rounded-full object-cover"
                 loading="lazy"
+                decoding="async"
                 draggable="false"
               />
               <span
@@ -475,8 +476,11 @@ const getContributionCellClass = (level: number) => {
             <img
               src="/meme.gif"
               alt=""
+              width="220"
+              height="224"
               class="block h-auto w-full rounded-xl object-cover"
               loading="lazy"
+              decoding="async"
               draggable="false"
             />
           </a>

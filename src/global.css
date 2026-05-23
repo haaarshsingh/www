@@ -165,7 +165,7 @@
     transform: none !important;
   }
 
-  /* Easing gradient (easeOutSine) — avoids the visible "edge" you get
+  /* Easing gradient (easeOutSine): avoids the visible "edge" you get
      from a linear alpha fade between two stops. */
   .fade-to-bottom {
     background-image: linear-gradient(
