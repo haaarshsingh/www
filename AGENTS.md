@@ -9,6 +9,11 @@
 - When extracting accent colors from album art, desaturate/dim the result in dark mode so borders don't look neon against `.dark` backgrounds.
 - Verify builds with `npm run build` after non-trivial changes; expect zero errors from `astro check`.
 - When committing on this repo, branch off `master` into a `cursor/<topic>` branch, stage only related files, write a concise message, and push.
+- When swapping or reordering bento cards, preserve each card's original aspect ratio and dimensions; never silently resize a card as a side effect of moving another.
+- Scope edits narrowly: when asked to move/modify one specific block or column, do not touch unrelated blocks, columns, or files in the same change.
+- Structure masonry grids column-per-column (each column is its own flex/stack container), not row-per-row, so paired-square cards can sit inside a single column without breaking alignment with taller neighbors.
+- For text/metadata overlays on media cards, render the media at full card size and absolutely position the text container (e.g. with `m-1`) on top; do not inset, shrink, or pad the video to make room for text.
+- When cropping videos via ffmpeg for bento cards, use a pure crop filter (no `scale`) — rescaling makes the result visibly blurry.
 
 ## Learned Workspace Facts
 
@@ -19,9 +24,8 @@
 - Dark mode uses a `.dark` class on `<html>`, applied synchronously by an inline `is:inline` script in the head to avoid flash; CSS keys off `:global(.dark)` from scoped styles.
 - Astro `<style>` blocks are scoped by default — when defining `@keyframes` consumed by a scoped class, mark the block `is:global` so the animation name resolves.
 - Music section uses Last.fm (not Spotify — Spotify Web API now requires Premium for new apps); env vars: `LASTFM_API_KEY`, `LASTFM_USERNAME`.
-- Last-visitor / locate features use Upstash Redis: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`.
-- API routes read env via `process.env` (works on Vercel); in local dev fall back to `import.meta.env` when `process.env` is empty.
-- Bento layout lives in `src/components/main.astro` with 14 numbered grid slots; cards open external links in new tabs (`target="_blank" rel="noreferrer"`).
-- Static assets: bento media under `public/bento/` (mp4s), shared assets like `public/disc.webp` and `public/meme.gif` at the public root.
+- Last-visitor / locate features use Upstash Redis (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`); API routes read env via `process.env` on Vercel and fall back to `import.meta.env` in local dev when `process.env` is empty.
+- Bento layout lives in `src/components/main.astro` as a 2-column masonry of numbered cards; cards open external links in new tabs (`target="_blank" rel="noreferrer"`). Media goes under `public/bento/` (mostly mp4s), and shared assets like `public/disc.webp` and `public/meme.gif` sit at the public root.
+- Project/showcase cards follow a consistent pattern: full-bleed media (mp4 or image) with an absolutely-positioned overlay containing the project title + a small diagonal-arrow SVG icon + a year/date label; the whole card links out (e.g. `dots.harshsingh.me`, `qursor.harshsingh.me`, `kmenu.dev`, `snip.tf`, `loomix.harshsingh.me`).
 - Text-selection accent color is `#0AB7C9`; music-card Spotify glyph color is `#62dbbe`.
 - Build command is `npm run build` (runs `astro sync && astro check && astro build`).
