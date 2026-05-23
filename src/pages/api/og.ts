@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ request }) => {
           flexDirection: "column",
           width: "100%",
           height: "100%",
-          backgroundImage: "url(https://harshsingh.me/og-blog-template.png)",
+          backgroundImage: "url(https://www.harshsingh.me/og-blog-template.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           paddingLeft: "50px",

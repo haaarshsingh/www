@@ -1,0 +1,80 @@
+---
+layout: ../components/post-layout.astro
+title: "Best Distro for Ricing"
+description: "After years of distro hopping, here's the one I keep coming back to when I want to rice."
+date: "May 2024"
+---
+
+<video
+  autoplay
+  loop
+  muted
+  playsinline
+  preload="auto"
+  class="not-prose my-6 w-full rounded-2xl border border-neutral-200 dark:border-neutral-700"
+>
+  <source src="/rice.webm" type="video/webm" />
+  <source src="/rice.mp4" type="video/mp4" />
+</video>
+
+For those who don’t know, “ricing” is when Linux users spend 37 hours configuring their desktop so they can flex a terminal screenshot and never actually get any work done. It's a hobby, a procrastination strategy, and occasionally a productivity boost. The base distribution you pick matters more than people give it credit for.
+
+I wanna start by listing out all the distros I've used, the good, the bad, the ugly, and what I recommend based on your situation.
+
+## NixOS
+
+NixOS gives you complete control over your system through declarative configs. Your entire desktop (packages, themes, WM, fonts, keybinds, etc) can live in a single config file and be recreated instantly on any machine. The system config is written in .nix files, and if you haven't written Haskell, Lisp, or OCaml before, it's a pain to learn.
+
+Perfect for people who:
+
+* Obsess over reproducibility
+* Rebuild their setup weekly
+* Enjoy spending 4 hours configuring blur transparency
+
+Steep learning curve, but unmatched once it clicks.
+
+## Arch
+
+This is the classic Ricer distro, and also what I use.
+
+This distro is a great middle ground for *experienced* ricers. It's pretty minimal by default and only ships with a command line and some packages, no GUI. There's also massive package availability through [AUR](https://aur.archlinux.org/), and honestly the best Linux docs ecosystem on the internet.
+
+But from personal experience: using Arch as a daily driver is a pain. It's probably what caused me to switch my primary OS to Mac. I can't even count the amount of times I've just updated my system packages and things like WiFi, font rendering, shortcuts, etc. got cooked.
+
+Also, most dotfiles and customization guides are written for Arch first. If you are a beginner and insist on using Arch, I suggest you start with something like [Archcraft](https://archcraft.io/) first to ease into it. 
+
+## EndevourOS
+
+Directly based on Arch, you still get:
+
+* Arch repositories
+* AUR access
+* Rolling release updates
+
+But without the painful install process (and questionable life decisions) during setup.
+
+I'd actually put this above Archcraft on the best choices for beginners getting into ricing since it's more hands-on and doesn't directly give you a pre-riced distro.
+
+## Debian
+
+Debian isn't flashy, but it's stable, lightweight, and pretty lowkey for minimalist setups. A lot of tiling window managers actually prefer Debian because it stays out of the way.
+
+This is for people who want:
+
+* Conservative package updates
+* Stable base system
+* "Set it and forget"
+
+## Ubuntu
+
+Ah, the classic. This was my first Linux distro (specifically [Pop!_OS](https://system76.com/pop/)) and is the gateway drug for ricers. 
+
+Ubuntu used to dominate Linux ricing culture, but most of the hardcore ricing community moved toward Arch-based systems years ago.
+
+Still, Ubuntu remains:
+
+* Beginner friendly
+* Polished
+* Easy to customize
+
+Great if you want a clean desktop without rebuilding your entire operating system for fun.

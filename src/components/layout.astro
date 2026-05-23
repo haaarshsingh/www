@@ -2,17 +2,94 @@
 import "../global.css";
 import Footer from "./footer.astro";
 
+type LayoutProps = {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  noIndex?: boolean;
+};
+
 const {
   title = "Harsh Singh",
-  description = "The website and design portfolio of Harsh Singh.",
+  description = "Harsh Singh is a software engineer based in Austin, Texas. Personal site, portfolio, and writing on systems, design, and tooling.",
   ogImage,
-} = Astro.props;
+  type = "website",
+  publishedTime,
+  noIndex = false,
+} = Astro.props as LayoutProps;
+
+const SITE_URL = "https://www.harshsingh.me";
+const PERSON_ID = `${SITE_URL}/#person`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
+const pageTitle = isHome ? "Harsh Singh — Software Engineer" : `${title} | Harsh Singh`;
+const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).href;
 
 const resolvedOgImage =
   ogImage ||
   (title !== "Harsh Singh"
-    ? `https://harshsingh.me/api/og?title=${encodeURIComponent(title)}`
-    : "https://harshsingh.me/og.png");
+    ? `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`
+    : `${SITE_URL}/og.png`);
+
+const robotsContent = noIndex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": PERSON_ID,
+  name: "Harsh Singh",
+  alternateName: ["haaarshsingh", "Harsh"],
+  url: SITE_URL,
+  image: "https://github.com/haaarshsingh.png",
+  jobTitle: "Software Engineer",
+  worksFor: { "@type": "Organization", name: "Harsh Singh" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Austin",
+    addressRegion: "TX",
+    addressCountry: "US",
+  },
+  sameAs: [
+    "https://x.com/haaarshsingh",
+    "https://github.com/haaarshsingh",
+    "https://www.linkedin.com/in/haaarshsingh",
+    "https://www.youtube.com/@haaarshsingh",
+    "https://instagram.com/dtx.singh",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": WEBSITE_ID,
+  url: SITE_URL,
+  name: "Harsh Singh",
+  description,
+  inLanguage: "en-US",
+  author: { "@id": PERSON_ID },
+  publisher: { "@id": PERSON_ID },
+};
+
+const blogPostingSchema =
+  type === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description,
+        image: resolvedOgImage,
+        ...(publishedTime ? { datePublished: publishedTime } : {}),
+        author: { "@id": PERSON_ID },
+        publisher: { "@id": PERSON_ID },
+        mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+        url: canonicalUrl,
+      }
+    : null;
 ---
 
 <html lang="en">
@@ -54,82 +131,92 @@ const resolvedOgImage =
       }
     </script>
     <meta charset="utf-8" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes"
     />
-    <meta name="theme-color" content="#E5E5E5" /><meta
-      name="description"
-      content={description}
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#E5E5E5" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Harsh Singh"
+      href="/rss.xml"
     />
-    <link rel="author" href="https://harshsingh.me" /><meta
-      name="author"
-      content="Harsh Singh"
-    />
+    <meta name="author" content="Harsh Singh" />
+    <link rel="author" href={SITE_URL} />
+    <meta name="creator" content="Harsh Singh" />
+    <meta name="publisher" content="Harsh Singh" />
     <meta
       name="keywords"
-      content="Harsh Singh,haaarshsingh,Harsh,haaarshsingh"
+      content="Harsh Singh, harshsingh.me, haaarshsingh, software engineer, portfolio, Austin Texas, kmenu, qursor, dotfiles"
     />
-    <meta name="creator" content="Harsh Singh" /><meta
-      name="publisher"
-      content="Harsh Singh"
-    />
-    <meta name="robots" content="index, follow, nocache" /><meta
-      name="googlebot"
-      content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
-    />
-    <meta name="category" content="technology" /><link
-      rel="canonical"
-      href="https://harshsingh.me"
-    />
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={robotsContent} />
+    <meta name="category" content="technology" />
+    <meta name="me" content="h@harshsingh.me" />
+
     <meta
       name="google-site-verification"
       content="VWhTtgTikPqvWIY4n2rlUj6Fe9YgkfFMEET3TM7Rce0"
     />
-    <meta name="y_key" content="yahoo" /><meta
-      name="yandex-verification"
-      content="cfc27cbb03eb0a9c"
-    />
-    <meta name="me" content="h@harshsingh.me" /><meta
-      property="og:title"
-      content={title}
-    />
+    <meta name="yandex-verification" content="cfc27cbb03eb0a9c" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://harshsingh.me" /><meta
-      property="og:site_name"
-      content="Harsh Singh"
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Harsh Singh" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content={isHome ? "Harsh Singh" : `${title} — Harsh Singh`}
     />
-    <meta property="og:locale" content="en-US" /><meta
-      property="og:image"
-      content={resolvedOgImage}
-    />
-    <meta property="og:image:width" content="1200" /><meta
-      property="og:image:height"
-      content="630"
-    />
-    <meta property="og:type" content="website" /><meta
-      name="twitter:card"
-      content="summary_large_image"
-    />
-    <meta name="twitter:site:id" content="haaarshsingh" /><meta
-      name="twitter:creator"
-      content="@haaarshsingh"
-    />
-    <meta name="twitter:creator:id" content="haaarshsingh" /><meta
-      name="twitter:title"
-      content={title}
-    />
+
+    {
+      type === "article" && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )
+    }
+    {type === "article" && <meta property="article:author" content={SITE_URL} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@haaarshsingh" />
+    <meta name="twitter:creator" content="@haaarshsingh" />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={resolvedOgImage} /><link
-      rel="icon"
-      href="/favicon.ico"
+    <meta name="twitter:image" content={resolvedOgImage} />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(personSchema)}
     />
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" /><meta
-      name="next-size-adjust"
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
     />
+    {
+      blogPostingSchema && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(blogPostingSchema)}
+        />
+      )
+    }
+
     <style is:global>
       .astro-code,
       .astro-code span {
@@ -158,11 +245,6 @@ const resolvedOgImage =
         <slot />
         <Footer isHome={Astro.url.pathname === "/"} />
       </div>
-    </div>
-    <div
-      class="pointer-events-none fixed top-[-10px] z-40 h-12 w-screen bg-neutral-100 opacity-90 blur dark:bg-neutral-900"
-      aria-hidden="true"
-    >
     </div>
   </body>
 </html>

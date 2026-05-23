@@ -1,0 +1,116 @@
+---
+import Layout from "./layout.astro";
+import Index from "./icons/index.astro";
+
+const { frontmatter } = Astro.props;
+const { title, description, date } = frontmatter ?? {};
+
+// Frontmatter dates are author-friendly strings like "May 2024". Try to parse
+// to ISO so we can emit a proper article:published_time / datePublished
+// without forcing every post to change frontmatter shape.
+const parsedDate = date ? new Date(date) : null;
+const publishedTime =
+  parsedDate && !isNaN(parsedDate.getTime())
+    ? parsedDate.toISOString()
+    : undefined;
+
+// Derive a stable per-post key from the URL path. Static routes like /ricing/
+// strip down to "ricing"; the API validates this against /^[a-z0-9-]+$/.
+const slug = Astro.url.pathname
+  .replace(/^\/+|\/+$/g, "")
+  .toLowerCase();
+---
+
+<Layout
+  title={title}
+  description={description}
+  type="article"
+  publishedTime={publishedTime}
+>
+  <main class="relative">
+    <div class="mb-4 md:absolute md:-ml-36 md:mb-0 md:h-full">
+      <a class="exclude flex items-center md:sticky md:top-8" href="/">
+        <Index />
+        Index
+      </a>
+    </div>
+    <header>
+      <h1 class="font-semibold font-lg">{title}</h1>
+      <p
+        class="mt-1 flex items-center gap-2 font-light text-neutral-500 dark:text-neutral-400"
+      >
+        {
+          date && (
+            <>
+              {publishedTime ? (
+                <time datetime={publishedTime}>{date}</time>
+              ) : (
+                <span>{date}</span>
+              )}
+              <span aria-hidden="true" class="text-neutral-300 dark:text-neutral-600">·</span>
+            </>
+          )
+        }
+        <span
+          class="view-count inline-block h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700"
+          data-slug={slug}
+        ></span>
+      </p>
+    </header>
+    <article class="prose dark:prose-invert mt-8 max-w-none">
+      <slot />
+    </article>
+  </main>
+</Layout>
+
+<script>
+  const formatViews = (n: number) =>
+    `${new Intl.NumberFormat("en-US").format(n)} ${n === 1 ? "view" : "views"}`;
+
+  const stripSkeleton = (el: HTMLElement) => {
+    el.classList.remove(
+      "animate-pulse",
+      "bg-neutral-200",
+      "dark:bg-neutral-700",
+      "h-4",
+      "w-16",
+      "rounded",
+      "inline-block",
+    );
+  };
+
+  const el = document.querySelector<HTMLElement>(".view-count");
+  const slug = el?.dataset.slug;
+  if (el && slug) {
+    // Cache the last seen count per-slug in sessionStorage so repeat visits in
+    // the same tab render the number immediately instead of flashing the
+    // pulse skeleton. The fresh INCR still runs in the background and updates
+    // the text once it resolves.
+    const cacheKey = `views:${slug}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+      const n = Number(cached);
+      if (Number.isFinite(n)) {
+        el.textContent = formatViews(n);
+        stripSkeleton(el);
+      }
+    }
+
+    fetch(`/api/views?slug=${encodeURIComponent(slug)}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((data: { count?: number }) => {
+        if (typeof data.count !== "number") return;
+        sessionStorage.setItem(cacheKey, String(data.count));
+        el.textContent = formatViews(data.count);
+        stripSkeleton(el);
+      })
+      .catch(() => {
+        if (!cached) {
+          // Hide the skeleton (and the leading separator) on first-load failure
+          // so we don't leave a dangling pulse rectangle next to the date.
+          el.previousElementSibling?.remove();
+          el.remove();
+        }
+      });
+  }
+</script>

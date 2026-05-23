@@ -1,7 +1,4 @@
 ---
-import Sun from "./icons/sun.astro";
-import Moon from "./icons/moon.astro";
-
 const { isHome = false } = Astro.props;
 ---
 
@@ -41,12 +38,18 @@ const { isHome = false } = Astro.props;
   document
     .getElementById("themeToggle")
     ?.addEventListener("click", handleToggleClick);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.getElementById("themeToggle")?.setAttribute("data-ready", "");
+    });
+  });
 </script>
 
 <footer
   class:list={[
     "mt-12 mb-16 flex items-center justify-between",
-    isHome && "animate-intro opacity-0 [animation-delay:0.55s]",
+    isHome && "animate-intro opacity-0 [animation-delay:0.6s]",
   ]}
 >
   <div>
@@ -69,20 +72,86 @@ const { isHome = false } = Astro.props;
   <button
     id="themeToggle"
     aria-label="Toggle theme"
-    class="flex size-6 items-center justify-center"
+    class="flex size-6 items-center justify-center text-neutral-800 dark:text-neutral-200"
   >
-    <span class="sun block text-neutral-900 dark:hidden">
-      <Sun />
-    </span>
-    <span class="moon hidden text-neutral-100 dark:block">
-      <Moon />
-    </span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="theme-toggle-svg"
+    >
+      <mask id="moon-mask">
+        <rect x="0" y="0" width="100%" height="100%" fill="white" />
+        <circle class="mask-circle" r="9" fill="black" />
+      </mask>
+      <circle
+        class="center-circle"
+        fill="currentColor"
+        cx="12"
+        cy="12"
+        mask="url(#moon-mask)"
+      />
+      <g class="sun-rays" stroke="currentColor">
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </g>
+    </svg>
   </button>
 </footer>
+
 <style>
-  .sun svg,
-  .moon svg {
-    width: 20px;
-    height: 20px;
+  .theme-toggle-svg {
+    transform: rotate(40deg);
+  }
+  .center-circle {
+    r: 9px;
+  }
+  .mask-circle {
+    cx: 12px;
+    cy: 4px;
+  }
+  .sun-rays {
+    opacity: 0;
+  }
+
+  :global(.dark) .theme-toggle-svg {
+    transform: rotate(90deg);
+  }
+  :global(.dark) .center-circle {
+    r: 5px;
+  }
+  :global(.dark) .mask-circle {
+    cx: 30px;
+    cy: 0;
+  }
+  :global(.dark) .sun-rays {
+    opacity: 1;
+  }
+
+  :global(#themeToggle[data-ready]) .theme-toggle-svg {
+    transition: transform 750ms cubic-bezier(0.2, 1.3, 0.4, 1);
+  }
+  :global(#themeToggle[data-ready]) .center-circle {
+    transition: r 750ms cubic-bezier(0.2, 1.3, 0.4, 1);
+  }
+  :global(#themeToggle[data-ready]) .mask-circle {
+    transition:
+      cx 750ms cubic-bezier(0.2, 1.3, 0.4, 1),
+      cy 750ms cubic-bezier(0.2, 1.3, 0.4, 1);
+  }
+  :global(#themeToggle[data-ready]) .sun-rays {
+    transition: opacity 500ms ease;
   }
 </style>
