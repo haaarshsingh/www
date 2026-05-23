@@ -271,10 +271,17 @@ import Music from "./music.astro";
           </div>
         </div>
         <div
-          aria-hidden="true"
-          class="flex aspect-square items-center justify-center rounded-2xl bg-neutral-200 text-3xl font-medium text-neutral-400 dark:bg-neutral-800 dark:text-neutral-600 sm:aspect-auto sm:row-span-2"
+          class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 sm:aspect-auto sm:row-span-2"
         >
-          13
+          <video
+            src="/bento/delete.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 h-full w-full object-cover"
+          ></video>
         </div>
         <div
           class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-yellow-600 bg-white dark:border-yellow-600 dark:bg-neutral-900"
@@ -336,7 +343,7 @@ import Music from "./music.astro";
           class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
         >
           <video
-            src="/slides.mp4"
+            src="/bento/slides.mp4"
             autoplay
             loop
             muted
@@ -374,7 +381,7 @@ import Music from "./music.astro";
           </div>
         </div>
         <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+          class="relative aspect-[2/1] dark:border-neutral-700 overflow-hidden rounded-2xl border border-neutral-200 bg-[#171717] dark:bg-neutral-900"
         >
           <video
             src="/bento/round-and-round.mp4"
@@ -383,7 +390,7 @@ import Music from "./music.astro";
             muted
             playsinline
             preload="auto"
-            class="absolute inset-0 h-full w-full object-cover"
+            class="absolute inset-0 h-full w-full object-cover translate-x-1"
           ></video>
         </div>
       </div>

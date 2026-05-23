@@ -208,6 +208,17 @@
   margin-bottom: 0;
 }
 
+.prose ul,
+.prose ol {
+  padding-inline-start: 0;
+  list-style-position: inside;
+}
+
+.prose ul > li,
+.prose ol > li {
+  padding-inline-start: 0;
+}
+
 .prose a {
   font-weight: 400;
 }

@@ -5,40 +5,76 @@ description: "After years of distro hopping, here's the one I keep coming back t
 date: "May 2024"
 ---
 
-Ricing is, for the uninitiated, the art of customizing your Linux desktop into something that's equal parts beautiful and personal. It's a hobby, a procrastination strategy, and occasionally a productivity boost. The base distribution you pick matters more than people give it credit for.
+<video
+  autoplay
+  loop
+  muted
+  playsinline
+  preload="auto"
+  class="not-prose my-6 w-full rounded-2xl border border-neutral-200 dark:border-neutral-700"
+>
+  <source src="/rice.webm" type="video/webm" />
+  <source src="/rice.mp4" type="video/mp4" />
+</video>
 
-After enough years of distro hopping, I keep ending up back on the same one. Here's why.
+For those who don’t know, “ricing” is when Linux users spend 37 hours configuring their desktop so they can flex a terminal screenshot and never actually get any work done. It's a hobby, a procrastination strategy, and occasionally a productivity boost. The base distribution you pick matters more than people give it credit for.
 
-## Arch, but for the right reasons
+I wanna start by listing out all the distros I've used, the good, the bad, the ugly, and what I recommend based on your situation.
 
-Most ricing guides start with "use Arch" and stop there. The actual reasons are worth spelling out:
+## NixOS
 
-- **A minimal base.** Nothing gets installed that you didn't ask for. That sounds like an inconvenience until you realize ricing is mostly about _removing_ defaults you didn't want anyway.
-- **The AUR.** Practically every component in the ricing ecosystem ships there first. Bars, compositors, launchers, fonts, themes — you can install them without compiling from source or hunting down PPAs.
-- **A rolling release.** Hyprland, picom-pijulius, swww, eww — these projects move fast. Waiting six months for the next Ubuntu LTS to catch up is a real cost.
-- **Documentation that respects you.** The Arch Wiki assumes you can read. Most of the time, that's a feature.
+NixOS gives you complete control over your system through declarative configs. Your entire desktop (packages, themes, WM, fonts, keybinds, etc) can live in a single config file and be recreated instantly on any machine. The system config is written in .nix files, and if you haven't written Haskell, Lisp, or OCaml before, it's a pain to learn.
 
-## The stack I keep landing on
+Perfect for people who:
 
-The specific tools change every six months, but the categories don't. A solid ricing setup is, roughly:
+* Obsess over reproducibility
+* Rebuild their setup weekly
+* Enjoy spending 4 hours configuring blur transparency
 
-1. **A window manager.** Hyprland on Wayland, bspwm on X11. Tiling is non-negotiable for me.
-2. **A bar.** Waybar or eww. Eww if you want to design your own; Waybar if you want it to just work.
-3. **A launcher.** Wofi, rofi, or anyrun. Pick the one whose theming language you tolerate.
-4. **A terminal.** Kitty or wezterm. Both are good. Pick one and move on.
-5. **A wallpaper daemon.** swww. The animated transitions alone are worth it.
-6. **A notification daemon.** mako or dunst. You'll forget it exists, which is the goal.
+Steep learning curve, but unmatched once it clicks.
 
-That's it. Everything else — pywal, hyprlock, swaync, the fifteenth font you installed — is optional.
+## Arch
 
-## The part nobody tells you
+This is the classic Ricer distro, and also what I use.
 
-The thing that actually makes a rice _good_ isn't the wallpaper or the bar. It's the consistency. Pick a palette. Pick a font. Apply both everywhere — GTK, Qt, terminal, editor, bar, launcher, notifications. The screenshots you see on r/unixporn don't look polished because of the components. They look polished because every pixel is on-palette.
+This distro is a great middle ground for *experienced* ricers. It's pretty minimal by default and only ships with a command line and some packages, no GUI. There's also massive package availability through [AUR](https://aur.archlinux.org/), and honestly the best Linux docs ecosystem on the internet.
 
-Arch makes that easy because it gets out of your way.
+But from personal experience: using Arch as a daily driver is a pain. It's probably what caused me to switch my primary OS to Mac. I can't even count the amount of times I've just updated my system packages and things like WiFi, font rendering, shortcuts, etc. got cooked.
 
-## Where to start
+Also, most dotfiles and customization guides are written for Arch first. If you are a beginner and insist on using Arch, I suggest you start with something like [Archcraft](https://archcraft.io/) first to ease into it. 
 
-If you've never riced before, don't start with Hyprland. Start with bspwm or i3, get comfortable with config files and reloading sessions, and graduate from there. Ricing is one of those hobbies where the meta-skill — patiently editing dotfiles until things look right — is the actual reward.
+## EndevourOS
 
-Have fun. Don't ship your `~/.config` to me.
+Directly based on Arch, you still get:
+
+* Arch repositories
+* AUR access
+* Rolling release updates
+
+But without the painful install process (and questionable life decisions) during setup.
+
+I'd actually put this above Archcraft on the best choices for beginners getting into ricing since it's more hands-on and doesn't directly give you a pre-riced distro.
+
+## Debian
+
+Debian isn't flashy, but it's stable, lightweight, and pretty lowkey for minimalist setups. A lot of tiling window managers actually prefer Debian because it stays out of the way.
+
+This is for people who want:
+
+* Conservative package updates
+* Stable base system
+* "Set it and forget"
+
+## Ubuntu
+
+Ah, the classic. This was my first Linux distro (specifically [Pop!_OS](https://system76.com/pop/)) and is the gateway drug for ricers. 
+
+Ubuntu used to dominate Linux ricing culture, but most of the hardcore ricing community moved toward Arch-based systems years ago.
+
+Still, Ubuntu remains:
+
+* Beginner friendly
+* Polished
+* Easy to customize
+
+Great if you want a clean desktop without rebuilding your entire operating system for fun.
