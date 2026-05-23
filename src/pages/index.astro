@@ -10,19 +10,21 @@ import Layout from "../components/layout.astro";
 </Layout>
 
 <script>
-  // Fire-and-forget visitor logging. Defer off the critical request chain so it
-  // doesn't compete with LCP, we never read the response.
+  // Fire-and-forget visitor logging. Run only after the load event and at low
+  // fetch priority so Lighthouse doesn't classify it as part of the critical
+  // request chain. The response is never read.
   const ping = () => {
     try {
       fetch("/api/locate", {
         method: "GET",
         keepalive: true,
         cache: "no-store",
-      }).catch(() => {});
+        priority: "low",
+      } as RequestInit).catch(() => {});
     } catch {}
   };
 
-  const schedule = () => {
+  const afterLoad = () => {
     if ("requestIdleCallback" in window) {
       window.requestIdleCallback(ping, { timeout: 4000 });
     } else {
@@ -31,8 +33,8 @@ import Layout from "../components/layout.astro";
   };
 
   if (document.readyState === "complete") {
-    schedule();
+    setTimeout(afterLoad, 0);
   } else {
-    window.addEventListener("load", schedule, { once: true });
+    window.addEventListener("load", afterLoad, { once: true });
   }
 </script>

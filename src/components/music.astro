@@ -197,7 +197,7 @@
   };
 
   const loadMusic = () => {
-    fetch("/api/lastfm")
+    fetch("/api/lastfm", { priority: "low" } as RequestInit)
       .then((res) => res.json())
       .then((data) => {
         const skeleton = document.getElementById("music-skeleton")!;
@@ -240,12 +240,21 @@
       });
   };
 
-  // Defer off the LCP critical chain. The skeleton covers the gap, and idle
-  // callbacks usually fire within ~100ms after the page is interactive.
-  if ("requestIdleCallback" in window) {
-    window.requestIdleCallback(loadMusic, { timeout: 2000 });
+  // Wait for window.load, then idle, before firing. This keeps Lighthouse from
+  // counting this fetch as part of the critical request chain. The skeleton
+  // covers the visual gap.
+  const afterLoad = () => {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(loadMusic, { timeout: 2000 });
+    } else {
+      setTimeout(loadMusic, 200);
+    }
+  };
+
+  if (document.readyState === "complete") {
+    setTimeout(afterLoad, 0);
   } else {
-    setTimeout(loadMusic, 200);
+    window.addEventListener("load", afterLoad, { once: true });
   }
 </script>
 

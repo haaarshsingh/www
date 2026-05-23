@@ -3,9 +3,10 @@ const { isHome = false } = Astro.props;
 ---
 
 <script>
-  // Footer is below the fold; defer off the LCP critical chain.
+  // Footer is below the fold. Wait for window.load, then idle, before firing.
+  // Low fetch priority keeps it off Lighthouse's critical request chain.
   const loadLastVisitor = () => {
-    fetch("/api/last-visitor")
+    fetch("/api/last-visitor", { priority: "low" } as RequestInit)
       .then((res) => res.json())
       .then((data) => {
         const lastVisitElement = document.querySelector(".last-visit");
@@ -25,10 +26,18 @@ const { isHome = false } = Astro.props;
       .catch(() => {});
   };
 
-  if ("requestIdleCallback" in window) {
-    window.requestIdleCallback(loadLastVisitor, { timeout: 3000 });
+  const afterLoad = () => {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(loadLastVisitor, { timeout: 3000 });
+    } else {
+      setTimeout(loadLastVisitor, 400);
+    }
+  };
+
+  if (document.readyState === "complete") {
+    setTimeout(afterLoad, 0);
   } else {
-    setTimeout(loadLastVisitor, 400);
+    window.addEventListener("load", afterLoad, { once: true });
   }
 </script>
 
