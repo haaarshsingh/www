@@ -43,8 +43,12 @@
       >
         <img
           src="/disc.webp"
+          width="128"
+          height="128"
           alt=""
           draggable="false"
+          loading="lazy"
+          decoding="async"
           class="absolute top-2 -left-6 h-16 w-16 animate-spin [animation-duration:4s] transition-[left] duration-200 ease-out group-hover:-left-7"
         />
         <img
@@ -196,66 +200,47 @@
     });
   };
 
-  const loadMusic = () => {
-    fetch("/api/lastfm", { priority: "low" } as RequestInit)
-      .then((res) => res.json())
-      .then((data) => {
-        const skeleton = document.getElementById("music-skeleton")!;
-        const track = document.getElementById("music-track")!;
-        const empty = document.getElementById("music-empty")!;
+  // Fire immediately. The album-art background is the LCP candidate; deferring
+  // this fetch directly delays LCP, which hurts the perf score far more than
+  // the (unscored) critical-request-chain warning helps.
+  fetch("/api/lastfm")
+    .then((res) => res.json())
+    .then((data) => {
+      const skeleton = document.getElementById("music-skeleton")!;
+      const track = document.getElementById("music-track")!;
+      const empty = document.getElementById("music-empty")!;
 
-        skeleton.classList.add("hidden");
+      skeleton.classList.add("hidden");
 
-        if (data.title) {
-          const bg = document.getElementById("music-bg")!;
-          const cover = document.getElementById(
-            "music-cover",
-          ) as HTMLImageElement;
-          const coverWrapper = document.getElementById("music-cover-wrapper")!;
-          if (data.albumArt) {
-            bg.style.backgroundImage = `url(${data.albumArt})`;
-            cover.src = data.albumArt;
-            coverWrapper.classList.remove("hidden");
-            applyAccent(track, data.albumArt);
-            observeThemeChanges(track);
-          }
-
-          document.getElementById("music-title")!.textContent = data.title;
-          document.getElementById("music-artist")!.textContent = data.artist;
-          (track as HTMLAnchorElement).href = data.url;
-          track.classList.remove("hidden");
-          track.classList.add("block");
-
-          if (data.isPlaying) {
-            document.getElementById("music-status")!.textContent =
-              "Now playing";
-          }
-        } else {
-          empty.classList.remove("hidden");
+      if (data.title) {
+        const bg = document.getElementById("music-bg")!;
+        const cover = document.getElementById("music-cover") as HTMLImageElement;
+        const coverWrapper = document.getElementById("music-cover-wrapper")!;
+        if (data.albumArt) {
+          bg.style.backgroundImage = `url(${data.albumArt})`;
+          cover.src = data.albumArt;
+          coverWrapper.classList.remove("hidden");
+          applyAccent(track, data.albumArt);
+          observeThemeChanges(track);
         }
-      })
-      .catch(() => {
-        document.getElementById("music-skeleton")!.classList.add("hidden");
-        document.getElementById("music-empty")!.classList.remove("hidden");
-      });
-  };
 
-  // Wait for window.load, then idle, before firing. This keeps Lighthouse from
-  // counting this fetch as part of the critical request chain. The skeleton
-  // covers the visual gap.
-  const afterLoad = () => {
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(loadMusic, { timeout: 2000 });
-    } else {
-      setTimeout(loadMusic, 200);
-    }
-  };
+        document.getElementById("music-title")!.textContent = data.title;
+        document.getElementById("music-artist")!.textContent = data.artist;
+        (track as HTMLAnchorElement).href = data.url;
+        track.classList.remove("hidden");
+        track.classList.add("block");
 
-  if (document.readyState === "complete") {
-    setTimeout(afterLoad, 0);
-  } else {
-    window.addEventListener("load", afterLoad, { once: true });
-  }
+        if (data.isPlaying) {
+          document.getElementById("music-status")!.textContent = "Now playing";
+        }
+      } else {
+        empty.classList.remove("hidden");
+      }
+    })
+    .catch(() => {
+      document.getElementById("music-skeleton")!.classList.add("hidden");
+      document.getElementById("music-empty")!.classList.remove("hidden");
+    });
 </script>
 
 <style is:global>

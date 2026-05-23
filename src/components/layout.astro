@@ -197,8 +197,12 @@ const blogPostingSchema =
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
-    <link rel="dns-prefetch" href="https://github.com" />
-    <link rel="preconnect" href="https://github.com" crossorigin />
+    <link rel="dns-prefetch" href="https://lastfm.freetls.fastly.net" />
+    <link
+      rel="preconnect"
+      href="https://lastfm.freetls.fastly.net"
+      crossorigin
+    />
 
     <script
       is:inline
@@ -210,6 +214,14 @@ const blogPostingSchema =
       type="application/ld+json"
       set:html={JSON.stringify(websiteSchema)}
     />
+    <script is:inline>
+      console.log(
+        `                                _____ \n             _    _            |___  |\n _ _ _ _ _ _| |  | |_ ___ ___ ___|  _|\n| | | | | | . |  |   | -_|  _| -_|_|  \n|_____|_  |___|  |_|_|___|_| |___|_|  \n      |___|                           `,
+      );
+      console.log(
+        "This website is open-source at https://github.com/haaarshsingh/www",
+      );
+    </script>
     {
       blogPostingSchema && (
         <script
