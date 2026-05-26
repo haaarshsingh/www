@@ -16,7 +16,6 @@
     "@astrojs/sitemap": "3.6.0",
     "@astrojs/vercel": "9.0.2",
     "@vercel/og": "^0.8.6",
-    "@vercel/speed-insights": "^2.0.0",
     "astro": "5.16.6",
     "clsx": "^2.1.1",
     "rehype-external-links": "^3.0.0",
