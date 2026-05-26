@@ -53,6 +53,8 @@
         />
         <img
           id="music-cover"
+          width="80"
+          height="80"
           alt=""
           draggable="false"
           class="relative h-20 w-20 rounded-lg object-cover shadow-lg"
@@ -219,6 +221,9 @@
         if (data.albumArt) {
           bg.style.backgroundImage = `url(${data.albumArt})`;
           cover.src = data.albumArt;
+          cover.alt = data.title
+            ? `Album art for ${data.title} by ${data.artist}`
+            : "";
           coverWrapper.classList.remove("hidden");
           applyAccent(track, data.albumArt);
           observeThemeChanges(track);
