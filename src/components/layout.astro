@@ -1,6 +1,9 @@
 ---
 import "../global.css";
 import Footer from "./footer.astro";
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+injectSpeedInsights();
 
 type LayoutProps = {
   title?: string;
