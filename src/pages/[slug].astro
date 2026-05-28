@@ -5,13 +5,13 @@ import {
   getLongUrl,
   incrementClicks,
   isReservedSlug,
-  SLUG_REGEX,
+  isValidSlugShape,
 } from "../lib/shortener";
 
 export const prerender = false;
 
 const slug = Astro.params.slug ?? "";
-const valid = Boolean(slug) && !isReservedSlug(slug) && SLUG_REGEX.test(slug);
+const valid = isValidSlugShape(slug) && !isReservedSlug(slug);
 
 let longUrl: string | null = null;
 if (valid) {

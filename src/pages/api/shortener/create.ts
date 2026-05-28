@@ -4,8 +4,8 @@ import {
   generateSlug,
   isAuthenticated,
   isReservedSlug,
+  isValidSlugShape,
   normalizeLongUrl,
-  SLUG_REGEX,
   slugExists,
 } from "../../../lib/shortener";
 
@@ -28,11 +28,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   let slug: string;
 
   if (customSlug) {
-    if (!SLUG_REGEX.test(customSlug))
-      return fail(
-        redirect,
-        "slug must be 3-40 chars (letters, numbers, _ or -)",
-      );
+    if (!isValidSlugShape(customSlug))
+      return fail(redirect, "slug cannot contain '/' or be empty");
     if (isReservedSlug(customSlug))
       return fail(redirect, "that slug is reserved");
     if (await slugExists(customSlug))

@@ -26,7 +26,10 @@ const RESERVED_SLUGS = new Set([
   "",
 ]);
 
-export const SLUG_REGEX = /^[a-zA-Z0-9_-]{3,40}$/;
+// A slug is unrestricted in shape; we only reject what would break routing
+// or collide with real site paths.
+export const isValidSlugShape = (slug: string): boolean =>
+  slug.length > 0 && !slug.includes("/");
 
 const restUrl = (): string => env("UPSTASH_REDIS_REST_URL");
 const restToken = (): string => env("UPSTASH_REDIS_REST_TOKEN");
