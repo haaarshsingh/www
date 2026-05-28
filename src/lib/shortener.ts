@@ -200,6 +200,68 @@ export const createShortLink = async (
   ]);
 };
 
+export const deleteShortLink = async (slug: string): Promise<void> => {
+  await redisPipeline([
+    ["DEL", `url:${slug}`],
+    ["DEL", `clicks:${slug}`],
+    ["DEL", `created_at:${slug}`],
+    ["SREM", "shortener:slugs", slug],
+  ]);
+};
+
+export type UpdateOptions = {
+  newSlug?: string;
+  newUrl?: string;
+};
+
+// Update a slug's destination URL and/or rename it. Renames are
+// implemented as SET-on-new + DEL-on-old (rather than RENAME) so we
+// gracefully handle pre-existing slugs whose `clicks:` or `created_at:`
+// keys were never written. Concurrent INCRs between read and write
+// would lose at most a single click, which is acceptable here.
+export const updateShortLink = async (
+  slug: string,
+  opts: UpdateOptions,
+): Promise<void> => {
+  const targetSlug = opts.newSlug && opts.newSlug !== slug ? opts.newSlug : slug;
+  const renaming = targetSlug !== slug;
+
+  if (!renaming) {
+    if (opts.newUrl) {
+      await redisCommand<"OK">(["SET", `url:${slug}`, opts.newUrl]);
+    }
+    return;
+  }
+
+  const values = await redisPipeline([
+    ["GET", `url:${slug}`],
+    ["GET", `clicks:${slug}`],
+    ["GET", `created_at:${slug}`],
+  ]);
+  const currentUrl = values[0] as string | null;
+  if (!currentUrl) throw new Error("slug not found");
+
+  const finalUrl = opts.newUrl ?? currentUrl;
+  const clicks = values[1] as string | null;
+  const createdAt = values[2] as string | null;
+
+  const commands: (string | number)[][] = [
+    ["SET", `url:${targetSlug}`, finalUrl],
+    ["DEL", `url:${slug}`],
+    ["SREM", "shortener:slugs", slug],
+    ["SADD", "shortener:slugs", targetSlug],
+  ];
+  if (clicks !== null) {
+    commands.push(["SET", `clicks:${targetSlug}`, clicks]);
+    commands.push(["DEL", `clicks:${slug}`]);
+  }
+  if (createdAt !== null) {
+    commands.push(["SET", `created_at:${targetSlug}`, createdAt]);
+    commands.push(["DEL", `created_at:${slug}`]);
+  }
+  await redisPipeline(commands);
+};
+
 export const listShortLinks = async (): Promise<ShortLink[]> => {
   const slugs = await redisCommand<string[]>(["SMEMBERS", "shortener:slugs"]);
   if (!slugs || slugs.length === 0) return [];

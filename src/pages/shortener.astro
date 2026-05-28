@@ -14,6 +14,10 @@ const params = Astro.url.searchParams;
 const loginError = params.get("error");
 const createError = params.get("createError");
 const created = params.get("created");
+const editSlug = params.get("edit");
+const editError = params.get("editError");
+const updated = params.get("updated");
+const deleted = params.get("deleted");
 
 let links: ShortLink[] = [];
 let listError: string | null = null;
@@ -24,6 +28,8 @@ if (authed) {
     listError = err instanceof Error ? err.message : "Unable to load links.";
   }
 }
+
+const editing = editSlug ? links.find((l) => l.slug === editSlug) : null;
 
 const origin = Astro.url.origin;
 const formatDate = (ms: number): string =>
@@ -38,7 +44,7 @@ const formatDate = (ms: number): string =>
     <title>Shortener</title>
   </head>
   <body>
-    <h1>Shortener</h1>
+    <h1>URL Shortener</h1>
 
     {
       !configured && (
@@ -83,48 +89,89 @@ const formatDate = (ms: number): string =>
             </form>
           </section>
 
-          <section>
-            <h2>New short link</h2>
-            {createError && <p>Error: {createError}</p>}
-            {created && (
-              <p>
-                Created:{" "}
-                <a href={`/${created}`}>
-                  {origin}/{created}
-                </a>
-              </p>
-            )}
-            <form method="POST" action="/api/shortener/create">
-              <p>
-                <label>
-                  Long URL:
-                  <br />
-                  <input
-                    type="url"
-                    name="url"
-                    required
-                    size={60}
-                    placeholder="https://example.com/some/long/path"
-                  />
-                </label>
-              </p>
-              <p>
-                <label>
-                  Custom slug (optional):
-                  <br />
-                  <input
-                    type="text"
-                    name="slug"
-                    size={30}
-                    placeholder="my-link"
-                  />
-                </label>
-              </p>
-              <p>
-                <button type="submit">Shorten</button>
-              </p>
-            </form>
-          </section>
+          {editing ? (
+            <section>
+              <h2>Edit link</h2>
+              {editError && <p>Error: {editError}</p>}
+              <form method="POST" action="/api/shortener/edit">
+                <input type="hidden" name="slug" value={editing.slug} />
+                <p>
+                  <label>
+                    Long URL:
+                    <br />
+                    <input
+                      type="url"
+                      name="url"
+                      required
+                      size={60}
+                      value={editing.url}
+                    />
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    Slug:
+                    <br />
+                    <input
+                      type="text"
+                      name="new_slug"
+                      size={30}
+                      value={editing.slug}
+                    />
+                  </label>
+                </p>
+                <p>
+                  <button type="submit">Save</button>{" "}
+                  <a href="/shortener">Cancel</a>
+                </p>
+              </form>
+            </section>
+          ) : (
+            <section>
+              <h2>New short link</h2>
+              {createError && <p>Error: {createError}</p>}
+              {created && (
+                <p>
+                  Created:{" "}
+                  <a href={`/${created}`}>
+                    {origin}/{created}
+                  </a>
+                </p>
+              )}
+              {updated && <p>Updated: {updated}</p>}
+              {deleted && <p>Deleted: {deleted}</p>}
+              <form method="POST" action="/api/shortener/create">
+                <p>
+                  <label>
+                    Long URL:
+                    <br />
+                    <input
+                      type="url"
+                      name="url"
+                      required
+                      size={60}
+                      placeholder="https://example.com/some/long/path"
+                    />
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    Custom slug (optional):
+                    <br />
+                    <input
+                      type="text"
+                      name="slug"
+                      size={30}
+                      placeholder="my-link"
+                    />
+                  </label>
+                </p>
+                <p>
+                  <button type="submit">Shorten</button>
+                </p>
+              </form>
+            </section>
+          )}
 
           <section>
             <h2>Links</h2>
@@ -138,6 +185,7 @@ const formatDate = (ms: number): string =>
                     <th>Original URL</th>
                     <th>Clicks</th>
                     <th>Created</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -155,6 +203,21 @@ const formatDate = (ms: number): string =>
                       </td>
                       <td>{link.clicks}</td>
                       <td>{formatDate(link.createdAt)}</td>
+                      <td>
+                        <a href={`?edit=${encodeURIComponent(link.slug)}`}>
+                          Edit
+                        </a>
+                        {" | "}
+                        <form
+                          method="POST"
+                          action="/api/shortener/delete"
+                          style="display:inline"
+                          onsubmit={`return confirm('Delete /${link.slug}?')`}
+                        >
+                          <input type="hidden" name="slug" value={link.slug} />
+                          <button type="submit">Delete</button>
+                        </form>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
