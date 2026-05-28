@@ -1,0 +1,58 @@
+---
+import Layout from "../components/layout.astro";
+import Index from "../components/icons/index.astro";
+import {
+  getLongUrl,
+  incrementClicks,
+  isReservedSlug,
+  SLUG_REGEX,
+} from "../lib/shortener";
+
+export const prerender = false;
+
+const slug = Astro.params.slug ?? "";
+const valid = Boolean(slug) && !isReservedSlug(slug) && SLUG_REGEX.test(slug);
+
+let longUrl: string | null = null;
+if (valid) {
+  try {
+    longUrl = await getLongUrl(slug);
+  } catch {
+    // Surface a 502 rather than masking Redis outages as a 404.
+    return new Response("Upstream error", { status: 502 });
+  }
+}
+
+if (longUrl) {
+  // Fire-and-forget so the redirect isn't blocked on Redis.
+  incrementClicks(slug).catch(() => {});
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: longUrl,
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+Astro.response.status = 404;
+---
+
+<Layout noIndex>
+  <main class="relative">
+    <div class="mb-4 md:absolute md:-ml-36 md:mb-0 md:h-full">
+      <a class="exclude flex items-center md:sticky md:top-8" href="/">
+        <Index />
+        Index
+      </a>
+    </div>
+    <header>
+      <h1 class="font-semibold">404—not found</h1>
+      <p class="mt-6 font-light leading-snug">
+        All UI components have now been archived. <a
+          href="mailto:h@harshsingh.me?subject=UI%20Components">Contact me</a
+        > if you'd like the code for any of them.
+      </p>
+    </header>
+  </main>
+</Layout>

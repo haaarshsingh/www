@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /shortener
+Disallow: /shortener/
+Disallow: /api/shortener/
 
 Sitemap: https://www.harshsingh.me/sitemap-index.xml

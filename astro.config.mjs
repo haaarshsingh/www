@@ -8,7 +8,12 @@ import rehypeExternalLinks from "rehype-external-links";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.harshsingh.me",
-  integrations: [sitemap(), mdx()],
+  integrations: [
+    sitemap({
+      filter: (page) => !/\/shortener(\/|$)/.test(new URL(page).pathname),
+    }),
+    mdx(),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

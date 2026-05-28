@@ -1,0 +1,169 @@
+---
+import {
+  isAuthenticated,
+  isPasswordConfigured,
+  listShortLinks,
+  type ShortLink,
+} from "../lib/shortener";
+
+export const prerender = false;
+
+const authed = isAuthenticated(Astro.cookies);
+const configured = isPasswordConfigured();
+const params = Astro.url.searchParams;
+const loginError = params.get("error");
+const createError = params.get("createError");
+const created = params.get("created");
+
+let links: ShortLink[] = [];
+let listError: string | null = null;
+if (authed) {
+  try {
+    links = await listShortLinks();
+  } catch (err) {
+    listError = err instanceof Error ? err.message : "Unable to load links.";
+  }
+}
+
+const origin = Astro.url.origin;
+const formatDate = (ms: number): string =>
+  ms ? new Date(ms).toISOString().replace("T", " ").slice(0, 16) + " UTC" : "—";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Shortener</title>
+  </head>
+  <body>
+    <h1>Shortener</h1>
+
+    {
+      !configured && (
+        <p>
+          <strong>Not configured.</strong> Set <code>SHORTENER_PASSWORD</code>{" "}
+          in the environment.
+        </p>
+      )
+    }
+
+    {
+      !authed && configured && (
+        <section>
+          <h2>Log in</h2>
+          {loginError && <p>Invalid password.</p>}
+          <form method="POST" action="/api/shortener/login">
+            <p>
+              <label>
+                Password:
+                <input
+                  type="password"
+                  name="password"
+                  autocomplete="current-password"
+                  required
+                />
+              </label>
+            </p>
+            <p>
+              <button type="submit">Log in</button>
+            </p>
+          </form>
+        </section>
+      )
+    }
+
+    {
+      authed && (
+        <>
+          <section>
+            <form method="POST" action="/api/shortener/logout">
+              <button type="submit">Log out</button>
+            </form>
+          </section>
+
+          <section>
+            <h2>New short link</h2>
+            {createError && <p>Error: {createError}</p>}
+            {created && (
+              <p>
+                Created:{" "}
+                <a href={`/${created}`}>
+                  {origin}/{created}
+                </a>
+              </p>
+            )}
+            <form method="POST" action="/api/shortener/create">
+              <p>
+                <label>
+                  Long URL:
+                  <br />
+                  <input
+                    type="url"
+                    name="url"
+                    required
+                    size={60}
+                    placeholder="https://example.com/some/long/path"
+                  />
+                </label>
+              </p>
+              <p>
+                <label>
+                  Custom slug (optional):
+                  <br />
+                  <input
+                    type="text"
+                    name="slug"
+                    pattern="[a-zA-Z0-9_\-]{3,40}"
+                    size={30}
+                    placeholder="my-link"
+                  />
+                </label>
+              </p>
+              <p>
+                <button type="submit">Shorten</button>
+              </p>
+            </form>
+          </section>
+
+          <section>
+            <h2>Links</h2>
+            {listError && <p>Error loading links: {listError}</p>}
+            {!listError && links.length === 0 && <p>No links yet.</p>}
+            {!listError && links.length > 0 && (
+              <table border="1" cellpadding="6" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Short URL</th>
+                    <th>Original URL</th>
+                    <th>Clicks</th>
+                    <th>Created</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {links.map((link) => (
+                    <tr>
+                      <td>
+                        <a href={`/${link.slug}`}>
+                          {origin}/{link.slug}
+                        </a>
+                      </td>
+                      <td>
+                        <a href={link.url} rel="noreferrer">
+                          {link.url}
+                        </a>
+                      </td>
+                      <td>{link.clicks}</td>
+                      <td>{formatDate(link.createdAt)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </section>
+        </>
+      )
+    }
+  </body>
+</html>
