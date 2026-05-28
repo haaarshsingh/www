@@ -33,27 +33,20 @@ const restToken = (): string => env("UPSTASH_REDIS_REST_TOKEN");
 
 // HMAC key is derived from the password so rotating the password
 // invalidates every existing session, and the raw password is never
-// written to Redis or to any cookie.
-const sessionKey = (): Buffer => {
-  const password = env("SHORTENER_PASSWORD");
-  return createHmac("sha256", "shortener-session-v1").update(password).digest();
-};
+// written to Redis or to any cookie. The key is stored as a hex string
+// so the consuming `createHmac` call sees a plain `BinaryLike`.
+const sessionKey = (): string =>
+  createHmac("sha256", "shortener-session-v1")
+    .update(env("SHORTENER_PASSWORD"))
+    .digest("hex");
 
-const b64url = (input: Buffer | string): string =>
-  Buffer.from(input)
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-
-const sign = (payload: string): string => {
-  const mac = createHmac("sha256", sessionKey()).update(payload).digest();
-  return b64url(mac);
-};
+const sign = (payload: string): string =>
+  createHmac("sha256", sessionKey()).update(payload).digest("base64url");
 
 const safeEqual = (a: string, b: string): boolean => {
-  const ab = Buffer.from(a);
-  const bb = Buffer.from(b);
+  const encoder = new TextEncoder();
+  const ab = encoder.encode(a);
+  const bb = encoder.encode(b);
   if (ab.length !== bb.length) return false;
   return timingSafeEqual(ab, bb);
 };
@@ -70,7 +63,7 @@ export const verifyPassword = (input: string): boolean => {
 
 export const createSessionToken = (): string => {
   const expSeconds = Math.floor(Date.now() / 1000) + SESSION_MAX_AGE_SECONDS;
-  const nonce = b64url(randomBytes(8));
+  const nonce = randomBytes(8).toString("base64url");
   const payload = `${expSeconds}.${nonce}`;
   return `${payload}.${sign(payload)}`;
 };
