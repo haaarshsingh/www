@@ -7,6 +7,13 @@ const LASTFM_API_URL = "https://ws.audioscrobbler.com/2.0/";
 const env = (key: string) =>
   import.meta.env[key] || process.env[key] || "";
 
+// Last.fm returns artist names exactly as scrobbled, so a name can arrive as
+// "Harkirat sangha". Capitalize the first letter of every name part (split on
+// spaces and hyphens) and leave the rest alone, so stylized names like "JAY-Z"
+// or "MF DOOM" are not lowercased.
+const capitalizeName = (name: string): string =>
+  name.replace(/(^|[\s-])(\p{Ll})/gu, (_, sep, letter) => sep + letter.toUpperCase());
+
 export const GET: APIRoute = async () => {
   try {
     const params = new URLSearchParams({
@@ -48,7 +55,7 @@ export const GET: APIRoute = async () => {
       JSON.stringify({
         isPlaying,
         title: track.name,
-        artist: track.artist["#text"],
+        artist: capitalizeName(track.artist["#text"] ?? ""),
         albumArt,
         url: track.url,
       }),
