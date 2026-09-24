@@ -10,7 +10,7 @@
 
   <a
     id="music-track"
-    class="exclude group relative hidden aspect-square overflow-hidden rounded-2xl border border-neutral-200 transition-colors duration-300 dark:border-neutral-700"
+    class="exclude group relative hidden aspect-square overflow-hidden rounded-2xl"
     href="#"
     target="_blank"
     rel="noreferrer"
@@ -21,7 +21,16 @@
       aria-hidden="true"
     >
     </div>
-    <div class="absolute inset-0 bg-neutral-900/70"></div>
+    <div
+      class="absolute inset-0 bg-neutral-900/20 dark:bg-neutral-900/55"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-px rounded-[calc(var(--radius-2xl)-1px)] bg-neutral-900/63 dark:bg-neutral-900/33"
+      aria-hidden="true"
+    >
+    </div>
     <div class="relative flex h-full flex-col justify-end p-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -95,113 +104,6 @@
 </div>
 
 <script>
-  type Rgb = { r: number; g: number; b: number };
-
-  // Sample a representative accent color from album art: prefer saturated,
-  // mid-lightness pixels so we get something close to the cover's brand color
-  // rather than a muddy average.
-  const extractAccentColor = (img: HTMLImageElement): Rgb | null => {
-    try {
-      const size = 32;
-      const canvas = document.createElement("canvas");
-      canvas.width = size;
-      canvas.height = size;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return null;
-      ctx.drawImage(img, 0, 0, size, size);
-      const { data } = ctx.getImageData(0, 0, size, size);
-
-      let bestR = 0;
-      let bestG = 0;
-      let bestB = 0;
-      let bestScore = -1;
-      let sumR = 0;
-      let sumG = 0;
-      let sumB = 0;
-      let count = 0;
-
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i] ?? 0;
-        const g = data[i + 1] ?? 0;
-        const b = data[i + 2] ?? 0;
-        const a = data[i + 3] ?? 0;
-        if (a < 200) continue;
-        sumR += r;
-        sumG += g;
-        sumB += b;
-        count++;
-        const max = Math.max(r, g, b);
-        const min = Math.min(r, g, b);
-        const lightness = (max + min) / 2 / 255;
-        if (lightness < 0.18 || lightness > 0.82) continue;
-        const saturation = max === 0 ? 0 : (max - min) / max;
-        const score = saturation * 2 + (1 - Math.abs(lightness - 0.5));
-        if (score > bestScore) {
-          bestScore = score;
-          bestR = r;
-          bestG = g;
-          bestB = b;
-        }
-      }
-
-      if (bestScore < 0 && count > 0) {
-        bestR = Math.round(sumR / count);
-        bestG = Math.round(sumG / count);
-        bestB = Math.round(sumB / count);
-      }
-
-      return { r: bestR, g: bestG, b: bestB };
-    } catch {
-      return null;
-    }
-  };
-
-  // Saturated colors on a near-black background read as glaring neon. Mix the
-  // accent toward the dark surface so it reads as a tint, not a glow.
-  const formatAccent = ({ r, g, b }: Rgb): string => {
-    const isDark = document.documentElement.classList.contains("dark");
-    if (!isDark) return `rgb(${r}, ${g}, ${b})`;
-    const mix = 0.45; // weight of accent vs. background
-    const bg = 23; // neutral-900-ish
-    const dr = Math.round(r * mix + bg * (1 - mix));
-    const dg = Math.round(g * mix + bg * (1 - mix));
-    const db = Math.round(b * mix + bg * (1 - mix));
-    return `rgb(${dr}, ${dg}, ${db})`;
-  };
-
-  const setBorderFromDataset = (track: HTMLElement) => {
-    const r = Number(track.dataset.accentR);
-    const g = Number(track.dataset.accentG);
-    const b = Number(track.dataset.accentB);
-    if (Number.isFinite(r) && Number.isFinite(g) && Number.isFinite(b)) {
-      track.style.borderColor = formatAccent({ r, g, b });
-    }
-  };
-
-  const applyAccent = (track: HTMLElement, src: string) => {
-    const probe = new Image();
-    probe.crossOrigin = "anonymous";
-    probe.referrerPolicy = "no-referrer";
-    probe.onload = () => {
-      const accent = extractAccentColor(probe);
-      if (!accent) return;
-      track.dataset.accentR = String(accent.r);
-      track.dataset.accentG = String(accent.g);
-      track.dataset.accentB = String(accent.b);
-      setBorderFromDataset(track);
-    };
-    probe.src = src;
-  };
-
-  // Re-apply the border whenever the theme toggle flips <html>.dark.
-  const observeThemeChanges = (track: HTMLElement) => {
-    const observer = new MutationObserver(() => setBorderFromDataset(track));
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  };
-
   // Fire immediately. The album-art background is the LCP candidate; deferring
   // this fetch directly delays LCP, which hurts the perf score far more than
   // the (unscored) critical-request-chain warning helps.
@@ -225,8 +127,10 @@
             ? `Album art for ${data.title} by ${data.artist}`
             : "";
           coverWrapper.classList.remove("hidden");
-          applyAccent(track, data.albumArt);
-          observeThemeChanges(track);
+        } else {
+          // Without album art there is no ring to show, so fall back to a
+          // plain hairline border.
+          track.classList.add("border", "border-neutral-200", "dark:border-neutral-700");
         }
 
         document.getElementById("music-title")!.textContent = data.title;
