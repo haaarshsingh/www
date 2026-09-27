@@ -1,5 +1,5 @@
 ---
-// Flag of Texas, 2:3. Sized in em so it scales with the surrounding text.
+// Flag of Texas, 2:3, clipped to generously rounded corners. Sized in em so it scales with the surrounding text.
 const { class: className = "" } = Astro.props;
 ---
 
@@ -10,8 +10,15 @@ const { class: className = "" } = Astro.props;
   aria-label="Texas flag"
   class={className}
 >
-  <rect width="3" height="2" fill="#BF0A30"></rect>
-  <rect width="3" height="1" fill="#FFFFFF"></rect>
-  <rect width="1" height="2" fill="#002868"></rect>
-  <polygon points="0.500,0.640 0.581,0.889 0.842,0.889 0.631,1.042 0.712,1.291 0.500,1.138 0.288,1.291 0.369,1.042 0.158,0.889 0.419,0.889" fill="#FFFFFF"></polygon>
+  <defs>
+    <clipPath id="texas-flag-clip">
+      <rect width="3" height="2" rx="0.5"></rect>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#texas-flag-clip)">
+    <rect width="3" height="2" fill="#BF0A30"></rect>
+    <rect width="3" height="1" fill="#FFFFFF"></rect>
+    <rect width="1" height="2" fill="#002868"></rect>
+    <polygon points="0.500,0.640 0.581,0.889 0.842,0.889 0.631,1.042 0.712,1.291 0.500,1.138 0.288,1.291 0.369,1.042 0.158,0.889 0.419,0.889" fill="#FFFFFF"></polygon>
+  </g>
 </svg>
