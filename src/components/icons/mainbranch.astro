@@ -1,0 +1,17 @@
+---
+// MainBranch secondary mark, taken from mainbranch.com's favicon. Fills with
+// currentColor so the caller sets the light/dark tint to match their favicons.
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 44 41"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class={className}
+>
+  <path
+    d="M27.5456 11.8177H44V0.5C39.6586 0.5 35.5534 1.52948 31.9009 3.35756C27.9894 5.31563 24.5984 8.19065 22 11.7117C19.401 8.19065 16.0106 5.31498 12.0991 3.35756C8.4466 1.52948 4.34201 0.5 0 0.5V11.8177H16.4544V22.3627C15.0945 21.3261 13.6364 20.4175 12.0991 19.648C8.4466 17.8199 4.34201 16.7904 0 16.7904V28.1082H16.4544V40.5H27.5456V28.1082H44V16.7904C39.6586 16.7904 35.5534 17.8199 31.9009 19.648C30.3637 20.4175 28.9056 21.3261 27.5456 22.3627V11.8177Z"
+    fill="currentColor"></path>
+</svg>
