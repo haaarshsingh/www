@@ -8,217 +8,63 @@ import Music from "./music.astro";
     <div
       class="animate-intro relative left-1/2 flex w-[min(1024px,95vw)] -translate-x-1/2 flex-col gap-3 opacity-0 select-none [animation-delay:0.4s]"
     >
-      <div
-        class="flex flex-col gap-3 sm:grid sm:aspect-square sm:grid-cols-4 sm:grid-rows-4"
-      >
-        <div class="grid grid-cols-2 gap-3 sm:contents">
-          <div class="sm:col-start-1 sm:row-start-1">
-            <Where />
-          </div>
-          <div class="sm:col-start-2 sm:row-start-1">
-            <Music />
-          </div>
-        </div>
-        <a
-          href="https://kmenu.dev"
-          target="_blank"
-          rel="noreferrer"
-          class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 sm:col-span-2 sm:col-start-3 sm:row-span-2 sm:row-start-1 dark:border-neutral-700"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/kmenu.webm" type="video/webm" />
-          </video>
-          <div
-            aria-hidden="true"
-            class="fade-to-bottom-soft pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
-          >
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="@container flex flex-col gap-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <Where />
+            </div>
+            <div>
+              <Music />
+            </div>
           </div>
           <div
-            class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#F7F7F7] dark:border-neutral-700"
           >
-            <span class="flex items-center gap-0.5 text-sm font-medium">
-              kmenu
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="translate-y-px"
-              >
-                <path
-                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            <span class="shrink-0 text-sm text-neutral-300">2022</span>
-          </div>
-        </a>
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-span-2 sm:col-start-1 sm:row-start-2 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/qr.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-span-2 sm:col-start-1 sm:row-span-2 sm:row-start-3 dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/modal.webm" type="video/webm" />
-          </video>
-        </div>
-        <a
-          href="https://snip.tf"
-          target="_blank"
-          rel="noreferrer"
-          class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 sm:col-start-3 sm:row-start-3 dark:border-neutral-700"
-        >
-          <img
-            src="/bento/snip.webp"
-            width="1200"
-            height="1200"
-            alt="Snip — a tool for sharing code snippets"
-            draggable="false"
-            loading="lazy"
-            decoding="async"
-            class="absolute inset-0 h-full w-full object-cover"
-          />
-          <div
-            aria-hidden="true"
-            class="fade-to-bottom pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
-          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/image-gallery.webm" type="video/webm" />
+            </video>
           </div>
           <div
-            class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
           >
-            <span class="flex items-center gap-0.5 text-sm font-medium">
-              Snip
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="translate-y-px"
-              >
-                <path
-                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            <span class="shrink-0 text-sm text-neutral-300">2020</span>
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/qr.webm" type="video/webm" />
+            </video>
           </div>
-        </a>
-        <a
-          href="https://qursor.harshsingh.me"
-          target="_blank"
-          rel="noreferrer"
-          class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 sm:col-start-3 sm:row-start-4 dark:border-neutral-700"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/qursor.webm" type="video/webm" />
-          </video>
           <div
-            class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
           >
-            <span class="flex items-center gap-0.5 text-sm font-medium">
-              Qursor
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="translate-y-px"
-              >
-                <path
-                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            <span class="shrink-0 text-sm text-neutral-300">2021</span>
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/modal.webm" type="video/webm" />
+            </video>
           </div>
-        </a>
-        <a
-          href="https://dots.harshsingh.me"
-          target="_blank"
-          rel="noreferrer"
-          class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 sm:col-start-4 sm:row-span-2 sm:row-start-3 sm:aspect-auto dark:border-neutral-700"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/arch.webm" type="video/webm" />
-          </video>
           <div
-            class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
-          >
-            <span class="flex items-center gap-0.5 text-sm font-medium">
-              ~/.dotfiles
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="translate-y-px"
-              >
-                <path
-                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            <span class="shrink-0 text-sm text-neutral-300">2020</span>
-          </div>
-        </a>
-      </div>
-      <div class="flex flex-col gap-3 sm:grid sm:grid-cols-2">
-        <div class="grid aspect-square grid-rows-2 gap-3">
-          <div
-            class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-[#FAFAFA] dark:border-neutral-700"
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#FAFAFA] dark:border-neutral-700"
           >
             <video
               autoplay
@@ -232,7 +78,22 @@ import Music from "./music.astro";
               <source src="/bento/dynamic-island.webm" type="video/webm" />
             </video>
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#F9F9F9] dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/chat-input.webm" type="video/webm" />
+            </video>
+          </div>
+          <div class="grid h-[calc((100cqw-0.75rem)/2)] grid-cols-2 gap-3">
             <div
               class="overflow-hidden rounded-2xl border border-neutral-200 bg-white pl-1.5 dark:border-neutral-700"
             >
@@ -292,118 +153,115 @@ import Music from "./music.astro";
               </a>
             </div>
           </div>
-        </div>
-        <a
-          href="https://loomix.harshsingh.me"
-          target="_blank"
-          rel="noreferrer"
-          class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/loomix.webm" type="video/webm" />
-          </video>
           <div
-            aria-hidden="true"
-            class="fade-to-bottom-soft pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#FAFAFA] dark:border-neutral-700"
           >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/color-palette.webm" type="video/webm" />
+            </video>
           </div>
           <div
-            class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#171717] dark:border-neutral-700 dark:bg-neutral-900"
           >
-            <span class="flex items-center gap-0.5 text-sm font-medium">
-              Loomix
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="translate-y-px"
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/halftone.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/delete.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-yellow-600 bg-white dark:border-yellow-600 dark:bg-neutral-900"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover object-center"
+            >
+              <source src="/bento/cards.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/roast.webm" type="video/webm" />
+            </video>
+          </div>
+          <div class="grid h-[calc((100cqw-0.75rem)/2)] grid-cols-2 gap-3">
+            <div
+              class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full translate-x-[10px] object-cover"
               >
-                <path
-                  d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            <span class="shrink-0 text-sm text-neutral-300">2026</span>
+                <source src="/bento/switch.webm" type="video/webm" />
+              </video>
+            </div>
+            <div
+              class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/bento/logo-animation.webm" type="video/webm" />
+              </video>
+            </div>
           </div>
-        </a>
-      </div>
-      <div
-        class="flex flex-col gap-3 sm:grid sm:aspect-square sm:grid-cols-2 sm:grid-rows-4"
-      >
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-1 sm:row-start-1 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/image-transition.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-1 sm:row-span-2 sm:row-start-2 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/delete.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-yellow-600 bg-white sm:col-start-1 sm:row-start-4 sm:aspect-auto dark:border-yellow-600 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover object-center"
-          >
-            <source src="/bento/cards.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-2 sm:row-start-1 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/slides.webm" type="video/webm" />
-          </video>
-        </div>
-        <div class="grid grid-cols-2 gap-3 sm:col-start-2 sm:row-start-2">
           <div
-            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#161616] dark:border-neutral-700"
           >
             <video
               autoplay
@@ -414,11 +272,26 @@ import Music from "./music.astro";
               disableRemotePlayback
               class="lazy-video absolute inset-0 h-full w-full object-cover"
             >
-              <source src="/bento/glsl-distortion.webm" type="video/webm" />
+              <source src="/bento/dropdown.webm" type="video/webm" />
             </video>
           </div>
           <div
-            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#171717] dark:border-neutral-700 dark:bg-neutral-900"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full translate-x-1 object-cover"
+            >
+              <source src="/bento/round-and-round.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#F5F5F5] dark:border-neutral-700"
           >
             <video
               autoplay
@@ -429,47 +302,16 @@ import Music from "./music.astro";
               disableRemotePlayback
               class="lazy-video absolute inset-0 h-full w-full object-cover"
             >
-              <source src="/bento/radial-select.webm" type="video/webm" />
+              <source src="/bento/chat.webm" type="video/webm" />
             </video>
           </div>
         </div>
-        <div
-          class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-2 sm:row-span-2 sm:row-start-3 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/bento/gallery.webm" type="video/webm" />
-          </video>
-        </div>
-      </div>
-      <div
-        class="flex flex-col gap-3 sm:grid sm:aspect-square sm:grid-cols-2 sm:grid-rows-4"
-      >
-        <div class="grid grid-cols-2 gap-3 sm:col-start-1 sm:row-start-1">
-          <div
-            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:aspect-auto dark:border-neutral-700"
-          >
-            <video
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="metadata"
-              disableRemotePlayback
-              class="lazy-video absolute inset-0 h-full w-full translate-x-[10px] object-cover"
-            >
-              <source src="/bento/switch.webm" type="video/webm" />
-            </video>
-          </div>
-          <div
-            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
+        <div class="@container flex flex-col gap-3">
+          <a
+            href="https://kobra.systems"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#161616] dark:border-neutral-700"
           >
             <video
               autoplay
@@ -480,84 +322,507 @@ import Music from "./music.astro";
               disableRemotePlayback
               class="lazy-video absolute inset-0 h-full w-full object-cover"
             >
-              <source src="/bento/logo-animation.webm" type="video/webm" />
+              <source src="/bento/input-otp.webm" type="video/webm" />
+            </video>
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            >
+              <span class="flex items-center gap-0.5 text-sm font-medium">
+                Kobra
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  class="translate-y-px"
+                >
+                  <path
+                    d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                    fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="shrink-0 text-sm text-neutral-300">2026</span>
+            </div>
+          </a>
+          <a
+            href="https://krafa.ai"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude relative block h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#131313] dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/krafa.webm" type="video/webm" />
+            </video>
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            >
+              <span class="flex items-center gap-0.5 text-sm font-medium">
+                Krafa
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  class="translate-y-px"
+                >
+                  <path
+                    d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                    fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="shrink-0 text-sm text-neutral-300">2026</span>
+            </div>
+          </a>
+          <a
+            href="https://kmenu.dev"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/kmenu.webm" type="video/webm" />
+            </video>
+            <div
+              aria-hidden="true"
+              class="fade-to-bottom-soft pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+            >
+            </div>
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            >
+              <span class="flex items-center gap-0.5 text-sm font-medium">
+                kmenu
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  class="translate-y-px"
+                >
+                  <path
+                    d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                    fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="shrink-0 text-sm text-neutral-300">2022</span>
+            </div>
+          </a>
+          <a
+            href="https://loomix.harshsingh.me"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude relative block h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/loomix.webm" type="video/webm" />
+            </video>
+            <div
+              aria-hidden="true"
+              class="fade-to-bottom-soft pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+            >
+            </div>
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            >
+              <span class="flex items-center gap-0.5 text-sm font-medium">
+                Loomix
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  class="translate-y-px"
+                >
+                  <path
+                    d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                    fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="shrink-0 text-sm text-neutral-300">2026</span>
+            </div>
+          </a>
+          <div class="grid aspect-square grid-cols-2 grid-rows-2 gap-3">
+            <a
+              href="https://snip.tf"
+              target="_blank"
+              rel="noreferrer"
+              class="exclude relative col-start-1 row-start-1 block overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
+            >
+              <img
+                src="/bento/snip.webp"
+                width="1200"
+                height="1200"
+                alt="Snip — a tool for sharing code snippets"
+                draggable="false"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                aria-hidden="true"
+                class="fade-to-bottom pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+              >
+              </div>
+              <div
+                class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+              >
+                <span class="flex items-center gap-0.5 text-sm font-medium">
+                  Snip
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    class="translate-y-px"
+                  >
+                    <path
+                      d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="shrink-0 text-sm text-neutral-300">2020</span>
+              </div>
+            </a>
+            <a
+              href="https://qursor.harshsingh.me"
+              target="_blank"
+              rel="noreferrer"
+              class="exclude relative col-start-1 row-start-2 block overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/bento/qursor.webm" type="video/webm" />
+              </video>
+              <div
+                class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+              >
+                <span class="flex items-center gap-0.5 text-sm font-medium">
+                  Qursor
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    class="translate-y-px"
+                  >
+                    <path
+                      d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="shrink-0 text-sm text-neutral-300">2021</span>
+              </div>
+            </a>
+            <a
+              href="https://dots.harshsingh.me"
+              target="_blank"
+              rel="noreferrer"
+              class="exclude relative col-start-2 row-span-2 row-start-1 block overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/bento/arch.webm" type="video/webm" />
+              </video>
+              <div
+                class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+              >
+                <span class="flex items-center gap-0.5 text-sm font-medium">
+                  ~/.dotfiles
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    class="translate-y-px"
+                  >
+                    <path
+                      d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="shrink-0 text-sm text-neutral-300">2020</span>
+              </div>
+            </a>
+          </div>
+          <a
+            href="https://dropdown.kobra.systems"
+            target="_blank"
+            rel="noreferrer"
+            class="exclude relative block aspect-square overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/dropdown-history.webm" type="video/webm" />
+            </video>
+            <div
+              aria-hidden="true"
+              class="fade-to-bottom pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+            >
+            </div>
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 mx-2 mb-3 flex items-baseline justify-between gap-2 px-2 text-white"
+            >
+              <span class="flex items-center gap-0.5 text-sm font-medium">
+                Life of a dropdown
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  class="translate-y-px"
+                >
+                  <path
+                    d="m19 15.477-.02-9.672a.802.802 0 0 0-.218-.577c-.145-.152-.34-.228-.587-.228H8.499a.751.751 0 0 0-.777.76c0 .199.076.371.227.517.15.145.326.218.525.218h3.733l4.52-.129-1.728 1.54-9.767 9.783a.692.692 0 0 0-.232.518c0 .205.078.387.235.545a.74.74 0 0 0 .542.237.73.73 0 0 0 .527-.224l9.775-9.78 1.544-1.727-.143 4.188v4.065c0 .199.075.376.225.531.15.155.327.232.531.232.202 0 .38-.076.534-.228a.768.768 0 0 0 .23-.569Z"
+                    fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="shrink-0 text-sm text-neutral-300">2026</span>
+            </div>
+          </a>
+          <div
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/slides.webm" type="video/webm" />
             </video>
           </div>
-        </div>
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-[#171717] sm:col-start-1 sm:row-start-2 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full translate-x-1 object-cover"
+          <div class="grid h-[calc((100cqw-0.75rem)/2)] grid-cols-2 gap-3">
+            <div
+              class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/bento/glsl-distortion.webm" type="video/webm" />
+              </video>
+            </div>
+            <div
+              class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/bento/radial-select.webm" type="video/webm" />
+              </video>
+            </div>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
           >
-            <source src="/bento/round-and-round.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-1 sm:row-span-2 sm:row-start-3 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/gallery.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
           >
-            <source src="/bento/chat.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-2 sm:row-start-1 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/input.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
           >
-            <source src="/bento/input.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-2 sm:row-span-2 sm:row-start-2 sm:aspect-auto dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full object-cover"
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/stacked-gallery.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700"
           >
-            <source src="/bento/stacked-gallery.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          class="relative aspect-[2/1] overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-start-2 sm:row-start-4 sm:aspect-auto dark:border-neutral-700"
-        >
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            disableRemotePlayback
-            class="lazy-video absolute inset-0 h-full w-full translate-x-1 object-cover"
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full translate-x-1 object-cover"
+            >
+              <source src="/bento/forms.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700"
           >
-            <source src="/bento/forms.webm" type="video/webm" />
-          </video>
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/magnetic-dropzone.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#FDFDFD] dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/folders.webm" type="video/webm" />
+            </video>
+          </div>
+          <div class="grid h-[calc((100cqw-0.75rem)/2)] grid-cols-2 gap-3">
+            <div
+              class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-[#E2E2E2] dark:border-neutral-700"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                disableRemotePlayback
+                class="lazy-video absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/bento/image-generation.webm" type="video/webm" />
+              </video>
+            </div>
+            <div
+              class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-[#191919] dark:border-neutral-700"
+            >
+              <img
+                src="/bento/crm.png"
+                width="645"
+                height="645"
+                alt="CRM interface"
+                draggable="false"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </div>
+          <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#181818] dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/carousel.webm" type="video/webm" />
+            </video>
+          </div>
         </div>
       </div>
     </div>
