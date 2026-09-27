@@ -1,0 +1,20 @@
+---
+// Globe glyph, stroked with currentColor so the caller sets the tint.
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class={className}
+>
+  <circle cx="12" cy="12" r="10"></circle>
+  <path
+    d="M7.5 12C7.5 18 12 22 12 22C12 22 16.5 18 16.5 12C16.5 6 12 2 12 2C12 2 7.5 6 7.5 12Z"
+    stroke-linejoin="round"></path>
+  <path d="M22 12L2 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
