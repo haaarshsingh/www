@@ -49,6 +49,36 @@ import Music from "./music.astro";
             </video>
           </div>
           <div
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#171717] dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/calendar.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#F9F9F9] dark:border-neutral-700"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/bento/chat-input.webm" type="video/webm" />
+            </video>
+          </div>
+          <div
             class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
           >
             <video
@@ -77,81 +107,6 @@ import Music from "./music.astro";
             >
               <source src="/bento/dynamic-island.webm" type="video/webm" />
             </video>
-          </div>
-          <div
-            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#F9F9F9] dark:border-neutral-700"
-          >
-            <video
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="metadata"
-              disableRemotePlayback
-              class="lazy-video absolute inset-0 h-full w-full object-cover"
-            >
-              <source src="/bento/chat-input.webm" type="video/webm" />
-            </video>
-          </div>
-          <div class="grid h-[calc((100cqw-0.75rem)/2)] grid-cols-2 gap-3">
-            <div
-              class="overflow-hidden rounded-2xl border border-neutral-200 bg-white pl-1.5 dark:border-neutral-700"
-            >
-              <video
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-                disableRemotePlayback
-                class="lazy-video h-full w-full object-cover"
-              >
-                <source src="/bento/cmdk.webm" type="video/webm" />
-              </video>
-            </div>
-            <div
-              class="flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white pb-1 dark:border-neutral-700 dark:bg-neutral-900"
-            >
-              <div
-                class="relative flex-1 overflow-hidden border-b border-b-neutral-200 dark:border-b-neutral-700"
-              >
-                <img
-                  src="/bento/blog_post_1.webp"
-                  width="1000"
-                  height="1000"
-                  alt="Cover image for the Best Distros for Ricing essay"
-                  draggable="false"
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-cover"
-                />
-                <div
-                  aria-hidden="true"
-                  class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-neutral-900 dark:via-neutral-900/80"
-                >
-                </div>
-                <div
-                  class="pointer-events-none absolute inset-x-0 bottom-0 flex items-baseline justify-between gap-2 px-2.5 pb-2"
-                >
-                  <p
-                    class="truncate text-sm font-medium text-neutral-900 dark:text-neutral-50"
-                  >
-                    Best Distros for Ricing
-                  </p>
-                  <p
-                    class="shrink-0 text-sm text-neutral-500 dark:text-neutral-400"
-                  >
-                    2024
-                  </p>
-                </div>
-              </div>
-              <a
-                href="/ricing"
-                class="exclude mx-1 mt-1 flex items-center justify-center rounded-xl bg-neutral-200 px-3 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700"
-              >
-                Read Essay
-              </a>
-            </div>
           </div>
           <div
             class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#FAFAFA] dark:border-neutral-700"
@@ -276,7 +231,7 @@ import Music from "./music.astro";
             </video>
           </div>
           <div
-            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#171717] dark:border-neutral-700 dark:bg-neutral-900"
+            class="relative h-[calc((100cqw-0.75rem)/2)] overflow-hidden rounded-2xl border border-neutral-200 bg-[#F6F6F6] dark:border-neutral-700 dark:bg-[#171717]"
           >
             <video
               autoplay
@@ -285,7 +240,18 @@ import Music from "./music.astro";
               playsinline
               preload="metadata"
               disableRemotePlayback
-              class="lazy-video absolute inset-0 h-full w-full translate-x-1 object-cover"
+              class="lazy-video absolute inset-0 h-full w-full translate-x-1 object-cover dark:hidden"
+            >
+              <source src="/bento/round-and-round-light.webm" type="video/webm" />
+            </video>
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              disableRemotePlayback
+              class="lazy-video absolute inset-0 hidden h-full w-full translate-x-1 object-cover dark:block"
             >
               <source src="/bento/round-and-round.webm" type="video/webm" />
             </video>
@@ -748,7 +714,7 @@ import Music from "./music.astro";
             </video>
           </div>
           <div
-            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-700"
+            class="relative aspect-square overflow-hidden rounded-2xl border border-neutral-200 bg-[#F9F9F9] dark:border-neutral-700"
           >
             <video
               autoplay
@@ -759,7 +725,7 @@ import Music from "./music.astro";
               disableRemotePlayback
               class="lazy-video absolute inset-0 h-full w-full object-cover"
             >
-              <source src="/bento/magnetic-dropzone.webm" type="video/webm" />
+              <source src="/bento/dropzone.webm" type="video/webm" />
             </video>
           </div>
           <div
