@@ -8,9 +8,9 @@ import Music from "./music.astro";
     <div
       class="animate-intro relative left-1/2 flex w-[min(1024px,95vw)] -translate-x-1/2 flex-col gap-3 opacity-0 select-none [animation-delay:0.4s]"
     >
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="@container flex flex-col gap-3">
-          <div class="grid grid-cols-2 gap-3">
+      <div class="grid gap-3 sm:grid-cols-2" data-bento>
+        <div class="@container flex flex-col gap-3" data-bento-col>
+          <div class="grid grid-cols-2 gap-3" data-mobile="first">
             <div>
               <Where />
             </div>
@@ -272,8 +272,9 @@ import Music from "./music.astro";
             </video>
           </div>
         </div>
-        <div class="@container flex flex-col gap-3">
+        <div class="@container flex flex-col gap-3" data-bento-col>
           <a
+            data-mobile="project"
             href="https://kobra.systems"
             target="_blank"
             rel="noreferrer"
@@ -313,6 +314,7 @@ import Music from "./music.astro";
             </div>
           </a>
           <a
+            data-mobile="project"
             href="https://krafa.ai"
             target="_blank"
             rel="noreferrer"
@@ -352,6 +354,7 @@ import Music from "./music.astro";
             </div>
           </a>
           <a
+            data-mobile="project"
             href="https://kmenu.dev"
             target="_blank"
             rel="noreferrer"
@@ -396,6 +399,7 @@ import Music from "./music.astro";
             </div>
           </a>
           <a
+            data-mobile="project"
             href="https://loomix.harshsingh.me"
             target="_blank"
             rel="noreferrer"
@@ -439,7 +443,7 @@ import Music from "./music.astro";
               <span class="shrink-0 text-sm text-neutral-300">2026</span>
             </div>
           </a>
-          <div class="grid aspect-square grid-cols-2 grid-rows-2 gap-3">
+          <div class="grid aspect-square grid-cols-2 grid-rows-2 gap-3" data-mobile="project">
             <a
               href="https://snip.tf"
               target="_blank"
@@ -448,8 +452,8 @@ import Music from "./music.astro";
             >
               <img
                 src="/bento/snip.webp"
-                width="1200"
-                height="1200"
+                width="720"
+                height="720"
                 alt="Snip — a tool for sharing code snippets"
                 draggable="false"
                 loading="lazy"
@@ -563,6 +567,7 @@ import Music from "./music.astro";
             </a>
           </div>
           <a
+            data-mobile="project"
             href="https://dropdown.kobra.systems"
             target="_blank"
             rel="noreferrer"
@@ -763,7 +768,7 @@ import Music from "./music.astro";
               class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-[#191919] dark:border-neutral-700"
             >
               <img
-                src="/bento/crm.png"
+                src="/bento/crm.webp"
                 width="645"
                 height="645"
                 alt="CRM interface"
@@ -794,6 +799,33 @@ import Music from "./music.astro";
     </div>
   </section>
 </main>
+
+
+<style is:global>
+  /* Phones get one list instead of two stacked columns, in a different order:
+     map and music, then every project, then everything else. The columns
+     dissolve so their cards become items of the one grid, and `order` does the
+     sorting. Nothing here applies from the two-column breakpoint up. */
+  @media (width < 40rem) {
+    /* The half-card height is measured against the nearest container. A
+       dissolved column has no box to measure, so the grid takes over. */
+    [data-bento] {
+      container-type: inline-size;
+    }
+    [data-bento-col] {
+      display: contents;
+    }
+    [data-bento-col] > * {
+      order: 3;
+    }
+    [data-bento-col] > [data-mobile="first"] {
+      order: 1;
+    }
+    [data-bento-col] > [data-mobile="project"] {
+      order: 2;
+    }
+  }
+</style>
 
 <script>
   // Defer fetching/playback for offscreen videos so the page becomes interactive
