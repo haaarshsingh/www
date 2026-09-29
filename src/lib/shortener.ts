@@ -15,8 +15,6 @@ const RESERVED_SLUGS = new Set([
   "shortener",
   "api",
   "writing",
-  "ricing",
-  "rss.xml",
   "sitemap.xml",
   "favicon.ico",
   "robots.txt",

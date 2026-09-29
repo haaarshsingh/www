@@ -22,13 +22,13 @@ const escapeXml = (value: string) =>
 
 export const GET = (context: APIContext) => {
   const site = context.site ?? new URL("https://www.harshsingh.me");
-  const pages = import.meta.glob("./**/*.{astro,mdx}");
+  const pages = import.meta.glob("./**/*.astro");
 
   const routes = Object.keys(pages)
     .map((path) =>
       path
         .replace(/^\.\//, "/")
-        .replace(/\.(astro|mdx)$/, "")
+        .replace(/\.astro$/, "")
         .replace(/\/index$/, ""),
     )
     .filter((route) => !EXCLUDED.some((pattern) => pattern.test(route)))

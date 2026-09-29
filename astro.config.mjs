@@ -1,13 +1,10 @@
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.harshsingh.me",
-  integrations: [mdx()],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -19,23 +16,5 @@ export default defineConfig({
     // Tailwind bundle (~45KB raw / ~8KB gzipped) shared across all pages,
     // so the HTML bloat is small and the saved RTT is meaningful for LCP.
     inlineStylesheets: "always",
-  },
-  markdown: {
-    shikiConfig: {
-      themes: {
-        light: "github-light",
-        dark: "github-dark-dimmed",
-      },
-      defaultColor: false,
-    },
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: "_blank",
-          rel: ["noreferrer"],
-        },
-      ],
-    ],
   },
 });

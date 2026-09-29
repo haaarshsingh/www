@@ -6,17 +6,13 @@ type LayoutProps = {
   title?: string;
   description?: string;
   ogImage?: string;
-  type?: "website" | "article";
-  publishedTime?: string;
   noIndex?: boolean;
 };
 
 const {
   title = "Harsh Singh",
-  description = "Harsh Singh is a software engineer and technical lead based in Austin, Texas. Writing on AI, systems, design, tooling, and working with early-stage startups on their visual design.",
+  description = "Harsh Singh is a software engineer and technical lead based in Austin, Texas. Building AI agents, design tools, and interfaces, and working with early-stage startups on their visual design.",
   ogImage,
-  type = "website",
-  publishedTime,
   noIndex = false,
 } = Astro.props as LayoutProps;
 
@@ -28,11 +24,7 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
 const pageTitle = isHome ? "Harsh Singh — Software Engineer" : `${title} | Harsh Singh`;
 const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).href;
 
-const resolvedOgImage =
-  ogImage ||
-  (title !== "Harsh Singh"
-    ? `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`
-    : `${SITE_URL}/og.png`);
+const resolvedOgImage = ogImage || `${SITE_URL}/og.png`;
 
 const robotsContent = noIndex
   ? "noindex, nofollow"
@@ -109,21 +101,6 @@ const profilePageSchema = isHome
     }
   : null;
 
-const blogPostingSchema =
-  type === "article"
-    ? {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        headline: title,
-        description,
-        image: resolvedOgImage,
-        ...(publishedTime ? { datePublished: publishedTime } : {}),
-        author: { "@id": PERSON_ID },
-        publisher: { "@id": PERSON_ID },
-        mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
-        url: canonicalUrl,
-      }
-    : null;
 ---
 
 <html lang="en">
@@ -175,12 +152,6 @@ const blogPostingSchema =
     <meta name="theme-color" content="#E5E5E5" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="sitemap" href="/sitemap.xml" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Harsh Singh"
-      href="/rss.xml"
-    />
     <meta name="author" content="Harsh Singh" />
     <link rel="author" href={SITE_URL} />
     <meta name="creator" content="Harsh Singh" />
@@ -204,7 +175,7 @@ const blogPostingSchema =
     />
     <meta name="yandex-verification" content="cfc27cbb03eb0a9c" />
 
-    <meta property="og:type" content={type} />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -218,12 +189,6 @@ const blogPostingSchema =
       content={isHome ? "Harsh Singh" : `${title} — Harsh Singh`}
     />
 
-    {
-      type === "article" && publishedTime && (
-        <meta property="article:published_time" content={publishedTime} />
-      )
-    }
-    {type === "article" && <meta property="article:author" content={SITE_URL} />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@haaarshsingh" />
@@ -276,35 +241,7 @@ const blogPostingSchema =
         "This website is open source at https://github.com/haaarshsingh/www",
       );
     </script>
-    {
-      blogPostingSchema && (
-        <script
-          is:inline
-          type="application/ld+json"
-          set:html={JSON.stringify(blogPostingSchema)}
-        />
-      )
-    }
 
-    <style is:global>
-      .astro-code,
-      .astro-code span {
-        color: var(--shiki-light);
-        background-color: transparent;
-      }
-      .astro-code {
-        background-color: #f5f5f5 !important;
-        border: 1px solid #e5e5e5;
-      }
-      .dark .astro-code,
-      .dark .astro-code span {
-        color: var(--shiki-dark);
-      }
-      .dark .astro-code {
-        background-color: var(--shiki-dark-bg) !important;
-        border: none;
-      }
-    </style>
   </head>
   <body>
     <div class="flex justify-center">

@@ -22,8 +22,8 @@
 
 - Astro 5 static site with the Vercel adapter (`@astrojs/vercel`, `output: "static"`); canonical site is `https://www.harshsingh.me` (set via `site` in `astro.config.mjs`).
 - Tailwind CSS v4 wired through `@tailwindcss/vite` (not the Astro integration); global styles live in `src/global.css`.
-- Components live in `src/components/*.astro` (lowercase filenames: `header.astro`, `footer.astro`, `main.astro`, `music.astro`, `where.astro`, `layout.astro`, `post-layout.astro`).
-- Pages live in `src/pages/`; server endpoints under `src/pages/api/*.ts` (current routes: `last-visitor.ts`, `lastfm.ts`, `locate.ts`, `og.ts`); MDX posts go under `src/pages/writing/`.
+- Components live in `src/components/*.astro` (lowercase filenames: `header.astro`, `footer.astro`, `main.astro`, `music.astro`, `where.astro`, `layout.astro`).
+- Pages live in `src/pages/`; server endpoints under `src/pages/api/*.ts` (current routes: `last-visitor.ts`, `lastfm.ts`, `locate.ts`, plus the shortener routes).
 - Dark mode uses a `.dark` class on `<html>`, applied synchronously by an inline `is:inline` script in the head to avoid flash; CSS keys off `:global(.dark)` from scoped styles.
 - Astro `<style>` blocks are scoped by default — when defining `@keyframes` consumed by a scoped class, mark the block `is:global` so the animation name resolves.
 - Music section uses Last.fm (not Spotify — Spotify Web API now requires Premium for new apps); env vars: `LASTFM_API_KEY`, `LASTFM_USERNAME`.
