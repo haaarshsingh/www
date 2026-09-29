@@ -1,0 +1,1089 @@
+---
+// Photo stack, gallery, and lightbox for the "Texas" trigger in the intro.
+//
+// One set of cards moves between four poses (hidden, stack, gallery, photo).
+// Every pose change is a CSS transition on transform/opacity, so hovering,
+// clicking, and closing can interrupt each other and retarget from wherever
+// the cards currently are. Keyframes would restart from zero.
+//
+// The lightbox motion (spring flight, wave timing, easings) is ported from the
+// Kobra lightbox, which is a React component this site cannot mount.
+//
+// DOM order is stack order: the first card is the front of the stack, the next
+// two fan out to the left and right, and the last two hide behind the front
+// until the gallery opens.
+const photos = [
+  {
+    src: "/photos/4.webp",
+    alt: "Austin skyline across Lady Bird Lake",
+    title: "Lady Bird Lake",
+    href: "https://en.wikipedia.org/wiki/Lady_Bird_Lake",
+    caption: "A quiet stretch of the Colorado River running through the middle of downtown Austin.",
+  },
+  {
+    src: "/photos/1.webp",
+    alt: "Turquoise pool beneath a limestone grotto at Hamilton Pool Preserve",
+    title: "Hamilton Pool Preserve",
+    href: "https://en.wikipedia.org/wiki/Hamilton_Pool_Preserve",
+    caption: "A collapsed grotto in the Hill Country, where a waterfall spills into a jade green pool.",
+  },
+  {
+    src: "/photos/5.webp",
+    alt: "Swimmers at Jacob's Well, a clear spring-fed swimming hole",
+    title: "Jacob's Well",
+    href: "https://en.wikipedia.org/wiki/Jacob%27s_Well_(Texas)",
+    caption: "A spring near Wimberley that rises, cold and clear, from a cave far below the creek bed.",
+  },
+  {
+    src: "/photos/2.webp",
+    alt: "The Rio Grande running through a steep canyon in Big Bend National Park",
+    title: "Big Bend National Park",
+    href: "https://en.wikipedia.org/wiki/Big_Bend_National_Park",
+    caption: "Desert, mountains, and the Rio Grande cutting through sheer canyon walls at the edge of West Texas.",
+  },
+  {
+    src: "/photos/3.webp",
+    alt: "Fall foliage along a rocky trail in Guadalupe Mountains National Park",
+    title: "Guadalupe Mountains National Park",
+    href: "https://en.wikipedia.org/wiki/Guadalupe_Mountains_National_Park",
+    caption: "Home to the highest peak in Texas, and canyons that turn red and gold every fall.",
+  },
+];
+---
+
+<div class="austin-layer" data-austin-layer data-state="hidden" aria-hidden="true">
+  <div class="austin-backdrop" data-austin-backdrop></div>
+  <div class="austin-hit" data-austin-hit aria-hidden="true"></div>
+  <div class="austin-cards" data-austin-cards>
+    {
+      photos.map((photo) => (
+        <button
+          type="button"
+          class="austin-card"
+          tabindex="-1"
+          aria-label={`Open photo: ${photo.alt}`}
+          data-alt={photo.alt}
+          data-title={photo.title}
+          data-href={photo.href}
+          data-caption={photo.caption}
+        >
+          <img
+            data-src={photo.src}
+            width="480"
+            height="720"
+            alt=""
+            draggable="false"
+            decoding="async"
+          />
+        </button>
+      ))
+    }
+  </div>
+  <p class="austin-caption" data-austin-caption id="austin-caption"></p>
+  <div class="austin-close-wrap">
+    <button
+      type="button"
+      class="austin-close"
+      data-austin-close
+      aria-label="Close"
+      tabindex="-1"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M3.5 3.5l9 9M12.5 3.5l-9 9"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style is:global>
+  .austin-layer {
+    /* Stronger than the built-in keywords, which are too weak to read as
+       intentional. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+    --w: 240px;
+
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+  /* Focused from script when the gallery opens, never by the keyboard. */
+  .austin-layer:focus {
+    outline: none;
+  }
+
+  .austin-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(250 250 250 / 0.98);
+    opacity: 0;
+    /* Exit: quicker than the enter below. */
+    transition: opacity 220ms ease;
+  }
+  .dark .austin-backdrop {
+    background: rgb(10 10 10 / 0.98);
+  }
+  .austin-layer:is([data-state="gallery"], [data-state="photo"])
+    .austin-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+    transition-duration: 350ms;
+  }
+
+  /* Invisible target over the stack and the gap down to the word, so the
+     pointer can travel from the word to the photos without closing them. */
+  .austin-hit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+  }
+  .austin-layer[data-state="stack"] .austin-hit {
+    pointer-events: auto;
+  }
+
+  .austin-cards {
+    position: absolute;
+    inset: 0;
+    transform-origin: var(--ox, 50%) var(--oy, 50%);
+    transition: transform 160ms var(--ease-out);
+  }
+  .austin-layer[data-pressed] .austin-cards {
+    transform: scale(0.97);
+  }
+
+  .austin-card {
+    --pad: 4px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--w);
+    aspect-ratio: 2 / 3;
+    margin: 0;
+    padding: var(--pad);
+    /* Outer radius = inner radius + padding. */
+    border-radius: 22px;
+    background: #fff;
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 0.05),
+      0 2px 4px rgb(0 0 0 / 0.06),
+      0 14px 28px -8px rgb(0 0 0 / 0.22);
+    opacity: 0;
+    /* The pose is three separate properties, not one transform, so each can
+       keep its own time. Position and size fly together; the tilt turns on a
+       slower curve of its own, because a rotation that rides a spring
+       overshoots level and reads as a wobble. `scale` is left for the press,
+       which composes with whatever pose the card is in. */
+    transition:
+      translate var(--t-move, 300ms) var(--t-ease, var(--ease-out))
+        var(--t-delay, 0ms),
+      transform var(--t-move, 300ms) var(--t-ease, var(--ease-out))
+        var(--t-delay, 0ms),
+      rotate var(--t-turn, var(--t-move, 300ms))
+        var(--t-turn-ease, var(--t-ease, var(--ease-out))) var(--t-delay, 0ms),
+      opacity var(--t-fade, 200ms) var(--t-fade-ease, ease) var(--t-delay, 0ms),
+      filter var(--t-fade, 200ms) var(--t-fade-ease, ease) var(--t-delay, 0ms),
+      scale 160ms var(--ease-out);
+  }
+  .austin-card:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+  }
+  .austin-layer:not([data-state="hidden"]) .austin-card {
+    will-change: translate, rotate, transform, opacity;
+  }
+  .austin-layer[data-instant] .austin-card,
+  .austin-layer[data-instant] .austin-card img {
+    transition: none;
+  }
+
+  .austin-layer[data-state="gallery"] .austin-card {
+    pointer-events: auto;
+    cursor: zoom-in;
+  }
+  .austin-layer[data-state="gallery"] .austin-card:active {
+    scale: 0.97;
+  }
+  .austin-layer[data-state="photo"] .austin-card[data-selected] {
+    pointer-events: auto;
+    cursor: zoom-out;
+  }
+
+  .austin-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(22px - var(--pad));
+    /* Shown while the photo loads, so a slow card is a quiet tile rather than
+       a white hole. */
+    background: #e5e5e5;
+    /* The frame under the image is always white, so the outline stays pure
+       black in both themes. */
+    outline: 1px solid rgb(0 0 0 / 0.1);
+    outline-offset: -1px;
+    user-select: none;
+    -webkit-user-drag: none;
+    /* The open photo grows inside its frame, in step with the flight, so the
+       print border thins out smoothly instead of snapping on the first
+       frame. The timing is inherited from the card. */
+    transition:
+      transform var(--t-move, 300ms) var(--t-ease, var(--ease-out)),
+      border-radius var(--t-move, 300ms) var(--t-ease, var(--ease-out));
+  }
+
+  .austin-caption {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: min(340px, calc(100vw - 48px));
+    margin: 0;
+    translate: -50% 0;
+    text-align: center;
+    /* Centered and two or three lines long, so even line lengths matter more
+       than orphan control. `pretty` is the fallback where balance is missing. */
+    text-wrap: pretty;
+    text-wrap: balance;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #525252;
+    opacity: 0;
+    transform: translateY(var(--caption-y, 0px)) translateY(6px);
+    transition:
+      opacity 150ms ease,
+      transform 150ms var(--ease-out);
+  }
+  .dark .austin-caption {
+    color: #a3a3a3;
+  }
+  .austin-caption-title {
+    border-radius: 2px;
+    color: #171717;
+    text-decoration: underline;
+    text-decoration-color: rgb(0 0 0 / 0.25);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 150ms ease;
+  }
+  .dark .austin-caption-title {
+    color: #e5e5e5;
+    text-decoration-color: rgb(255 255 255 / 0.3);
+  }
+  .austin-caption-title:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .austin-caption-title:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+  /* Arrives once the photo is most of the way there. */
+  .austin-layer[data-state="photo"] .austin-caption {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(var(--caption-y, 0px));
+    transition:
+      opacity 300ms ease 160ms,
+      transform 450ms var(--ease-out) 160ms;
+  }
+
+  /* The wrapper owns the delayed entrance; the button owns the press. Keeping
+     them apart stops the entrance delay from lagging the press release. */
+  .austin-close-wrap {
+    position: absolute;
+    left: 50%;
+    bottom: max(32px, env(safe-area-inset-bottom));
+    translate: -50% 0;
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+    transition:
+      opacity 150ms ease,
+      transform 150ms var(--ease-out);
+  }
+  .austin-layer:is([data-state="gallery"], [data-state="photo"])
+    .austin-close-wrap {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition:
+      opacity 250ms ease 180ms,
+      transform 400ms var(--ease-out) 180ms;
+  }
+  .austin-close {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 9999px;
+    background: #171717;
+    color: #fff;
+    cursor: pointer;
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 0.06),
+      0 4px 12px rgb(0 0 0 / 0.16);
+    transition: transform 160ms var(--ease-out);
+  }
+  .dark .austin-close {
+    background: #fff;
+    color: #171717;
+  }
+  .austin-close:active {
+    transform: scale(0.96);
+  }
+  .austin-close:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+  }
+
+  /* Reduced motion keeps the fades that explain what happened and drops the
+     travel, scale, and blur. */
+  @media (prefers-reduced-motion: reduce) {
+    .austin-card {
+      transition: opacity 200ms ease;
+      filter: none !important;
+      scale: none !important;
+    }
+    .austin-card img {
+      transition: none;
+    }
+    .austin-cards,
+    .austin-close,
+    .austin-layer[data-pressed] .austin-cards {
+      transition: none;
+      transform: none;
+    }
+    .austin-close-wrap,
+    .austin-layer:is([data-state="gallery"], [data-state="photo"])
+      .austin-close-wrap {
+      transform: none;
+      transition: opacity 200ms ease;
+    }
+    .austin-caption,
+    .austin-layer[data-state="photo"] .austin-caption {
+      transform: translateY(var(--caption-y, 0px));
+      transition: opacity 200ms ease;
+    }
+  }
+</style>
+
+<script>
+  type State = "hidden" | "stack" | "gallery" | "photo";
+  type Pose = { x: number; y: number; r: number; s: number; o: number };
+
+  const RATIO = 1.5;
+  const STACK_MAX_W = 68;
+  // The card width the STACK offsets below were drawn for.
+  const STACK_REF_W = 80;
+  const STACK_MIN_W = 40;
+  const STACK_GAP = 12;
+
+  // Stack pose per card, as offsets from the stack center for an 80px card.
+  const STACK = [
+    { x: 0, y: 0, r: -1.5, o: 1, z: 5 },
+    { x: -32, y: 4, r: -9, o: 1, z: 3 },
+    { x: 32, y: 4, r: 8, o: 1, z: 4 },
+    { x: -8, y: 2, r: -4, o: 0, z: 1 },
+    { x: 8, y: 2, r: 4, o: 0, z: 2 },
+  ];
+  // Hovering the photos themselves opens the fan a little.
+  const SPREAD = { x: 1.4, r: 1.3, lift: -3 };
+  // Hover stagger: the front card lands first, then the sides fan out.
+  const STACK_DELAY = [0, 45, 90, 0, 0];
+
+  // Which gallery slot each card flies to. The left card goes left and the
+  // right card goes right, so nothing crosses paths on the way out.
+  const SLOT = [1, 0, 2, 3, 4];
+  // Per-slot nudge (fractions of card width) and tilt, so the grid reads as
+  // photos dropped on a table rather than a spreadsheet.
+  const JITTER = [
+    { x: -0.04, y: 0.05, r: -4 },
+    { x: 0, y: -0.04, r: 3 },
+    { x: 0.04, y: 0.03, r: 2.5 },
+    { x: 0.03, y: 0, r: -2.5 },
+    { x: -0.03, y: 0.02, r: 3.5 },
+  ];
+
+  // --- Ported from the Kobra lightbox -------------------------------------
+
+  const STRONG_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
+  const SOFT_OUT = "cubic-bezier(0.33, 1, 0.68, 1)";
+  const GENTLE_OUT = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+  // Out has a little weight behind it. Home is stiffer with no bounce: it
+  // lands among neighbors, and a photo that overshot would draw over them.
+  // Kobra allows 8px of overshoot; its tiles are level. A tilted card that
+  // overshoots reads as jitter, so this one is held to a 3px settle.
+  const FLIGHT_OUT = { response: 0.34, bounce: 0.15, overshoot: 3, ms: 500 };
+  // Home was 190ms, which is right for a tile snapping back into a grid and
+  // too abrupt next to a half-second entrance. It is still the quicker of the
+  // two, as an exit should be, but it now decelerates into place.
+  const FLIGHT_HOME = { response: 0.3, bounce: 0, ms: 400 };
+
+  // The tilt turns on the flight's own spring with the bounce taken out, and
+  // a touch softer. So it never passes level, and it arrives with the photo:
+  // a tilt that was still easing in after the photo had landed read as a
+  // hitch at the end. A long ease-out has exactly that tail.
+  const TURN_OUT = { response: 0.4, ms: 500 };
+  const TURN_HOME = { response: 0.34, ms: 400 };
+
+  // How thick the print border is on the open photo, in screen pixels.
+  const OPEN_FRAME = 3;
+  const FRAME = 4;
+  const RADIUS = 22;
+
+  // Kobra also pushes the other photos away and shrinks them. Here they hold
+  // their place and only go soft and dim, on the same distance-based wave.
+  const RIPPLE = {
+    blur: 6,
+    opacity: 0.3,
+    wave: 0.07,
+    waveCap: 90,
+    waveHome: 0.04,
+    waveHomeCap: 40,
+  };
+
+  // A spring overshoots by a share of its travel, so one bounce for every
+  // flight is a different overshoot for every flight. This picks the bounce
+  // that overshoots by at most `overshoot` pixels.
+  const bounceFor = (travel: number) => {
+    if (travel <= FLIGHT_OUT.overshoot) return FLIGHT_OUT.bounce;
+    const reach = -Math.log(FLIGHT_OUT.overshoot / travel) / Math.PI;
+    const damping = reach / Math.hypot(1, reach);
+    return Math.max(0, Math.min(FLIGHT_OUT.bounce, 1 - damping));
+  };
+
+  // A spring as a CSS linear() curve: sampled once and handed to the
+  // compositor, so it runs off the main thread like any other transition.
+  const springCurve = (response: number, bounce: number, ms: number) => {
+    if (
+      typeof CSS === "undefined" ||
+      !CSS.supports("transition-timing-function", "linear(0, 1)")
+    ) {
+      return bounce > 0
+        ? "cubic-bezier(0.3, 1.18, 0.5, 1)"
+        : "cubic-bezier(0.32, 0.72, 0, 1)";
+    }
+    const omega = (2 * Math.PI) / response;
+    const damping = 1 - bounce;
+    const decay = damping * omega;
+    const ringing = omega * Math.sqrt(Math.max(0, 1 - damping * damping));
+    const at = (seconds: number) =>
+      ringing > 0
+        ? 1 -
+          Math.exp(-decay * seconds) *
+            (Math.cos(ringing * seconds) +
+              (decay / ringing) * Math.sin(ringing * seconds))
+        : 1 - (1 + omega * seconds) * Math.exp(-omega * seconds);
+    const end = at(ms / 1000);
+    const steps = 48;
+    const points = Array.from({ length: steps + 1 }, (_, step) =>
+      (at((ms / 1000) * (step / steps)) / end).toFixed(4),
+    );
+    return `linear(${points.join(", ")})`;
+  };
+
+  // Each photo starts a little after the one nearer the press, so the fade
+  // travels outward as a wave.
+  const waveFor = (dx: number, dy: number) => {
+    const distance = Math.hypot(dx, dy);
+    return {
+      out: Math.round(Math.min(distance * RIPPLE.wave, RIPPLE.waveCap)),
+      home: Math.round(
+        Math.min(distance * RIPPLE.waveHome, RIPPLE.waveHomeCap),
+      ),
+    };
+  };
+
+  // -------------------------------------------------------------------------
+
+  const init = (layer: HTMLElement, trigger: HTMLElement) => {
+    // Fixed positioning breaks inside transformed ancestors, and the intro
+    // animation leaves transforms behind, so the layer lives on <body>.
+    document.body.appendChild(layer);
+
+    const cards = [...layer.querySelectorAll<HTMLElement>(".austin-card")];
+    const images = [...layer.querySelectorAll<HTMLImageElement>("img")];
+    const cardsWrap = layer.querySelector<HTMLElement>("[data-austin-cards]")!;
+    const hit = layer.querySelector<HTMLElement>("[data-austin-hit]")!;
+    const caption = layer.querySelector<HTMLElement>("[data-austin-caption]")!;
+    const backdrop = layer.querySelector<HTMLElement>(
+      "[data-austin-backdrop]",
+    )!;
+    const closeButton = layer.querySelector<HTMLButtonElement>(
+      "[data-austin-close]",
+    )!;
+
+    let state: State = "hidden";
+    let exiting = false;
+    let suppressFocus = false;
+    let spread = false;
+    let selected = -1;
+    let hideTimer = 0;
+    let exitTimer = 0;
+    let w = 240;
+    let h = w * RATIO;
+    let stackW = STACK_MAX_W;
+    let anchor = { x: 0, y: 0 };
+    let slots: { x: number; y: number }[] = [];
+    let photo = { x: 0, y: 0, zoom: 1 };
+
+    const resetOrder = () =>
+      cards.forEach((card, i) => (card.style.zIndex = String(STACK[i]!.z)));
+    resetOrder();
+
+    const loadImages = () => {
+      images.forEach((img) => {
+        if (!img.src && img.dataset.src) img.src = img.dataset.src;
+      });
+    };
+
+    const setState = (next: State) => {
+      state = next;
+      layer.dataset.state = next;
+    };
+
+    const timing = (
+      card: HTMLElement,
+      move: number,
+      fade: number,
+      delay: number,
+      ease = "var(--ease-out)",
+      fadeEase = "ease",
+      turn?: { ms: number; ease: string },
+    ) => {
+      card.style.setProperty("--t-move", `${move}ms`);
+      card.style.setProperty("--t-fade", `${fade}ms`);
+      card.style.setProperty("--t-delay", `${delay}ms`);
+      card.style.setProperty("--t-ease", ease);
+      card.style.setProperty("--t-fade-ease", fadeEase);
+      // Without its own timing the tilt simply moves with everything else.
+      if (turn) {
+        card.style.setProperty("--t-turn", `${turn.ms}ms`);
+        card.style.setProperty("--t-turn-ease", turn.ease);
+      } else {
+        card.style.removeProperty("--t-turn");
+        card.style.removeProperty("--t-turn-ease");
+      }
+    };
+
+    const apply = (card: HTMLElement, pose: Pose, blur = 0) => {
+      card.style.translate = `${pose.x - w / 2}px ${pose.y - h / 2}px`;
+      card.style.rotate = `${pose.r}deg`;
+      card.style.transform = `scale(${pose.s})`;
+      card.style.opacity = String(pose.o);
+      card.style.filter = blur ? `blur(${blur}px)` : "none";
+    };
+
+    // Grow the photo inside its frame until the border is `screen` pixels
+    // thick at the given zoom. Transform and radius only: nothing reflows.
+    const frame = (index: number, zoom = 1, screen = FRAME) => {
+      const img = images[index];
+      if (!img) return;
+      const border = screen / zoom;
+      if (zoom === 1 && screen === FRAME) {
+        img.style.transform = "";
+        img.style.borderRadius = "";
+        return;
+      }
+      const sx = (w - 2 * border) / (w - 2 * FRAME);
+      const sy = (h - 2 * border) / (h - 2 * FRAME);
+      img.style.transform = `scale(${sx.toFixed(4)}, ${sy.toFixed(4)})`;
+      img.style.borderRadius = `${((RADIUS - border) / sx).toFixed(2)}px`;
+    };
+
+    // Jump to a pose with transitions off, then turn them back on.
+    const instantly = (fn: () => void) => {
+      layer.dataset.instant = "";
+      fn();
+      void layer.offsetWidth;
+      delete layer.dataset.instant;
+    };
+
+    const measure = () => {
+      const vw = document.documentElement.clientWidth;
+      const vh = window.innerHeight;
+      const narrow = vw < 640;
+      const rows = narrow ? [2, 2, 1] : [3, 2];
+      const cols = Math.max(...rows);
+      const gapX = narrow ? 20 : 48;
+      const gapY = narrow ? 20 : 32;
+      const padX = narrow ? 24 : 64;
+      const padTop = narrow ? 32 : 48;
+      const padBottom = 112; // room for the close button
+
+      const fitWidth = (vw - 2 * padX - (cols - 1) * gapX) / cols;
+      const fitHeight =
+        (vh - padTop - padBottom - (rows.length - 1) * gapY) /
+        rows.length /
+        RATIO;
+      w = Math.max(96, Math.floor(Math.min(240, fitWidth, fitHeight)));
+      h = w * RATIO;
+      layer.style.setProperty("--w", `${w}px`);
+
+      const totalH = rows.length * h + (rows.length - 1) * gapY;
+      const top = padTop + Math.max(0, (vh - padTop - padBottom - totalH) / 2);
+      slots = [];
+      rows.forEach((count, row) => {
+        const rowW = count * w + (count - 1) * gapX;
+        const left = (vw - rowW) / 2;
+        for (let col = 0; col < count; col++) {
+          slots.push({
+            x: left + col * (w + gapX) + w / 2,
+            y: top + row * (h + gapY) + h / 2,
+          });
+        }
+      });
+
+      // The open photo: as tall as the space above the caption and the close
+      // button allows, and no wider than the screen. The photo and its
+      // caption are then centered together in that space. On a phone the
+      // width is the limit, so without this they sat at the top with dead
+      // space under the caption.
+      const minTop = narrow ? 24 : 40;
+      const captionGap = 20;
+      const captionH = caption.offsetHeight || 63;
+      const photoH = Math.max(
+        h,
+        Math.min(
+          vh - minTop - captionGap - captionH - padBottom,
+          RATIO * Math.min(vw - 48, 440),
+        ),
+      );
+      const blockH = photoH + captionGap + captionH;
+      const photoTop = Math.max(minTop, (vh - padBottom - blockH) / 2);
+      photo = {
+        x: vw / 2,
+        y: photoTop + photoH / 2,
+        zoom: photoH / h,
+      };
+      caption.style.setProperty(
+        "--caption-y",
+        `${Math.round(photoTop + photoH + captionGap)}px`,
+      );
+
+      // The stack always sits above the word. When there is little room up
+      // there the photos get smaller rather than dropping below the text.
+      // The tilted side cards stand about 6% taller than the front one.
+      const rect = trigger.getBoundingClientRect();
+      const room = (rect.top - STACK_GAP - 8) / 1.06;
+      stackW = Math.max(STACK_MIN_W, Math.min(STACK_MAX_W, room / RATIO));
+      const stackH = stackW * RATIO;
+      const k = stackW / STACK_REF_W;
+      const reach = stackW / 2 + 32 * k * SPREAD.x + 20;
+      const x = Math.min(
+        Math.max(rect.left + rect.width / 2, reach),
+        vw - reach,
+      );
+      const y = rect.top - STACK_GAP - stackH / 2;
+      anchor = { x, y };
+
+      cardsWrap.style.setProperty("--ox", `${x}px`);
+      cardsWrap.style.setProperty("--oy", `${y}px`);
+
+      const hitTop = y - stackH / 2 - 12;
+      hit.style.transform = `translate3d(${x - reach}px, ${hitTop}px, 0)`;
+      hit.style.width = `${reach * 2}px`;
+      hit.style.height = `${rect.top - hitTop}px`;
+    };
+
+    const stackPose = (i: number, dy = 0, scale = 1): Pose => {
+      const pose = STACK[i]!;
+      const k = stackW / STACK_REF_W;
+      const open = spread ? SPREAD : { x: 1, r: 1, lift: 0 };
+      return {
+        x: anchor.x + pose.x * k * open.x,
+        y: anchor.y + (pose.y + (i === 0 ? open.lift : 0)) * k + dy,
+        r: pose.r * open.r,
+        s: (stackW / w) * scale,
+        o: pose.o,
+      };
+    };
+
+    // Where cards start from: gathered behind the front card, a touch low and
+    // small. Never scale(0): nothing real appears out of nothing.
+    const gatheredPose = (i: number): Pose => {
+      const pose = STACK[i]!;
+      const k = stackW / STACK_REF_W;
+      return {
+        x: anchor.x + pose.x * k * 0.25,
+        y: anchor.y + 10 * k,
+        r: pose.r * 0.25,
+        s: (stackW / w) * 0.92,
+        o: 0,
+      };
+    };
+
+    const galleryPose = (i: number, dy = 0, scale = 1, o = 1): Pose => {
+      const index = SLOT[i]!;
+      const slot = slots[index]!;
+      const jitter = JITTER[index]!;
+      return {
+        x: slot.x + jitter.x * w,
+        y: slot.y + jitter.y * w + dy,
+        r: jitter.r,
+        s: scale,
+        o,
+      };
+    };
+
+    const finishExit = (after: number) => {
+      exiting = true;
+      window.clearTimeout(exitTimer);
+      exitTimer = window.setTimeout(() => (exiting = false), after);
+    };
+
+    const showStack = () => {
+      if (state !== "hidden") return;
+      window.clearTimeout(hideTimer);
+      loadImages();
+      measure();
+      spread = false;
+      // Mid-exit cards are still on screen: retarget them from where they
+      // are instead of snapping back to the start pose.
+      if (!exiting) {
+        instantly(() =>
+          cards.forEach((card, i) => apply(card, gatheredPose(i), 4)),
+        );
+      }
+      window.clearTimeout(exitTimer);
+      exiting = false;
+      setState("stack");
+      cards.forEach((card, i) => {
+        timing(card, 350, 200, STACK_DELAY[i] ?? 0);
+        apply(card, stackPose(i));
+      });
+    };
+
+    const setSpread = (next: boolean) => {
+      if (state !== "stack" || spread === next) return;
+      spread = next;
+      cards.forEach((card, i) => {
+        timing(card, 300, 200, 0);
+        apply(card, stackPose(i));
+      });
+    };
+
+    const hideStack = () => {
+      if (state !== "stack") return;
+      window.clearTimeout(hideTimer);
+      delete layer.dataset.pressed;
+      setState("hidden");
+      cards.forEach((card, i) => {
+        timing(card, 150, 150, 0);
+        apply(card, { ...stackPose(i, 4, 0.97), o: 0 }, 2);
+      });
+      spread = false;
+      finishExit(170);
+    };
+
+    const scheduleHide = () => {
+      window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(hideStack, 120);
+    };
+
+    const setTabbable = (on: boolean) => {
+      closeButton.tabIndex = on ? 0 : -1;
+      cards.forEach((card, i) => {
+        const reachable = on && (state !== "photo" || i === selected);
+        card.tabIndex = reachable ? 0 : -1;
+      });
+    };
+
+    const openGallery = () => {
+      if (state === "gallery" || state === "photo") return;
+      window.clearTimeout(hideTimer);
+      window.clearTimeout(exitTimer);
+      loadImages();
+      measure();
+      spread = false;
+      // Opened without a visible stack (touch, keyboard): start the cards at
+      // the word so they still grow out of the thing that was pressed.
+      if (state === "hidden" && !exiting) {
+        instantly(() =>
+          cards.forEach((card, i) => apply(card, gatheredPose(i))),
+        );
+      }
+      exiting = false;
+      delete layer.dataset.pressed;
+      setState("gallery");
+
+      layer.removeAttribute("aria-hidden");
+      layer.setAttribute("role", "dialog");
+      layer.setAttribute("aria-modal", "true");
+      layer.setAttribute("aria-label", "Photos of Texas");
+      trigger.setAttribute("aria-expanded", "true");
+      setTabbable(true);
+      document.documentElement.style.overflow = "hidden";
+
+      cards.forEach((card, i) => {
+        timing(card, 550, 250, SLOT[i]! * 35, "var(--ease-drawer)");
+        apply(card, galleryPose(i));
+      });
+      // Focus goes to the dialog, not to a control inside it. Landing on the
+      // close button drew a focus ring around it on every open, as if it had
+      // been chosen. From here the first Tab reaches the first photo.
+      layer.tabIndex = -1;
+      layer.focus({ preventScroll: true });
+    };
+
+    const openPhoto = (index: number) => {
+      if (state !== "gallery") return;
+      selected = index;
+      const card = cards[index]!;
+
+      // Written before measuring: the layout centers on the caption's height.
+      caption.replaceChildren();
+      const title = document.createElement("a");
+      // `exclude` opts out of the site-wide wavy link underline.
+      title.className = "exclude austin-caption-title";
+      title.href = card.dataset.href ?? "#";
+      title.target = "_blank";
+      title.rel = "noreferrer";
+      title.textContent = card.dataset.title ?? "";
+      caption.append(title, `. ${card.dataset.caption ?? ""}`);
+
+      measure();
+      const from = galleryPose(index);
+
+      setState("photo");
+      setTabbable(true);
+      cards.forEach((other, i) => {
+        if (i === index) {
+          other.dataset.selected = "";
+          other.style.zIndex = "10";
+          other.setAttribute("aria-label", "Close photo");
+          other.setAttribute("aria-describedby", "austin-caption");
+          const travel =
+            Math.hypot(photo.x - from.x, photo.y - from.y) +
+            (h * photo.zoom - h) / 2;
+          timing(
+            other,
+            FLIGHT_OUT.ms,
+            200,
+            0,
+            springCurve(FLIGHT_OUT.response, bounceFor(travel), FLIGHT_OUT.ms),
+            "ease",
+            {
+              ms: TURN_OUT.ms,
+              ease: springCurve(TURN_OUT.response, 0, TURN_OUT.ms),
+            },
+          );
+          apply(other, { x: photo.x, y: photo.y, r: 0, s: photo.zoom, o: 1 });
+          frame(i, photo.zoom, OPEN_FRAME);
+          return;
+        }
+        // The rest stay put and fall out of focus behind it.
+        const rest = galleryPose(i);
+        const part = waveFor(rest.x - from.x, rest.y - from.y);
+        timing(other, 460, 380, part.out, STRONG_OUT, GENTLE_OUT);
+        apply(other, { ...rest, o: RIPPLE.opacity }, RIPPLE.blur);
+      });
+    };
+
+    const releasePhoto = (index: number) => {
+      const card = cards[index];
+      if (!card) return;
+      delete card.dataset.selected;
+      frame(index);
+      card.removeAttribute("aria-describedby");
+      card.setAttribute("aria-label", `Open photo: ${card.dataset.alt ?? ""}`);
+    };
+
+    const closePhoto = () => {
+      if (state !== "photo") return;
+      const index = selected;
+      const from = galleryPose(index);
+      setState("gallery");
+      cards.forEach((card, i) => {
+        if (i === index) {
+          timing(
+            card,
+            FLIGHT_HOME.ms,
+            200,
+            0,
+            springCurve(
+              FLIGHT_HOME.response,
+              FLIGHT_HOME.bounce,
+              FLIGHT_HOME.ms,
+            ),
+            "ease",
+            {
+              ms: TURN_HOME.ms,
+              ease: springCurve(TURN_HOME.response, 0, TURN_HOME.ms),
+            },
+          );
+        } else {
+          const rest = galleryPose(i);
+          const part = waveFor(rest.x - from.x, rest.y - from.y);
+          timing(card, 300, 220, part.home, STRONG_OUT, SOFT_OUT);
+        }
+        apply(card, galleryPose(i));
+      });
+
+      releasePhoto(index);
+      selected = -1;
+      setTabbable(true);
+      // Keep the landing photo on top until it is home.
+      window.setTimeout(() => {
+        if (state === "gallery" && selected === -1) resetOrder();
+      }, FLIGHT_HOME.ms + 20);
+    };
+
+    const closeGallery = () => {
+      if (state !== "gallery" && state !== "photo") return;
+      // Each card leaves from wherever it is right now.
+      const wasPhoto = state === "photo";
+      const open = selected;
+      if (wasPhoto) releasePhoto(open);
+      setState("hidden");
+      selected = -1;
+
+      layer.setAttribute("aria-hidden", "true");
+      layer.removeAttribute("role");
+      layer.removeAttribute("aria-modal");
+      layer.removeAttribute("aria-label");
+      layer.removeAttribute("tabindex");
+      trigger.setAttribute("aria-expanded", "false");
+      setTabbable(false);
+      document.documentElement.style.overflow = "";
+
+      // Exit in place: sink, shrink, and fade. Softer and faster than the
+      // entrance, with a barely-there reverse stagger.
+      const last = cards.length - 1;
+      cards.forEach((card, i) => {
+        timing(card, 220, 200, (last - SLOT[i]!) * 15);
+        if (wasPhoto && i === open) {
+          apply(
+            card,
+            { x: photo.x, y: photo.y + 8, r: 0, s: photo.zoom * 0.97, o: 0 },
+            3,
+          );
+        } else {
+          apply(card, galleryPose(i, 8, 0.96, 0), 3);
+        }
+      });
+      finishExit(220 + last * 15 + 40);
+      window.setTimeout(() => {
+        if (state === "hidden") resetOrder();
+      }, 300);
+
+      // Returning focus to the word must not reopen the stack.
+      suppressFocus = true;
+      trigger.focus({ preventScroll: true });
+      window.setTimeout(() => (suppressFocus = false), 400);
+    };
+
+    // One step back: an open photo returns to the gallery, the gallery closes.
+    const back = () => (state === "photo" ? closePhoto() : closeGallery());
+
+    // Hover is a mouse affordance. Touch fires pointerenter on tap, which
+    // would flash the stack before the click expands it.
+    const isMouse = (event: PointerEvent) => event.pointerType === "mouse";
+
+    trigger.addEventListener("pointerenter", (event) => {
+      if (!isMouse(event)) return;
+      window.clearTimeout(hideTimer);
+      setSpread(false);
+      showStack();
+    });
+    trigger.addEventListener("pointerleave", (event) => {
+      if (isMouse(event)) scheduleHide();
+    });
+    trigger.addEventListener("focus", () => {
+      if (!suppressFocus && trigger.matches(":focus-visible")) showStack();
+    });
+    trigger.addEventListener("blur", hideStack);
+    trigger.addEventListener("click", openGallery);
+
+    hit.addEventListener("pointerenter", () => {
+      window.clearTimeout(hideTimer);
+      setSpread(true);
+    });
+    hit.addEventListener("pointerleave", () => {
+      delete layer.dataset.pressed;
+      setSpread(false);
+      scheduleHide();
+    });
+    hit.addEventListener("pointerdown", () => (layer.dataset.pressed = ""));
+    hit.addEventListener("pointerup", () => delete layer.dataset.pressed);
+    hit.addEventListener("pointercancel", () => delete layer.dataset.pressed);
+    hit.addEventListener("click", openGallery);
+
+    cards.forEach((card, i) =>
+      card.addEventListener("click", () => {
+        if (state === "gallery") openPhoto(i);
+        else if (state === "photo" && i === selected) closePhoto();
+      }),
+    );
+
+    backdrop.addEventListener("click", back);
+    closeButton.addEventListener("click", back);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        if (state === "gallery" || state === "photo") back();
+        else hideStack();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      if (state !== "gallery" && state !== "photo") return;
+      // Keep focus inside the dialog, wrapping at both ends.
+      const link =
+        state === "photo" ? caption.querySelector<HTMLElement>("a") : null;
+      const stops: HTMLElement[] = [
+        ...cards.filter((el) => el.tabIndex === 0),
+        ...(link ? [link] : []),
+        closeButton,
+      ];
+      const at = stops.indexOf(document.activeElement as HTMLElement);
+      const next = event.shiftKey
+        ? at <= 0
+          ? stops.length - 1
+          : at - 1
+        : at === stops.length - 1
+          ? 0
+          : at + 1;
+      event.preventDefault();
+      stops[next]?.focus({ preventScroll: true });
+    });
+
+    window.addEventListener("scroll", hideStack, { passive: true });
+    window.addEventListener("resize", () => {
+      if (state === "stack") hideStack();
+      if (state === "photo") closePhoto();
+      if (state === "gallery") {
+        measure();
+        instantly(() =>
+          cards.forEach((card, i) => apply(card, galleryPose(i))),
+        );
+      }
+    });
+
+    // Fetch the photos once the page is done with everything that matters
+    // more, so the first hover is instant.
+    const idle = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(loadImages, { timeout: 4000 });
+      } else {
+        setTimeout(loadImages, 1500);
+      }
+    };
+    if (document.readyState === "complete") idle();
+    else window.addEventListener("load", idle, { once: true });
+  };
+
+  const layer = document.querySelector<HTMLElement>("[data-austin-layer]");
+  const trigger = document.querySelector<HTMLElement>("[data-austin-trigger]");
+  if (layer && trigger) init(layer, trigger);
+</script>

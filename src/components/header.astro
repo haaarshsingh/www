@@ -3,6 +3,8 @@ import Link from "./icons/link.astro";
 import Texas from "./icons/texas.astro";
 import MainBranch from "./icons/mainbranch.astro";
 import Craft from "./icons/craft.astro";
+import Austin from "./austin.astro";
+import CopyCheck from "./icons/copy-check.astro";
 
 const socials = [
   {
@@ -328,7 +330,7 @@ const getContributionCellClass = (level: number) => {
     <p
       class="animate-intro font-light leading-snug opacity-0 [animation-delay:0.25s]"
     >
-      I'm Harsh Singh, a software engineer from the great state of <span class="whitespace-nowrap"><Texas class="mr-1 inline-block h-[0.7em] w-auto align-[-0.02em]" />Texas</span>. This is my tiny speck on the internet, where I share the products I'm building and my <span class="whitespace-nowrap"><Craft class="mr-1 inline-block h-[0.9em] w-auto align-[-0.1em] text-purple-500 dark:text-purple-400" />craft</span>.
+      I'm Harsh Singh, a software engineer from the great state of <button type="button" data-austin-trigger aria-haspopup="dialog" aria-expanded="false" class="relative cursor-pointer rounded-sm whitespace-nowrap underline decoration-neutral-300 decoration-wavy outline-offset-2 after:absolute after:inset-x-0 after:-inset-y-2 focus-visible:outline-2 focus-visible:outline-neutral-400 dark:decoration-neutral-600"><span class="relative [word-spacing:17px]"><Texas class="absolute top-1/2 left-0 h-[0.7em] w-auto -translate-y-[46%]" />&nbsp;</span>Texas</button>. This is my tiny speck on the internet, where I share the products I'm building and my <span class="whitespace-nowrap"><Craft class="mr-1 inline-block h-[0.9em] w-auto align-[-0.1em] text-purple-500 dark:text-purple-400" />craft</span>.
     </p>
     <p class="animate-intro font-light opacity-0 [animation-delay:0.3s]">
      I currently lead the engineering team at <a href="https://mainbranch.com" target="_blank" rel="noopener noreferrer"><span class="relative [word-spacing:13px]"><MainBranch class="absolute top-1/2 left-0 h-[0.8em] w-auto -translate-y-1/2 text-[#323928] dark:text-[#E5ECB1]" />&nbsp;</span>MainBranch</a>, building AI agents for the public sector. In the past, I ran a small design studio working with early-stage startups to enhance their visual design.
@@ -346,13 +348,28 @@ const getContributionCellClass = (level: number) => {
                     : social.label === "Linkedin"
                       ? "linkedin"
                       : null;
+              if (social.href.startsWith("mailto:")) {
+                const email = social.href.replace("mailto:", "");
+                return (
+                  <button
+                    type="button"
+                    data-copy-email={email}
+                    aria-label={`Copy email address ${email}`}
+                    class="relative isolate before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-neutral-200 before:transition-[background-color,scale] before:duration-150 before:ease-out hover:before:bg-[oklch(0.9_0_0)] active:before:scale-[0.98] active:before:bg-neutral-300 dark:before:bg-neutral-800 dark:hover:before:bg-[oklch(0.31_0_0)] dark:active:before:bg-neutral-700 flex cursor-pointer items-center py-1 pr-3 pl-2.5 text-sm select-none"
+                  >
+                    <CopyCheck />
+                    {social.label}
+                    <span class="sr-only" aria-live="polite" data-copy-status />
+                  </button>
+                );
+              }
               return (
                 <a
                   href={social.href}
                   target="_blank"
                   rel="me noreferrer"
                   data-popover-trigger={popoverKey ?? undefined}
-                  class="exclude flex items-center rounded-full bg-neutral-200 px-3 py-1 text-sm transition-colors select-none hover:bg-neutral-300 data-[active=true]:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:data-[active=true]:bg-neutral-700"
+                  class="exclude relative isolate before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-neutral-200 before:transition-[background-color,scale] before:duration-150 before:ease-out hover:before:bg-[oklch(0.9_0_0)] active:before:scale-[0.98] active:before:bg-neutral-300 dark:before:bg-neutral-800 dark:hover:before:bg-[oklch(0.31_0_0)] dark:active:before:bg-neutral-700 flex items-center px-3 py-1 text-sm select-none data-[active=true]:before:bg-[oklch(0.9_0_0)] dark:data-[active=true]:before:bg-[oklch(0.31_0_0)] data-[active=true]:active:before:bg-neutral-300 dark:data-[active=true]:active:before:bg-neutral-700"
                 >
                   {social.label}
                   <Link />
@@ -494,6 +511,8 @@ const getContributionCellClass = (level: number) => {
     </section>
   </div>
 </header>
+
+<Austin />
 
 <script is:inline>
   (() => {

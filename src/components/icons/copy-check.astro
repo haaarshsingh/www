@@ -1,0 +1,216 @@
+---
+// The copy glyph, and its receipt. Ported from the Kobra copy-check, which
+// drives the same morph through Motion; here it is plain CSS transitions on
+// the SVG geometry properties, so it needs no library and no script.
+//
+// Pressing is one movement rather than a swap. The two sheets slide together
+// and round off into a single disc, and the tick draws inside it. A rounded
+// rect is a circle exactly when its corner radius is half its side, so the
+// sheets really do become the ring instead of a second picture fading in over
+// them. The way back is the way out reversed, and a transition retargets from
+// wherever it is, so mashing the button cannot leave it half morphed.
+//
+// Geometry, in the 24-unit box:
+//   sheet  13 wide, radius 3.75, offset 3.25 each way from center
+//   disc   radius 8, a little wider than a sheet so the tick has room
+const { size = 15, strokeWidth = 1.8 } = Astro.props;
+// How far past its own edge the front sheet's mask reaches, so the back
+// sheet's stroke never shows along the seam.
+const SEAM = 2.4;
+---
+
+<svg
+  class="copy-check"
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <!-- The front sheet punches itself out of the back one, which gives the rest
+       pose the notch every copy glyph has. A mask rather than a stroke in the
+       surface color, because the pill changes color on hover and by theme. -->
+  <mask id="copy-check-seam" maskUnits="userSpaceOnUse">
+    <rect width="24" height="24" fill="#fff" stroke="none"></rect>
+    <rect
+      class="copy-check-sheet"
+      fill="#000"
+      stroke="#000"
+      stroke-width={strokeWidth + SEAM}></rect>
+  </mask>
+  <rect class="copy-check-sheet copy-check-back" mask="url(#copy-check-seam)"
+  ></rect>
+  <rect class="copy-check-sheet"></rect>
+  <!-- Drawn by sliding one dash the length of the path in from the start. The
+       gap is longer than the path so the pattern's next dash never reaches it,
+       which would leave a speck under the round cap. -->
+  <path class="copy-check-tick" d="M8 12.3L11.1 15.4L16.3 9.2" pathLength="1"
+  ></path>
+</svg>
+
+<style is:global>
+  .copy-check {
+    /* A 340ms spring with no bounce. The cubic is for browsers without
+       linear(). */
+    --copy-spring: cubic-bezier(0.32, 0.72, 0, 1);
+    --copy-morph: 340ms;
+
+    flex: none;
+    /* Sits before the label. */
+    margin-right: 0.4375rem;
+    color: #8f8f8f;
+    overflow: visible;
+  }
+  @supports (transition-timing-function: linear(0, 1)) {
+    .copy-check {
+      --copy-spring: linear(0, 0.0251, 0.0859, 0.1658, 0.2538, 0.3426, 0.4278, 0.5069, 0.5785, 0.6421, 0.698, 0.7464, 0.788, 0.8235, 0.8536, 0.8789, 0.9001, 0.9179, 0.9327, 0.9449, 0.955, 0.9634, 0.9702, 0.9759, 0.9805, 0.9843, 0.9874, 0.9899, 0.9919, 0.9936, 0.995, 0.9961, 0.9969, 0.9977, 0.9982, 0.9987, 0.9991, 0.9994, 0.9996, 0.9998, 1);
+    }
+  }
+
+  /* Rest: two sheets, the front one down and to the right of the back one.
+     Leaving the disc, the sheets wait 70ms for the tick to clear, so the two
+     beats keep their order both ways round. */
+  .copy-check-sheet {
+    x: 8.75px;
+    y: 8.75px;
+    width: 13px;
+    height: 13px;
+    rx: 3.75px;
+    transition:
+      x var(--copy-morph) var(--copy-spring) 70ms,
+      y var(--copy-morph) var(--copy-spring) 70ms,
+      width var(--copy-morph) var(--copy-spring) 70ms,
+      height var(--copy-morph) var(--copy-spring) 70ms,
+      rx var(--copy-morph) var(--copy-spring) 70ms;
+  }
+  .copy-check-back {
+    x: 2.25px;
+    y: 2.25px;
+    transition:
+      x var(--copy-morph) var(--copy-spring) 70ms,
+      y var(--copy-morph) var(--copy-spring) 70ms,
+      width var(--copy-morph) var(--copy-spring) 70ms,
+      height var(--copy-morph) var(--copy-spring) 70ms,
+      rx var(--copy-morph) var(--copy-spring) 70ms,
+      opacity 100ms linear 120ms,
+      translate 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .copy-check-tick {
+    stroke-dasharray: 1 2;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 120ms linear;
+  }
+
+  /* Copied: both sheets land on the same disc. */
+  [data-copied] .copy-check-sheet {
+    x: 4px;
+    y: 4px;
+    width: 16px;
+    height: 16px;
+    rx: 8px;
+    transition-delay: 0ms;
+  }
+  /* The back sheet goes while it is still sliding. Left to be eaten by the
+     mask, the last of it is a hairline arc under the front sheet's edge, which
+     reads as a doubled edge and not as a merge. */
+  [data-copied] .copy-check-back {
+    opacity: 0;
+    transition:
+      x var(--copy-morph) var(--copy-spring),
+      y var(--copy-morph) var(--copy-spring),
+      width var(--copy-morph) var(--copy-spring),
+      height var(--copy-morph) var(--copy-spring),
+      rx var(--copy-morph) var(--copy-spring),
+      opacity 80ms linear 40ms,
+      translate 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  [data-copied] .copy-check-tick {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 220ms cubic-bezier(0.22, 1, 0.36, 1) 130ms;
+  }
+
+  /* On hover the back sheet slides out from under the front one. A `translate`
+     so it composes with the geometry the morph is animating instead of
+     fighting it for the same value. Not once it is a disc: there are no sheets
+     to separate then. */
+  @media (hover: hover) and (pointer: fine) {
+    :where(button, a):hover:not([data-copied]) .copy-check-back {
+      translate: 2px 0;
+    }
+  }
+
+  /* The states stay, the travel goes. */
+  @media (prefers-reduced-motion: reduce) {
+    .copy-check-sheet,
+    .copy-check-back,
+    .copy-check-tick,
+    [data-copied] .copy-check-sheet,
+    [data-copied] .copy-check-back,
+    [data-copied] .copy-check-tick {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // How long the tick stays before the glyph unwinds. Long enough to read as
+  // an answer, short enough that the button is honest again by the time
+  // anyone reaches for it a second time.
+  const COPIED_HOLD = 1500;
+
+  const copy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Older browsers and insecure contexts have no async clipboard.
+      const field = document.createElement("textarea");
+      field.value = text;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch {
+        ok = false;
+      }
+      field.remove();
+      return ok;
+    }
+  };
+
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-copy-email]")
+    .forEach((button) => {
+      const status = button.querySelector<HTMLElement>("[data-copy-status]");
+      let timer = 0;
+
+      button.addEventListener("click", async () => {
+        const email = button.dataset.copyEmail ?? "";
+        const ok = await copy(email);
+        // If the clipboard is blocked entirely, fall back to the mail client
+        // rather than leaving the press with no result.
+        if (!ok) {
+          window.location.href = `mailto:${email}`;
+          return;
+        }
+        button.dataset.copied = "";
+        if (status) status.textContent = "Email address copied";
+        // Clear before re-arming, or a quick second press is cut short by the
+        // first press's timer.
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          delete button.dataset.copied;
+          if (status) status.textContent = "";
+        }, COPIED_HOLD);
+      });
+    });
+</script>
