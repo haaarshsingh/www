@@ -611,7 +611,9 @@ const photos = [
     };
 
     const measure = () => {
-      const vw = document.documentElement.clientWidth;
+      // The full window, scrollbar included. The page is laid out against
+      // that width, and the scrollbar is gone while the gallery is open.
+      const vw = window.innerWidth;
       const vh = window.innerHeight;
       const narrow = vw < 640;
       const rows = narrow ? [2, 2, 1] : [3, 2];

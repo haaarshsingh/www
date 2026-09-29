@@ -127,7 +127,29 @@
     padding: 0;
   }
 
+  /* The scrollbar floats over the page instead of taking a column of its own.
+     The page wrapper (`.page` in the layout) is as wide as the full window,
+     scrollbar included, so everything sits in exactly the same place whether
+     the scrollbar is showing or not. Anything that locks scrolling, like the
+     photo gallery, can then hide the scrollbar without the page jumping
+     sideways.
+
+     The wrapper overhangs the body by the scrollbar's width. The body clips
+     that overhang rather than hiding it, because `hidden` would still leave
+     the page scrollable sideways from script. And the root sets its own
+     overflow so the body's is not handed up to the window. The track is
+     transparent, so what shows behind the thumb is the page background. */
+  html {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0 0 0 / 0.25) transparent;
+  }
+  html.dark {
+    scrollbar-color: rgb(255 255 255 / 0.25) transparent;
+  }
+
   body {
+    overflow-x: clip;
     font-family:
       system-ui,
       -apple-system,
@@ -135,6 +157,10 @@
       sans-serif;
     letter-spacing: -2%;
     @apply bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100;
+  }
+
+  .page {
+    width: 100vw;
   }
 
   ::selection {
