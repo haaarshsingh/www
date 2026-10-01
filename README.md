@@ -1,4 +1,4 @@
-image
+<img width="1200" height="630" alt="image" src="https://github.com/user-attachments/assets/a2a6f781-bbfe-44c7-bf44-be3db7d02cb0" />
 
 ## Quickstart
 
