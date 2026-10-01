@@ -13,6 +13,7 @@
   --animate-intro: intro 0.3s forwards ease-in-out;
   --animate-cloud: cloud 120s linear infinite;
   --animate-marker: marker 4s ease-out infinite;
+  --animate-marker-ring: marker-ring 4s infinite;
   --animate-plane: plane 30s linear infinite;
   --animate-plane-shadow: plane-shadow 30s linear infinite;
 
@@ -62,6 +63,22 @@
     100% {
       transform: translate(-50%, -50%) scale(6);
       opacity: 0;
+    }
+  }
+
+  /* Shares the 4s marker cycle: exhales in lockstep with the pulse, then
+     slowly inhales through the rest so it peaks as the next pulse fires. */
+  @keyframes marker-ring {
+    0% {
+      transform: scale(1.1);
+      animation-timing-function: ease-out;
+    }
+    35% {
+      transform: scale(1);
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    }
+    100% {
+      transform: scale(1.1);
     }
   }
 
