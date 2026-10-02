@@ -527,6 +527,9 @@ const photos = [
     let state: State = "hidden";
     let exiting = false;
     let suppressFocus = false;
+    // Whether the mouse is over the word or the stack. Losing keyboard focus
+    // must not close a stack the pointer is still holding open.
+    let pointerInside = false;
     let spread = false;
     let selected = -1;
     let hideTimer = 0;
@@ -653,7 +656,7 @@ const photos = [
       // width is the limit, so without this they sat at the top with dead
       // space under the caption.
       const minTop = narrow ? 24 : 40;
-      const captionGap = 20;
+      const captionGap = 32;
       const captionH = caption.offsetHeight || 63;
       const photoH = Math.max(
         h,
@@ -817,6 +820,7 @@ const photos = [
         );
       }
       exiting = false;
+      pointerInside = false;
       delete layer.dataset.pressed;
       setState("gallery");
 
@@ -995,28 +999,44 @@ const photos = [
 
     trigger.addEventListener("pointerenter", (event) => {
       if (!isMouse(event)) return;
+      pointerInside = true;
       window.clearTimeout(hideTimer);
       setSpread(false);
       showStack();
     });
     trigger.addEventListener("pointerleave", (event) => {
-      if (isMouse(event)) scheduleHide();
+      if (!isMouse(event)) return;
+      pointerInside = false;
+      scheduleHide();
     });
     trigger.addEventListener("focus", () => {
       if (!suppressFocus && trigger.matches(":focus-visible")) showStack();
     });
-    trigger.addEventListener("blur", hideStack);
+    // Blur closes a stack that keyboard focus opened. It must leave alone one
+    // the mouse is on. Closing the gallery hands focus back to the word, so
+    // the next press on the stack blurs it, and hiding here pulled the stack
+    // out from under that press: the click landed on the page and the photos
+    // slid back into the text instead of opening.
+    trigger.addEventListener("blur", () => {
+      if (!pointerInside) hideStack();
+    });
     trigger.addEventListener("click", openGallery);
 
     hit.addEventListener("pointerenter", () => {
+      pointerInside = true;
       window.clearTimeout(hideTimer);
       setSpread(true);
     });
     hit.addEventListener("pointerleave", () => {
+      pointerInside = false;
       delete layer.dataset.pressed;
       setSpread(false);
       scheduleHide();
     });
+    // Pressing the stack should not move focus at all. It is a mouse target
+    // with nothing to focus, and taking focus from the word is what fired
+    // the blur above.
+    hit.addEventListener("mousedown", (event) => event.preventDefault());
     hit.addEventListener("pointerdown", () => (layer.dataset.pressed = ""));
     hit.addEventListener("pointerup", () => delete layer.dataset.pressed);
     hit.addEventListener("pointercancel", () => delete layer.dataset.pressed);
